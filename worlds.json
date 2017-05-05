@@ -1,0 +1,61 @@
+{
+  "default" : {
+    "sun" : "/assets/img/worlds/plain/sun.png",
+    "hill_one" : "/assets/img/worlds/plain/hill_one.png",
+    "hill_two" : "/assets/img/worlds/plain/hill_two.png",
+    "hill_three" : "/assets/img/worlds/plain/hill_three.png",
+    "hill_four" : "/assets/img/worlds/plain/hill_four.png",
+    "hill_rear" : "/assets/img/worlds/plain/hill_rear.png",
+    "tree_one" : "/assets/img/worlds/plain/tree_one.png",
+    "tree_two" : "/assets/img/worlds/plain/tree_two.png",
+    "sky_shadow_top" : "/assets/svg/plain/sky_shadow_top.png",
+    "sky_shadow_small" : "/assets/svg/plain/sky_shadow_small.png",
+    "sky_shadow_low" : "/assets/svg/plain/sky_shadow_low.png",
+    "cloud_one" : "/assets/svg/plain/cloud_1.png",
+    "cloud_two" : "/assets/svg/plain/cloud_2.png",
+    "cloud_three" : "/assets/svg/plain/cloud_3.png",
+    "cloud_four" : "/assets/svg/plain/cloud_4.png",
+    "cloud_five" : "/assets/svg/plain/cloud_5.png"
+  },
+  "dayglo" : {
+    "sun" : "/assets/img/worlds/dayglo/sun.png",
+    "base" : "/assets/img/worlds/dayglo/base.png",
+    "heads" : "/assets/img/worlds/dayglo/heads.png",
+    "fruit" : "/assets/img/worlds/dayglo/fruit.png",
+    "clouds_bulk_one" : "/assets/img/worlds/dayglo/clouds_bulk_one.png",
+    "clouds_bulk_two" : "/assets/img/worlds/dayglo/clouds_bulk_two.png",
+    "clouds_bulk_three" : "/assets/img/worlds/dayglo/clouds_bulk_three.png",
+    "clouds_bulk_four" : "/assets/img/worlds/dayglo/clouds_bulk_four.png",
+    "clouds_bulk_five" : "/assets/img/worlds/dayglo/clouds_bulk_five.png",
+    "clouds_bulk_six" : "/assets/img/worlds/dayglo/clouds_bulk_six.png",
+    "clouds_bulk_seven" : "/assets/img/worlds/dayglo/clouds_bulk_seven.png",
+    "sky_shadow_one" : "/assets/img/worlds/dayglo/sky_shadow_one.png",
+    "sky_shadow_two" : "/assets/img/worlds/dayglo/sky_shadow_two.png",
+    "cloud_low_one" : "/assets/img/worlds/dayglo/cloud_low_one.png",
+    "cloud_low_two" : "/assets/img/worlds/dayglo/cloud_low_two.png",
+    "cloud_low_three" : "/assets/img/worlds/dayglo/cloud_low_three.png",
+    "cloud_low_four" : "/assets/img/worlds/dayglo/cloud_low_four.png"
+  },
+  "layers" : {
+    "default" : {
+      "zero" : ["hill_one", "tree_one", "tree_two"],
+      "one" : ["hill_two"],
+      "two" : ["hill_three"],
+      "three" : ["hill_four"],
+      "four" : ["hill_rear"]
+    },
+    "dayglo" : {}
+  },
+  "copy" : {
+    "default" : {
+      "lede" : "We seek to take your expectations and turn them on their head",
+      "introduction" : "<p>In the shadow of the Crooked Spire we craft natural alcoholic sodas packed full of fruity flavour and just the right amount of sweetness.<\/p>\r\n<p>Each of the flavours are modelled around a different dimension. Let us take you on a journey through our worlds.<\/p>\r\n<p>Crooked Beverage Co was borne out of a desire to create something truly new and truly different. A whole lot of time, experimentation and passion has gone into these drinks, alongside all natural ingredients!<\/p>\r\n<p>We've partnered with the extremely talented Lisa O'Hara to create the amazing illustrations on each can. Her inimitable style perfectly bring the Crooked worlds to life.<\/p>"
+    },
+    "dayglo" : {
+      "title" : "Dayglo Skies",
+      "subtitle" : "Raspberry and Lime",
+      "lede" : "Under dayglo skies lies a world of possibility; the changing shapes in the clouds hint at dreams and other lives.",
+      "introduction" : "<p>Warm breezes tickle sun-kissed skin and happy bodies dance together like the aroma of sweet raspberries and tropical citrus; the sweet refreshing taste is unrivalled.<\/p>\r\n<p>Long evenings, loud laughter, soft grass in between toes.\r\nAll swept up in the psychedelia of dayglo skies.<\/p>"
+    }
+  }
+}

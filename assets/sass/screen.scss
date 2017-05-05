@@ -1,23 +1,787 @@
 @import "reset";
+@import "core";
+
+$header-font: 'Fjalla One';
 
 /* ==========================================================================
-   Author's custom styles
+   Base typography, general styles
    ========================================================================== */
-
-
-
-
-/* ==========================================================================
-  Media Query examples reference
-   ========================================================================= */
-
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
+html {
+  font-size:1.25em
+}
+body {
+  background-color: rgb(46,45,44);
+  color:white;
+  font-family: 'Open Sans';
+  font-size:20px;
+  font-weight: 400;
+  line-height: 1.45;
+  margin:0;
+}
+p {
+  margin-bottom: 1.3em;
+}
+h1, h2, h3, h4 {
+  margin: 1.414em 0 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
+  font-family:$header-font;
+  text-transform: uppercase;
+}
+h1 {
+  font-size: 3.052em;
+  margin-top: 0;
+}
+h2 {
+  font-size: 2.441em;
+}
+h3 {
+  font-size: 1.953em;
+}
+h4 {
+  font-size: 1.563em;
+}
+h5 {
+  font-size: 1.25em;
+}
+small, .font_small {
+  font-size: 0.8em;
 }
 
-@media print,
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 1.25dppx),
-       (min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
+img {
+  max-width:100%;
+  height:auto;
+}
+table {
+  text-align: left;
+  border-collapse: collapse;
+  font-size:0.8em;
+  margin: 0 auto;
+  td, th {
+    border:1px solid white;
+    padding:0.8em;
+  }
+  td:first-child {
+    text-transform: uppercase;
+    text-align: right;
+  }
+  h4 {
+    margin:0;
+  }
+}
+a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color:white;
+  &:hover {
+    color:orange;
+  }
+}
+/* ==========================================================================
+  Layout and design
+   ========================================================================= */
+nav {
+  background-color: black;
+  position: fixed;
+  top:0;
+  width:100%;
+  z-index:200;
+  padding:0.8rem 0;
+  .container {
+    margin:0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  a {
+    font-size:1.563rem;
+    font-family:$header-font;
+  }
+}
+header {
+  height:100vh;
+  width:100%;
+  background-color:#656565;
+  transform: scale(1);
+  transform-origin: center 50%;
+}
+main {
+    text-align: center;
+    position: relative;
+    z-index:101;
+    section {
+      margin-bottom:4rem;
+    }
+}
+.explore-button {
+  border:1px solid white;
+  text-transform: uppercase;
+  display: inline-block;
+  padding:1rem;
+  a {
+    color:white;
+    text-decoration: none;
+  }
+  span {
+    font-weight:bold;
+  }
+}
+#welcome {
+  h2{
+    position: relative;
+    margin-bottom:4rem;
+    &:after {
+      position:absolute;
+      bottom:-3rem;
+      left:0;
+      width:100%;
+      text-align: center;
+      content: '-';
+    }
+  }
+  p:first-of-type{
+    font-size:1.25em;
+    margin-top:0;
+  }
+}
+.default {
+  .introduction {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+    text-align:left;
+  }
+}
+#social {
+  i {
+    font-size:1.563rem;
+    padding:0.5rem;
+  }
+}
+#wholesale, #stockists {
+  .logo {
+    margin-top:1rem;
+  }
+}
+#products {
+  .row {
+    text-align: left;
+    margin-bottom:3rem;
+    align-items: center;
+    &:nth-of-type(odd) {
+      text-align: right;
+      flex-direction: row-reverse;
+    }
+  }
+  .explore-button {
+    text-align: center;
+  }
+}
+
+
+#footer-cans {
+  .can {
+    img {
+      transform: translate(0, 0);
+      left:0;
+      top:0;
+      width:100%;
+      position:relative;
+    }
+  }
+  .explore-button {
+    margin-top:1rem;
+  }
+}
+
+footer {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  .footer-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+    &:first-of-type{
+      flex-grow: 2;
+    }
+  }
+  a {
+    text-decoration: none;
+    color:white;
+  }
+  h3 {
+    margin:0.5rem 0.5rem 0.5rem 0;
+  }
+  .footer-copy {
+    font-size:0.64em;
+  }
+}
+
+/* ==========================================================================
+  SVG work
+  Z index:
+  - Sky shadows: 10 to 14
+  - Sun: 15
+  - Clouds: 15 to 30
+  - Ground: 30+
+   ========================================================================= */
+header {
+  overflow:hidden;
+  min-width:600px;
+  z-index: 99;
+  position: relative;
+  img {
+      position: absolute;
+  }
+}
+$sun_colour: #b9b9b9;
+$sunrise_timing: 5s;
+#sun {
+  left:50%;
+  bottom:0;
+  transform:translateY(100%) translateX(-50%);
+  max-width:30%;
+  z-index:14;
+  border-radius: 50%;
+  box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 90px $sun_colour;
+  background-color: $sun_colour;
+  opacity:0;
+  transition: transform $sunrise_timing, opacity 0.5s linear 0.5s;
+}
+.sunrise {
+  #sun {
+    transform:translateY(0%) translateX(-50%);
+    opacity:1;
+    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 20px $sun_colour;
+    animation: sun_shimmer 30s infinite;
+  }
+}
+
+#sky_shadow_top {
+  left:0;
+  top:0;
+  z-index:10;
+  opacity:0;
+  animation:float-reverse 20s infinite;
+  transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
+}
+#sky_shadow_small {
+  right:0;
+  top:30%;
+  z-index:11;
+  opacity:0;
+  transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
+  animation:float 15s infinite;
+}
+#sky_shadow_low {
+  right:0;
+  top:50%;
+  z-index:12;
+  opacity:0;
+  transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
+  animation:float 25s infinite;
+}
+.sunrise {
+  #sky_shadow_top {
+    opacity:1;
+  }
+  #sky_shadow_small {
+    opacity:1;
+  }
+  #sky_shadow_low {
+    opacity:1;
+  }
+}
+
+
+#cloud_one {
+  right:105%;
+  top:10%;
+  z-index:15;
+  transition: all 30s linear 0s;
+}
+#cloud_two {
+  right:110%;
+  top:50%;
+  z-index:16;
+  transition: all 50s linear 5s;
+}
+//Long cloud
+#cloud_three {
+  left:0%;
+  top:20%;
+  z-index:17;
+  max-width:none;
+  width:150vw;
+  animation: longcloud_float 60s infinite;
+  opacity:0;
+  transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
+}
+#cloud_four {
+  left:105%;
+  top:40%;
+  z-index:18;
+  transition: all 60s ease 10s;
+}
+#cloud_five {
+  left:110%;
+  top:60%;
+  z-index:19;
+  transition: all 40s linear 3s;
+}
+.sunrise {
+  #cloud_three {
+    opacity:1;
+  }
+}
+.daytime {
+    #cloud_one {
+      right:-50%;
+    }
+    #cloud_two {
+      right:-50%;
+    }
+    #cloud_four {
+      left:-10%;
+    }
+    #cloud_five {
+      left:100%;
+    }
+}
+#hill_one {
+  left:0;
+  bottom:0;
+  width:100%;
+  z-index:34;
+  transform:scale(1) translateY(0%);
+  transition:transform 0.5s ease-in 2s;
+}
+#hill_two {
+  left:0;
+  bottom:0;
+  width:100%;
+  z-index:33;
+  transform:scale(1) translateY(0%);
+  transition:transform 0.5s ease-in 1.5s;
+}
+#hill_three {
+  left:0;
+  bottom:0;
+  width:100%;
+  z-index:32;
+  transform:scale(1) translateY(0%);
+  transition:transform 1s ease-in 1s;
+}
+#hill_four {
+  left:0;
+  bottom:0;
+  width:100%;
+  z-index:31;
+  transform:scale(1) translateY(0%);
+  transition:transform 1.5s ease-in 0.5s;
+}
+#hill_rear {
+  left:0;
+  bottom:0;
+  width:100%;
+  z-index:30;
+  transform:scale(1) translateY(0%);
+  transition:transform 2s ease-in 0s;
+}
+
+body:not(.sunrise) {
+  #hill_one,
+  #hill_two,
+  #hill_three,
+  #hill_four,
+  #hill_rear {
+    transform:scale(2) translateY(100%);
+  }
+}
+
+
+#tree_one {
+  left:5%;
+  bottom:3vw;
+  z-index:34;
+  opacity:0;
+  transform:translateY(100%) scale(0.8);
+  transition:all 1s cubic-bezier(0,.88,.96,0) 0s;
+}
+#tree_two {
+  right:0%;
+  bottom:7vw;
+  z-index:34;
+  opacity:0;
+  transform:translateY(100%) scale(0.8);
+  transition:transform 1s cubic-bezier(.74,1,.6,.01) 0.7s;
+}
+.daytime {
+  #tree_one {
+    transform: translateY(0%) scale(0.8);
+    opacity:1;
+  }
+  #tree_two {
+    transform: translateY(0%) scale(0.8);
+    opacity:1;
+  }
+}
+/* ==========================================================================
+  Dayglo skies elements
+   ========================================================================= */
+.dayglo {
+  header {
+    height:200vh;
+  }
+}
+#dayglo_base {
+  left:0;
+  bottom:0;
+  width:100%;
+  z-index:19;
+}
+$sun_colour_dayglo: #96c11f;
+#dayglo_sun {
+  left:50%;
+  bottom:0;
+  transform: translateX(-50%);
+  max-width:30%;
+  z-index:14;
+  border-radius: 50%;
+  box-shadow: 0 0 40px 6px $sun_colour_dayglo, 0 0 150px 90px $sun_colour_dayglo;
+  background-color: $sun_colour_dayglo;
+  animation: sun_shimmer_dayglo 30s infinite;
+}
+#dayglo_heads {
+  right:0;
+  bottom:5vh;
+  max-width:50vw;
+  z-index:50;
+}
+#dayglo_fruit {
+  left:0;
+  bottom:5vh;
+  max-width:30vw;
+  z-index:51;
+}
+#dayglo_sky_shadow_one {
+  top:15%;
+  right:-5%;
+  max-width:70vw;
+  z-index:11;
+}
+#dayglo_sky_shadow_two {
+  left:-5%;
+  top:0;
+  max-width:70vw;
+  z-index:10;
+}
+#dayglo_clouds_bulk_one {
+  top:10%;
+  left:100%;
+  width:100%;
+  z-index:40;
+  animation: clouds_left_dayglo 120s infinite;
+}
+#dayglo_clouds_bulk_two {
+  top:25%;
+  right:100%;
+  width:100%;
+  z-index:41;
+  animation: clouds_right_dayglo 120s infinite 7s;
+}
+#dayglo_clouds_bulk_three {
+  top:30%;
+  left:100%;
+  width:100%;
+  z-index:42;
+  animation: clouds_left_dayglo 120s infinite 15s;
+}
+#dayglo_clouds_bulk_four {
+  top:10%;
+  right:100%;
+  width:100%;
+  z-index:43;
+  animation: clouds_right_dayglo 120s infinite 23s;
+}
+#dayglo_clouds_bulk_five {
+  top:25%;
+  left:100%;
+  width:100%;
+  z-index:44;
+  animation: clouds_left_dayglo 120s infinite 25s;
+}
+#dayglo_clouds_bulk_six {
+  top:30%;
+  right:100%;
+  width:100%;
+  z-index:45;
+  animation: clouds_right_dayglo 120s infinite 37s;
+}
+#dayglo_clouds_bulk_seven {
+  top:20%;
+  left:100%;
+  width:100%;
+  z-index:46;
+  animation: clouds_left_dayglo 120s infinite 30s;
+}
+#dayglo_cloud_low_one {
+  bottom:18%;
+  right:20%;
+  max-width:30%;
+  z-index:47;
+}
+#dayglo_cloud_low_two {
+  bottom:10%;
+  left:35%;
+  max-width:40%;
+  z-index:48;
+}
+#dayglo_cloud_low_three {
+  bottom:25%;
+  left:15%;
+  max-width:30%;
+  z-index:49;
+}
+#dayglo_cloud_low_four {
+  bottom:5%;
+  left:20%;
+  max-width:30%;
+  z-index:50;
+}
+@keyframes clouds_left_dayglo {
+  0% {
+    transform:scaleX(1) translateX(0);
+  }
+  49% {
+    transform:scaleX(1) translateX(-200%);
+  }
+  50% {
+    transform:scaleX(1) translateX(-200%);
+    visibility:hidden;
+  }
+  51% {
+    transform:scaleX(-1) translateX(200%);
+    visibility:hidden;
+  }
+  52% {
+    transform:scaleX(-1) translateX(200%);
+    visibility:visible;
+  }
+  96% {
+    transform:scaleX(-1) translateX(-0%);
+  }
+  97% {
+    transform:scaleX(-1) translateX(-0%);
+    visibility:hidden;
+  }
+  98% {
+    transform:scaleX(1) translateX(0%);
+    visibility:hidden;
+  }
+  99% {
+    transform:scaleX(1) translateX(0%);
+    visibility:visible;
+  }
+  100% {
+    transform:scaleX(1) translateX(0%);
+  }
+}
+@keyframes clouds_right_dayglo {
+  0% {
+    transform:scaleX(1) translateX(0);
+  }
+  49% {
+    transform:scaleX(1) translateX(200%);
+  }
+  50% {
+    transform:scaleX(1) translateX(200%);
+    visibility:hidden;
+  }
+  51% {
+    transform:scaleX(-1) translateX(-200%);
+    visibility:hidden;
+  }
+  52% {
+    transform:scaleX(-1) translateX(-200%);
+    visibility:visible;
+  }
+  96% {
+    transform:scaleX(-1) translateX(0%);
+  }
+  97% {
+    transform:scaleX(-1) translateX(0%);
+    visibility:hidden;
+  }
+  98% {
+    transform:scaleX(1) translateX(0%);
+    visibility:hidden;
+  }
+  99% {
+    transform:scaleX(1) translateX(0%);
+    visibility:visible;
+  }
+  100% {
+    transform:scaleX(1) translateX(0%);
+  }
+}
+@keyframes sun_shimmer_dayglo {
+  0% {
+    box-shadow: 0 0 40px 6px $sun_colour_dayglo, 0 0 150px 10px $sun_colour_dayglo;
+    background-color:$sun_colour_dayglo;
+  }
+  25% {
+    box-shadow: 0 0 40px 6px $sun_colour_dayglo, 0 0 150px 70px $sun_colour_dayglo;
+    background-color:darken($sun_colour_dayglo, 5%);
+  }
+  50% {
+    box-shadow: 0 0 40px 6px $sun_colour_dayglo, 0 0 150px 10px $sun_colour_dayglo;
+    background-color:$sun_colour_dayglo;
+  }
+  75% {
+    box-shadow: 0 0 40px 6px $sun_colour_dayglo, 0 0 130px 50px $sun_colour_dayglo;
+    background-color:darken($sun_colour_dayglo, 5%);
+  }
+  100% {
+    box-shadow: 0 0 40px 6px $sun_colour_dayglo, 0 0 150px 10px $sun_colour_dayglo;
+    background-color:$sun_colour_dayglo;
+  }
+}
+
+/* ==========================================================================
+  General animations
+   ========================================================================= */
+@keyframes sun_shimmer {
+  0% {
+    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 10px $sun_colour;
+    background-color:$sun_colour;
+  }
+  25% {
+    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 70px $sun_colour;
+    background-color:darken($sun_colour, 5%);
+  }
+  50% {
+    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 10px $sun_colour;
+    background-color:$sun_colour;
+  }
+  75% {
+    box-shadow: 0 0 40px 6px $sun_colour, 0 0 130px 50px $sun_colour;
+    background-color:darken($sun_colour, 5%);
+  }
+  100% {
+    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 10px $sun_colour;
+    background-color:$sun_colour;
+  }
+}
+@keyframes longcloud_float {
+  0% {
+    left:0%;
+  }
+  100% {
+    left:-50%;
+  }
+}
+@keyframes float {
+  0% {
+    transform:translateX(50px);
+  }
+  50% {
+    transform:translateX(0);
+  }
+  100% {
+    transform:translateX(50px);
+  }
+}
+@keyframes float-reverse {
+  0% {
+    transform:translateX(-50px);
+  }
+  50% {
+    transform:translateX(0);
+  }
+  100% {
+    transform:translateX(-50px);
+  }
+}
+/* ==========================================================================
+  World transition animation
+   ========================================================================= */
+.transitioning *:not(.target_world):not(.target_parent) {
+  opacity:0 !important;
+  transition:opacity 1s;
+}
+.target_world {
+  transition:left 1s, top 1s, transform 1s;
+  left: 0;
+  top: 0;
+}
+.transitioning .target_world {
+  animation:worldswitch_zoom 3s linear 1s forwards;
+  transform-origin:center 8%;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) scale(1);
+}
+@keyframes worldswitch_zoom {
+  0% {
+    transform:translate(-50%, -50%) scale(1);
+  }
+  10% {
+    transform:translate(-50%, -50%) scale(0.9);
+  }
+  30% {
+    transform:translate(-50%, -50%) scale(2);
+  }
+  70% {
+    transform:translate(-50%, -50%) scale(3);
+  }
+  100% {
+    transform:translate(-50%, -50%) scale(120);
+  }
+}
+/* ==========================================================================
+  Color palettes
+   ========================================================================= */
+body {
+  background-color: #000000;
+  color:white;
+  .lede {
+    color:rgb(135,199,160);
+  }
+}
+header {
+  background-color: rgba(101, 101, 101, 0);
+}
+.sunrise {
+  header {
+    animation: sunrise_sky $sunrise_timing linear forwards;
+  }
+}
+@keyframes sunrise_sky {
+  0% {
+    background-color: rgba(101, 101, 101, 0);
+  }
+  50% {
+    background-color: rgba(101, 101, 101, 0.8);
+  }
+  75% {
+    background-color: rgba(101, 101, 101, 1);
+  }
+  100% {
+    background-color: rgba(117, 117, 117, 1);
+  }
+}
+
+body.dayglo {
+  background-color: #7fc8bd;
+  color:white;
+  .lede {
+    color:white
+  }
+  header {
+    border-top:100vh solid rgba(42, 119, 161, 1);
+    background-color: rgba(42, 119, 161, 1);
+  }
 }
