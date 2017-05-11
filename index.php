@@ -18,7 +18,7 @@ if(isset($_GET['world'])) {
         <link rel="stylesheet" href="assets/css/style-min.css">
     </head>
     <body class="<?php echo $world; ?>">
-      <nav>
+      <nav id="nav" class="hide">
         <div class="container">
           <a href="">Product</a>
           <a href="">About</a>
@@ -60,22 +60,24 @@ if(isset($_GET['world'])) {
           <p class="col-12">Say hello....send us a message, tell us you love us</p>
         </section>
         <section id="footer-cans" class="row">
-          <div class="can col-3 offset-md-1">
-            <img id="dayglo_1" world="dayglo" src="/assets/img/product/can_dayglo.png" />
-            <div class="explore-button">
-              <a href="#" target="dayglo_1">Explore <br /><span>Dayglo Skies</span></a>
+          <div class="row">
+            <div class="can col-4">
+              <img id="dayglo_1" world="dayglo" src="/assets/img/product/can_dayglo.png" />
+              <div class="explore-button">
+                <a href="#" target="dayglo_1">Explore <br /><span>Dayglo Skies</span></a>
+              </div>
             </div>
-          </div>
-          <div class="can col-3 offset-md-1">
-            <img id="midnight_1" src="/assets/img/product/can_midnight.png" />
-            <div class="explore-button">
-              <a href="#" target="midnight_1">Explore <br /><span>Midnight Stage</span></a>
+            <div class="can col-4">
+              <img id="midnight_1" world="midnight" src="/assets/img/product/can_midnight.png" />
+              <div class="explore-button">
+                <a href="#" target="midnight_1">Explore <br /><span>Midnight Stage</span></a>
+              </div>
             </div>
-          </div>
-          <div class="can col-3 offset-md-1">
-            <img id="mother_1" src="/assets/img/product/can_mother.png" />
-            <div class="explore-button">
-              <a href="#" target="mother_1">Explore <br /><span>Mother Moon</span></a>
+            <div class="can col-4">
+              <img id="mother_1" world="mother" src="/assets/img/product/can_mother.png" />
+              <div class="explore-button">
+                <a href="#" target="mother_1">Explore <br /><span>Mother Moon</span></a>
+              </div>
             </div>
           </div>
         </section>

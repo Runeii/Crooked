@@ -87,6 +87,11 @@ nav {
   width:100%;
   z-index:200;
   padding:0.8rem 0;
+  transform:translateY(0);
+  transition: transform 0.5s ease-out;
+  &.hide {
+    transform:translateY(-100%);
+  }
   .container {
     margin:0 auto;
     display: flex;
@@ -651,6 +656,261 @@ $sun_colour_dayglo: #96c11f;
 }
 
 /* ==========================================================================
+  Midnight Stage elements
+   ========================================================================= */
+$midnight-bg: rgba(135,49,154,1);
+$horizon-base-ratio: ((100vw / 240) * 37);
+$horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
+#midnight_base {
+  left:0;
+  bottom:0;
+  width:100%;
+  z-index:34;
+  transform:scale(1) translateY(0%);
+  transition:transform 0.5s ease-in 2s;
+}
+#midnight_base_two {
+  left:0;
+  bottom:0;
+  width:100%;
+  z-index:35;
+  transform:scale(1) translateY(0%);
+  transition:transform 0.5s ease-in 2s;
+}
+#midnight_sun {
+  right:20vw;
+  bottom:$horizon-ratio;
+  transform:translateY(100%);
+  max-width:40vw;
+  z-index:20;
+  opacity:0;
+  transition: transform $sunrise_timing, opacity 0.5s linear 0.5s;
+}
+.sunrise {
+  #midnight_sun {
+    transform:translateY(10%);
+    opacity:1;
+  }
+}
+#midnight_hill_one {
+  left:-5vw;
+  bottom:$horizon-base-ratio;
+  width:30vw;
+  z-index:37;
+}
+#midnight_hill_two {
+  left:5vw;
+  bottom:$horizon-ratio;
+  width:30vw;
+  z-index:32;
+}
+#midnight_hill_three {
+  left:20vw;
+  bottom:$horizon-base-ratio;
+  width:20vw;
+  z-index:33;
+}
+#midnight_hill_four {
+  left:80vw;
+  bottom:$horizon-base-ratio;
+  width:30vw;
+  z-index:33;
+}
+#midnight_sky_shadow_top {
+  left:-25vw;
+  width:150vw;
+  bottom:100%;
+  z-index:10;
+  max-width:none;
+  opacity:0;
+  //animation:float-reverse 20s infinite;
+  transform:translateY(100%);
+  transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
+}
+#midnight_sky_shadow_low {
+  left:0;
+  max-width:none;
+  width:150%;
+  bottom:70%;
+  z-index:12;
+  opacity:0;
+  transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
+  //animation:float 25s infinite;
+}
+.sunrise {
+  #midnight_sky_shadow_top {
+    opacity:1;
+  }
+  #midnight_sky_shadow_small {
+    opacity:1;
+  }
+  #midnight_sky_shadow_low {
+    opacity:1;
+  }
+}
+
+
+#midnight_cloud_one {
+  right:-10vw;
+  bottom:90%;
+  max-width:none;
+  width:120vw;
+  z-index:15;
+  animation: midnight_cloud_float 60s infinite -30s;
+  transition: all 30s linear 0s;
+}
+#midnight_cloud_two {
+  right:-10vw;
+  width:120vw;
+  bottom:85%;
+  max-width:none;
+  z-index:16;
+  transition: all 50s linear 5s;
+  animation: midnight_cloud_float 60s infinite;
+}
+//Long cloud
+#midnight_cloud_three {
+  right:-10vw;
+  width:120vw;
+  bottom:80%;
+  max-width:none;
+  z-index:17;
+  width:150vw;
+  animation: midnight_cloud_float 60s infinite -3s;
+  opacity:0;
+  transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
+}
+#midnight_cloud_four {
+  right:-10vw;
+  width:120vw;
+  bottom:70%;
+  max-width:none;
+  z-index:18;
+  animation: midnight_cloud_float 60s infinite -10s;
+  transition: all 60s ease 10s;
+}
+#midnight_cloud_five {
+  right:-10vw;
+  width:120vw;
+  bottom:60%;
+  max-width:none;
+  z-index:19;
+  animation: midnight_cloud_float 60s infinite -45s;
+  transition: all 40s linear 3s;
+}
+#midnight_tree_one {
+  left:25vw;
+  bottom:$horizon-ratio - ($horizon-ratio / 3);
+  height:50vh;
+  z-index:40;
+  opacity:1;
+  transition:all 1s cubic-bezier(0,.88,.96,0) 0s;
+}
+#midnight_tree_two {
+  left:75vw;
+  bottom:$horizon-ratio - ($horizon-ratio / 4);
+  z-index:41;
+  height:45vh;
+  opacity:1;
+  transition:transform 1s cubic-bezier(.74,1,.6,.01) 0.7s;
+}
+#midnight_rocks {
+  left:25vw;
+  bottom:$horizon-ratio;
+  z-index:37;
+  width:10vw;
+}
+
+#midnight_fruit {
+  left:45vw;
+  bottom:$horizon-ratio - ($horizon-ratio / 1.5);
+  z-index:43;
+  width:15vw;
+}
+#midnight_oranges {
+  left:0;
+  bottom:0;
+  z-index:43;
+  width:20vw;
+}
+#midnight_oranges_two {
+  left:65vw;
+  bottom:$horizon-ratio - ($horizon-ratio / 4);
+  z-index:41;
+  width:10vw;
+}
+@keyframes midnight_cloud_float {
+  0% {
+    right:-10vw;
+  }
+  40% {
+    right:0vw;
+  }
+  60% {
+    right:0vw;
+  }
+  90% {
+    right:-20vw;
+  }
+  100% {
+    right:-10vw;
+  }
+}
+/* ==========================================================================
+  Mother Moon
+   ========================================================================= */
+#mother_sun {
+  right:20vw;
+  bottom:25vh;
+  width:20vw;
+  z-index:20;
+}
+#mother_hill_one {
+  left:0;
+  bottom:0;
+  width:66vw;
+  z-index:36;
+}
+#mother_hill_two {
+  left:10vw;
+  bottom:-10vw;
+  width:30vw;
+  z-index:35;
+}
+#mother_hill_three {
+  left:20vw;
+  bottom:0vw;
+  width:40vw;
+  z-index:34;
+}
+#mother_hill_four {
+  left:-20vw;
+  bottom:-20vw;
+  width:66vw;
+  z-index:33;
+}
+#mother_mother {
+  right:5vw;
+  bottom:10vh;
+  width:40vw;
+  z-index:41;
+  animation: mother_float 10s infinite linear;
+}
+@keyframes mother_float {
+  0% {
+    bottom:10vh;
+  }
+  25% {
+    bottom:8vh;
+  }
+  75% {
+    bottom:12vh;
+  }
+  100% {
+    bottom:10vh;
+  }
+}
+/* ==========================================================================
   General animations
    ========================================================================= */
 @keyframes sun_shimmer {
@@ -744,7 +1004,7 @@ $sun_colour_dayglo: #96c11f;
 /* ==========================================================================
   Color palettes
    ========================================================================= */
-body {
+body.default {
   background-color: #000000;
   color:white;
   .lede {
@@ -754,7 +1014,7 @@ body {
 header {
   background-color: rgba(101, 101, 101, 0);
 }
-.sunrise {
+body.default.sunrise {
   header {
     animation: sunrise_sky $sunrise_timing linear forwards;
   }
@@ -774,6 +1034,8 @@ header {
   }
 }
 
+/*========================================================================= */
+
 body.dayglo {
   background-color: #7fc8bd;
   color:white;
@@ -783,5 +1045,129 @@ body.dayglo {
   header {
     border-top:100vh solid rgba(42, 119, 161, 1);
     background-color: rgba(42, 119, 161, 1);
+  }
+}
+
+/*========================================================================= */
+
+body.midnight {
+  background-color: rgb(136,81,160);
+  color:white;
+  .lede {
+    color:rgba(253,107,13,1);
+  }
+  header {
+    background-color: darken($midnight-bg, 30%);
+    *:not(#midnight_base):not(#midnight_sun) {
+      opacity:0;
+      transition: opacity ($sunrise_timing / 4) ease-in;
+    }
+    #midnight_cloud_one, #midnight_cloud_two, #midnight_cloud_three, #midnight_cloud_four, #midnight_cloud_five {
+      transition-delay: ($sunrise_timing / 4);
+    }
+  }
+}
+body.midnight.sunrise {
+  header {
+    background-color: $midnight-bg;
+    animation: midnight_sunrise $sunrise_timing linear forwards;
+    *:not(#midnight_base):not(#midnight_sun) {
+      opacity:1;
+    }
+  }
+  .parallax_intro_close {
+    animation: midnight_sunrise_intro_close $sunrise_timing linear forwards;
+  }
+  .parallax_intro {
+    animation: midnight_sunrise_intro $sunrise_timing linear forwards;
+  }
+  #midnight_hill_one {
+    animation: midnight_sunrise_zero $sunrise_timing linear forwards;
+  }
+  .parallax_one {
+    animation: midnight_sunrise_one $sunrise_timing linear forwards;
+  }
+  .parallax_two, .parallax_three, .parallax_four {
+    animation: midnight_sunrise_rest $sunrise_timing linear forwards;
+  }
+}
+@keyframes midnight_sunrise {
+  0% {
+    background-color: darken($midnight-bg, 30%);
+  }
+  100% {
+    background-color: $midnight-bg;
+  }
+}
+@keyframes midnight_sunrise_opacity {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+@keyframes midnight_sunrise_intro_close {
+  0% {
+    margin-left:200vw;
+  }
+  100% {
+    margin-left:0;
+  }
+}
+@keyframes midnight_sunrise_intro {
+  0% {
+    margin-left:100vw;
+  }
+  100% {
+    margin-left:0;
+  }
+}
+@keyframes midnight_sunrise_zero {
+  0% {
+    margin-left:2vw;
+  }
+  100% {
+    margin-left:0;
+  }
+}
+@keyframes midnight_sunrise_one {
+  0% {
+    margin-left:4vw;
+  }
+  100% {
+    margin-left:0;
+  }
+}
+@keyframes midnight_sunrise_rest {
+  0% {
+    margin-left:6vw;
+  }
+  100% {
+    margin-left:0;
+  }
+}
+
+/*========================================================================= */
+body.mother {
+  background-color: #8b1b3f;
+  color:white;
+  .lede {
+    color:#fec4cb;
+  }
+  header {
+    background-color: #e73c50;
+    position: relative;
+    &::after {
+      content: '';
+      background-image:url('/assets/img/worlds/mother/psuedo-divider.png');
+      background-size:100% 100%;
+      background-position:center center;
+      position:absolute;
+      bottom:0;
+      width:100%;
+      height:9.41vw;
+      z-index:50;
+    }
   }
 }

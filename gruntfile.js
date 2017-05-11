@@ -85,6 +85,16 @@ module.exports = function(grunt) {
         },
       },
     },
+    php: {
+  		dist: {
+  			options: {
+  				hostname: 'localhost',
+  				port: 8080,
+  				keepalive: false,
+  				open: false
+  			}
+  		}
+	  },
     browserSync: {
       files: {
         src : [
@@ -96,8 +106,9 @@ module.exports = function(grunt) {
       },
       options: {
         watchTask: true,
-        server: false,
-        proxy: 'localhost:80'
+        proxy: 'localhost:80',
+        notify: true,
+        open: true
       }
     },
     notify: {
@@ -125,6 +136,25 @@ module.exports = function(grunt) {
               message: "Project prepared for production"
           }
       }
+    },
+    gitcommit: {
+      staging: {
+        options: {
+          message : grunt.option('message')
+        }
+      }
+    },
+    gitpush: {
+      staging: {
+        options: {
+          remote : "staging"
+        }
+      },
+      production: {
+        options: {
+          remote : "production"
+        }
+      }
     }
   });
 
@@ -139,7 +169,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-browser-sync');
   grunt.loadNpmTasks('grunt-notify');
   grunt.loadNpmTasks('grunt-babel');
+  grunt.loadNpmTasks('grunt-git');
+  grunt.loadNpmTasks('grunt-php');
   // Register the default tasks.
   grunt.registerTask('default', ['browserSync', 'watch', 'notify']);
-  grunt.registerTask('prod', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts', 'notify:successProduction']);
+  grunt.registerTask('prepare', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts']);
+  grunt.registerTask('staging', ['gitpush:staging']);
+  grunt.registerTask('production', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts', 'notify:successProduction', 'gitpush:production']);
 };
