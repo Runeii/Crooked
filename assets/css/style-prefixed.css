@@ -4099,7 +4099,9 @@ body:not(.sunrise) #hill_rear {
   Dayglo skies elements
    ========================================================================= */
 .dayglo header {
-  height: 200vh; }
+  height: 150vh;
+  margin-top: 0;
+  transition: margin 5s; }
 
 #dayglo_base {
   left: 0;
@@ -4877,8 +4879,10 @@ body.dayglo {
   body.dayglo .lede {
     color: white; }
   body.dayglo header {
-    border-top: 100vh solid #2a77a1;
     background-color: #2a77a1; }
+
+body.dayglo.sunrise header {
+  margin-top: -50vh; }
 
 /*========================================================================= */
 body.midnight {

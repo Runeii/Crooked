@@ -75,6 +75,10 @@
       "three" : ["hill_four"],
       "four" : ["hill_rear"]
     },
+    "dayglo" : {
+      "zero" : ["base", "heads", "fruit"],
+      "one" : ["sun"]
+    },
     "midnight" : {
       "intro_close" : ["oranges", "fruit"],
       "intro" : ["base_two", "tree_one", "tree_two", "rocks", "oranges_two"],

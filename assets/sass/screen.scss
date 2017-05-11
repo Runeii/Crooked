@@ -438,7 +438,9 @@ body:not(.sunrise) {
    ========================================================================= */
 .dayglo {
   header {
-    height:200vh;
+    height:150vh;
+    margin-top:0;
+    transition:margin $sunrise_timing;
   }
 }
 #dayglo_base {
@@ -1043,8 +1045,13 @@ body.dayglo {
     color:white
   }
   header {
-    border-top:100vh solid rgba(42, 119, 161, 1);
     background-color: rgba(42, 119, 161, 1);
+  }
+}
+
+body.dayglo.sunrise {
+  header {
+    margin-top:-50vh;
   }
 }
 
