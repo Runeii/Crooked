@@ -64,7 +64,27 @@
     "hill_three" : "/assets/img/worlds/mother/hill_three.png",
     "hill_four" : "/assets/img/worlds/mother/hill_four.png",
     "sun" : "/assets/img/worlds/mother/sun.png",
-    "mother" : "/assets/img/worlds/mother/mother_moon.png"
+    "mother" : "/assets/img/worlds/mother/mother_moon.png",
+    "person_one" : "/assets/img/worlds/mother/person_one.png",
+    "person_two" : "/assets/img/worlds/mother/person_two.png",
+    "person_three" : "/assets/img/worlds/mother/person_three.png",
+    "person_four" : "/assets/img/worlds/mother/person_four.png",
+    "person_five" : "/assets/img/worlds/mother/person_five.png",
+    "person_six" : "/assets/img/worlds/mother/person_six.png",
+    "person_seven" : "/assets/img/worlds/mother/person_seven.png",
+    "person_eight" : "/assets/img/worlds/mother/person_eight.png",
+    "person_nine" : "/assets/img/worlds/mother/person_nine.png",
+
+    "sky_shadow_top" : "/assets/img/worlds/mother/sky_shadow_top.png",
+    "sky_shadow_two" : "/assets/img/worlds/mother/sky_shadow_two.png",
+    "sky_shadow_three" : "/assets/img/worlds/mother/sky_shadow_three.png",
+    "sky_shadow_four" : "/assets/img/worlds/mother/sky_shadow_four.png",
+    "sky_shadow_five" : "/assets/img/worlds/mother/sky_shadow_five.png",
+    "cloud_one" : "/assets/img/worlds/mother/cloud_one.png",
+    "cloud_two" : "/assets/img/worlds/mother/cloud_two.png",
+    "cloud_three" : "/assets/img/worlds/mother/cloud_three.png",
+    "cloud_four" : "/assets/img/worlds/mother/cloud_four.png",
+    "cloud_five" : "/assets/img/worlds/mother/cloud_five.png"
 
   },
   "layers" : {
@@ -89,7 +109,7 @@
       "four" : ["sun"]
     },
     "mother" : {
-      "zero" : ["hill_one", "mother"],
+      "zero" : ["hill_one", "mother", "person_one", "person_two", "person_three", "person_four", "person_five", "person_six", "person_seven",  "person_eight", "person_nine"],
       "one" : ["hill_two"],
       "three" : ["hill_three"],
       "four" : ["hill_four"]

@@ -72,12 +72,10 @@ function resetScroll(){
 animate_stage();
 
 function animate_stage(){
-  if(body.classList.contains('default') || body.classList.contains('midnight')) {
-    body.classList.add('sunrise');
-    setTimeout(function(){
-        body.classList.add('daytime');
-     }, 5000);
-  }
+  body.classList.add('sunrise');
+  setTimeout(function(){
+      body.classList.add('daytime');
+   }, 5000);
 }
 
 $( ".explore-button a" ).click(function() {
@@ -94,6 +92,7 @@ $( ".explore-button a" ).click(function() {
       //Don't set class until CSS properties added
       target.addClass('target_world');
       body.classList.add('transitioning');
+      body.classList.remove('sunrise');
       $(this).dequeue();
     });
     target.one('webkitAnimationEnd oanimationend msAnimationEnd animationend',function(e) {
@@ -179,3 +178,38 @@ function getParameters(url) {
     }
     return params;
 }
+
+// Select all links with hashes
+$('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          }
+        });
+      }
+    }
+  });

@@ -109,6 +109,8 @@ header {
   background-color:#656565;
   transform: scale(1);
   transform-origin: center 50%;
+  max-width:100%;
+  overflow:hidden;
 }
 main {
     text-align: center;
@@ -170,12 +172,17 @@ main {
 }
 #products {
   .row {
-    text-align: left;
+    flex-direction: column;
+    text-align: center;
     margin-bottom:3rem;
     align-items: center;
-    &:nth-of-type(odd) {
-      text-align: right;
-      flex-direction: row-reverse;
+    @media screen and (min-width: 576px) {
+      flex-direction: row;
+      text-align: left;
+      &:nth-of-type(odd) {
+        text-align: right;
+        flex-direction: row-reverse;
+      }
     }
   }
   .explore-button {
@@ -184,7 +191,7 @@ main {
 }
 
 
-#footer-cans {
+#the_cans {
   .can {
     img {
       transform: translate(0, 0);
@@ -208,6 +215,10 @@ footer {
     flex-direction: row;
     align-items: center;
     flex-grow: 1;
+    //Special breakpoint for footer
+    @media screen and (min-width: 1400px) {
+      width: 25%;
+    }
     &:first-of-type{
       flex-grow: 2;
     }
@@ -221,6 +232,9 @@ footer {
   }
   .footer-copy {
     font-size:0.64em;
+  }
+  i {
+    margin-left: 1rem;
   }
 }
 
@@ -912,6 +926,131 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
     bottom:10vh;
   }
 }
+
+@mixin mother_person($bottom: 0vw, $left: 0vw, $z: 42) {
+  z-index:$z;
+  height:7vw;
+  bottom:calc(15vw + #{$bottom});
+  left:calc(35vw + #{$left});
+  animation: person_jump 9s linear ($sunrise-timing + (1s * ($z - 42))) infinite;
+}
+#mother_person_one {
+  @include mother_person;
+}
+#mother_person_two {
+  @include mother_person(-3vw, -6vw, 43);
+}
+#mother_person_three {
+  @include mother_person(-4vw, -2vw, 44);
+}
+#mother_person_four {
+  @include mother_person(-4vw, 2vw, 45);
+}
+#mother_person_five{
+  @include mother_person(-5vw, -10vw, 46);
+}
+#mother_person_six{
+  @include mother_person(-7vw, -7vw, 47);
+}
+#mother_person_seven{
+  @include mother_person(-8vw, -4vw, 49);
+}
+#mother_person_eight{
+  @include mother_person(-11vw, -1vw, 50);
+}
+#mother_person_nine{
+  @include mother_person(-8vw, 3vw, 48);
+}
+@keyframes person_jump {
+  0% {
+    margin-bottom:0;
+  }
+  5% {
+    margin-bottom:1vw;
+  }
+  9% {
+    margin-bottom:0;
+  }
+  62% {
+    margin-bottom:0;
+  }
+  65% {
+    margin-bottom:1vw;
+  }
+  67% {
+    margin-bottom:0;
+  }
+  100% {
+    margin-bottom:0;
+  }
+}
+@mixin sky_shadow($bottom: 100vh, $left: -10vw) {
+  z-index:10;
+  left:$left;
+  max-width:none;
+  width:120vw;
+  bottom:$bottom;
+}
+#mother_sky_shadow_top {
+  @include sky_shadow(90vh);
+}
+#mother_sky_shadow_two {
+  @include sky_shadow(75vh, -20vw);
+}
+#mother_sky_shadow_three {
+  @include sky_shadow(50vh);
+}
+#mother_sky_shadow_four {
+  @include sky_shadow(15vh);
+}
+
+@mixin mother_cloud($bottom: 100vh, $left: -10vw) {
+  z-index:10;
+  left:$left;
+  max-width:none;
+  width:120vw;
+  bottom:$bottom;
+  opacity:0.6;
+  animation: cloud_opacity 13s linear (-1s * random(100)) infinite;
+  filter:blur(0px);
+}
+#mother_cloud_one {
+  @include mother_cloud(85vh);
+}
+#mother_cloud_two {
+  @include mother_cloud(60vh);
+}
+#mother_cloud_three {
+  @include mother_cloud(50vh);
+}
+#mother_cloud_four {
+  @include mother_cloud(15vh);
+}
+#mother_cloud_five {
+  @include mother_cloud(5vh);
+}
+@keyframes cloud_opacity {
+  0% {
+    opacity:0.8;
+    filter:blur(0px);
+  }
+  40% {
+    opacity:0.7;
+    filter:blur(1px);
+  }
+  62% {
+    opacity:0.6;
+    filter:blur(0px);
+  }
+  92% {
+    opacity:0.75;
+    filter:blur(2px);
+  }
+  100% {
+    opacity:0.8;
+    filter:blur(0px);
+  }
+}
 /* ==========================================================================
   General animations
    ========================================================================= */
@@ -1176,5 +1315,41 @@ body.mother {
       height:9.41vw;
       z-index:50;
     }
+    #mother_mother {
+      transition: transform $sunrise_timing;
+      transform: translate(45vw, -20vw);
+    }
+    #mother_hill_one {
+      transform-origin: 0vw 20vw;
+    }
+    #mother_hill_two {
+      transform-origin: -10vw 40vw;
+    }
+    #mother_hill_three {
+      transform-origin: -20vw 40vw;
+    }
+    #mother_hill_four {
+      transform-origin: 20vw 30vw;
+    }
+    #mother_hill_one, #mother_hill_two, #mother_hill_three, #mother_hill_four {
+      transition: transform $sunrise_timing;
+      transform: scale(0.5);
+    }
+    #mother_person_one, #mother_person_two, #mother_person_three, #mother_person_four, #mother_person_five, #mother_person_six, #mother_person_seven, #mother_person_eight, #mother_person_nine {
+      transition: transform $sunrise_timing ease-out $sunrise_timing;
+      transform: translate(-20vw, 25vw);
+    }
+
+  }
+}
+body.mother.sunrise {
+  #mother_mother {
+    transform: translate(0,0);
+  }
+  #mother_hill_one, #mother_hill_two, #mother_hill_three, #mother_hill_four {
+      transform: scale(1);
+  }
+  #mother_person_one, #mother_person_two, #mother_person_three, #mother_person_four, #mother_person_five, #mother_person_six, #mother_person_seven, #mother_person_eight, #mother_person_nine {
+    transform: translate(0);
   }
 }
