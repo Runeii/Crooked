@@ -4019,7 +4019,7 @@ body {
 p {
   margin-bottom: 1.3em; }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, .h3, .h4 {
   margin: 1.414em 0 0.5em;
   font-weight: inherit;
   line-height: 1.2;
@@ -4027,20 +4027,46 @@ h1, h2, h3, h4 {
   text-transform: uppercase; }
 
 h1 {
-  font-size: 3.052em;
+  font-size: 1.953em;
   margin-top: 0; }
 
 h2 {
-  font-size: 2.441em; }
-
-h3 {
   font-size: 1.953em; }
 
-h4 {
+h3, .h3 {
   font-size: 1.563em; }
+
+h4, .h4 {
+  font-size: 1.25em; }
 
 h5 {
   font-size: 1.25em; }
+
+@media screen and (min-width: 576px) {
+  h1 {
+    font-size: 2.441em;
+    margin-top: 0; }
+  h2 {
+    font-size: 1.953em; }
+  h3, .h3 {
+    font-size: 1.563em; }
+  h4, .h4 {
+    font-size: 1.25em; }
+  h5 {
+    font-size: 1.25em; } }
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 3.052em;
+    margin-top: 0; }
+  h2 {
+    font-size: 2.441em; }
+  h3, .h3 {
+    font-size: 1.953em; }
+  h4, .h4 {
+    font-size: 1.563em; }
+  h5 {
+    font-size: 1.25em; } }
 
 small, .font_small {
   font-size: 0.8em; }
@@ -4121,8 +4147,12 @@ main {
     font-weight: bold; }
 
 #welcome h2 {
+  font-size: 1.563em;
   position: relative;
   margin-bottom: 4rem; }
+  @media screen and (min-width: 576px) {
+    #welcome h2 {
+      font-size: 2.441em; } }
   #welcome h2:after {
     position: absolute;
     bottom: -3rem;
@@ -4135,18 +4165,40 @@ main {
   font-size: 1.25em;
   margin-top: 0; }
 
-.default .introduction {
-  -moz-column-count: 2;
-  -webkit-column-count: 2;
-  column-count: 2;
-  text-align: left; }
+@media screen and (min-width: 576px) {
+  .default .introduction {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+    text-align: left; } }
 
 #social i {
   font-size: 1.563rem;
   padding: 0.5rem; }
 
+#social .post {
+  background-color: white;
+  color: black;
+  text-align: left;
+  border: 0.5rem solid black; }
+  #social .post h4 {
+    position: relative;
+    padding-bottom: 0.5em; }
+    #social .post h4::after {
+      content: '';
+      background-color: black;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 0.125em;
+      width: 1em; }
+  #social .post img {
+    width: 100%;
+    object-fit: cover;
+    padding-bottom: 15px; }
+
 #wholesale .logo, #stockists .logo {
-  margin-top: 1rem; }
+  margin-top: 2rem; }
 
 #products .row {
   flex-direction: column;
@@ -4164,6 +4216,28 @@ main {
 #products .explore-button {
   text-align: center; }
 
+#contact label {
+  text-align: left; }
+  @media screen and (min-width: 576px) {
+    #contact label {
+      text-align: right; } }
+
+#contact input:not([type=submit]), #contact textarea {
+  width: 100%;
+  background-color: transparent;
+  border: 2px white solid;
+  padding: 0.5em;
+  color: white;
+  margin: 0; }
+
+#contact input[type=submit] {
+  background-color: transparent;
+  border: 2px white solid;
+  padding: 0.5em;
+  color: white;
+  align-self: flex-end;
+  margin-right: 15px; }
+
 #the_cans .can img {
   transform: translate(0, 0);
   left: 0;
@@ -4174,18 +4248,60 @@ main {
 #the_cans .explore-button {
   margin-top: 1rem; }
 
+#the_cans .world_info {
+  display: none;
+  opacity: 0;
+  padding: 0 15px; }
+  #the_cans .world_info p, #the_cans .world_info h3 {
+    margin: 0 auto;
+    width: 50%; }
+  #the_cans .world_info :first-child {
+    top: 1.5rem;
+    opacity: 0;
+    position: relative;
+    transition: all 1s linear 0s; }
+  #the_cans .world_info :nth-child(2) {
+    top: 1.5rem;
+    opacity: 0;
+    position: relative;
+    transition: all 1s linear 0.5s; }
+  #the_cans .world_info :nth-child(3) {
+    top: 1.5rem;
+    opacity: 0;
+    position: relative;
+    transition: all 1s linear 0.75s; }
+  #the_cans .world_info :last-child {
+    top: 1.5rem;
+    opacity: 0;
+    position: relative;
+    transition: all 1s linear 1.25s; }
+
 footer {
   display: flex;
   flex-direction: row;
-  align-items: center; }
+  align-items: center;
+  margin-top: 9rem;
+  font-family: "Fjalla One";
+  letter-spacing: 0.1em; }
+  footer .row {
+    width: 100%; }
   footer .footer-box {
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-grow: 1; }
-    @media screen and (min-width: 1400px) {
+    @media screen and (min-width: 960px) {
+      footer .footer-box:first-of-type {
+        text-align: center; } }
+    @media screen and (min-width: 1500px) {
       footer .footer-box {
-        width: 25%; } }
+        width: initial;
+        justify-content: center; }
+        footer .footer-box:first-of-type {
+          justify-content: flex-start;
+          text-align: left; }
+        footer .footer-box:last-of-type {
+          justify-content: flex-end; } }
     footer .footer-box:first-of-type {
       flex-grow: 2; }
   footer a {
@@ -4193,10 +4309,16 @@ footer {
     color: white; }
   footer h3 {
     margin: 0.5rem 0.5rem 0.5rem 0; }
+    @media screen and (min-width: 1500px) {
+      footer h3 {
+        padding-right: 0.5em; } }
   footer .footer-copy {
     font-size: 0.64em; }
   footer i {
     margin-left: 1rem; }
+    @media screen and (min-width: 1500px) {
+      footer i:first-of-type {
+        margin-left: 0; } }
 
 /* ==========================================================================
   SVG work
@@ -4768,7 +4890,7 @@ body:not(.sunrise) #hill_rear {
    ========================================================================= */
 #mother_sun {
   right: 20vw;
-  bottom: 25vh;
+  bottom: 45vh;
   width: 20vw;
   z-index: 20; }
 
@@ -4791,103 +4913,105 @@ body:not(.sunrise) #hill_rear {
   z-index: 34; }
 
 #mother_hill_four {
-  left: -20vw;
-  bottom: -20vw;
-  width: 66vw;
+  right: -30vw;
+  bottom: -40vw;
+  width: 100vw;
   z-index: 33; }
 
 #mother_mother {
-  right: 5vw;
-  bottom: 10vh;
+  right: 10vw;
+  bottom: 45vh;
   width: 40vw;
   z-index: 41;
-  animation: mother_float 10s infinite linear; }
+  animation: mother_float 20s infinite linear; }
 
 @keyframes mother_float {
   0% {
-    bottom: 10vh; }
+    bottom: 45vh; }
   25% {
-    bottom: 8vh; }
+    bottom: 43vh; }
   75% {
-    bottom: 12vh; }
+    bottom: 47vh; }
   100% {
-    bottom: 10vh; } }
+    bottom: 45vh; } }
 
 #mother_person_one {
   z-index: 42;
   height: 7vw;
   bottom: calc(15vw + 0vw);
   left: calc(35vw + 0vw);
-  animation: person_jump 9s linear 5s infinite; }
+  animation: person_jump 27s linear 5s infinite; }
 
 #mother_person_two {
   z-index: 43;
   height: 7vw;
   bottom: calc(15vw + -3vw);
   left: calc(35vw + -6vw);
-  animation: person_jump 9s linear 6s infinite; }
+  animation: person_jump 27s linear 6s infinite; }
 
 #mother_person_three {
   z-index: 44;
   height: 7vw;
   bottom: calc(15vw + -4vw);
   left: calc(35vw + -2vw);
-  animation: person_jump 9s linear 7s infinite; }
+  animation: person_jump 27s linear 7s infinite; }
 
 #mother_person_four {
   z-index: 45;
   height: 7vw;
   bottom: calc(15vw + -4vw);
   left: calc(35vw + 2vw);
-  animation: person_jump 9s linear 8s infinite; }
+  animation: person_jump 27s linear 8s infinite; }
 
 #mother_person_five {
   z-index: 46;
   height: 7vw;
   bottom: calc(15vw + -5vw);
   left: calc(35vw + -10vw);
-  animation: person_jump 9s linear 9s infinite; }
+  animation: person_jump 27s linear 9s infinite; }
 
 #mother_person_six {
   z-index: 47;
   height: 7vw;
   bottom: calc(15vw + -7vw);
   left: calc(35vw + -7vw);
-  animation: person_jump 9s linear 10s infinite; }
+  animation: person_jump 27s linear 10s infinite; }
 
 #mother_person_seven {
   z-index: 49;
   height: 7vw;
   bottom: calc(15vw + -8vw);
   left: calc(35vw + -4vw);
-  animation: person_jump 9s linear 12s infinite; }
+  animation: person_jump 27s linear 12s infinite; }
 
 #mother_person_eight {
   z-index: 50;
   height: 7vw;
   bottom: calc(15vw + -11vw);
   left: calc(35vw + -1vw);
-  animation: person_jump 9s linear 13s infinite; }
+  animation: person_jump 27s linear 13s infinite; }
 
 #mother_person_nine {
   z-index: 48;
   height: 7vw;
   bottom: calc(15vw + -8vw);
   left: calc(35vw + 3vw);
-  animation: person_jump 9s linear 11s infinite; }
+  animation: person_jump 27s linear 11s infinite; }
 
 @keyframes person_jump {
   0% {
     margin-bottom: 0; }
+  4% {
+    margin-bottom: 0; }
   5% {
     margin-bottom: 1vw; }
-  9% {
+  6% {
     margin-bottom: 0; }
-  62% {
+  64% {
     margin-bottom: 0; }
   65% {
     margin-bottom: 1vw; }
-  67% {
+  66% {
     margin-bottom: 0; }
   100% {
     margin-bottom: 0; } }
@@ -4927,7 +5051,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 85vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -48s infinite;
+  animation: cloud_opacity 13s linear -63s infinite;
   filter: blur(0px); }
 
 #mother_cloud_two {
@@ -4937,7 +5061,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 60vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -14s infinite;
+  animation: cloud_opacity 13s linear -80s infinite;
   filter: blur(0px); }
 
 #mother_cloud_three {
@@ -4947,7 +5071,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 50vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -34s infinite;
+  animation: cloud_opacity 13s linear -54s infinite;
   filter: blur(0px); }
 
 #mother_cloud_four {
@@ -4957,7 +5081,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 15vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -94s infinite;
+  animation: cloud_opacity 13s linear -77s infinite;
   filter: blur(0px); }
 
 #mother_cloud_five {
@@ -4967,7 +5091,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 5vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -21s infinite;
+  animation: cloud_opacity 13s linear -43s infinite;
   filter: blur(0px); }
 
 @keyframes cloud_opacity {
@@ -5032,39 +5156,67 @@ body:not(.sunrise) #hill_rear {
 /* ==========================================================================
   World transition animation
    ========================================================================= */
-.transitioning *:not(.target_world):not(.target_parent) {
-  opacity: 0 !important;
-  transition: opacity 1s; }
+.transition-start {
+  overflow: hidden; }
+  .transition-start #the_cans .world_info {
+    display: block;
+    width: 75%;
+    opacity: 1; }
+  .transition-start #the_cans .row.target_parent {
+    width: 100%; }
+  .transition-start #the_cans .can {
+    display: none; }
+    .transition-start #the_cans .can.target_parent {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-items: center;
+      align-items: center;
+      padding: 0; }
+    .transition-start #the_cans .can .image {
+      width: 25%;
+      padding: 0 15px;
+      margin-left: 0;
+      transition: margin-left 0.5s; }
+    .transition-start #the_cans .can:nth-child(1) .image {
+      margin-left: 1px; }
+    .transition-start #the_cans .can:nth-child(2) .image {
+      margin-left: calc(75% / 2); }
+    .transition-start #the_cans .can:last-child .image {
+      margin-left: 75%; }
+    .transition-start #the_cans .can .explore-button {
+      display: none; }
+  .transition-start *:not(.target_world):not(.target_parent):not(.world_info) {
+    transition: opacity 1s;
+    opacity: 0 !important; }
 
-.target_world {
-  transition: left 1s, top 1s, transform 1s;
-  left: 0;
+.transition-setup #the_cans .image {
+  margin-left: 0 !important; }
+
+.transitioning #the_cans .can.target_parent .world_info :first-child {
+  opacity: 1 !important;
   top: 0; }
 
-.transitioning .target_world {
-  animation: worldswitch_zoom 3s linear 1s forwards;
-  transform-origin: center 8%;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) scale(1); }
+.transitioning #the_cans .can.target_parent .world_info :nth-child(2) {
+  opacity: 1 !important;
+  top: 0; }
 
-@keyframes worldswitch_zoom {
-  0% {
-    transform: translate(-50%, -50%) scale(1); }
-  10% {
-    transform: translate(-50%, -50%) scale(0.9); }
-  30% {
-    transform: translate(-50%, -50%) scale(2); }
-  70% {
-    transform: translate(-50%, -50%) scale(3); }
-  100% {
-    transform: translate(-50%, -50%) scale(120); } }
+.transitioning #the_cans .can.target_parent .world_info :nth-child(3) {
+  opacity: 1 !important;
+  top: 0; }
+
+.transitioning #the_cans .can.target_parent .world_info :last-child {
+  opacity: 1 !important;
+  top: 0; }
 
 /* ==========================================================================
   Color palettes
    ========================================================================= */
+body {
+  transition: background-color 1s, color 1s; }
+
 body.default {
-  background-color: #000000;
+  background-color: #656565;
   color: white; }
   body.default .lede {
     color: #87c7a0; }
@@ -5072,8 +5224,10 @@ body.default {
 header {
   background-color: rgba(101, 101, 101, 0); }
 
-body.default.sunrise header {
-  animation: sunrise_sky 5s linear forwards; }
+body.default.sunrise {
+  background-color: #000000; }
+  body.default.sunrise header {
+    animation: sunrise_sky 5s linear forwards; }
 
 @keyframes sunrise_sky {
   0% {
@@ -5087,19 +5241,23 @@ body.default.sunrise header {
 
 /*========================================================================= */
 body.dayglo {
-  background-color: #7fc8bd;
+  background-color: #2a77a1;
   color: white; }
   body.dayglo .lede {
     color: white; }
   body.dayglo header {
     background-color: #2a77a1; }
+  body.dayglo #social .post {
+    border-color: #7fc8bd; }
 
-body.dayglo.sunrise header {
-  margin-top: -50vh; }
+body.dayglo.sunrise {
+  background-color: #7fc8bd; }
+  body.dayglo.sunrise header {
+    margin-top: -50vh; }
 
 /*========================================================================= */
 body.midnight {
-  background-color: #8851a0;
+  background-color: #87319a;
   color: white; }
   body.midnight .lede {
     color: #fd6b0d; }
@@ -5110,27 +5268,26 @@ body.midnight {
       transition: opacity 1.25s ease-in; }
     body.midnight header #midnight_cloud_one, body.midnight header #midnight_cloud_two, body.midnight header #midnight_cloud_three, body.midnight header #midnight_cloud_four, body.midnight header #midnight_cloud_five {
       transition-delay: 1.25s; }
+  body.midnight #social .post {
+    border-color: #8851a0; }
 
-body.midnight.sunrise header {
-  background-color: #87319a;
-  animation: midnight_sunrise 5s linear forwards; }
-  body.midnight.sunrise header *:not(#midnight_base):not(#midnight_sun) {
-    opacity: 1; }
-
-body.midnight.sunrise .parallax_intro_close {
-  animation: midnight_sunrise_intro_close 5s linear forwards; }
-
-body.midnight.sunrise .parallax_intro {
-  animation: midnight_sunrise_intro 5s linear forwards; }
-
-body.midnight.sunrise #midnight_hill_one {
-  animation: midnight_sunrise_zero 5s linear forwards; }
-
-body.midnight.sunrise .parallax_one {
-  animation: midnight_sunrise_one 5s linear forwards; }
-
-body.midnight.sunrise .parallax_two, body.midnight.sunrise .parallax_three, body.midnight.sunrise .parallax_four {
-  animation: midnight_sunrise_rest 5s linear forwards; }
+body.midnight.sunrise {
+  background-color: #8851a0; }
+  body.midnight.sunrise header {
+    background-color: #87319a;
+    animation: midnight_sunrise 5s linear forwards; }
+    body.midnight.sunrise header *:not(#midnight_base):not(#midnight_sun) {
+      opacity: 1; }
+  body.midnight.sunrise .parallax_intro_close {
+    animation: midnight_sunrise_intro_close 5s linear forwards; }
+  body.midnight.sunrise .parallax_intro {
+    animation: midnight_sunrise_intro 5s linear forwards; }
+  body.midnight.sunrise #midnight_hill_one {
+    animation: midnight_sunrise_zero 5s linear forwards; }
+  body.midnight.sunrise .parallax_one {
+    animation: midnight_sunrise_one 5s linear forwards; }
+  body.midnight.sunrise .parallax_two, body.midnight.sunrise .parallax_three, body.midnight.sunrise .parallax_four {
+    animation: midnight_sunrise_rest 5s linear forwards; }
 
 @keyframes midnight_sunrise {
   0% {
@@ -5176,7 +5333,7 @@ body.midnight.sunrise .parallax_two, body.midnight.sunrise .parallax_three, body
 
 /*========================================================================= */
 body.mother {
-  background-color: #8b1b3f;
+  background-color: #e73c50;
   color: white; }
   body.mother .lede {
     color: #fec4cb; }
@@ -5185,7 +5342,7 @@ body.mother {
     position: relative; }
     body.mother header::after {
       content: '';
-      background-image: url("/assets/img/worlds/mother/psuedo-divider.png");
+      background-image: url("../img/worlds/mother/psuedo-divider.png");
       background-size: 100% 100%;
       background-position: center center;
       position: absolute;
@@ -5204,18 +5361,15 @@ body.mother {
       transform-origin: -20vw 40vw; }
     body.mother header #mother_hill_four {
       transform-origin: 20vw 30vw; }
-    body.mother header #mother_hill_one, body.mother header #mother_hill_two, body.mother header #mother_hill_three, body.mother header #mother_hill_four {
-      transition: transform 5s;
-      transform: scale(0.5); }
     body.mother header #mother_person_one, body.mother header #mother_person_two, body.mother header #mother_person_three, body.mother header #mother_person_four, body.mother header #mother_person_five, body.mother header #mother_person_six, body.mother header #mother_person_seven, body.mother header #mother_person_eight, body.mother header #mother_person_nine {
       transition: transform 5s ease-out 5s;
       transform: translate(-20vw, 25vw); }
+  body.mother #social .post {
+    border-color: #8b1b3f; }
 
-body.mother.sunrise #mother_mother {
-  transform: translate(0, 0); }
-
-body.mother.sunrise #mother_hill_one, body.mother.sunrise #mother_hill_two, body.mother.sunrise #mother_hill_three, body.mother.sunrise #mother_hill_four {
-  transform: scale(1); }
-
-body.mother.sunrise #mother_person_one, body.mother.sunrise #mother_person_two, body.mother.sunrise #mother_person_three, body.mother.sunrise #mother_person_four, body.mother.sunrise #mother_person_five, body.mother.sunrise #mother_person_six, body.mother.sunrise #mother_person_seven, body.mother.sunrise #mother_person_eight, body.mother.sunrise #mother_person_nine {
-  transform: translate(0); }
+body.mother.sunrise {
+  background-color: #8b1b3f; }
+  body.mother.sunrise #mother_mother {
+    transform: translate(0, 0); }
+  body.mother.sunrise #mother_person_one, body.mother.sunrise #mother_person_two, body.mother.sunrise #mother_person_three, body.mother.sunrise #mother_person_four, body.mother.sunrise #mother_person_five, body.mother.sunrise #mother_person_six, body.mother.sunrise #mother_person_seven, body.mother.sunrise #mother_person_eight, body.mother.sunrise #mother_person_nine {
+    transform: translate(0); }

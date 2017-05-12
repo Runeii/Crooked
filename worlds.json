@@ -63,6 +63,7 @@
     "hill_two" : "/assets/img/worlds/mother/hill_two.png",
     "hill_three" : "/assets/img/worlds/mother/hill_three.png",
     "hill_four" : "/assets/img/worlds/mother/hill_four.png",
+    "sea" : "/assets/img/worlds/mother/sea.png",
     "sun" : "/assets/img/worlds/mother/sun.png",
     "mother" : "/assets/img/worlds/mother/mother_moon.png",
     "person_one" : "/assets/img/worlds/mother/person_one.png",
@@ -74,7 +75,6 @@
     "person_seven" : "/assets/img/worlds/mother/person_seven.png",
     "person_eight" : "/assets/img/worlds/mother/person_eight.png",
     "person_nine" : "/assets/img/worlds/mother/person_nine.png",
-
     "sky_shadow_top" : "/assets/img/worlds/mother/sky_shadow_top.png",
     "sky_shadow_two" : "/assets/img/worlds/mother/sky_shadow_two.png",
     "sky_shadow_three" : "/assets/img/worlds/mother/sky_shadow_three.png",
@@ -85,7 +85,6 @@
     "cloud_three" : "/assets/img/worlds/mother/cloud_three.png",
     "cloud_four" : "/assets/img/worlds/mother/cloud_four.png",
     "cloud_five" : "/assets/img/worlds/mother/cloud_five.png"
-
   },
   "layers" : {
     "default" : {
@@ -111,14 +110,14 @@
     "mother" : {
       "zero" : ["hill_one", "mother", "person_one", "person_two", "person_three", "person_four", "person_five", "person_six", "person_seven",  "person_eight", "person_nine"],
       "one" : ["hill_two"],
-      "three" : ["hill_three"],
+      "three" : ["hill_three", "sea"],
       "four" : ["hill_four"]
     }
   },
   "copy" : {
     "default" : {
       "lede" : "We seek to take your expectations and turn them on their head",
-      "introduction" : "<p>In the shadow of the Crooked Spire we craft natural alcoholic sodas packed full of fruity flavour and just the right amount of sweetness.<\/p>\r\n<p>Each of the flavours are modelled around a different dimension. Let us take you on a journey through our worlds.<\/p>\r\n<p>Crooked Beverage Co was borne out of a desire to create something truly new and truly different. A whole lot of time, experimentation and passion has gone into these drinks, alongside all natural ingredients!<\/p>\r\n<p>We've partnered with the extremely talented Lisa O'Hara to create the amazing illustrations on each can. Her inimitable style perfectly bring the Crooked worlds to life.<\/p>"
+      "introduction" : "<p>In the shadow of the Crooked Spire we craft natural alcoholic sodas packed full of fruity flavour and just the right amount of sweetness.<\/p>\r\n<p>Crooked Beverage Co was borne out of a desire to create something truly new and truly different. A whole lot of time, experimentation and passion has gone into these drinks, alongside all natural ingredients!<\/p>\r\n<p>We've partnered with the extremely talented Lisa O'Hara to create the amazing illustrations on each can. Her inimitable style <u>perfectly bring</u> the Crooked worlds to life.<\/p>\r\n<p>Each of the flavours are modelled around a different dimension. Let us take you on a journey through our worlds.<\/p>"
     },
     "dayglo" : {
       "title" : "Dayglo Skies",

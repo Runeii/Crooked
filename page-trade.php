@@ -1,4 +1,8 @@
-<?php include('./header.php'); ?>
+<?php
+/*
+Template name: Trade Page
+*/
+include(get_stylesheet_directory() . '/header.php'); ?>
 <main class="container">
   <section id="welcome" class="row">
     <h2 class="col-12 lede"><?php echo $layouts['copy'][$world]['lede']; ?></h2>
@@ -92,4 +96,4 @@
     </div>
   </section>
 </main>
-<?php include('./footer.php'); ?>
+<?php include(get_stylesheet_directory() . '/footer.php'); ?>

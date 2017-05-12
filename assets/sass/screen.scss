@@ -21,29 +21,67 @@ body {
 p {
   margin-bottom: 1.3em;
 }
-h1, h2, h3, h4 {
+h1, h2, h3, h4, .h3, .h4 {
   margin: 1.414em 0 0.5em;
   font-weight: inherit;
   line-height: 1.2;
   font-family:$header-font;
   text-transform: uppercase;
 }
+
 h1 {
-  font-size: 3.052em;
+  font-size: 1.953em;
   margin-top: 0;
 }
 h2 {
-  font-size: 2.441em;
-}
-h3 {
   font-size: 1.953em;
 }
-h4 {
+h3, .h3 {
   font-size: 1.563em;
+}
+h4, .h4 {
+  font-size: 1.25em;
 }
 h5 {
   font-size: 1.25em;
 }
+@media screen and (min-width: 576px) {
+  h1 {
+    font-size: 2.441em;
+    margin-top: 0;
+  }
+  h2 {
+    font-size: 1.953em;
+  }
+  h3, .h3 {
+    font-size: 1.563em;
+  }
+  h4, .h4 {
+    font-size: 1.25em;
+  }
+  h5 {
+    font-size: 1.25em;
+  }
+}
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 3.052em;
+    margin-top: 0;
+  }
+  h2 {
+    font-size: 2.441em;
+  }
+  h3, .h3 {
+    font-size: 1.953em;
+  }
+  h4, .h4 {
+    font-size: 1.563em;
+  }
+  h5 {
+    font-size: 1.25em;
+  }
+}
+
 small, .font_small {
   font-size: 0.8em;
 }
@@ -133,10 +171,15 @@ main {
     font-weight:bold;
   }
 }
+
 #welcome {
   h2{
+    font-size: 1.563em;
     position: relative;
     margin-bottom:4rem;
+    @media screen and (min-width: 576px) {
+      font-size: 2.441em;
+    }
     &:after {
       position:absolute;
       bottom:-3rem;
@@ -153,10 +196,12 @@ main {
 }
 .default {
   .introduction {
-    -moz-column-count: 2;
-    -webkit-column-count: 2;
-    column-count: 2;
-    text-align:left;
+    @media screen and (min-width: 576px) {
+      -moz-column-count: 2;
+      -webkit-column-count: 2;
+      column-count: 2;
+      text-align:left;
+    }
   }
 }
 #social {
@@ -164,10 +209,35 @@ main {
     font-size:1.563rem;
     padding:0.5rem;
   }
+  .post {
+    background-color:white;
+    color:black;
+    text-align: left;
+    //Simulate a gutter
+    border:0.5rem solid black;
+    h4 {
+      position: relative;
+      padding-bottom:0.5em;
+      &::after{
+        content: '';
+        background-color:black;
+        position: absolute;
+        left:0;
+        bottom:0;
+        height:0.125em;
+        width:1em;
+      }
+    }
+    img {
+      width:100%;
+      object-fit: cover;
+      padding-bottom:15px;
+    }
+  }
 }
 #wholesale, #stockists {
   .logo {
-    margin-top:1rem;
+    margin-top:2rem;
   }
 }
 #products {
@@ -190,6 +260,30 @@ main {
   }
 }
 
+#contact {
+  label {
+    text-align: left;
+    @media screen and (min-width: 576px) {
+      text-align:right;
+    }
+  }
+  input:not([type=submit]), textarea {
+    width:100%;
+    background-color:transparent;
+    border:2px white solid;
+    padding: 0.5em;
+    color: white;
+    margin:0;
+  }
+  input[type=submit] {
+    background-color:transparent;
+    border:2px white solid;
+    padding: 0.5em;
+    color: white;
+    align-self:flex-end;
+    margin-right:15px;
+  }
+}
 
 #the_cans {
   .can {
@@ -204,20 +298,72 @@ main {
   .explore-button {
     margin-top:1rem;
   }
+  .world_info {
+    display:none;
+    opacity:0;
+    padding:0 15px;
+    p, h3 {
+      margin:0 auto;
+      width:50%;
+    }
+    :first-child {
+      top:1.5rem;
+      opacity:0;
+      position: relative;
+      transition:all 1s linear 0s;
+    }
+    :nth-child(2) {
+      top:1.5rem;
+      opacity:0;
+      position: relative;
+      transition:all 1s linear 0.5s;
+    }
+    :nth-child(3) {
+      top:1.5rem;
+      opacity:0;
+      position: relative;
+      transition:all 1s linear 0.75s;
+    }
+    :last-child {
+      top:1.5rem;
+      opacity:0;
+      position: relative;
+      transition:all 1s linear 1.25s;
+    }
+  }
 }
 
 footer {
   display:flex;
   flex-direction: row;
   align-items: center;
+  margin-top:9rem;
+  font-family:$header-font;
+  letter-spacing: 0.1em;
+  .row {
+    width:100%;
+  }
   .footer-box {
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-grow: 1;
+    @media screen and (min-width: 960px) {
+      &:first-of-type{
+        text-align: center;
+      }
+    }
     //Special breakpoint for footer
-    @media screen and (min-width: 1400px) {
-      width: 25%;
+    @media screen and (min-width: 1500px) {
+      width:initial;
+      justify-content:center;
+      &:first-of-type{
+        justify-content: flex-start;
+        text-align: left;
+      }
+      &:last-of-type{
+        justify-content: flex-end;
+      }
     }
     &:first-of-type{
       flex-grow: 2;
@@ -229,12 +375,20 @@ footer {
   }
   h3 {
     margin:0.5rem 0.5rem 0.5rem 0;
+    @media screen and (min-width: 1500px) {
+      padding-right:0.5em;
+    }
   }
   .footer-copy {
     font-size:0.64em;
   }
   i {
     margin-left: 1rem;
+    @media screen and (min-width: 1500px) {
+      &:first-of-type{
+        margin-left:0;
+      }
+    }
   }
 }
 
@@ -877,7 +1031,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
    ========================================================================= */
 #mother_sun {
   right:20vw;
-  bottom:25vh;
+  bottom:45vh;
   width:20vw;
   z-index:20;
 }
@@ -900,30 +1054,30 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   z-index:34;
 }
 #mother_hill_four {
-  left:-20vw;
-  bottom:-20vw;
-  width:66vw;
+  right:-30vw;
+  bottom:-40vw;
+  width:100vw;
   z-index:33;
 }
 #mother_mother {
-  right:5vw;
-  bottom:10vh;
+  right:10vw;
+  bottom:45vh;
   width:40vw;
   z-index:41;
-  animation: mother_float 10s infinite linear;
+  animation: mother_float 20s infinite linear;
 }
 @keyframes mother_float {
   0% {
-    bottom:10vh;
+    bottom:45vh;
   }
   25% {
-    bottom:8vh;
+    bottom:43vh;
   }
   75% {
-    bottom:12vh;
+    bottom:47vh;
   }
   100% {
-    bottom:10vh;
+    bottom:45vh;
   }
 }
 
@@ -932,7 +1086,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   height:7vw;
   bottom:calc(15vw + #{$bottom});
   left:calc(35vw + #{$left});
-  animation: person_jump 9s linear ($sunrise-timing + (1s * ($z - 42))) infinite;
+  animation: person_jump 27s linear ($sunrise-timing + (1s * ($z - 42))) infinite;
 }
 #mother_person_one {
   @include mother_person;
@@ -965,19 +1119,22 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   0% {
     margin-bottom:0;
   }
+  4% {
+    margin-bottom:0;
+  }
   5% {
     margin-bottom:1vw;
   }
-  9% {
+  6% {
     margin-bottom:0;
   }
-  62% {
+  64% {
     margin-bottom:0;
   }
   65% {
     margin-bottom:1vw;
   }
-  67% {
+  66% {
     margin-bottom:0;
   }
   100% {
@@ -1109,44 +1266,91 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
 /* ==========================================================================
   World transition animation
    ========================================================================= */
-.transitioning *:not(.target_world):not(.target_parent) {
-  opacity:0 !important;
-  transition:opacity 1s;
+.transition-start {
+  overflow:hidden;
+  #the_cans {
+    .world_info {
+      display: block;
+      width:75%;
+      opacity:1;
+    }
+    .row.target_parent {
+      width:100%;
+    }
+    .can {
+      display:none;
+      &.target_parent {
+        width:100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-items: center;
+        align-items: center;
+        padding:0;
+      }
+      .image {
+        width:25%;
+        padding:0 15px;
+        margin-left:0;
+        transition:margin-left 0.5s;
+      }
+      &:nth-child(1) .image {
+        margin-left:1px;
+      }
+      &:nth-child(2) .image {
+        margin-left:calc(75% / 2);
+      }
+      &:last-child .image {
+        margin-left:75%;
+      }
+      .explore-button {
+        display: none;
+      }
+    }
+  }
+  *:not(.target_world):not(.target_parent):not(.world_info) {
+    transition:opacity 1s;
+    opacity:0 !important;
+  }
 }
-.target_world {
-  transition:left 1s, top 1s, transform 1s;
-  left: 0;
-  top: 0;
+.transition-setup {
+  #the_cans {
+    .image {
+      margin-left:0 !important;
+    }
+  }
 }
-.transitioning .target_world {
-  animation:worldswitch_zoom 3s linear 1s forwards;
-  transform-origin:center 8%;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) scale(1);
-}
-@keyframes worldswitch_zoom {
-  0% {
-    transform:translate(-50%, -50%) scale(1);
-  }
-  10% {
-    transform:translate(-50%, -50%) scale(0.9);
-  }
-  30% {
-    transform:translate(-50%, -50%) scale(2);
-  }
-  70% {
-    transform:translate(-50%, -50%) scale(3);
-  }
-  100% {
-    transform:translate(-50%, -50%) scale(120);
+.transitioning {
+  #the_cans {
+    .can.target_parent {
+      .world_info {
+        :first-child{
+          opacity:1 !important;
+          top:0;
+        }
+        :nth-child(2){
+          opacity:1 !important;
+          top:0;
+        }
+        :nth-child(3){
+          opacity:1 !important;
+          top:0;
+        }
+        :last-child{
+          opacity:1 !important;
+          top:0;
+        }
+      }
+    }
   }
 }
 /* ==========================================================================
   Color palettes
    ========================================================================= */
+body {
+  transition:background-color 1s, color 1s;
+}
 body.default {
-  background-color: #000000;
+  background-color: rgba(101, 101, 101, 1);
   color:white;
   .lede {
     color:rgb(135,199,160);
@@ -1156,6 +1360,7 @@ header {
   background-color: rgba(101, 101, 101, 0);
 }
 body.default.sunrise {
+  background-color: #000000;
   header {
     animation: sunrise_sky $sunrise_timing linear forwards;
   }
@@ -1178,7 +1383,7 @@ body.default.sunrise {
 /*========================================================================= */
 
 body.dayglo {
-  background-color: #7fc8bd;
+  background-color: rgba(42, 119, 161, 1);
   color:white;
   .lede {
     color:white
@@ -1186,9 +1391,15 @@ body.dayglo {
   header {
     background-color: rgba(42, 119, 161, 1);
   }
+  #social {
+    .post {
+      border-color:#7fc8bd;
+    }
+  }
 }
 
 body.dayglo.sunrise {
+  background-color: #7fc8bd;
   header {
     margin-top:-50vh;
   }
@@ -1197,7 +1408,7 @@ body.dayglo.sunrise {
 /*========================================================================= */
 
 body.midnight {
-  background-color: rgb(136,81,160);
+  background-color: $midnight-bg;
   color:white;
   .lede {
     color:rgba(253,107,13,1);
@@ -1212,8 +1423,14 @@ body.midnight {
       transition-delay: ($sunrise_timing / 4);
     }
   }
+  #social {
+    .post {
+      border-color:rgb(136,81,160);
+    }
+  }
 }
 body.midnight.sunrise {
+  background-color: rgb(136,81,160);
   header {
     background-color: $midnight-bg;
     animation: midnight_sunrise $sunrise_timing linear forwards;
@@ -1296,7 +1513,7 @@ body.midnight.sunrise {
 
 /*========================================================================= */
 body.mother {
-  background-color: #8b1b3f;
+  background-color: #e73c50;
   color:white;
   .lede {
     color:#fec4cb;
@@ -1306,7 +1523,7 @@ body.mother {
     position: relative;
     &::after {
       content: '';
-      background-image:url('/assets/img/worlds/mother/psuedo-divider.png');
+      background-image:url('../img/worlds/mother/psuedo-divider.png');
       background-size:100% 100%;
       background-position:center center;
       position:absolute;
@@ -1331,23 +1548,22 @@ body.mother {
     #mother_hill_four {
       transform-origin: 20vw 30vw;
     }
-    #mother_hill_one, #mother_hill_two, #mother_hill_three, #mother_hill_four {
-      transition: transform $sunrise_timing;
-      transform: scale(0.5);
-    }
     #mother_person_one, #mother_person_two, #mother_person_three, #mother_person_four, #mother_person_five, #mother_person_six, #mother_person_seven, #mother_person_eight, #mother_person_nine {
       transition: transform $sunrise_timing ease-out $sunrise_timing;
       transform: translate(-20vw, 25vw);
     }
 
   }
+  #social {
+    .post {
+      border-color:#8b1b3f;
+    }
+  }
 }
 body.mother.sunrise {
+  background-color: #8b1b3f;
   #mother_mother {
     transform: translate(0,0);
-  }
-  #mother_hill_one, #mother_hill_two, #mother_hill_three, #mother_hill_four {
-      transform: scale(1);
   }
   #mother_person_one, #mother_person_two, #mother_person_three, #mother_person_four, #mother_person_five, #mother_person_six, #mother_person_seven, #mother_person_eight, #mother_person_nine {
     transform: translate(0);

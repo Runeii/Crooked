@@ -1,4 +1,4 @@
-<?php include('./header.php'); ?>
+<?php include(get_stylesheet_directory() . '/header.php'); ?>
 <main class="container">
   <section id="welcome" class="row">
     <h2 class="col-12 lede"><?php echo $layouts['copy'][$world]['lede']; ?></h2>
@@ -9,50 +9,81 @@
   <section id="the_cans" class="row">
     <div class="row justify-content-between">
       <div class="can col-3">
-        <img id="dayglo_1" world="dayglo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" />
+        <div class="image">
+          <img id="dayglo_1" world="dayglo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" />
+        </div>
         <div class="explore-button">
           <a href="#" target="dayglo_1">Explore <br /><span>Dayglo Skies</span></a>
         </div>
-      </div>
-      <div class="can col-3">
-        <img id="midnight_1" world="midnight" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" />
-        <div class="explore-button">
-          <a href="#" target="midnight_1">Explore <br /><span>Midnight Stage</span></a>
+        <div class="world_info">
+          <p>Now travelling to</p>
+          <h3>Dayglo Skies</h3>
+          <p>Raspberry & Lime</p>
+          <p><br /><br />Loading...</p>
         </div>
       </div>
       <div class="can col-3">
-        <img id="mother_1" world="mother" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" />
+        <div class="image">
+          <img id="midnight_1" world="midnight" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" />
+        </div>
+        <div class="explore-button">
+          <a href="#" target="midnight_1">Explore <br /><span>Midnight Stage</span></a>
+        </div>
+        <div class="world_info">
+          <p>Now travelling to</p>
+          <h3>Midnight Stage</h3>
+          <p>Blood Orange & Passionfruit</p>
+          <p><br /><br />Loading...</p>
+        </div>
+      </div>
+      <div class="can col-3">
+        <div class="image">
+          <img id="mother_1" world="mother" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" />
+        </div>
         <div class="explore-button">
           <a href="#" target="mother_1">Explore <br /><span>Mother Moon</span></a>
+        </div>
+        <div class="world_info">
+          <p>Now travelling to</p>
+          <h3>Mother Moon</h3>
+          <p>Peach & Pomegranate</p>
+          <p><br /><br />Loading...</p>
         </div>
       </div>
     </div>
   </section>
   <section id="social" class="row">
     <h3 class="col-12">Join us</h3>
-    <p class="col-12">Join us by following our journey</p>
     <div class="col-12 social-icons">
       <i class="fa fa-instagram"></i>
       <i class="fa fa-facebook"></i>
       <i class="fa fa-twitter"></i>
     </div>
+    <p class="col-12">&nbsp;</p>
+    <?php
+      if ( have_posts() ) { while ( have_posts() ) { the_post(); ?>
+        <div class="col-12 col-sm-6 col-lg-4 post">
+          <h4><?php the_title(); ?></h4>
+          <p class="font_small"><?php echo get_excerpt(); ?></p>
+          <?php the_post_thumbnail('image_feed'); ?>
+        </div>
+    <?php  } }
+    ?>
+  </section>
+  <section id="contact" class="row">
+    <h3 class="col-12">Get in touch</h3>
+    <p class="col-12">We would love to hear from you</p>
+    <?php echo do_shortcode('[contact-form-7 id="40" title="Get in touch"]'); ?>
   </section>
   <section id="stockists" class="row">
     <h3 class="col-12">Where to buy</h3>
-    <p class="col-12">Crooked is available at the following convenience stores</p>
-    <div class="logo col-12 col-md-4">
-      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/tesco.png" />
-    </div>
-    <div class="logo col-12 col-md-4">
+    <p class="col-12">Crooked is available to buy from the following retailers, as well as many awesome and intriguing bars and venues. If your favourite bar doesn’t stock us yet, tell them to!</p>
+    <div class="logo col-12 col-md-4 offset-2">
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/sainsburys.png" />
     </div>
     <div class="logo col-12 col-md-4">
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/asda.png" />
     </div>
   </section>
-  <section id="contact" class="row">
-    <h3 class="col-12">Get in touch</h3>
-    <p class="col-12">Say hello....send us a message, tell us you love us</p>
-  </section>
 </main>
-<?php include('./footer.php'); ?>
+<?php get_footer(); ?>

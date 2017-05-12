@@ -31,6 +31,6 @@
 </footer>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>assets/js/scripts-min.js"></script>
+<?php wp_footer(); ?>
 </body>
 </html>

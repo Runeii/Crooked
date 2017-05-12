@@ -24,45 +24,26 @@ var body = document.body,
 
 //General variables
 var transitioning = false;
+var swapping = false;
 var worldData;
+var target;
 var windowHeight = $(window).height();
-
+var event_stop_one = false;
+var event_stop_two = false;
+var event_stop_three = false;
+console.log(wordpress.template_directory + "/worlds.json");
 //Kick everything off
-$.getJSON( "worlds.json", function( data ) {
+$.getJSON( wordpress.template_directory + "/worlds.json", function( data ) {
   console.log('Worlds loaded');
   worldData = data;
   var get = getParameters(getNavUrl());
-
   setupParallax(get.world);
 });
 
 // Page scrolling effects
 var last_scroll = windowHeight / 100;
 var ticking = false;
-window.addEventListener('scroll', function(e) {
-  this_scroll = window.scrollY;
-  if(this_scroll >= (last_scroll * 1.1)) {
-    console.log('Hide');
-    nav.classList.add('hide');
-    last_scroll = this_scroll;
-  } else if(this_scroll <= (last_scroll / 1.1)) {
-    console.log('reveal');
-    nav.classList.remove('hide');
-    last_scroll = this_scroll;
-  }
-  if (!ticking) {
-    window.requestAnimationFrame(function() {
-      var offset = this_scroll * -1;
-      parallax_one.css({'margin-bottom': (offset / 5)  + "px"});
-      parallax_two.css({'margin-bottom': (offset / 4) + "px"});
-      parallax_three.css({'margin-bottom': (offset / 3) + "px"});
-      parallax_four.css({'margin-bottom': (offset / 2) + "px"});
-      parallax_five.css({'margin-bottom': offset + "px"});
-      ticking = false;
-    });
-  }
-  ticking = true;
-});
+
 function resetScroll(){
   nav.classList.add('hide');
   last_scroll = 0;
@@ -79,56 +60,78 @@ function animate_stage(){
 }
 
 $( ".explore-button a" ).click(function() {
+  console.log(1);
   if(transitioning === false) {
-    transitioning = true;
-    var target = $( "#" + this.getAttribute("target"));
-    target.parents().addClass('target_parent');
-    target.css({
-      'top' : target.offset().top - $(window).scrollTop(),
-      'left' : target.offset().left,
-      'width' : target.width(),
-      'position' : 'fixed'
-    }).queue(function() {
-      //Don't set class until CSS properties added
-      target.addClass('target_world');
-      body.classList.add('transitioning');
-      body.classList.remove('sunrise');
-      $(this).dequeue();
+    $('#the_cans .image img').each(function(){
+      $(this).css({'height' : $(this).height(), 'width' : $(this).width()});
     });
-    target.one('webkitAnimationEnd oanimationend msAnimationEnd animationend',function(e) {
-      swapWorld(target);
+    transitioning = true;
+    target = $( "#" + this.getAttribute("target"));
+    target.parents().addClass('target_parent');
+    target.addClass('target_world');
+    body.classList.add('transition-start');
+    body.classList.remove('sunrise');
+    console.log('1.5');
+    $(header).one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd',function(e) {
+      if(event_stop_one === false) {
+        event_stop_one = true;
+        body.classList.add('transition-setup');
+        console.log('1.56');
+        target.parent().one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd',function(e) {
+            if(event_stop_two === false) {
+              event_stop_two = true;
+              body.classList.add('transitioning');
+              console.log('1.57');
+              $('.target_parent > .world_info :last-child').one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd',function(e) {
+                if(event_stop_three === false) {
+                  event_stop_three = true;
+                  console.log('1.59');
+                  refreshElements();
+                }
+              });
+            }
+        });
+      }
     });
   }
   return false;
 });
 
-function swapWorld(target) {
-  var newWorld = $(target).attr("world");
-  console.log('Now entering: ' + newWorld);
-  $(window).scrollTop(0);
-  header.classList.add('entering');
-  body.className = newWorld;
-  console.log(target);
-  target[0].style.cssText = null;
-  body.classList.remove('transitioning');
-  refreshElements(newWorld);
+function refreshElements(){
+  event_stop_one = false;
+  event_stop_two = false;
+  event_stop_three = false;
+  var world = $(target).attr("world");
+  var elements = worldData[world];
+    console.log(2);
+  var newHTML = '';
+  $.each(elements, function(key, value){
+    newHTML += '<img src="'+ wordpress.template_directory + value +'" id="'+ world +'_'+ key +'"/>';
+  });
+  target.closest('.can').animate({
+      'opacity': 0,
+  }, {
+      duration: 1000,
+      start: function() {
+        body.classList.remove('midnight', 'default', 'dayglo', 'mother');
+        body.classList.add(world);
+      },
+      complete: function () {
+        switchWorld(world, newHTML);
+          console.log(3);
+      }
+  });
 }
 
-function refreshElements(world){
-  var elements = worldData[world];
-  var newHTML = '';
-  header.innerHTML = '';
-  $.each(elements, function(key, value){
-    newHTML += '<img src="'+ value +'" id="'+ world +'_'+ key +'"/>';
-  });
-  header.innerHTML = newHTML;
+function switchWorld(world, html){
+  header.innerHTML = html;
   lede.innerHTML = worldData.copy[world].lede;
   introduction.innerHTML = worldData.copy[world].introduction;
-  resetScroll();
-  setupParallax(world);
+    console.log(4);
+  setupParallax(world, page_sunrise());
 }
 
-function setupParallax(world = 'default') {
+function setupParallax(world = 'default', callback = function(){}) {
   var layers = worldData.layers[world];
   var record = worldData[world];
   var prefix;
@@ -149,8 +152,63 @@ function setupParallax(world = 'default') {
   parallax_one = $('.parallax_one');
   parallax_two = $('.parallax_two');
   parallax_three = $('.parallax_three');
+    console.log(5);
   parallax_four = $('.parallax_four');
   parallax_five = $('.parallax_five');
+  setup_scroll();
+  callback(world);
+
+}
+
+function setup_scroll(world){
+  window.addEventListener('scroll', function(e) {
+    this_scroll = window.scrollY;
+    if(this_scroll >= (last_scroll * 1.1)) {
+      nav.classList.add('hide');
+      last_scroll = this_scroll;
+    } else if(this_scroll <= (last_scroll / 1.1)) {
+      nav.classList.remove('hide');
+      last_scroll = this_scroll;
+        console.log(6);
+    }
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        var offset = this_scroll * -2;
+        parallax_one.css({'margin-bottom': (offset / 5)  + "px"});
+        parallax_two.css({'margin-bottom': (offset / 4) + "px"});
+        parallax_three.css({'margin-bottom': (offset / 3) + "px"});
+        parallax_four.css({'margin-bottom': (offset / 2) + "px"});
+        parallax_five.css({'margin-bottom': offset + "px"});
+        ticking = false;
+        //As this is the final function to run in the setup, we trigger the sunrise animation
+      });
+    }
+    ticking = true;
+  });
+}
+
+function page_sunrise(world){
+  resetScroll();
+  $('#header img').hide();
+  var top = ($(window).scrollTop(0) || $("body").scrollTop(0));
+  $('#the_cans .image img').each(function(){
+    $(this).css({'height' : 'inherit', 'width' : 'inherit'});
+  });
+  body.classList.remove('transitioning', 'transition-setup', 'transition-start');
+  $('.target_parent').each(function(){
+    $(this).removeClass('target_parent');
+      console.log(8);
+  });
+  $('.target_world').removeClass('target_world');
+  setTimeout(function(){
+    $('#header img').fadeIn(3000, function(){
+      body.classList.add('sunrise');
+    });
+    target.closest('.can').css({'opacity': 1});
+      console.log(9);
+    //We're done, re-enable the transition links
+    transitioning = false;
+  }, 500);
 }
 
 //Tools
