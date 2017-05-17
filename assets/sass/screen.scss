@@ -196,7 +196,7 @@ main {
 }
 .default {
   .introduction {
-    @media screen and (min-width: 576px) {
+    @media screen and (min-width: 768px) {
       -moz-column-count: 2;
       -webkit-column-count: 2;
       column-count: 2;
@@ -604,13 +604,6 @@ body:not(.sunrise) {
 /* ==========================================================================
   Dayglo skies elements
    ========================================================================= */
-.dayglo {
-  header {
-    height:150vh;
-    margin-top:0;
-    transition:margin $sunrise_timing;
-  }
-}
 #dayglo_base {
   left:0;
   bottom:0;
@@ -665,42 +658,42 @@ $sun_colour_dayglo: #96c11f;
   right:100%;
   width:100%;
   z-index:41;
-  animation: clouds_right_dayglo 120s infinite 7s;
+  animation: clouds_right_dayglo 120s infinite -7s;
 }
 #dayglo_clouds_bulk_three {
   top:30%;
   left:100%;
   width:100%;
   z-index:42;
-  animation: clouds_left_dayglo 120s infinite 15s;
+  animation: clouds_left_dayglo 120s infinite -15s;
 }
 #dayglo_clouds_bulk_four {
   top:10%;
   right:100%;
   width:100%;
   z-index:43;
-  animation: clouds_right_dayglo 120s infinite 23s;
+  animation: clouds_right_dayglo 120s infinite -23s;
 }
 #dayglo_clouds_bulk_five {
   top:25%;
   left:100%;
   width:100%;
   z-index:44;
-  animation: clouds_left_dayglo 120s infinite 25s;
+  animation: clouds_left_dayglo 120s infinite -25s;
 }
 #dayglo_clouds_bulk_six {
   top:30%;
   right:100%;
   width:100%;
   z-index:45;
-  animation: clouds_right_dayglo 120s infinite 37s;
+  animation: clouds_right_dayglo 120s infinite -37s;
 }
 #dayglo_clouds_bulk_seven {
   top:20%;
   left:100%;
   width:100%;
   z-index:46;
-  animation: clouds_left_dayglo 120s infinite 30s;
+  animation: clouds_left_dayglo 120s infinite -30s;
 }
 #dayglo_cloud_low_one {
   bottom:18%;
@@ -1039,19 +1032,19 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   left:0;
   bottom:0;
   width:66vw;
-  z-index:36;
+  z-index:37;
 }
 #mother_hill_two {
-  left:10vw;
-  bottom:-10vw;
-  width:30vw;
-  z-index:35;
+  left: -5vw;
+  bottom: -25vw;
+  width: 45vw;
+  z-index:36;
 }
 #mother_hill_three {
   left:20vw;
   bottom:0vw;
   width:40vw;
-  z-index:34;
+  z-index:35;
 }
 #mother_hill_four {
   right:-30vw;
@@ -1059,25 +1052,31 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   width:100vw;
   z-index:33;
 }
+#mother_sea {
+  left:-10vw;
+  bottom:-10vw;
+  width:60vw;
+  z-index:34;
+}
 #mother_mother {
-  right:10vw;
-  bottom:45vh;
-  width:40vw;
-  z-index:41;
+  right:0vw;
+  bottom:35vh;
+  width:60vw;
+  z-index:36;
   animation: mother_float 20s infinite linear;
 }
 @keyframes mother_float {
   0% {
-    bottom:45vh;
+    bottom:35vh;
   }
   25% {
-    bottom:43vh;
+    bottom:33vh;
   }
   75% {
-    bottom:47vh;
+    bottom:37vh;
   }
   100% {
-    bottom:45vh;
+    bottom:35vh;
   }
 }
 
@@ -1348,7 +1347,18 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
    ========================================================================= */
 body {
   transition:background-color 1s, color 1s;
+  &:not(.default) header {
+    height:150vh;
+    transition:height $sunrise_timing;
+  }
 }
+body.sunrise:not(.default) {
+  header {
+    height:100vh;
+  }
+}
+
+
 body.default {
   background-color: rgba(101, 101, 101, 1);
   color:white;
@@ -1400,9 +1410,6 @@ body.dayglo {
 
 body.dayglo.sunrise {
   background-color: #7fc8bd;
-  header {
-    margin-top:-50vh;
-  }
 }
 
 /*========================================================================= */
@@ -1437,21 +1444,6 @@ body.midnight.sunrise {
     *:not(#midnight_base):not(#midnight_sun) {
       opacity:1;
     }
-  }
-  .parallax_intro_close {
-    animation: midnight_sunrise_intro_close $sunrise_timing linear forwards;
-  }
-  .parallax_intro {
-    animation: midnight_sunrise_intro $sunrise_timing linear forwards;
-  }
-  #midnight_hill_one {
-    animation: midnight_sunrise_zero $sunrise_timing linear forwards;
-  }
-  .parallax_one {
-    animation: midnight_sunrise_one $sunrise_timing linear forwards;
-  }
-  .parallax_two, .parallax_three, .parallax_four {
-    animation: midnight_sunrise_rest $sunrise_timing linear forwards;
   }
 }
 @keyframes midnight_sunrise {

@@ -1791,8 +1791,6 @@ html {
 /*# sourceMappingURL=bootstrap-grid.min.css.map */
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
-
-
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */
 @font-face {
@@ -4165,7 +4163,7 @@ main {
   font-size: 1.25em;
   margin-top: 0; }
 
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 768px) {
   .default .introduction {
     -moz-column-count: 2;
     -webkit-column-count: 2;
@@ -4510,11 +4508,6 @@ body:not(.sunrise) #hill_rear {
 /* ==========================================================================
   Dayglo skies elements
    ========================================================================= */
-.dayglo header {
-  height: 150vh;
-  margin-top: 0;
-  transition: margin 5s; }
-
 #dayglo_base {
   left: 0;
   bottom: 0;
@@ -4568,42 +4561,42 @@ body:not(.sunrise) #hill_rear {
   right: 100%;
   width: 100%;
   z-index: 41;
-  animation: clouds_right_dayglo 120s infinite 7s; }
+  animation: clouds_right_dayglo 120s infinite -7s; }
 
 #dayglo_clouds_bulk_three {
   top: 30%;
   left: 100%;
   width: 100%;
   z-index: 42;
-  animation: clouds_left_dayglo 120s infinite 15s; }
+  animation: clouds_left_dayglo 120s infinite -15s; }
 
 #dayglo_clouds_bulk_four {
   top: 10%;
   right: 100%;
   width: 100%;
   z-index: 43;
-  animation: clouds_right_dayglo 120s infinite 23s; }
+  animation: clouds_right_dayglo 120s infinite -23s; }
 
 #dayglo_clouds_bulk_five {
   top: 25%;
   left: 100%;
   width: 100%;
   z-index: 44;
-  animation: clouds_left_dayglo 120s infinite 25s; }
+  animation: clouds_left_dayglo 120s infinite -25s; }
 
 #dayglo_clouds_bulk_six {
   top: 30%;
   right: 100%;
   width: 100%;
   z-index: 45;
-  animation: clouds_right_dayglo 120s infinite 37s; }
+  animation: clouds_right_dayglo 120s infinite -37s; }
 
 #dayglo_clouds_bulk_seven {
   top: 20%;
   left: 100%;
   width: 100%;
   z-index: 46;
-  animation: clouds_left_dayglo 120s infinite 30s; }
+  animation: clouds_left_dayglo 120s infinite -30s; }
 
 #dayglo_cloud_low_one {
   bottom: 18%;
@@ -4898,19 +4891,19 @@ body:not(.sunrise) #hill_rear {
   left: 0;
   bottom: 0;
   width: 66vw;
-  z-index: 36; }
+  z-index: 37; }
 
 #mother_hill_two {
-  left: 10vw;
-  bottom: -10vw;
-  width: 30vw;
-  z-index: 35; }
+  left: -5vw;
+  bottom: -25vw;
+  width: 45vw;
+  z-index: 36; }
 
 #mother_hill_three {
   left: 20vw;
   bottom: 0vw;
   width: 40vw;
-  z-index: 34; }
+  z-index: 35; }
 
 #mother_hill_four {
   right: -30vw;
@@ -4918,22 +4911,28 @@ body:not(.sunrise) #hill_rear {
   width: 100vw;
   z-index: 33; }
 
+#mother_sea {
+  left: -10vw;
+  bottom: -10vw;
+  width: 60vw;
+  z-index: 34; }
+
 #mother_mother {
-  right: 10vw;
-  bottom: 45vh;
-  width: 40vw;
-  z-index: 41;
+  right: 0vw;
+  bottom: 35vh;
+  width: 60vw;
+  z-index: 36;
   animation: mother_float 20s infinite linear; }
 
 @keyframes mother_float {
   0% {
-    bottom: 45vh; }
+    bottom: 35vh; }
   25% {
-    bottom: 43vh; }
+    bottom: 33vh; }
   75% {
-    bottom: 47vh; }
+    bottom: 37vh; }
   100% {
-    bottom: 45vh; } }
+    bottom: 35vh; } }
 
 #mother_person_one {
   z-index: 42;
@@ -5051,7 +5050,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 85vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -63s infinite;
+  animation: cloud_opacity 13s linear -73s infinite;
   filter: blur(0px); }
 
 #mother_cloud_two {
@@ -5061,7 +5060,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 60vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -80s infinite;
+  animation: cloud_opacity 13s linear -45s infinite;
   filter: blur(0px); }
 
 #mother_cloud_three {
@@ -5071,7 +5070,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 50vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -54s infinite;
+  animation: cloud_opacity 13s linear -18s infinite;
   filter: blur(0px); }
 
 #mother_cloud_four {
@@ -5081,7 +5080,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 15vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -77s infinite;
+  animation: cloud_opacity 13s linear -31s infinite;
   filter: blur(0px); }
 
 #mother_cloud_five {
@@ -5091,7 +5090,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 5vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -43s infinite;
+  animation: cloud_opacity 13s linear -62s infinite;
   filter: blur(0px); }
 
 @keyframes cloud_opacity {
@@ -5214,6 +5213,12 @@ body:not(.sunrise) #hill_rear {
    ========================================================================= */
 body {
   transition: background-color 1s, color 1s; }
+  body:not(.default) header {
+    height: 150vh;
+    transition: height 5s; }
+
+body.sunrise:not(.default) header {
+  height: 100vh; }
 
 body.default {
   background-color: #656565;
@@ -5252,8 +5257,6 @@ body.dayglo {
 
 body.dayglo.sunrise {
   background-color: #7fc8bd; }
-  body.dayglo.sunrise header {
-    margin-top: -50vh; }
 
 /*========================================================================= */
 body.midnight {
@@ -5278,16 +5281,6 @@ body.midnight.sunrise {
     animation: midnight_sunrise 5s linear forwards; }
     body.midnight.sunrise header *:not(#midnight_base):not(#midnight_sun) {
       opacity: 1; }
-  body.midnight.sunrise .parallax_intro_close {
-    animation: midnight_sunrise_intro_close 5s linear forwards; }
-  body.midnight.sunrise .parallax_intro {
-    animation: midnight_sunrise_intro 5s linear forwards; }
-  body.midnight.sunrise #midnight_hill_one {
-    animation: midnight_sunrise_zero 5s linear forwards; }
-  body.midnight.sunrise .parallax_one {
-    animation: midnight_sunrise_one 5s linear forwards; }
-  body.midnight.sunrise .parallax_two, body.midnight.sunrise .parallax_three, body.midnight.sunrise .parallax_four {
-    animation: midnight_sunrise_rest 5s linear forwards; }
 
 @keyframes midnight_sunrise {
   0% {

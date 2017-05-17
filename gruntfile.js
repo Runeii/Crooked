@@ -173,6 +173,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-php');
   // Register the default tasks.
   grunt.registerTask('default', ['browserSync', 'watch', 'notify']);
-  grunt.registerTask('staging', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts', 'gitcommit', 'gitpush:staging']);
+  grunt.registerTask('staging', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts', 'gitpush:staging']);
   grunt.registerTask('production', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts', 'notify:successProduction', 'gitpush:production']);
 };

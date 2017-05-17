@@ -44,6 +44,7 @@
     "hill_three" : "/assets/img/worlds/midnight/hill_three.png",
     "hill_four" : "/assets/img/worlds/midnight/hill_four.png",
     "sun" : "/assets/img/worlds/midnight/sun.png",
+    "creature" : "/assets/img/worlds/midnight/creature.png",
     "tree_one" : "/assets/img/worlds/midnight/tree_one.png",
     "tree_two" : "/assets/img/worlds/midnight/tree_two.png",
     "fruit" : "/assets/img/worlds/midnight/fruit.png",
@@ -95,21 +96,19 @@
       "four" : ["hill_rear"]
     },
     "dayglo" : {
-      "zero" : ["base", "heads", "fruit"],
+      "zero" : ["base", "heads", "fruit", "cloud_low_one", "cloud_low_two","cloud_low_three","cloud_low_four"],
       "one" : ["sun"]
     },
     "midnight" : {
-      "intro_close" : ["oranges", "fruit"],
-      "intro" : ["base_two", "tree_one", "tree_two", "rocks", "oranges_two"],
-      "zero" : ["base", "base_two", "hill_one", "tree_one", "tree_two",  "fruit", "rocks", "oranges", "oranges_two"],
+      "zero" : ["base", "base_two", "hill_one", "tree_one", "tree_two",  "fruit", "rocks", "oranges", "oranges_two", "creature"],
       "one" : ["hill_four"],
       "two" : ["hill_three"],
       "three" : ["hill_two"],
       "four" : ["sun"]
     },
     "mother" : {
-      "zero" : ["hill_one", "mother", "person_one", "person_two", "person_three", "person_four", "person_five", "person_six", "person_seven",  "person_eight", "person_nine"],
-      "one" : ["hill_two"],
+      "zero" : ["hill_one", "person_one", "person_two", "person_three", "person_four", "person_five", "person_six", "person_seven",  "person_eight", "person_nine"],
+      "one" : ["hill_two","mother"],
       "three" : ["hill_three", "sea"],
       "four" : ["hill_four"]
     }

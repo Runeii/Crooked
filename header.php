@@ -17,6 +17,7 @@ if(isset($_GET['world'])) {
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/css/style-min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans" rel="stylesheet">
     <?php wp_head(); ?>
 </head>
 <body class="<?php echo $world; ?>">

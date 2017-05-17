@@ -86,50 +86,48 @@ function animate_stage() {
 }
 
 $(".explore-button a").click(function () {
-  console.log(1);
   if (transitioning === false) {
-    $('#the_cans .image img').each(function () {
-      $(this).css({ 'height': $(this).height(), 'width': $(this).width() });
-    });
     transitioning = true;
     target = $("#" + this.getAttribute("target"));
-    target.parents().addClass('target_parent');
-    target.addClass('target_world');
-    body.classList.add('transition-start');
-    body.classList.remove('sunrise');
-    console.log('1.5');
-    $(header).one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
-      if (event_stop_one === false) {
-        event_stop_one = true;
-        body.classList.add('transition-setup');
-        console.log('1.56');
-        target.parent().one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
-          if (event_stop_two === false) {
-            event_stop_two = true;
-            body.classList.add('transitioning');
-            console.log('1.57');
-            $('.target_parent > .world_info :last-child').one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
-              if (event_stop_three === false) {
-                event_stop_three = true;
-                console.log('1.59');
-                refreshElements();
-              }
-            });
-          }
-        });
-      }
+    $('html, body').animate({
+      scrollTop: target.offset().top - windowHeight / 2 + $('#the_cans').height() / 2
+    }, 1000, function () {
+      transitionAnimation();
     });
   }
   return false;
 });
 
+function transitionAnimation() {
+  $('#the_cans .image img').each(function () {
+    $(this).css({ 'height': $(this).height(), 'width': $(this).width() });
+  });
+  target.parents().addClass('target_parent');
+  target.addClass('target_world');
+  body.classList.add('transition-start');
+  body.classList.remove('sunrise');
+  $(header).one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
+    if (event_stop_one === false) {
+      event_stop_one = true;
+      body.classList.add('transition-setup');
+      target.parent().one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
+        if (event_stop_two === false) {
+          event_stop_two = true;
+          body.classList.add('transitioning');
+          $('.target_parent > .world_info :last-child').one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
+            if (event_stop_three === false) {
+              event_stop_three = true;
+              refreshElements();
+            }
+          });
+        }
+      });
+    }
+  });
+}
 function refreshElements() {
-  event_stop_one = false;
-  event_stop_two = false;
-  event_stop_three = false;
   var world = $(target).attr("world");
   var elements = worldData[world];
-  console.log(2);
   var newHTML = '';
   $.each(elements, function (key, value) {
     newHTML += '<img src="' + wordpress.template_directory + value + '" id="' + world + '_' + key + '"/>';
@@ -144,7 +142,10 @@ function refreshElements() {
     },
     complete: function complete() {
       switchWorld(world, newHTML);
-      console.log(3);
+      //"Unlock" the variables we used to stop the process duplicating
+      event_stop_one = false;
+      event_stop_two = false;
+      event_stop_three = false;
     }
   });
 }
@@ -153,7 +154,6 @@ function switchWorld(world, html) {
   header.innerHTML = html;
   lede.innerHTML = worldData.copy[world].lede;
   introduction.innerHTML = worldData.copy[world].introduction;
-  console.log(4);
   setupParallax(world, page_sunrise());
 }
 
@@ -181,7 +181,6 @@ function setupParallax() {
   parallax_one = $('.parallax_one');
   parallax_two = $('.parallax_two');
   parallax_three = $('.parallax_three');
-  console.log(5);
   parallax_four = $('.parallax_four');
   parallax_five = $('.parallax_five');
   setup_scroll();
@@ -197,7 +196,6 @@ function setup_scroll(world) {
     } else if (this_scroll <= last_scroll / 1.1) {
       nav.classList.remove('hide');
       last_scroll = this_scroll;
-      console.log(6);
     }
     if (!ticking) {
       window.requestAnimationFrame(function () {
@@ -225,7 +223,6 @@ function page_sunrise(world) {
   body.classList.remove('transitioning', 'transition-setup', 'transition-start');
   $('.target_parent').each(function () {
     $(this).removeClass('target_parent');
-    console.log(8);
   });
   $('.target_world').removeClass('target_world');
   setTimeout(function () {
@@ -233,7 +230,6 @@ function page_sunrise(world) {
       body.classList.add('sunrise');
     });
     target.closest('.can').css({ 'opacity': 1 });
-    console.log(9);
     //We're done, re-enable the transition links
     transitioning = false;
   }, 500);
