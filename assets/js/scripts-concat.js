@@ -36,7 +36,8 @@ try {
 } catch (err) {}
 
 //Cache elements
-var body = document.body,
+var html = document.documentElement,
+    body = document.body,
     nav = document.getElementById('nav'),
     header = document.getElementById('header'),
     sun = document.getElementById('sun'),
@@ -54,6 +55,7 @@ var swapping = false;
 var worldData;
 var target;
 var windowHeight = $(window).height();
+var windowWidth = $(window).width();
 var event_stop_one = false;
 var event_stop_two = false;
 var event_stop_three = false;
@@ -85,13 +87,21 @@ function animate_stage() {
   }, 5000);
 }
 
+$("#mobile-menu").click(function () {
+  $(this).parent().toggleClass('open');
+});
 $(".explore-button a").click(function () {
   if (transitioning === false) {
     transitioning = true;
     target = $("#" + this.getAttribute("target"));
-    $('html, body').animate({
-      scrollTop: target.offset().top - windowHeight / 2 + $('#the_cans').height() / 2
-    }, 1000, function () {
+    $('#the_cans .image img').each(function () {
+      $(this).css({ 'height': $(this).height(), 'width': $(this).width() });
+    });
+    target.parents().addClass('target_parent');
+    target.addClass('target_world');
+    html.classList.add('transition-start');
+    body.classList.remove('sunrise');
+    $(header).one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
       transitionAnimation();
     });
   }
@@ -99,22 +109,17 @@ $(".explore-button a").click(function () {
 });
 
 function transitionAnimation() {
-  $('#the_cans .image img').each(function () {
-    $(this).css({ 'height': $(this).height(), 'width': $(this).width() });
-  });
-  target.parents().addClass('target_parent');
-  target.addClass('target_world');
-  body.classList.add('transition-start');
-  body.classList.remove('sunrise');
-  $(header).one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
+  $('html, body').animate({
+    scrollTop: target.offset().top - windowHeight / 2 + $('#the_cans').height() / 2
+  }, 1000, function () {
     if (event_stop_one === false) {
       event_stop_one = true;
-      body.classList.add('transition-setup');
+      html.classList.add('transition-setup');
       target.parent().one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
         if (event_stop_two === false) {
           event_stop_two = true;
-          body.classList.add('transitioning');
-          $('.target_parent > .world_info :last-child').one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
+          html.classList.add('transitioning');
+          $('.target_parent > .world_info .loading').one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
             if (event_stop_three === false) {
               event_stop_three = true;
               refreshElements();
@@ -130,9 +135,13 @@ function refreshElements() {
   var elements = worldData[world];
   var newHTML = '';
   $.each(elements, function (key, value) {
-    newHTML += '<img src="' + wordpress.template_directory + value + '" id="' + world + '_' + key + '"/>';
+    if (value != 'sprite') {
+      newHTML += '<img src="' + wordpress.template_directory + value + '" id="' + world + '_' + key + '"/>';
+    } else {
+      newHTML += '<div class="sprite" id="' + world + '_' + key + '">&nbsp;</div>';
+    }
   });
-  target.closest('.can').animate({
+  target.animate({
     'opacity': 0
   }, {
     duration: 1000,
@@ -154,7 +163,7 @@ function switchWorld(world, html) {
   header.innerHTML = html;
   lede.innerHTML = worldData.copy[world].lede;
   introduction.innerHTML = worldData.copy[world].introduction;
-  setupParallax(world, page_sunrise());
+  setupParallax(world, loading_complete());
 }
 
 function setupParallax() {
@@ -188,28 +197,38 @@ function setupParallax() {
 }
 
 function setup_scroll(world) {
-  window.addEventListener('scroll', function (e) {
-    this_scroll = window.scrollY;
-    if (this_scroll >= last_scroll * 1.1) {
-      nav.classList.add('hide');
-      last_scroll = this_scroll;
-    } else if (this_scroll <= last_scroll / 1.1) {
-      nav.classList.remove('hide');
-      last_scroll = this_scroll;
-    }
-    if (!ticking) {
-      window.requestAnimationFrame(function () {
-        var offset = this_scroll * -2;
-        parallax_one.css({ 'margin-bottom': offset / 5 + "px" });
-        parallax_two.css({ 'margin-bottom': offset / 4 + "px" });
-        parallax_three.css({ 'margin-bottom': offset / 3 + "px" });
-        parallax_four.css({ 'margin-bottom': offset / 2 + "px" });
-        parallax_five.css({ 'margin-bottom': offset + "px" });
-        ticking = false;
-        //As this is the final function to run in the setup, we trigger the sunrise animation
-      });
-    }
-    ticking = true;
+  if (windowWidth > 768) {
+    window.addEventListener('scroll', function (e) {
+      this_scroll = window.scrollY;
+      if (this_scroll >= last_scroll * 1.1) {
+        nav.classList.add('hide');
+        last_scroll = this_scroll;
+      } else if (this_scroll <= last_scroll / 1.1) {
+        nav.classList.remove('hide');
+        last_scroll = this_scroll;
+      }
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          var offset = this_scroll * 2;
+          parallax_one.css({ 'transform': "translateY(" + offset / 5 + "px)" });
+          parallax_two.css({ 'transform': "translateY(" + offset / 4 + "px)" });
+          parallax_three.css({ 'transform': "translateY(" + offset / 3 + "px)" });
+          parallax_four.css({ 'transform': "translateY(" + offset / 2 + "px)" });
+          parallax_five.css({ 'transform': "translateY(" + offset + "px)" });
+          ticking = false;
+          //As this is the final function to run in the setup, we trigger the sunrise animation
+        });
+      }
+      ticking = true;
+    });
+  }
+}
+
+function loading_complete(world) {
+  $('.target_parent .loading').addClass('button');
+  //page_sunrise(world);
+  $(".loading.button").click(function () {
+    page_sunrise();
   });
 }
 
@@ -220,11 +239,13 @@ function page_sunrise(world) {
   $('#the_cans .image img').each(function () {
     $(this).css({ 'height': 'inherit', 'width': 'inherit' });
   });
-  body.classList.remove('transitioning', 'transition-setup', 'transition-start');
+  html.classList.remove('transitioning', 'transition-setup', 'transition-start');
   $('.target_parent').each(function () {
     $(this).removeClass('target_parent');
   });
   $('.target_world').removeClass('target_world');
+  target.css({ 'opacity': '1' });
+  $('.loading.button').removeClass('button');
   setTimeout(function () {
     $('#header img').fadeIn(3000, function () {
       body.classList.add('sunrise');

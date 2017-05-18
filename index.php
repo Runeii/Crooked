@@ -8,7 +8,7 @@
   </section>
   <section id="the_cans" class="row">
     <div class="row justify-content-between">
-      <div class="can col-3">
+      <div class="can col-12 col-sm-3">
         <div class="image">
           <img id="dayglo_1" world="dayglo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" />
         </div>
@@ -19,10 +19,10 @@
           <p>Now travelling to</p>
           <h3>Dayglo Skies</h3>
           <p>Raspberry & Lime</p>
-          <p><br /><br />Loading...</p>
+          <p class="loading">Loading...</p>
         </div>
       </div>
-      <div class="can col-3">
+      <div class="can col-12 col-sm-3">
         <div class="image">
           <img id="midnight_1" world="midnight" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" />
         </div>
@@ -33,10 +33,10 @@
           <p>Now travelling to</p>
           <h3>Midnight Stage</h3>
           <p>Blood Orange & Passionfruit</p>
-          <p><br /><br />Loading...</p>
+          <p class="loading">Loading...</p>
         </div>
       </div>
-      <div class="can col-3">
+      <div class="can col-12 col-sm-3">
         <div class="image">
           <img id="mother_1" world="mother" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" />
         </div>
@@ -47,7 +47,7 @@
           <p>Now travelling to</p>
           <h3>Mother Moon</h3>
           <p>Peach & Pomegranate</p>
-          <p><br /><br />Loading...</p>
+          <p class="loading">Loading...</p>
         </div>
       </div>
     </div>
@@ -55,11 +55,16 @@
   <section id="social" class="row">
     <h3 class="col-12">Join us</h3>
     <div class="col-12 social-icons">
-      <i class="fa fa-instagram"></i>
-      <i class="fa fa-facebook"></i>
-      <i class="fa fa-twitter"></i>
+      <a href="http://www.facebook.com/crookedbevco" title="Crooked Beverage Co on Facebook">
+        <i class="fa fa-facebook"></i>
+      </a>
+      <a href="http://www.twitter.com/crookedbevco" title="Crooked Beverage Co on Twitter">
+        <i class="fa fa-twitter"></i>
+      </a>
+      <a href="http://www.instagram.com/crookedbevco" title="Crooked Beverage Co on Instagram">
+        <i class="fa fa-instagram"></i>
+      </a>
     </div>
-    <p class="col-12">&nbsp;</p>
     <?php
       if ( have_posts() ) { while ( have_posts() ) { the_post(); ?>
         <div class="col-12 col-sm-6 col-lg-4 post">
@@ -78,7 +83,7 @@
   <section id="stockists" class="row">
     <h3 class="col-12">Where to buy</h3>
     <p class="col-12">Crooked is available to buy from the following retailers, as well as many awesome and intriguing bars and venues. If your favourite bar doesn’t stock us yet, tell them to!</p>
-    <div class="logo col-12 col-md-4 offset-2">
+    <div class="logo col-12 col-md-4 offset-md-2">
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/sainsburys.png" />
     </div>
     <div class="logo col-12 col-md-4">

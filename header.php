@@ -22,6 +22,7 @@ if(isset($_GET['world'])) {
 </head>
 <body class="<?php echo $world; ?>">
   <nav id="nav" class="hide">
+    <i id="mobile-menu" class="fa fa-bars"></i>
     <div class="container">
       <a href="<?php echo $home_url; ?>#welcome">About</a>
       <a href="<?php echo $home_url; ?>#the_cans">Product</a>
@@ -35,9 +36,14 @@ if(isset($_GET['world'])) {
     <?php
       foreach($layouts[$world] as $id => $element) {
         if($world === 'default') {
-          echo '<img src="'. get_stylesheet_directory_uri() . $element .'" id="'. $id .'"/>';
+          $name = $id;
         } else {
-          echo '<img src="'. get_stylesheet_directory_uri() . $element .'" id="'. $world . '_' . $id .'"/>';
+          $name = $world . '_' . $id;
+        }
+        if($element == 'sprite') {
+          echo '<div class="sprite" id="'. $name .'">&nbsp;</div>';
+        } else {
+          echo '<img src="'. get_stylesheet_directory_uri() . $element .'" id="'. $name .'"/>';
         }
       }
   ?>

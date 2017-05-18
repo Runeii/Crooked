@@ -4098,24 +4098,76 @@ a {
   Layout and design
    ========================================================================= */
 nav {
-  background-color: black;
-  position: fixed;
-  top: 0;
   width: 100%;
   z-index: 200;
-  padding: 0.8rem 0;
-  transform: translateY(0);
-  transition: transform 0.5s ease-out; }
-  nav.hide {
-    transform: translateY(-100%); }
+  padding: 0;
+  margin: 0; }
+  @media screen and (min-width: 576px) {
+    nav {
+      background-color: black;
+      transform: translateY(0);
+      transition: transform 0.5s ease-out;
+      padding: 0.8rem 0;
+      position: fixed;
+      top: 0; } }
+  @media screen and (min-width: 576px) {
+    nav.hide {
+      transform: translateY(-100%); } }
   nav .container {
     margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; }
+    flex-direction: column;
+    justify-content: center;
+    background-color: black;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: relative;
+    opacity: 0;
+    display: none; }
+    @media screen and (max-width: 576px) {
+      nav .container {
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        padding: 0; } }
+    @media screen and (min-width: 576px) {
+      nav .container {
+        flex-direction: row;
+        background-color: transparent;
+        justify-content: space-between;
+        display: flex;
+        opacity: 1; } }
   nav a {
     font-size: 1.563rem;
     font-family: "Fjalla One"; }
+  nav .fa {
+    position: fixed;
+    top: 0;
+    right: 0;
+    color: white;
+    z-index: 202;
+    display: block;
+    font-size: 2em;
+    padding: 1em;
+    cursor: pointer; }
+    @media screen and (min-width: 576px) {
+      nav .fa {
+        display: none; } }
+  nav.open .container {
+    z-index: 201;
+    display: flex;
+    position: fixed;
+    animation: mobile-menu 0.5s ease-in 0s both; }
+  nav.open .fa::before {
+    content: "\f00d"; }
+
+@keyframes mobile-menu {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 
 header {
   height: 100vh;
@@ -4236,15 +4288,39 @@ main {
   align-self: flex-end;
   margin-right: 15px; }
 
-#the_cans .can img {
-  transform: translate(0, 0);
-  left: 0;
-  top: 0;
-  width: 100%;
-  position: relative; }
+#the_cans .can {
+  display: flex;
+  flex-direction: row;
+  margin: 0 15px 30px;
+  justify-content: space-around;
+  align-items: center; }
+  #the_cans .can:nth-child(even) {
+    flex-direction: row-reverse; }
+  @media screen and (min-width: 576px) {
+    #the_cans .can {
+      display: block;
+      margin: 0; }
+      #the_cans .can:nth-child(even) {
+        flex-direction: row; } }
+  #the_cans .can img {
+    transform: translate(0, 0);
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: relative; }
+
+#the_cans .image {
+  flex-basis: 40%; }
+  @media screen and (min-width: 576px) {
+    #the_cans .image {
+      flex-basis: auto; } }
 
 #the_cans .explore-button {
-  margin-top: 1rem; }
+  flex-basis: 40%; }
+  @media screen and (min-width: 576px) {
+    #the_cans .explore-button {
+      flex-basis: auto;
+      margin-top: 1rem; } }
 
 #the_cans .world_info {
   display: none;
@@ -4268,8 +4344,9 @@ main {
     opacity: 0;
     position: relative;
     transition: all 1s linear 0.75s; }
-  #the_cans .world_info :last-child {
+  #the_cans .world_info .loading {
     top: 1.5rem;
+    margin-top: 2em;
     opacity: 0;
     position: relative;
     transition: all 1s linear 1.25s; }
@@ -4319,7 +4396,7 @@ footer {
         margin-left: 0; } }
 
 /* ==========================================================================
-  SVG work
+  World work
   Z index:
   - Sky shadows: 10 to 14
   - Sun: 15
@@ -4328,11 +4405,22 @@ footer {
    ========================================================================= */
 header {
   overflow: hidden;
-  min-width: 600px;
   z-index: 99;
-  position: relative; }
+  position: relative;
+  max-width: 100%; }
   header img {
     position: absolute; }
+
+.sprite {
+  display: block;
+  width: 100vw;
+  height: 75vw;
+  position: absolute;
+  animation: sprite 0.3s steps(15) infinite; }
+
+@keyframes sprite {
+  100% {
+    background-position: -15000px; } }
 
 #sun {
   left: 50%;
@@ -4351,6 +4439,9 @@ header {
   opacity: 1;
   box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 20px #b9b9b9;
   animation: sun_shimmer 30s infinite; }
+
+.daytime #sun {
+  transition: opacity 0.5s linear 0.5s; }
 
 #sky_shadow_top {
   left: 0;
@@ -4384,6 +4475,9 @@ header {
 
 .sunrise #sky_shadow_low {
   opacity: 1; }
+
+.daytime #sky_shadow_top, .daytime #sky_shadow_small, .daytime #sky_shadow_low {
+  transition: none; }
 
 #cloud_one {
   right: 105%;
@@ -4423,16 +4517,23 @@ header {
   opacity: 1; }
 
 .daytime #cloud_one {
-  right: -50%; }
+  right: -50%;
+  transition: right 40s linear 3s; }
 
 .daytime #cloud_two {
-  right: -50%; }
+  right: -50%;
+  transition: right 40s linear 3s; }
+
+.daytime #cloud_three {
+  transition: opacity 1.5s linear 1s, left 1.5s linear 1s; }
 
 .daytime #cloud_four {
-  left: -10%; }
+  left: -10%;
+  transition: left 40s linear 3s; }
 
 .daytime #cloud_five {
-  left: 100%; }
+  left: 100%;
+  transition: left 40s linear 3s; }
 
 #hill_one {
   left: 0;
@@ -4474,6 +4575,9 @@ header {
   transform: scale(1) translateY(0%);
   transition: transform 2s ease-in 0s; }
 
+.daytime #hill_one, .daytime #hill_two, .daytime #hill_three, .daytime #hill_four, .daytime #hill_rear {
+  transition: none; }
+
 body:not(.sunrise) #hill_one,
 body:not(.sunrise) #hill_two,
 body:not(.sunrise) #hill_three,
@@ -4487,7 +4591,7 @@ body:not(.sunrise) #hill_rear {
   z-index: 34;
   opacity: 0;
   transform: translateY(100%) scale(0.8);
-  transition: all 1s cubic-bezier(0, 0.88, 0.96, 0) 0s; }
+  transition: all 1s cubic-bezier(0, 0.88, 0.96, 0) 4s; }
 
 #tree_two {
   right: 0%;
@@ -4495,15 +4599,21 @@ body:not(.sunrise) #hill_rear {
   z-index: 34;
   opacity: 0;
   transform: translateY(100%) scale(0.8);
-  transition: transform 1s cubic-bezier(0.74, 1, 0.6, 0.01) 0.7s; }
+  transition: all 1s cubic-bezier(0.74, 1, 0.6, 0.01) 4s; }
+
+.sunrise #tree_one {
+  transform: translateY(0%) scale(0.8);
+  opacity: 1; }
+
+.sunrise #tree_two {
+  transform: translateY(0%) scale(0.8);
+  opacity: 1; }
 
 .daytime #tree_one {
-  transform: translateY(0%) scale(0.8);
-  opacity: 1; }
+  transition: none; }
 
 .daytime #tree_two {
-  transform: translateY(0%) scale(0.8);
-  opacity: 1; }
+  transition: none; }
 
 /* ==========================================================================
   Dayglo skies elements
@@ -4727,6 +4837,9 @@ body:not(.sunrise) #hill_rear {
   transform: translateY(10%);
   opacity: 1; }
 
+.daytime #midnight_sun, .daytime #midnight_base, .daytime #midnight_base_two {
+  transition: none; }
+
 #midnight_hill_one {
   left: -5vw;
   bottom: 15.4166666667vw;
@@ -4758,6 +4871,7 @@ body:not(.sunrise) #hill_rear {
   z-index: 10;
   max-width: none;
   opacity: 0;
+  animation: float-reverse 20s infinite;
   transform: translateY(100%);
   transition: opacity 1.5s linear 1s; }
 
@@ -4768,7 +4882,8 @@ body:not(.sunrise) #hill_rear {
   bottom: 70%;
   z-index: 12;
   opacity: 0;
-  transition: opacity 1.5s linear 1s; }
+  transition: opacity 1.5s linear 1s;
+  animation: float 25s infinite; }
 
 .sunrise #midnight_sky_shadow_top {
   opacity: 1; }
@@ -4778,6 +4893,9 @@ body:not(.sunrise) #hill_rear {
 
 .sunrise #midnight_sky_shadow_low {
   opacity: 1; }
+
+.daytime #midnight_sky_shadow_low, .daytime #midnight_sky_shadow_top {
+  transition: none; }
 
 #midnight_cloud_one {
   right: -10vw;
@@ -4826,6 +4944,27 @@ body:not(.sunrise) #hill_rear {
   animation: midnight_cloud_float 60s infinite -45s;
   transition: all 40s linear 3s; }
 
+.daytime #midnight_cloud_one {
+  transition: right 30s linear 0s; }
+
+.daytime #midnight_cloud_two {
+  transition: right 50s linear 5s; }
+
+.daytime #midnight_cloud_three {
+  transition: opacity 1.5s linear 1s; }
+
+.daytime #midnight_cloud_four {
+  transition: right 60s ease 10s; }
+
+.daytime #midnight_cloud_five {
+  transition: right 40s linear 3s; }
+
+#midnight_creature {
+  right: 10vw;
+  z-index: 41;
+  width: 60vw;
+  bottom: calc(13.875vw - 2vh); }
+
 #midnight_tree_one {
   left: 25vw;
   bottom: 9.25vw;
@@ -4841,6 +4980,12 @@ body:not(.sunrise) #hill_rear {
   height: 45vh;
   opacity: 1;
   transition: transform 1s cubic-bezier(0.74, 1, 0.6, 0.01) 0.7s; }
+
+.daytime #midnight_tree_one {
+  transition: none; }
+
+.daytime #midnight_tree_two {
+  transition: none; }
 
 #midnight_rocks {
   left: 25vw;
@@ -5050,7 +5195,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 85vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -73s infinite;
+  animation: cloud_opacity 13s linear -95s infinite;
   filter: blur(0px); }
 
 #mother_cloud_two {
@@ -5060,7 +5205,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 60vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -45s infinite;
+  animation: cloud_opacity 13s linear -43s infinite;
   filter: blur(0px); }
 
 #mother_cloud_three {
@@ -5070,7 +5215,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 50vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -18s infinite;
+  animation: cloud_opacity 13s linear -89s infinite;
   filter: blur(0px); }
 
 #mother_cloud_four {
@@ -5080,7 +5225,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 15vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -31s infinite;
+  animation: cloud_opacity 13s linear -77s infinite;
   filter: blur(0px); }
 
 #mother_cloud_five {
@@ -5090,7 +5235,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 5vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -62s infinite;
+  animation: cloud_opacity 13s linear -18s infinite;
   filter: blur(0px); }
 
 @keyframes cloud_opacity {
@@ -5156,35 +5301,43 @@ body:not(.sunrise) #hill_rear {
   World transition animation
    ========================================================================= */
 .transition-start {
-  overflow: hidden; }
-  .transition-start #the_cans .world_info {
-    display: block;
-    width: 75%;
-    opacity: 1; }
-  .transition-start #the_cans .row.target_parent {
-    width: 100%; }
-  .transition-start #the_cans .can {
-    display: none; }
-    .transition-start #the_cans .can.target_parent {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-items: center;
-      align-items: center;
-      padding: 0; }
-    .transition-start #the_cans .can .image {
-      width: 25%;
-      padding: 0 15px;
-      margin-left: 0;
-      transition: margin-left 0.5s; }
-    .transition-start #the_cans .can:nth-child(1) .image {
-      margin-left: 1px; }
-    .transition-start #the_cans .can:nth-child(2) .image {
-      margin-left: calc(75% / 2); }
-    .transition-start #the_cans .can:last-child .image {
-      margin-left: 75%; }
-    .transition-start #the_cans .can .explore-button {
+  overflow: hidden;
+  position: relative;
+  height: 100%; }
+  .transition-start body {
+    overflow: hidden;
+    position: relative;
+    height: 100%; }
+  .transition-start #the_cans {
+    text-align: center; }
+    .transition-start #the_cans .world_info {
+      display: block;
+      opacity: 1;
+      width: 60%; }
+    .transition-start #the_cans .row.target_parent {
+      width: 100%; }
+    .transition-start #the_cans .can {
       display: none; }
+      .transition-start #the_cans .can.target_parent {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-items: center;
+        align-items: center;
+        padding: 0; }
+      .transition-start #the_cans .can .image {
+        width: 40%;
+        padding: 0 15px;
+        margin-left: 0;
+        transition: margin-left 0.5s; }
+      .transition-start #the_cans .can:nth-child(1) .image {
+        margin-left: 1px; }
+      .transition-start #the_cans .can:nth-child(2) .image {
+        margin-left: calc(75% / 2); }
+      .transition-start #the_cans .can:last-child .image {
+        margin-left: 75%; }
+      .transition-start #the_cans .can .explore-button {
+        display: none; }
   .transition-start *:not(.target_world):not(.target_parent):not(.world_info) {
     transition: opacity 1s;
     opacity: 0 !important; }
@@ -5204,7 +5357,7 @@ body:not(.sunrise) #hill_rear {
   opacity: 1 !important;
   top: 0; }
 
-.transitioning #the_cans .can.target_parent .world_info :last-child {
+.transitioning #the_cans .can.target_parent .world_info .loading {
   opacity: 1 !important;
   top: 0; }
 

@@ -119,26 +119,86 @@ a {
   Layout and design
    ========================================================================= */
 nav {
-  background-color: black;
-  position: fixed;
-  top:0;
   width:100%;
   z-index:200;
-  padding:0.8rem 0;
-  transform:translateY(0);
-  transition: transform 0.5s ease-out;
+  padding:0;
+  margin:0;
+  @media screen and (min-width: 576px) {
+    background-color: black;
+    transform:translateY(0);
+    transition: transform 0.5s ease-out;
+    padding:0.8rem 0;
+    position: fixed;
+    top:0;
+  }
   &.hide {
-    transform:translateY(-100%);
+    @media screen and (min-width: 576px) {
+      transform:translateY(-100%);
+    }
   }
   .container {
     margin:0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    background-color:black;
+    text-align: center;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    position: relative;
+    opacity:0;
+    display:none;
+    @media screen and (max-width: 576px) {
+      height:100vh;
+      width:100vw;
+      margin:0;
+      padding:0;
+    }
+    @media screen and (min-width: 576px) {
+      flex-direction: row;
+      background-color: transparent;
+      justify-content: space-between;
+      display: flex;
+      opacity:1;
+    }
   }
   a {
     font-size:1.563rem;
     font-family:$header-font;
+  }
+  .fa {
+    position:fixed;
+    top:0;
+    right:0;
+    color:white;
+    z-index:202;
+    display: block;
+    font-size:2em;
+    padding:1em;
+    cursor:pointer;
+    @media screen and (min-width: 576px) {
+      display:none;
+    }
+  }
+  &.open {
+    .container {
+      z-index:201;
+      display:flex;
+      position: fixed;
+      animation: mobile-menu 0.5s ease-in 0s both;
+    }
+    .fa::before {
+      content:"\f00d";
+    }
+  }
+}
+@keyframes mobile-menu {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
   }
 }
 header {
@@ -287,6 +347,21 @@ main {
 
 #the_cans {
   .can {
+    display: flex;
+    flex-direction: row;
+    margin: 0 15px 30px;
+    justify-content: space-around;
+    align-items: center;
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    @media screen and (min-width: 576px) {
+      display: block;
+      margin:0;
+      &:nth-child(even) {
+        flex-direction: row;
+      }
+    }
     img {
       transform: translate(0, 0);
       left:0;
@@ -295,8 +370,18 @@ main {
       position:relative;
     }
   }
+  .image {
+    flex-basis:40%;
+    @media screen and (min-width: 576px) {
+      flex-basis:auto;
+    }
+  }
   .explore-button {
-    margin-top:1rem;
+    flex-basis:40%;
+    @media screen and (min-width: 576px) {
+      flex-basis:auto;
+      margin-top:1rem;
+    }
   }
   .world_info {
     display:none;
@@ -324,8 +409,9 @@ main {
       position: relative;
       transition:all 1s linear 0.75s;
     }
-    :last-child {
+    .loading {
       top:1.5rem;
+      margin-top:2em;
       opacity:0;
       position: relative;
       transition:all 1s linear 1.25s;
@@ -393,7 +479,7 @@ footer {
 }
 
 /* ==========================================================================
-  SVG work
+  World work
   Z index:
   - Sky shadows: 10 to 14
   - Sun: 15
@@ -402,13 +488,26 @@ footer {
    ========================================================================= */
 header {
   overflow:hidden;
-  min-width:600px;
   z-index: 99;
   position: relative;
+  max-width:100%;
   img {
       position: absolute;
   }
 }
+.sprite {
+  display: block;
+  width:100vw;
+  height:75vw;
+  position: absolute;
+  animation: sprite 0.3s steps(15) infinite;
+}
+@keyframes sprite {
+  100% {
+    background-position: -15000px;
+  }
+}
+
 $sun_colour: #b9b9b9;
 $sunrise_timing: 5s;
 #sun {
@@ -429,6 +528,12 @@ $sunrise_timing: 5s;
     opacity:1;
     box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 20px $sun_colour;
     animation: sun_shimmer 30s infinite;
+  }
+}
+
+.daytime {
+  #sun {
+    transition: opacity 0.5s linear 0.5s;
   }
 }
 
@@ -467,7 +572,11 @@ $sunrise_timing: 5s;
     opacity:1;
   }
 }
-
+.daytime {
+  #sky_shadow_top, #sky_shadow_small, #sky_shadow_low {
+    transition: none;
+  }
+}
 
 #cloud_one {
   right:105%;
@@ -512,15 +621,22 @@ $sunrise_timing: 5s;
 .daytime {
     #cloud_one {
       right:-50%;
+      transition:right 40s linear 3s;
     }
     #cloud_two {
       right:-50%;
+      transition:right 40s linear 3s;
+    }
+    #cloud_three {
+      transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2), left (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
     }
     #cloud_four {
       left:-10%;
+      transition:left 40s linear 3s;
     }
     #cloud_five {
       left:100%;
+      transition:left 40s linear 3s;
     }
 }
 #hill_one {
@@ -563,7 +679,11 @@ $sunrise_timing: 5s;
   transform:scale(1) translateY(0%);
   transition:transform 2s ease-in 0s;
 }
-
+.daytime {
+  #hill_one, #hill_two, #hill_three, #hill_four, #hill_rear {
+    transition:none;
+  }
+}
 body:not(.sunrise) {
   #hill_one,
   #hill_two,
@@ -581,7 +701,7 @@ body:not(.sunrise) {
   z-index:34;
   opacity:0;
   transform:translateY(100%) scale(0.8);
-  transition:all 1s cubic-bezier(0,.88,.96,0) 0s;
+  transition:all 1s cubic-bezier(0,.88,.96,0) ($sunrise-timing - 1s);
 }
 #tree_two {
   right:0%;
@@ -589,9 +709,9 @@ body:not(.sunrise) {
   z-index:34;
   opacity:0;
   transform:translateY(100%) scale(0.8);
-  transition:transform 1s cubic-bezier(.74,1,.6,.01) 0.7s;
+  transition:all 1s cubic-bezier(.74,1,.6,.01) ($sunrise-timing - 1s);
 }
-.daytime {
+.sunrise {
   #tree_one {
     transform: translateY(0%) scale(0.8);
     opacity:1;
@@ -599,6 +719,14 @@ body:not(.sunrise) {
   #tree_two {
     transform: translateY(0%) scale(0.8);
     opacity:1;
+  }
+}
+.daytime {
+  #tree_one {
+    transition:none;
+  }
+  #tree_two {
+    transition:none;
   }
 }
 /* ==========================================================================
@@ -855,6 +983,11 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
     opacity:1;
   }
 }
+.daytime {
+  #midnight_sun, #midnight_base, #midnight_base_two {
+    transition:none;
+  }
+}
 #midnight_hill_one {
   left:-5vw;
   bottom:$horizon-base-ratio;
@@ -886,7 +1019,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   z-index:10;
   max-width:none;
   opacity:0;
-  //animation:float-reverse 20s infinite;
+  animation:float-reverse 20s infinite;
   transform:translateY(100%);
   transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
 }
@@ -898,7 +1031,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   z-index:12;
   opacity:0;
   transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
-  //animation:float 25s infinite;
+  animation:float 25s infinite;
 }
 .sunrise {
   #midnight_sky_shadow_top {
@@ -911,7 +1044,11 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
     opacity:1;
   }
 }
-
+.daytime {
+  #midnight_sky_shadow_low, #midnight_sky_shadow_top {
+    transition:none;
+  }
+}
 
 #midnight_cloud_one {
   right:-10vw;
@@ -961,6 +1098,29 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   animation: midnight_cloud_float 60s infinite -45s;
   transition: all 40s linear 3s;
 }
+.daytime {
+  #midnight_cloud_one {
+    transition: right 30s linear 0s;
+  }
+  #midnight_cloud_two {
+    transition: right 50s linear 5s;
+  }
+  #midnight_cloud_three {
+    transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
+  }
+  #midnight_cloud_four {
+    transition: right 60s ease 10s;
+  }
+  #midnight_cloud_five {
+    transition: right 40s linear 3s;
+  }
+}
+#midnight_creature {
+  right:10vw;
+  z-index:41;
+  width:60vw;
+  bottom:calc(#{$horizon-ratio} - 2vh);
+}
 #midnight_tree_one {
   left:25vw;
   bottom:$horizon-ratio - ($horizon-ratio / 3);
@@ -976,6 +1136,14 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   height:45vh;
   opacity:1;
   transition:transform 1s cubic-bezier(.74,1,.6,.01) 0.7s;
+}
+.daytime {
+  #midnight_tree_one {
+    transition:none;
+  }
+  #midnight_tree_two {
+    transition:none;
+  }
 }
 #midnight_rocks {
   left:25vw;
@@ -1266,12 +1434,20 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   World transition animation
    ========================================================================= */
 .transition-start {
-  overflow:hidden;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  body {
+    overflow: hidden;
+    position: relative;
+    height: 100%;  
+  }
   #the_cans {
+    text-align: center;
     .world_info {
       display: block;
-      width:75%;
       opacity:1;
+      width:60%;
     }
     .row.target_parent {
       width:100%;
@@ -1287,7 +1463,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
         padding:0;
       }
       .image {
-        width:25%;
+        width:40%;
         padding:0 15px;
         margin-left:0;
         transition:margin-left 0.5s;
@@ -1334,7 +1510,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
           opacity:1 !important;
           top:0;
         }
-        :last-child{
+        .loading {
           opacity:1 !important;
           top:0;
         }

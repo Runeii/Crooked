@@ -2,9 +2,15 @@
   <div class="row justify-content-center">
     <div class="footer-box col-12 col-sm-6 col-lg-12">
       <h3><span itemprop="name">CrookedBevCo</span></h3>
-      <i class="fa fa-facebook"></i>
-      <i class="fa fa-twitter"></i>
-      <i class="fa fa-instagram"></i>
+      <a href="http://www.facebook.com/crookedbevco" title="Crooked Beverage Co on Facebook">
+        <i class="fa fa-facebook"></i>
+      </a>
+      <a href="http://www.twitter.com/crookedbevco" title="Crooked Beverage Co on Twitter">
+        <i class="fa fa-twitter"></i>
+      </a>
+      <a href="http://www.instagram.com/crookedbevco" title="Crooked Beverage Co on Instagram">
+        <i class="fa fa-instagram"></i>
+      </a>
     </div>
     <div class="footer-box col-12 col-sm-6 col-lg-4">
       <h3>Address</h3>
