@@ -21,12 +21,14 @@ if(isset($_GET['world'])) {
     <?php wp_head(); ?>
 </head>
 <body class="<?php echo $world; ?>">
-  <nav id="nav" class="hide">
+  <?php echo file_get_contents(get_stylesheet_directory_uri() .'/assets/js/loader.html'); ?>
+  <nav id="nav">
     <i id="mobile-menu" class="fa fa-bars"></i>
     <div class="container">
       <a href="<?php echo $home_url; ?>#welcome">About</a>
       <a href="<?php echo $home_url; ?>#the_cans">Product</a>
       <a href="<?php echo $home_url; ?>#social">Social</a>
+      <a href="<?php echo $home_url; ?>" class="logo_holder"><img class="crooked_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/crooked_logo.svg" /></a>
       <a href="<?php echo $home_url; ?>#contact">Contact</a>
       <a href="<?php echo $home_url; ?>#stockists">Buy</a>
       <a href="<?php echo $home_url; ?>trade">Trade</a>

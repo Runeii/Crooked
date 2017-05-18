@@ -167,6 +167,16 @@ nav {
     font-size:1.563rem;
     font-family:$header-font;
   }
+  .logo_holder {
+    min-width:10vw;
+    .crooked_logo {
+      position: fixed;
+      top: 20vh;
+      width: 30vw;
+      left: 35vw;
+      transform-origin: center center;
+    }
+  }
   .fa {
     position:fixed;
     top:0;
@@ -383,10 +393,13 @@ main {
       margin-top:1rem;
     }
   }
+}
+#the_cans, #products {
   .world_info {
     display:none;
     opacity:0;
     padding:0 15px;
+    text-align: center;
     p, h3 {
       margin:0 auto;
       width:50%;
@@ -418,7 +431,6 @@ main {
     }
   }
 }
-
 footer {
   display:flex;
   flex-direction: row;
@@ -493,6 +505,7 @@ header {
   max-width:100%;
   img {
       position: absolute;
+      will-change: transform;
   }
 }
 .sprite {
@@ -511,10 +524,10 @@ header {
 $sun_colour: #b9b9b9;
 $sunrise_timing: 5s;
 #sun {
-  left:50%;
+  left:35vw;
   bottom:0;
-  transform:translateY(100%) translateX(-50%);
-  max-width:30%;
+  transform:translateY(100%);
+  width:30vw;
   z-index:14;
   border-radius: 50%;
   box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 90px $sun_colour;
@@ -524,7 +537,7 @@ $sunrise_timing: 5s;
 }
 .sunrise {
   #sun {
-    transform:translateY(0%) translateX(-50%);
+    transform:translateY(0%);
     opacity:1;
     box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 20px $sun_colour;
     animation: sun_shimmer 30s infinite;
@@ -542,7 +555,6 @@ $sunrise_timing: 5s;
   top:0;
   z-index:10;
   opacity:0;
-  animation:float-reverse 20s infinite;
   transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
 }
 #sky_shadow_small {
@@ -551,7 +563,7 @@ $sunrise_timing: 5s;
   z-index:11;
   opacity:0;
   transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
-  animation:float 15s infinite;
+  animation:float-reverse 15s infinite;
 }
 #sky_shadow_low {
   right:0;
@@ -559,7 +571,7 @@ $sunrise_timing: 5s;
   z-index:12;
   opacity:0;
   transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
-  animation:float 25s infinite;
+  animation:float-reverse 25s infinite;
 }
 .sunrise {
   #sky_shadow_top {
@@ -1410,24 +1422,24 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
 }
 @keyframes float {
   0% {
-    transform:translateX(50px);
+    margin-left: 0vw;
   }
   50% {
-    transform:translateX(0);
+    margin-left: -25vw;
   }
   100% {
-    transform:translateX(50px);
+    margin-left: 0vw;
   }
 }
 @keyframes float-reverse {
   0% {
-    transform:translateX(-50px);
+    margin-right: 0vw;
   }
   50% {
-    transform:translateX(0);
+    margin-right: -5vw;
   }
   100% {
-    transform:translateX(-50px);
+    margin-right: 0vw;
   }
 }
 /* ==========================================================================
@@ -1435,20 +1447,10 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
    ========================================================================= */
 .transition-start {
   overflow: hidden;
-  position: relative;
-  height: 100%;
   body {
     overflow: hidden;
-    position: relative;
-    height: 100%;  
   }
   #the_cans {
-    text-align: center;
-    .world_info {
-      display: block;
-      opacity:1;
-      width:60%;
-    }
     .row.target_parent {
       width:100%;
     }
@@ -1458,7 +1460,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
         width:100%;
         display: flex;
         flex-wrap: wrap;
-        justify-items: center;
+        justify-content: flex-start;
         align-items: center;
         padding:0;
       }
@@ -1466,7 +1468,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
         width:40%;
         padding:0 15px;
         margin-left:0;
-        transition:margin-left 0.5s;
+        transition:margin 0.5s;
       }
       &:nth-child(1) .image {
         margin-left:1px;
@@ -1477,9 +1479,19 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
       &:last-child .image {
         margin-left:75%;
       }
-      .explore-button {
-        display: none;
-      }
+    }
+  }
+  #the_cans, #products {
+    text-align: center;
+    .world_info {
+      opacity:1;
+      width:60%;
+      position:absolute;
+      visibility: hidden;
+      display: block;
+    }
+    .explore-button {
+      display: none;
     }
   }
   *:not(.target_world):not(.target_parent):not(.world_info) {
@@ -1487,17 +1499,25 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
     opacity:0 !important;
   }
 }
-.transition-setup {
+.transition-move {
   #the_cans {
     .image {
       margin-left:0 !important;
     }
   }
+  #products {
+    .trade_info {
+      display:none;
+    }
+  }
 }
 .transitioning {
-  #the_cans {
+  #the_cans, #products {
     .can.target_parent {
       .world_info {
+        //We don't use display to avoid a "bug"
+        position:static;
+        visibility: visible;
         :first-child{
           opacity:1 !important;
           top:0;
@@ -1522,7 +1542,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   Color palettes
    ========================================================================= */
 body {
-  transition:background-color 1s, color 1s;
+  transition:background-color 0.5s, color 0.5s;
   &:not(.default) header {
     height:150vh;
     transition:height $sunrise_timing;
@@ -1533,10 +1553,59 @@ body.sunrise:not(.default) {
     height:100vh;
   }
 }
-
+.js {
+  html:not(.transition-start) body:not(.sunrise) {
+    section, nav {
+      opacity:0;
+    }
+  }
+}
+.js:not(.daytime) {
+  html, body {
+    overflow:hidden;
+    height:100%;
+    position: fixed;
+    width:100%;
+  }
+}
+body.sunrise {
+  .crooked_logo {
+    animation: logo_loaded 2s ease-in forwards calc(#{$sunrise_timing} - 2s);
+  }
+}
+@keyframes logo_loaded {
+  0% {
+    position: fixed;
+    top: 20vh;
+    width: 30vw;
+    left: 35vw;
+    transform:rotateY(0deg);
+  }
+  30% {
+    position: fixed;
+    top: 22vh;
+    width: 30vw;
+    left: 35vw;
+    transform:rotateY(0deg);
+  }
+  99% {
+    position: fixed;
+    top: 0;
+    width: 10vw;
+    left: 45vw;
+    transform:rotateY(1439deg);
+  }
+  100% {
+    position: absolute;
+    top: -0.8rem;
+    width: 10vw;
+    left: 50%;
+    transform:rotateY(0deg) translateX(-50%);
+  }
+}
 
 body.default {
-  background-color: rgba(101, 101, 101, 1);
+  background-color: #000000;
   color:white;
   .lede {
     color:rgb(135,199,160);

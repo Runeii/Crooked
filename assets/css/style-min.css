@@ -4142,6 +4142,14 @@ nav {
   nav a {
     font-size: 1.563rem;
     font-family: "Fjalla One"; }
+  nav .logo_holder {
+    min-width: 10vw; }
+    nav .logo_holder .crooked_logo {
+      position: fixed;
+      top: 20vh;
+      width: 30vw;
+      left: 35vw;
+      transform-origin: center center; }
   nav .fa {
     position: fixed;
     top: 0;
@@ -4322,29 +4330,30 @@ main {
       flex-basis: auto;
       margin-top: 1rem; } }
 
-#the_cans .world_info {
+#the_cans .world_info, #products .world_info {
   display: none;
   opacity: 0;
-  padding: 0 15px; }
-  #the_cans .world_info p, #the_cans .world_info h3 {
+  padding: 0 15px;
+  text-align: center; }
+  #the_cans .world_info p, #the_cans .world_info h3, #products .world_info p, #products .world_info h3 {
     margin: 0 auto;
     width: 50%; }
-  #the_cans .world_info :first-child {
+  #the_cans .world_info :first-child, #products .world_info :first-child {
     top: 1.5rem;
     opacity: 0;
     position: relative;
     transition: all 1s linear 0s; }
-  #the_cans .world_info :nth-child(2) {
+  #the_cans .world_info :nth-child(2), #products .world_info :nth-child(2) {
     top: 1.5rem;
     opacity: 0;
     position: relative;
     transition: all 1s linear 0.5s; }
-  #the_cans .world_info :nth-child(3) {
+  #the_cans .world_info :nth-child(3), #products .world_info :nth-child(3) {
     top: 1.5rem;
     opacity: 0;
     position: relative;
     transition: all 1s linear 0.75s; }
-  #the_cans .world_info .loading {
+  #the_cans .world_info .loading, #products .world_info .loading {
     top: 1.5rem;
     margin-top: 2em;
     opacity: 0;
@@ -4409,7 +4418,8 @@ header {
   position: relative;
   max-width: 100%; }
   header img {
-    position: absolute; }
+    position: absolute;
+    will-change: transform; }
 
 .sprite {
   display: block;
@@ -4423,10 +4433,10 @@ header {
     background-position: -15000px; } }
 
 #sun {
-  left: 50%;
+  left: 35vw;
   bottom: 0;
-  transform: translateY(100%) translateX(-50%);
-  max-width: 30%;
+  transform: translateY(100%);
+  width: 30vw;
   z-index: 14;
   border-radius: 50%;
   box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 90px #b9b9b9;
@@ -4435,7 +4445,7 @@ header {
   transition: transform 5s, opacity 0.5s linear 0.5s; }
 
 .sunrise #sun {
-  transform: translateY(0%) translateX(-50%);
+  transform: translateY(0%);
   opacity: 1;
   box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 20px #b9b9b9;
   animation: sun_shimmer 30s infinite; }
@@ -4448,7 +4458,6 @@ header {
   top: 0;
   z-index: 10;
   opacity: 0;
-  animation: float-reverse 20s infinite;
   transition: opacity 1.5s linear 1s; }
 
 #sky_shadow_small {
@@ -4457,7 +4466,7 @@ header {
   z-index: 11;
   opacity: 0;
   transition: opacity 1.5s linear 1s;
-  animation: float 15s infinite; }
+  animation: float-reverse 15s infinite; }
 
 #sky_shadow_low {
   right: 0;
@@ -4465,7 +4474,7 @@ header {
   z-index: 12;
   opacity: 0;
   transition: opacity 1.5s linear 1s;
-  animation: float 25s infinite; }
+  animation: float-reverse 25s infinite; }
 
 .sunrise #sky_shadow_top {
   opacity: 1; }
@@ -5195,7 +5204,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 85vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -95s infinite;
+  animation: cloud_opacity 13s linear -97s infinite;
   filter: blur(0px); }
 
 #mother_cloud_two {
@@ -5205,7 +5214,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 60vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -43s infinite;
+  animation: cloud_opacity 13s linear -41s infinite;
   filter: blur(0px); }
 
 #mother_cloud_three {
@@ -5215,7 +5224,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 50vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -89s infinite;
+  animation: cloud_opacity 13s linear -91s infinite;
   filter: blur(0px); }
 
 #mother_cloud_four {
@@ -5225,7 +5234,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 15vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -77s infinite;
+  animation: cloud_opacity 13s linear -53s infinite;
   filter: blur(0px); }
 
 #mother_cloud_five {
@@ -5235,7 +5244,7 @@ body:not(.sunrise) #hill_rear {
   width: 120vw;
   bottom: 5vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -18s infinite;
+  animation: cloud_opacity 13s linear -48s infinite;
   filter: blur(0px); }
 
 @keyframes cloud_opacity {
@@ -5283,89 +5292,90 @@ body:not(.sunrise) #hill_rear {
 
 @keyframes float {
   0% {
-    transform: translateX(50px); }
+    margin-left: 0vw; }
   50% {
-    transform: translateX(0); }
+    margin-left: -25vw; }
   100% {
-    transform: translateX(50px); } }
+    margin-left: 0vw; } }
 
 @keyframes float-reverse {
   0% {
-    transform: translateX(-50px); }
+    margin-right: 0vw; }
   50% {
-    transform: translateX(0); }
+    margin-right: -5vw; }
   100% {
-    transform: translateX(-50px); } }
+    margin-right: 0vw; } }
 
 /* ==========================================================================
   World transition animation
    ========================================================================= */
 .transition-start {
-  overflow: hidden;
-  position: relative;
-  height: 100%; }
+  overflow: hidden; }
   .transition-start body {
-    overflow: hidden;
-    position: relative;
-    height: 100%; }
-  .transition-start #the_cans {
+    overflow: hidden; }
+  .transition-start #the_cans .row.target_parent {
+    width: 100%; }
+  .transition-start #the_cans .can {
+    display: none; }
+    .transition-start #the_cans .can.target_parent {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0; }
+    .transition-start #the_cans .can .image {
+      width: 40%;
+      padding: 0 15px;
+      margin-left: 0;
+      transition: margin 0.5s; }
+    .transition-start #the_cans .can:nth-child(1) .image {
+      margin-left: 1px; }
+    .transition-start #the_cans .can:nth-child(2) .image {
+      margin-left: calc(75% / 2); }
+    .transition-start #the_cans .can:last-child .image {
+      margin-left: 75%; }
+  .transition-start #the_cans, .transition-start #products {
     text-align: center; }
-    .transition-start #the_cans .world_info {
-      display: block;
+    .transition-start #the_cans .world_info, .transition-start #products .world_info {
       opacity: 1;
-      width: 60%; }
-    .transition-start #the_cans .row.target_parent {
-      width: 100%; }
-    .transition-start #the_cans .can {
+      width: 60%;
+      position: absolute;
+      visibility: hidden;
+      display: block; }
+    .transition-start #the_cans .explore-button, .transition-start #products .explore-button {
       display: none; }
-      .transition-start #the_cans .can.target_parent {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-items: center;
-        align-items: center;
-        padding: 0; }
-      .transition-start #the_cans .can .image {
-        width: 40%;
-        padding: 0 15px;
-        margin-left: 0;
-        transition: margin-left 0.5s; }
-      .transition-start #the_cans .can:nth-child(1) .image {
-        margin-left: 1px; }
-      .transition-start #the_cans .can:nth-child(2) .image {
-        margin-left: calc(75% / 2); }
-      .transition-start #the_cans .can:last-child .image {
-        margin-left: 75%; }
-      .transition-start #the_cans .can .explore-button {
-        display: none; }
   .transition-start *:not(.target_world):not(.target_parent):not(.world_info) {
     transition: opacity 1s;
     opacity: 0 !important; }
 
-.transition-setup #the_cans .image {
+.transition-move #the_cans .image {
   margin-left: 0 !important; }
 
-.transitioning #the_cans .can.target_parent .world_info :first-child {
-  opacity: 1 !important;
-  top: 0; }
+.transition-move #products .trade_info {
+  display: none; }
 
-.transitioning #the_cans .can.target_parent .world_info :nth-child(2) {
-  opacity: 1 !important;
-  top: 0; }
-
-.transitioning #the_cans .can.target_parent .world_info :nth-child(3) {
-  opacity: 1 !important;
-  top: 0; }
-
-.transitioning #the_cans .can.target_parent .world_info .loading {
-  opacity: 1 !important;
-  top: 0; }
+.transitioning #the_cans .can.target_parent .world_info, .transitioning #products .can.target_parent .world_info {
+  position: static;
+  visibility: visible; }
+  .transitioning #the_cans .can.target_parent .world_info :first-child, .transitioning #products .can.target_parent .world_info :first-child {
+    opacity: 1 !important;
+    top: 0; }
+  .transitioning #the_cans .can.target_parent .world_info :nth-child(2), .transitioning #products .can.target_parent .world_info :nth-child(2) {
+    opacity: 1 !important;
+    top: 0; }
+  .transitioning #the_cans .can.target_parent .world_info :nth-child(3), .transitioning #products .can.target_parent .world_info :nth-child(3) {
+    opacity: 1 !important;
+    top: 0; }
+  .transitioning #the_cans .can.target_parent .world_info .loading, .transitioning #products .can.target_parent .world_info .loading {
+    opacity: 1 !important;
+    top: 0; }
 
 /* ==========================================================================
   Color palettes
    ========================================================================= */
 body {
-  transition: background-color 1s, color 1s; }
+  transition: background-color 0.5s, color 0.5s; }
   body:not(.default) header {
     height: 150vh;
     transition: height 5s; }
@@ -5373,8 +5383,46 @@ body {
 body.sunrise:not(.default) header {
   height: 100vh; }
 
+.js html:not(.transition-start) body:not(.sunrise) section, .js html:not(.transition-start) body:not(.sunrise) nav {
+  opacity: 0; }
+
+.js:not(.daytime) html, .js:not(.daytime) body {
+  overflow: hidden;
+  height: 100%;
+  position: fixed;
+  width: 100%; }
+
+body.sunrise .crooked_logo {
+  animation: logo_loaded 2s ease-in forwards calc(5s - 2s); }
+
+@keyframes logo_loaded {
+  0% {
+    position: fixed;
+    top: 20vh;
+    width: 30vw;
+    left: 35vw;
+    transform: rotateY(0deg); }
+  30% {
+    position: fixed;
+    top: 22vh;
+    width: 30vw;
+    left: 35vw;
+    transform: rotateY(0deg); }
+  99% {
+    position: fixed;
+    top: 0;
+    width: 10vw;
+    left: 45vw;
+    transform: rotateY(1439deg); }
+  100% {
+    position: absolute;
+    top: -0.8rem;
+    width: 10vw;
+    left: 50%;
+    transform: rotateY(0deg) translateX(-50%); } }
+
 body.default {
-  background-color: #656565;
+  background-color: #000000;
   color: white; }
   body.default .lede {
     color: #87c7a0; }

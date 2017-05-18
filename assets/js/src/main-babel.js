@@ -23,26 +23,32 @@ var html = document.documentElement,
     parallax_two,
     parallax_three,
     parallax_four,
-    parallax_five;
+    parallax_five,
+    target,
+    can_parent,
+    image_parent;
 
 //General variables
 var transitioning = false;
 var swapping = false;
 var worldData;
-var target;
+var fix_header;
 var windowHeight = $(window).height();
 var windowWidth = $(window).width();
 var event_stop_one = false;
 var event_stop_two = false;
 var event_stop_three = false;
-console.log(wordpress.template_directory + "/worlds.json");
+
 //Kick everything off
-$.getJSON(wordpress.template_directory + "/worlds.json", function (data) {
-  console.log('Worlds loaded');
-  worldData = data;
-  var get = getParameters(getNavUrl());
-  setupParallax(get.world);
-});
+function launch_page() {
+  $.getJSON(wordpress.template_directory + "/worlds.json", function (data) {
+    console.log('Worlds loaded');
+    worldData = data;
+    var get = getParameters(getNavUrl());
+    setupParallax(get.world);
+    animate_stage();
+  });
+}
 
 // Page scrolling effects
 var last_scroll = windowHeight / 100;
@@ -52,20 +58,23 @@ function resetScroll() {
   nav.classList.add('hide');
   last_scroll = 0;
 }
-
-//Animation work
-animate_stage();
-
 function animate_stage() {
   body.classList.add('sunrise');
   setTimeout(function () {
-    body.classList.add('daytime');
-  }, 5000);
+    html.classList.add('daytime');
+    nav.classList.add('hide');
+  }, 5500);
 }
 
 $("#mobile-menu").click(function () {
   $(this).parent().toggleClass('open');
 });
+
+/*
+Transitioning between worlds
+*/
+
+//This handles the initial button click
 $(".explore-button a").click(function () {
   if (transitioning === false) {
     transitioning = true;
@@ -77,6 +86,12 @@ $(".explore-button a").click(function () {
     target.addClass('target_world');
     html.classList.add('transition-start');
     body.classList.remove('sunrise');
+
+    //Cache a couple of elements here to reduce DOM lookup
+    can_parent = $('.can.target_parent');
+    image_parent = $('.image.target_parent');
+
+    //Wait for the fade out to have occured finished before continuing
     $(header).one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
       transitionAnimation();
     });
@@ -84,28 +99,48 @@ $(".explore-button a").click(function () {
   return false;
 });
 
+//Animate the can slide and intro text entrance
 function transitionAnimation() {
   $('html, body').animate({
-    scrollTop: target.offset().top - windowHeight / 2 + $('#the_cans').height() / 2
+    scrollTop: image_parent.offset().top - windowHeight / 2 + image_parent.height() / 2
   }, 1000, function () {
     if (event_stop_one === false) {
       event_stop_one = true;
-      html.classList.add('transition-setup');
-      target.parent().one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
+      can_parent.css({ 'width': can_parent.width(), 'left': can_parent.offset().left, 'top': '50%', 'transform': 'translateY(-50%)', 'position': 'fixed' });
+      //Move can to the right, wait for that animation to complete before proceeding
+      html.classList.add('transition-move');
+      if ($('#the_cans').length) {
+        image_parent.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
+          if (event_stop_two === false) {
+            event_stop_two = true;
+            html.classList.add('transitioning');
+            //Wait for the animations to finish before start heavy lifting, to avoid stutter
+            can_parent.find('.loading').one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
+              if (event_stop_three === false) {
+                event_stop_three = true;
+                refreshElements();
+              }
+            });
+          }
+        });
+      } else {
         if (event_stop_two === false) {
           event_stop_two = true;
           html.classList.add('transitioning');
-          $('.target_parent > .world_info .loading').one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
+          //Wait for the animations to finish before start heavy lifting, to avoid stutter
+          can_parent.find('.loading').one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
             if (event_stop_three === false) {
               event_stop_three = true;
               refreshElements();
             }
           });
         }
-      });
+      }
     }
   });
 }
+
+//Load elements from World.json and add to a string (so we aren't adding single elements multiple times to the DOM)
 function refreshElements() {
   var world = $(target).attr("world");
   var elements = worldData[world];
@@ -117,6 +152,8 @@ function refreshElements() {
       newHTML += '<div class="sprite" id="' + world + '_' + key + '">&nbsp;</div>';
     }
   });
+
+  //Fade out the can and introduce the button to trigger page load
   target.animate({
     'opacity': 0
   }, {
@@ -126,7 +163,7 @@ function refreshElements() {
       body.classList.add(world);
     },
     complete: function complete() {
-      switchWorld(world, newHTML);
+      //  switchWorld(world, newHTML);
       //"Unlock" the variables we used to stop the process duplicating
       event_stop_one = false;
       event_stop_two = false;
@@ -135,11 +172,15 @@ function refreshElements() {
   });
 }
 
+//Add new copy and elements to DOM
 function switchWorld(world, html) {
   header.innerHTML = html;
   lede.innerHTML = worldData.copy[world].lede;
   introduction.innerHTML = worldData.copy[world].introduction;
-  setupParallax(world, loading_complete());
+
+  //Now elements added, attach all parallax classes. We pass next step as a callback.
+  setupParallax(world);
+  loading_complete(world);
 }
 
 function setupParallax() {
@@ -168,24 +209,27 @@ function setupParallax() {
   parallax_three = $('.parallax_three');
   parallax_four = $('.parallax_four');
   parallax_five = $('.parallax_five');
-  setup_scroll();
-  callback(world);
+
+  //Attach parallax scroll handler event
+  setup_scroll(world);
 }
 
 function setup_scroll(world) {
   if (windowWidth > 768) {
     window.addEventListener('scroll', function (e) {
       this_scroll = window.scrollY;
-      if (this_scroll >= last_scroll * 1.1) {
-        nav.classList.add('hide');
-        last_scroll = this_scroll;
-      } else if (this_scroll <= last_scroll / 1.1) {
-        nav.classList.remove('hide');
-        last_scroll = this_scroll;
+      if (!fix_header) {
+        if (this_scroll >= last_scroll * 1.1) {
+          nav.classList.add('hide');
+          last_scroll = this_scroll;
+        } else if (this_scroll <= last_scroll / 1.1) {
+          nav.classList.remove('hide');
+          last_scroll = this_scroll;
+        }
       }
       if (!ticking) {
         window.requestAnimationFrame(function () {
-          var offset = this_scroll * 2;
+          var offset = this_scroll * 1;
           parallax_one.css({ 'transform': "translateY(" + offset / 5 + "px)" });
           parallax_two.css({ 'transform': "translateY(" + offset / 4 + "px)" });
           parallax_three.css({ 'transform': "translateY(" + offset / 3 + "px)" });
@@ -201,10 +245,11 @@ function setup_scroll(world) {
 }
 
 function loading_complete(world) {
-  $('.target_parent .loading').addClass('button');
+  can_parent.find('loading').addClass('button');
   //page_sunrise(world);
   $(".loading.button").click(function () {
-    page_sunrise();
+    //Swap world and do transition cleanup
+    page_sunrise(world);
   });
 }
 
@@ -226,7 +271,7 @@ function page_sunrise(world) {
     $('#header img').fadeIn(3000, function () {
       body.classList.add('sunrise');
     });
-    target.closest('.can').css({ 'opacity': 1 });
+    can_parent.css({ 'opacity': 1 });
     //We're done, re-enable the transition links
     transitioning = false;
   }, 500);
@@ -258,33 +303,20 @@ function getParameters(url) {
   return params;
 }
 
-// Select all links with hashes
-$('a[href*="#"]')
-// Remove links that don't actually link to anything
-.not('[href="#"]').not('[href="#0"]').click(function (event) {
+$('a[href*="#"]').not('[href="#"]').click(function (event) {
   // On-page links
   if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-    // Figure out element to scroll to
     var target = $(this.hash);
     target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-    // Does a scroll target exist?
     if (target.length) {
-      // Only prevent default if animation is actually gonna happen
       event.preventDefault();
+      fix_header = true;
       $('html, body').animate({
-        scrollTop: target.offset().top
+        scrollTop: target.offset().top - $('#nav').height()
       }, 1000, function () {
-        // Callback after animation
-        // Must change focus!
-        var $target = $(target);
-        $target.focus();
-        if ($target.is(":focus")) {
-          // Checking if the target was focused
-          return false;
-        } else {
-          $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
-          $target.focus(); // Set focus again
-        }
+        fix_header = false;
+        nav.classList.remove('hide');
+        last_scroll = window.scrollY;
       });
     }
   }

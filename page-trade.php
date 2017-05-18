@@ -51,46 +51,64 @@ include(get_stylesheet_directory() . '/header.php'); ?>
     <h3 class="col-12">Product</h3>
     <p class="col-12">Crooked is available in the following flavours</p>
     <div class="container">
-      <div class="row">
-        <div class="col-8 col-sm-4 col-md-3 offset-md-1">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" />
+      <div class="row can">
+        <div class="col-8 col-sm-4 col-md-3 offset-md-1 image">
+          <img id="dayglo_2" world="dayglo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" />
         </div>
-        <div class="col-12 col-sm-8 col-md-7 offset-md-1">
+        <div class="col-12 col-sm-8 col-md-7 offset-md-1 trade_info">
           <h4>Dayglo Skies</h4>
           <p>Raspberry & Lime</p>
           <p>Refreshing, sparkling, alcoholic malted soda made with natural fruit flavours, fruit juice and a lightly hopped finish. Contains MALTED BARLEY and 2% raspberry juice from concentrate. Nothing artificial.</p>
           <p>Alc 4.7% Vol 330ml</p>
           <div class="explore-button">
-            <a href="place">Explore <br /><span>Dayglo Stage</span></a>
+            <a href="#" target="dayglo_2">Explore <br /><span>Dayglo Stage</span></a>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-8 col-sm-4 col-md-3">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" />
+        <div class="world_info">
+          <p>Now travelling to</p>
+          <h3>Dayglo Skies</h3>
+          <p>Raspberry & Lime</p>
+          <p class="loading">Loading...</p>
         </div>
-        <div class="col-12 col-sm-7 col-md-7 offset-sm-1">
+      </div>
+      <div class="row can">
+        <div class="col-8 col-sm-4 col-md-3 image">
+          <img id="midnight_2" world="midnight" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" />
+        </div>
+        <div class="col-12 col-sm-7 col-md-7 offset-sm-1 trade_info">
           <h4>Midnight Stage</h4>
           <p>Blood Orange & Passionfruit</p>
           <p>Refreshing, sparkling, alcoholic malted soda made with natural fruit flavours, fruit juice and a lightly hopped finish. Contains MALTED BARLEY and 4% passionfruit juice from concentrate. Nothing artificial.</p>
           <p>Alc 4.7% Vol 330ml</p>
           <div class="explore-button">
-            <a href="place">Explore <br /><span>Midnight Stage</span></a>
+            <a href="#" target="midnight_2">Explore <br /><span>Midnight Stage</span></a>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-8 col-sm-4 col-md-3 offset-sm-1">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" />
+        <div class="world_info">
+          <p>Now travelling to</p>
+          <h3>Midnight Stage</h3>
+          <p>Blood Orange & Passionfruit</p>
+          <p class="loading">Loading...</p>
         </div>
-        <div class="col-12 col-sm-7 col-md-7 offset-md-1">
+      </div>
+      <div class="row can">
+        <div class="col-8 col-sm-4 col-md-3 offset-sm-1 image">
+          <img id="mother_2" world="mother" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" />
+        </div>
+        <div class="col-12 col-sm-7 col-md-7 offset-md-1 trade_info">
           <h4>Mother Moon</h4>
           <p>Peach & Pomegranate</p>
           <p>Refreshing, sparkling, alcoholic malted soda made with natural fruit flavours, fruit juice and a lightly hopped finish. Contains MALTED BARLEY and 2% peach juice from concentrate. Nothing artificial.</p>
           <p>Alc 4.7% Vol 330ml</p>
           <div class="explore-button">
-            <a href="place">Explore <br /><span>Mother Moon</span></a>
+            <a href="#" target="mother_2">Explore <br /><span>Mother Moon</span></a>
           </div>
+        </div>
+        <div class="world_info">
+          <p>Now travelling to</p>
+          <h3>Mother Moon</h3>
+          <p>Peach & Pomegranate</p>
+          <p class="loading">Loading...</p>
         </div>
       </div>
     </div>
