@@ -10,8 +10,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: [
-          'assets/js/src/*.js',
-          'Gruntfile.js'
+          'assets/js/src/*.js'
         ],
         tasks: ['jshint','babel','concat','uglify:scripts','notify:successJs']
       }
@@ -174,5 +173,5 @@ module.exports = function(grunt) {
   // Register the default tasks.
   grunt.registerTask('default', ['browserSync', 'watch', 'notify']);
   grunt.registerTask('staging', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts', 'gitpush:staging']);
-  grunt.registerTask('production', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts', 'notify:successProduction', 'gitpush:production']);
+  grunt.registerTask('production', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts', 'notify:successProduction']);
 };

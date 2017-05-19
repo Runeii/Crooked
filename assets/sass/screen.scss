@@ -125,7 +125,7 @@ nav {
   z-index:200;
   padding:0;
   margin:0;
-  @media screen and (min-width: 576px) {
+  @media screen and (min-width: 767px) {
     background-color: black;
     transform:translateY(0);
     transition: transform 0.5s ease-out;
@@ -134,7 +134,7 @@ nav {
     top:0;
   }
   &.hide {
-    @media screen and (min-width: 576px) {
+    @media screen and (min-width: 767px) {
       transform:translateY(-100%);
     }
   }
@@ -151,13 +151,13 @@ nav {
     position: relative;
     opacity:0;
     display:none;
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 767px) {
       height:100vh;
       width:100vw;
       margin:0;
       padding:0;
     }
-    @media screen and (min-width: 576px) {
+    @media screen and (min-width: 768px) {
       flex-direction: row;
       background-color: transparent;
       justify-content: space-between;
@@ -169,17 +169,28 @@ nav {
     font-size:1.563rem;
     font-family:$header-font;
     @media screen and (min-width: 576px) {
+      font-size:1rem;
+    }
+    @media screen and (min-width: 768px) {
+      font-size:1.25rem;
       width: calc(45vw / 3);
+    }
+    @media screen and (min-width: 992px) {
+      font-size:1.563rem;
     }
   }
   .logo_holder {
     min-width:10vw;
     .crooked_logo {
-      position: fixed;
-      top: 20vh;
-      width: 30vw;
-      left: 35vw;
-      transform-origin: center center;
+        display:none;
+        @media screen and (min-width: 768px) {
+          position: fixed;
+          top: 20vh;
+          width: 30vw;
+          display: block;
+          left: 35vw;
+          transform-origin: center center;
+        }
     }
   }
   .fa {
@@ -192,7 +203,7 @@ nav {
     font-size:2em;
     padding:1em;
     cursor:pointer;
-    @media screen and (min-width: 576px) {
+    @media screen and (min-width: 768px) {
       display:none;
     }
   }
@@ -206,6 +217,16 @@ nav {
     .fa::before {
       content:"\f00d";
     }
+  }
+}
+.crooked_logo_mobile {
+  position: fixed;
+  top: 1em;
+  left:1rem;
+  width: 30vw;
+  z-index:202;
+  @media screen and (min-width: 768px) {
+    display:none;
   }
 }
 @keyframes mobile-menu {
@@ -355,7 +376,6 @@ main {
     padding: 0.5em;
     color: white;
     align-self:flex-end;
-    margin-right:15px;
   }
 }
 
@@ -404,6 +424,7 @@ main {
     opacity:0;
     padding:0 15px;
     text-align: center;
+    transition:opacity 1s;
     p, h3 {
       margin:0 auto;
       width:50%;
@@ -1300,20 +1321,20 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   bottom:35vh;
   width:60vw;
   z-index:36;
-  animation: mother_float 20s infinite linear;
+  animation: mother_float 10s infinite linear;
 }
 @keyframes mother_float {
   0% {
-    bottom:35vh;
+    transform: translateY(0vh);
   }
   25% {
-    bottom:33vh;
+    transform: translateY(-2vh);
   }
   75% {
-    bottom:37vh;
+    transform: translateY(2vh);
   }
   100% {
-    bottom:35vh;
+    transform: translateY(0vh);
   }
 }
 
@@ -1448,11 +1469,16 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
 //Portrait special styles here
 @media screen and (orientation: portrait) {
   .landscape_only {
-    display:none;
+    display:none !important;
   }
   //Overwrite the intro movement
   header {
-    height:66vh !important;
+    height:90vh !important;
+    margin-top:0 !important;
+    transform:none !important;
+  }
+  nav.hide {
+    transform: translateY(0%);
   }
   #sun img {
     width:60%;
@@ -1495,8 +1521,15 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
     width:80%;
     top:50%;
     right:0;
+    opacity: 0;
     left:initial !important;
     animation:float-reverse 4s infinite;
+    transition: opacity 1.5s linear 1s;
+  }
+  .sunrise {
+    #cloud_four img {
+      opacity:1;
+    }
   }
   #dayglo_base img {
     bottom:0;
@@ -1556,6 +1589,27 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   }
   #midnight_cloud_two img {
     bottom:50%;
+  }
+  #mother_hill_one img {
+    bottom:0;
+    left:0;
+    width:100%;
+  }
+  #mother_hill_two img {
+    bottom:55%;
+    left:20%;
+    width:80%;
+    animation: mother_float 10s infinite;
+  }
+  #mother_hill_three img {
+    bottom:30%;
+    left:0;
+    width:100%;
+  }
+  #mother_hill_four img {
+    bottom:60%;
+    left:0;
+    width:100%;
   }
 }
 
@@ -1667,7 +1721,6 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
     }
   }
   *:not(.target_world):not(.target_parent):not(.world_info) {
-    transition:opacity 1s;
     opacity:0 !important;
   }
 }
@@ -1716,13 +1769,17 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
 body {
   transition:background-color 0.5s, color 0.5s;
   &:not(.default) header {
-    height:150vh;
-    transition:height $sunrise_timing;
+    height:125vh;
+    margin-top:-25vh;
+    transform:translateY(25%);
+    opacity:0;
+    transition:transform $sunrise_timing, opacity 3s;
   }
 }
 body.sunrise:not(.default) {
   header {
-    height:100vh;
+    transform:translateY(0%);
+    opacity:1;
   }
 }
 .js {
@@ -1740,9 +1797,25 @@ body.sunrise:not(.default) {
     width:100%;
   }
 }
+.onpage {
+  .crooked_logo {
+    opacity:0;
+    transition:opacity 2s ease-in;
+  }
+  .pace {
+    display:none !important;
+  }
+}
 body.sunrise {
   .crooked_logo {
-    animation: logo_loaded 2s ease-in forwards calc(#{$sunrise_timing} - 2s);
+    opacity:1;
+    position: absolute;
+    top: 50%;
+    width: 10vw;
+    left: 50%;
+    transform: rotateY(0deg) translateX(-50%) translateY(-50%) scale(1);
+    animation: logo_loaded 2s ease-in;
+    transform-origin: center center;
   }
 }
 @keyframes logo_loaded {
@@ -1750,29 +1823,25 @@ body.sunrise {
     position: fixed;
     top: 20vh;
     width: 30vw;
-    left: 35vw;
-    transform:rotateY(0deg);
+    left: 50vw;
+    margin-left:-15vw;
+    transform: rotateY(0deg) translateX(0) translateY(0);
   }
   30% {
     position: fixed;
-    top: 22vh;
+    top: 20vh;
     width: 30vw;
-    left: 35vw;
-    transform:rotateY(0deg);
-  }
-  99% {
-    position: fixed;
-    top: 0;
-    width: 10vw;
-    left: 45vw;
-    transform:rotateY(1439deg);
+    left: 50vw;
+    margin-left:-15vw;
+    transform: rotateY(0deg) translateX(0) translateY(2vh);
   }
   100% {
-    position: absolute;
-    top: -0.4rem;
+    position: fixed;
+    top: 20vh;
     width: 10vw;
-    left: 50%;
-    transform:rotateY(0deg) translateX(-50%);
+    left: 50vw;
+    margin-left:-5vw;
+    transform: rotateY(1439deg) translateX(0) translateY(-20vh);
   }
 }
 

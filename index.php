@@ -7,7 +7,7 @@
     </div>
   </section>
   <section id="the_cans" class="row">
-    <div class="row justify-content-between">
+    <div class="row justify-content-around">
       <div class="can col-12 col-sm-3">
         <div class="image">
           <img id="dayglo_1" world="dayglo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" />

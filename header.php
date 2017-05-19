@@ -22,6 +22,7 @@ if(isset($_GET['world'])) {
 </head>
 <body class="<?php echo $world; ?>">
   <?php echo file_get_contents(get_stylesheet_directory_uri() .'/assets/js/loader.html'); ?>
+  <img class="crooked_logo_mobile" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/crooked_logo.svg" />
   <nav id="nav">
     <i id="mobile-menu" class="fa fa-bars"></i>
     <div class="container">

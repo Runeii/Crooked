@@ -60,10 +60,10 @@
     "cloud_five" : "/assets/img/worlds/midnight/cloud_five.png"
   },
   "mother" : {
-    "hill_one" : "/assets/img/worlds/mother/hill_one.png",
-    "hill_two" : "/assets/img/worlds/mother/hill_two.png",
-    "hill_three" : "/assets/img/worlds/mother/hill_three.png",
-    "hill_four" : "/assets/img/worlds/mother/hill_four.png",
+    "hill_one" : ["/assets/img/worlds/mother/hill_one.png", "/assets/img/worlds/mother/mobile_base.png" ],
+    "hill_two" : ["/assets/img/worlds/mother/hill_two.png", "/assets/img/worlds/mother/mother_moon.png"],
+    "hill_three" : ["/assets/img/worlds/mother/hill_three.png", "/assets/img/worlds/mother/mobile_clouds1.png" ],
+    "hill_four" : ["/assets/img/worlds/mother/hill_four.png","/assets/img/worlds/mother/mobile_clouds2.png" ],
     "sea" : "/assets/img/worlds/mother/sea.png",
     "sun" : "/assets/img/worlds/mother/sun.png",
     "mother" : "/assets/img/worlds/mother/mother_moon.png",

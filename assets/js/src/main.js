@@ -39,6 +39,7 @@ var event_stop_three  = false;
 
 //Kick everything off
 function launch_page(){
+  $('.world_info').hide();
   $.getJSON( wordpress.template_directory + "/worlds.json", function( data ) {
     console.log('Worlds loaded');
     worldData = data;
@@ -68,6 +69,9 @@ $( "#mobile-menu" ).click(function() {
   $(this).parent().toggleClass('open');
 });
 
+$( "#nav a" ).click(function() {
+  $('#nav').removeClass('open');
+});
 /*
 Transitioning between worlds
 */
@@ -80,6 +84,7 @@ $( ".explore-button a" ).click(function() {
     $('#the_cans .image img').each(function(){
       $(this).css({'height' : $(this).height(), 'width' : $(this).width()});
     });
+    $('.world_info').show();
     target.parents().addClass('target_parent');
     target.addClass('target_world');
     html.classList.add('transition-start');
@@ -106,6 +111,7 @@ function transitionAnimation(){
       event_stop_one = true;
       can_parent.css({'width' : can_parent.width(), 'left' : can_parent.offset().left, 'top' : '50%', 'transform' : 'translateY(-50%)', 'position' : 'fixed'});
       //Move can to the right, wait for that animation to complete before proceeding
+      html.classList.remove('daytime');
       html.classList.add('transition-move');
       if($('#the_cans').length){
         image_parent.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd',function(e) {
@@ -265,27 +271,28 @@ function setup_scroll(world){
 
 function page_sunrise(world){
   resetScroll();
-  $('#header img').hide();
   var top = ($(window).scrollTop(0) || $("body").scrollTop(0));
-  $('#the_cans .image img').each(function(){
-    $(this).css({'height' : '', 'width' : ''});
-  });
-  can_parent.css({'width' : '', 'left' : '', 'top' : '', 'transform' : '', 'position' : ''});
-  html.classList.remove('transitioning', 'transition-setup', 'transition-start', 'transition-move');
-  $('.target_parent').each(function(){
-    $(this).removeClass('target_parent');
-  });
-  $('.target_world').removeClass('target_world');
-  target.css({'opacity' : '1'});
-  $('.loading.button').removeClass('button');
-  setTimeout(function(){
-    $('#header img').fadeIn(3000, function(){
-      body.classList.add('sunrise');
+  $('body').fadeOut(500, function(){
+    $('#the_cans .image img').each(function(){
+      $(this).css({'height' : '', 'width' : ''});
     });
-    can_parent.css({'opacity': 1});
-    //We're done, re-enable the transition links
-    transitioning = false;
-  }, 500);
+    can_parent.css({'width' : '', 'left' : '', 'top' : '', 'transform' : '', 'position' : ''});
+    html.classList.remove('transitioning');
+    html.classList.remove('transition-setup', 'transition-start', 'transition-move');
+    $('.target_parent').each(function(){
+      $(this).removeClass('target_parent');
+    });
+    $('.target_world').removeClass('target_world');
+    target.css({'opacity' : '1'});
+    body.classList.add('sunrise');
+    $('body').fadeIn(1500);
+    setTimeout(function(){
+      html.classList.add('daytime');
+      can_parent.css({'opacity': 1});
+      //We're done, re-enable the transition links
+      transitioning = false;
+    }, 5000);
+  });
 }
 
 //Tools
