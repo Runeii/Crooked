@@ -4086,8 +4086,8 @@ main {
         -webkit-box-direction: normal;
                 flex-direction: row; } }
   #the_cans .can img {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
+    -webkit-transform: translateX(0) translateY(0);
+            transform: translateX(0) translateY(0);
     left: 0;
     top: 0;
     width: 100%;
@@ -4497,14 +4497,12 @@ body:not(.sunrise) #hill_rear img {
   left: 0;
   bottom: 0;
   width: 100%;
-  z-index: 19; }
+  z-index: 50; }
 
 #dayglo_sun img {
-  left: 50%;
+  left: 35%;
   bottom: 0;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  max-width: 30%;
+  width: 30%;
   z-index: 14;
   border-radius: 50%;
   box-shadow: 0 0 40px 6px #96c11f, 0 0 150px 90px #96c11f;
@@ -4516,13 +4514,13 @@ body:not(.sunrise) #hill_rear img {
   right: 0;
   bottom: 5vh;
   max-width: 50vw;
-  z-index: 50; }
+  z-index: 51; }
 
 #dayglo_fruit img {
   left: 0;
   bottom: 5vh;
   max-width: 30vw;
-  z-index: 51; }
+  z-index: 52; }
 
 #dayglo_sky_shadow_one img {
   top: 15%;
@@ -5097,15 +5095,20 @@ body:not(.sunrise) #hill_rear img {
   width: 60vw;
   z-index: 36;
   -webkit-animation: mother_float 10s infinite linear;
-          animation: mother_float 10s infinite linear; }
+          animation: mother_float 10s infinite linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate; }
 
 @-webkit-keyframes mother_float {
   0% {
     -webkit-transform: translateY(0vh);
             transform: translateY(0vh); }
   25% {
-    -webkit-transform: translateY(-2vh);
-            transform: translateY(-2vh); }
+    -webkit-transform: translateY(2vh);
+            transform: translateY(2vh); }
+  50% {
+    -webkit-transform: translateY(4vh);
+            transform: translateY(4vh); }
   75% {
     -webkit-transform: translateY(2vh);
             transform: translateY(2vh); }
@@ -5118,8 +5121,11 @@ body:not(.sunrise) #hill_rear img {
     -webkit-transform: translateY(0vh);
             transform: translateY(0vh); }
   25% {
-    -webkit-transform: translateY(-2vh);
-            transform: translateY(-2vh); }
+    -webkit-transform: translateY(2vh);
+            transform: translateY(2vh); }
+  50% {
+    -webkit-transform: translateY(4vh);
+            transform: translateY(4vh); }
   75% {
     -webkit-transform: translateY(2vh);
             transform: translateY(2vh); }
@@ -5132,124 +5138,99 @@ body:not(.sunrise) #hill_rear img {
   height: 7vw;
   bottom: calc(15vw + 0vw);
   left: calc(35vw + 0vw);
-  -webkit-animation: person_jump 27s linear 5s infinite;
-          animation: person_jump 27s linear 5s infinite; }
+  -webkit-transform: translateX(-20vw) translateY(25vw);
+          transform: translateX(-20vw) translateY(25vw);
+  transition: -webkit-transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s, -webkit-transform 5s ease-out 5s; }
 
 #mother_person_two img {
   z-index: 43;
   height: 7vw;
   bottom: calc(15vw + -3vw);
   left: calc(35vw + -6vw);
-  -webkit-animation: person_jump 27s linear 6s infinite;
-          animation: person_jump 27s linear 6s infinite; }
+  -webkit-transform: translateX(-20vw) translateY(25vw);
+          transform: translateX(-20vw) translateY(25vw);
+  transition: -webkit-transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s, -webkit-transform 5s ease-out 5s; }
 
 #mother_person_three img {
   z-index: 44;
   height: 7vw;
   bottom: calc(15vw + -4vw);
   left: calc(35vw + -2vw);
-  -webkit-animation: person_jump 27s linear 7s infinite;
-          animation: person_jump 27s linear 7s infinite; }
+  -webkit-transform: translateX(-20vw) translateY(25vw);
+          transform: translateX(-20vw) translateY(25vw);
+  transition: -webkit-transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s, -webkit-transform 5s ease-out 5s; }
 
 #mother_person_four img {
   z-index: 45;
   height: 7vw;
   bottom: calc(15vw + -4vw);
   left: calc(35vw + 2vw);
-  -webkit-animation: person_jump 27s linear 8s infinite;
-          animation: person_jump 27s linear 8s infinite; }
+  -webkit-transform: translateX(-20vw) translateY(25vw);
+          transform: translateX(-20vw) translateY(25vw);
+  transition: -webkit-transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s, -webkit-transform 5s ease-out 5s; }
 
 #mother_person_five img {
   z-index: 46;
   height: 7vw;
   bottom: calc(15vw + -5vw);
   left: calc(35vw + -10vw);
-  -webkit-animation: person_jump 27s linear 9s infinite;
-          animation: person_jump 27s linear 9s infinite; }
+  -webkit-transform: translateX(-20vw) translateY(25vw);
+          transform: translateX(-20vw) translateY(25vw);
+  transition: -webkit-transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s, -webkit-transform 5s ease-out 5s; }
 
 #mother_person_six img {
   z-index: 47;
   height: 7vw;
   bottom: calc(15vw + -7vw);
   left: calc(35vw + -7vw);
-  -webkit-animation: person_jump 27s linear 10s infinite;
-          animation: person_jump 27s linear 10s infinite; }
+  -webkit-transform: translateX(-20vw) translateY(25vw);
+          transform: translateX(-20vw) translateY(25vw);
+  transition: -webkit-transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s, -webkit-transform 5s ease-out 5s; }
 
 #mother_person_seven img {
   z-index: 49;
   height: 7vw;
   bottom: calc(15vw + -8vw);
   left: calc(35vw + -4vw);
-  -webkit-animation: person_jump 27s linear 12s infinite;
-          animation: person_jump 27s linear 12s infinite; }
+  -webkit-transform: translateX(-20vw) translateY(25vw);
+          transform: translateX(-20vw) translateY(25vw);
+  transition: -webkit-transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s, -webkit-transform 5s ease-out 5s; }
 
 #mother_person_eight img {
   z-index: 50;
   height: 7vw;
   bottom: calc(15vw + -11vw);
   left: calc(35vw + -1vw);
-  -webkit-animation: person_jump 27s linear 13s infinite;
-          animation: person_jump 27s linear 13s infinite; }
+  -webkit-transform: translateX(-20vw) translateY(25vw);
+          transform: translateX(-20vw) translateY(25vw);
+  transition: -webkit-transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s, -webkit-transform 5s ease-out 5s; }
 
 #mother_person_nine img {
   z-index: 48;
   height: 7vw;
   bottom: calc(15vw + -8vw);
   left: calc(35vw + 3vw);
-  -webkit-animation: person_jump 27s linear 11s infinite;
-          animation: person_jump 27s linear 11s infinite; }
-
-@-webkit-keyframes person_jump {
-  0% {
-    -webkit-transform: translateY(0vw);
-            transform: translateY(0vw); }
-  4% {
-    -webkit-transform: translateY(0vw);
-            transform: translateY(0vw); }
-  5% {
-    -webkit-transform: translateY(1vw);
-            transform: translateY(1vw); }
-  6% {
-    -webkit-transform: translateY(0vw);
-            transform: translateY(0vw); }
-  64% {
-    -webkit-transform: translateY(0vw);
-            transform: translateY(0vw); }
-  65% {
-    -webkit-transform: translateY(1vw);
-            transform: translateY(1vw); }
-  66% {
-    -webkit-transform: translateY(0vw);
-            transform: translateY(0vw); }
-  100% {
-    -webkit-transform: translateY(0vw);
-            transform: translateY(0vw); } }
-
-@keyframes person_jump {
-  0% {
-    -webkit-transform: translateY(0vw);
-            transform: translateY(0vw); }
-  4% {
-    -webkit-transform: translateY(0vw);
-            transform: translateY(0vw); }
-  5% {
-    -webkit-transform: translateY(1vw);
-            transform: translateY(1vw); }
-  6% {
-    -webkit-transform: translateY(0vw);
-            transform: translateY(0vw); }
-  64% {
-    -webkit-transform: translateY(0vw);
-            transform: translateY(0vw); }
-  65% {
-    -webkit-transform: translateY(1vw);
-            transform: translateY(1vw); }
-  66% {
-    -webkit-transform: translateY(0vw);
-            transform: translateY(0vw); }
-  100% {
-    -webkit-transform: translateY(0vw);
-            transform: translateY(0vw); } }
+  -webkit-transform: translateX(-20vw) translateY(25vw);
+          transform: translateX(-20vw) translateY(25vw);
+  transition: -webkit-transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s;
+  transition: transform 5s ease-out 5s, -webkit-transform 5s ease-out 5s; }
 
 #mother_sky_shadow_top img {
   z-index: 10;
@@ -5286,8 +5267,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 85vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -96s infinite;
-          animation: cloud_opacity 13s linear -96s infinite;
+  -webkit-animation: cloud_opacity 13s linear -98s infinite;
+          animation: cloud_opacity 13s linear -98s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5298,8 +5279,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 60vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -21s infinite;
-          animation: cloud_opacity 13s linear -21s infinite;
+  -webkit-animation: cloud_opacity 13s linear -17s infinite;
+          animation: cloud_opacity 13s linear -17s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5310,8 +5291,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 50vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -40s infinite;
-          animation: cloud_opacity 13s linear -40s infinite;
+  -webkit-animation: cloud_opacity 13s linear -66s infinite;
+          animation: cloud_opacity 13s linear -66s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5322,8 +5303,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 15vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -22s infinite;
-          animation: cloud_opacity 13s linear -22s infinite;
+  -webkit-animation: cloud_opacity 13s linear -67s infinite;
+          animation: cloud_opacity 13s linear -67s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5334,8 +5315,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 5vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -54s infinite;
-          animation: cloud_opacity 13s linear -54s infinite;
+  -webkit-animation: cloud_opacity 13s linear -92s infinite;
+          animation: cloud_opacity 13s linear -92s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5607,13 +5588,18 @@ body:not(.sunrise) #hill_rear img {
       width: 40%;
       padding: 0 15px;
       margin-left: 0;
-      transition: margin 0.5s; }
+      transition: -webkit-transform 0.5s;
+      transition: transform 0.5s;
+      transition: transform 0.5s, -webkit-transform 0.5s; }
     .transition-start #the_cans .can:nth-child(1) .image {
-      margin-left: 1px; }
+      -webkit-transform: translateX(1px);
+              transform: translateX(1px); }
     .transition-start #the_cans .can:nth-child(2) .image {
-      margin-left: calc(75% / 2); }
+      -webkit-transform: translateX(75%);
+              transform: translateX(75%); }
     .transition-start #the_cans .can:last-child .image {
-      margin-left: 75%; }
+      -webkit-transform: translateX(75%);
+              transform: translateX(75%); }
   .transition-start #the_cans, .transition-start #products {
     text-align: center; }
     .transition-start #the_cans .world_info, .transition-start #products .world_info {
@@ -5628,7 +5614,11 @@ body:not(.sunrise) #hill_rear img {
     opacity: 0 !important; }
 
 .transition-move #the_cans .image {
-  margin-left: 0 !important; }
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+  -webkit-transform: translateX(0%) !important;
+          transform: translateX(0%) !important; }
 
 .transition-move #products .trade_info {
   display: none; }
@@ -5671,6 +5661,9 @@ body.sunrise:not(.default) header {
 
 .js html:not(.transition-start) body:not(.sunrise) section, .js html:not(.transition-start) body:not(.sunrise) nav {
   opacity: 0; }
+
+.daytime body header {
+  transition: opacity 0.5s; }
 
 .js:not(.daytime) html, .js:not(.daytime) body {
   overflow: hidden;
@@ -5943,14 +5936,6 @@ body.mother {
     body.mother header #mother_hill_four img {
       -webkit-transform-origin: 20vw 30vw;
               transform-origin: 20vw 30vw; }
-    body.mother header #mother_person_one img, body.mother header #mother_person_two img, body.mother header #mother_person_three img, body.mother header #mother_person_four img,
-    body.mother header #mother_person_five img, body.mother header #mother_person_six img, body.mother header #mother_person_seven img, body.mother header #mother_person_eight img,
-    body.mother header #mother_person_nine img {
-      transition: -webkit-transform 5s ease-out 5s;
-      transition: transform 5s ease-out 5s;
-      transition: transform 5s ease-out 5s, -webkit-transform 5s ease-out 5s;
-      -webkit-transform: translate(-20vw, 25vw);
-              transform: translate(-20vw, 25vw); }
   body.mother #social .post {
     border-color: #8b1b3f; }
 
@@ -5962,5 +5947,93 @@ body.mother.sunrise {
   body.mother.sunrise #mother_person_one img, body.mother.sunrise #mother_person_two img, body.mother.sunrise #mother_person_three img, body.mother.sunrise #mother_person_four img,
   body.mother.sunrise #mother_person_five img, body.mother.sunrise #mother_person_six img, body.mother.sunrise #mother_person_seven img, body.mother.sunrise #mother_person_eight img,
   body.mother.sunrise #mother_person_nine img {
-    -webkit-transform: translate(0);
-            transform: translate(0); }
+    -webkit-transform: translateX(0vw) translateY(0vw);
+            transform: translateX(0vw) translateY(0vw); }
+
+.daytime body.mother #mother_person_one img {
+  -webkit-animation: person_jump 27s linear 5s infinite;
+          animation: person_jump 27s linear 5s infinite; }
+
+.daytime body.mother #mother_person_two img {
+  -webkit-animation: person_jump 27s linear 6s infinite;
+          animation: person_jump 27s linear 6s infinite; }
+
+.daytime body.mother #mother_person_three img {
+  -webkit-animation: person_jump 27s linear 7s infinite;
+          animation: person_jump 27s linear 7s infinite; }
+
+.daytime body.mother #mother_person_four img {
+  -webkit-animation: person_jump 27s linear 8s infinite;
+          animation: person_jump 27s linear 8s infinite; }
+
+.daytime body.mother #mother_person_five img {
+  -webkit-animation: person_jump 27s linear 9s infinite;
+          animation: person_jump 27s linear 9s infinite; }
+
+.daytime body.mother #mother_person_six img {
+  -webkit-animation: person_jump 27s linear 10s infinite;
+          animation: person_jump 27s linear 10s infinite; }
+
+.daytime body.mother #mother_person_seven img {
+  -webkit-animation: person_jump 27s linear 12s infinite;
+          animation: person_jump 27s linear 12s infinite; }
+
+.daytime body.mother #mother_person_eight img {
+  -webkit-animation: person_jump 27s linear 13s infinite;
+          animation: person_jump 27s linear 13s infinite; }
+
+.daytime body.mother #mother_person_nine img {
+  -webkit-animation: person_jump 27s linear 11s infinite;
+          animation: person_jump 27s linear 11s infinite; }
+
+@-webkit-keyframes person_jump {
+  0% {
+    -webkit-transform: translateY(0vw);
+            transform: translateY(0vw); }
+  4% {
+    -webkit-transform: translateY(0vw);
+            transform: translateY(0vw); }
+  5% {
+    -webkit-transform: translateY(1vw);
+            transform: translateY(1vw); }
+  6% {
+    -webkit-transform: translateY(0vw);
+            transform: translateY(0vw); }
+  64% {
+    -webkit-transform: translateY(0vw);
+            transform: translateY(0vw); }
+  65% {
+    -webkit-transform: translateY(1vw);
+            transform: translateY(1vw); }
+  66% {
+    -webkit-transform: translateY(0vw);
+            transform: translateY(0vw); }
+  100% {
+    -webkit-transform: translateY(0vw);
+            transform: translateY(0vw); } }
+
+@keyframes person_jump {
+  0% {
+    -webkit-transform: translateY(0vw);
+            transform: translateY(0vw); }
+  4% {
+    -webkit-transform: translateY(0vw);
+            transform: translateY(0vw); }
+  5% {
+    -webkit-transform: translateY(1vw);
+            transform: translateY(1vw); }
+  6% {
+    -webkit-transform: translateY(0vw);
+            transform: translateY(0vw); }
+  64% {
+    -webkit-transform: translateY(0vw);
+            transform: translateY(0vw); }
+  65% {
+    -webkit-transform: translateY(1vw);
+            transform: translateY(1vw); }
+  66% {
+    -webkit-transform: translateY(0vw);
+            transform: translateY(0vw); }
+  100% {
+    -webkit-transform: translateY(0vw);
+            transform: translateY(0vw); } }

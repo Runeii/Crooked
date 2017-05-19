@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <?php
 $home_url = 'http://localhost:3000/';
 $worlds_file = file_get_contents( get_stylesheet_directory_uri() . "/worlds.json");
@@ -12,7 +12,7 @@ if(isset($_GET['world'])) {
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>Crooked Beverage Co</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -49,10 +49,10 @@ if(isset($_GET['world'])) {
           echo '
           <picture id="'. $name .'">
             <source
-              media="all and (orientation: landscape)"
+              media="(orientation: landscape)"
               srcset="'. get_stylesheet_directory_uri() . $element[0] .'" >
             <source
-              media="all and (orientation: portrait)"
+              media="(orientation: portrait)"
               srcset="'. get_stylesheet_directory_uri() . $element[1] .'">
             <img
               srcset="'. get_stylesheet_directory_uri() . $element[1] .'" alt="'. $id .' asset for '. $world .' world" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
@@ -60,10 +60,10 @@ if(isset($_GET['world'])) {
         } else {
           echo '<picture id="'. $name .'">
             <source
-              media="all and (orientation: landscape)"
+              media="(orientation: landscape)"
               srcset="'. get_stylesheet_directory_uri() . $element .'" class="landscape_only">
             <source
-              media="all and (orientation: portrait)"
+              media="(orientation: portrait)"
               srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
             <img
               srcset="'. get_stylesheet_directory_uri() . $element .'" class="landscape_only" alt="'. $id .' asset for '. $world .' world" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">

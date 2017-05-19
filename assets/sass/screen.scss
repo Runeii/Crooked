@@ -403,7 +403,7 @@ main {
       }
     }
     img {
-      transform: translate(0, 0);
+      transform: translateX(0) translateY(0);
       left:0;
       top:0;
       width:100%;
@@ -833,14 +833,13 @@ body:not(.sunrise) {
   left:0;
   bottom:0;
   width:100%;
-  z-index:19;
+  z-index:50;
 }
 $sun_colour_dayglo: #96c11f;
 #dayglo_sun img {
-  left:50%;
+  left:35%;
   bottom:0;
-  transform: translateX(-50%);
-  max-width:30%;
+  width:30%;
   z-index:14;
   border-radius: 50%;
   box-shadow: 0 0 40px 6px $sun_colour_dayglo, 0 0 150px 90px $sun_colour_dayglo;
@@ -851,13 +850,13 @@ $sun_colour_dayglo: #96c11f;
   right:0;
   bottom:5vh;
   max-width:50vw;
-  z-index:50;
+  z-index:51;
 }
 #dayglo_fruit img {
   left:0;
   bottom:5vh;
   max-width:30vw;
-  z-index:51;
+  z-index:52;
 }
 #dayglo_sky_shadow_one img {
   top:15%;
@@ -1329,13 +1328,17 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   width:60vw;
   z-index:36;
   animation: mother_float 10s infinite linear;
+  animation-direction: alternate;
 }
 @keyframes mother_float {
   0% {
     transform: translateY(0vh);
   }
   25% {
-    transform: translateY(-2vh);
+    transform: translateY(2vh);
+  }
+  50% {
+    transform: translateY(4vh);
   }
   75% {
     transform: translateY(2vh);
@@ -1350,7 +1353,8 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   height:7vw;
   bottom:calc(15vw + #{$bottom});
   left:calc(35vw + #{$left});
-  animation: person_jump 27s linear ($sunrise-timing + (1s * ($z - 42))) infinite;
+  transform: translateX(-20vw) translateY(25vw);
+  transition: transform $sunrise_timing ease-out $sunrise_timing;
 }
 #mother_person_one img {
   @include mother_person;
@@ -1378,32 +1382,6 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
 }
 #mother_person_nine img {
   @include mother_person(-8vw, 3vw, 48);
-}
-@keyframes person_jump {
-  0% {
-    transform:translateY(0vw);
-  }
-  4% {
-    transform:translateY(0vw);
-  }
-  5% {
-    transform:translateY(1vw);
-  }
-  6% {
-    transform:translateY(0vw);
-  }
-  64% {
-    transform:translateY(0vw);
-  }
-  65% {
-    transform:translateY(1vw);
-  }
-  66% {
-    transform:translateY(0vw);
-  }
-  100% {
-    transform:translateY(0vw);
-  }
 }
 @mixin sky_shadow($bottom: 100vh, $left: -10vw) {
   z-index:10;
@@ -1702,16 +1680,16 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
         width:40%;
         padding:0 15px;
         margin-left:0;
-        transition:margin 0.5s;
+        transition:transform 0.5s;
       }
       &:nth-child(1) .image {
-        margin-left:1px;
+        transform:translateX(1px);
       }
       &:nth-child(2) .image {
-        margin-left:calc(75% / 2);
+        transform:translateX(75%);
       }
       &:last-child .image {
-        margin-left:75%;
+        transform:translateX(75%);
       }
     }
   }
@@ -1735,7 +1713,8 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
 .transition-move {
   #the_cans {
     .image {
-      margin-left:0 !important;
+      transition:transform 0.5s;
+      transform:translateX(0%) !important;
     }
   }
   #products {
@@ -1795,6 +1774,11 @@ body.sunrise:not(.default) {
     section, nav {
       opacity:0;
     }
+  }
+}
+.daytime body {
+  header {
+    transition:opacity 0.5s;
   }
 }
 .js:not(.daytime) {
@@ -2043,13 +2027,6 @@ body.mother {
     #mother_hill_four img {
       transform-origin: 20vw 30vw;
     }
-    #mother_person_one img, #mother_person_two img, #mother_person_three img, #mother_person_four img,
-    #mother_person_five img, #mother_person_six img, #mother_person_seven img, #mother_person_eight img,
-    #mother_person_nine img {
-      transition: transform $sunrise_timing ease-out $sunrise_timing;
-      transform: translate(-20vw, 25vw);
-    }
-
   }
   #social {
     .post {
@@ -2065,6 +2042,67 @@ body.mother.sunrise {
   #mother_person_one img, #mother_person_two img, #mother_person_three img, #mother_person_four img,
   #mother_person_five img, #mother_person_six img, #mother_person_seven img, #mother_person_eight img,
   #mother_person_nine img {
-    transform: translate(0);
+    transform: translateX(0vw) translateY(0vw);
+  }
+}
+.daytime {
+  body.mother {
+    @mixin mother_person_jump($z: 42) {
+      animation: person_jump 27s linear ($sunrise-timing + (1s * ($z - 42))) infinite;
+    }
+    #mother_person_one img {
+      @include mother_person_jump;
+    }
+    #mother_person_two img {
+      @include mother_person_jump(43);
+    }
+    #mother_person_three img {
+      @include mother_person_jump(44);
+    }
+    #mother_person_four img {
+      @include mother_person_jump(45);
+    }
+    #mother_person_five img {
+      @include mother_person_jump(46);
+    }
+    #mother_person_six img {
+      @include mother_person_jump(47);
+    }
+    #mother_person_seven img {
+      @include mother_person_jump(49);
+    }
+    #mother_person_eight img {
+      @include mother_person_jump(50);
+    }
+    #mother_person_nine img {
+      @include mother_person_jump(48);
+    }
+  }
+}
+
+@keyframes person_jump {
+  0% {
+    transform:translateY(0vw);
+  }
+  4% {
+    transform:translateY(0vw);
+  }
+  5% {
+    transform:translateY(1vw);
+  }
+  6% {
+    transform:translateY(0vw);
+  }
+  64% {
+    transform:translateY(0vw);
+  }
+  65% {
+    transform:translateY(1vw);
+  }
+  66% {
+    transform:translateY(0vw);
+  }
+  100% {
+    transform:translateY(0vw);
   }
 }

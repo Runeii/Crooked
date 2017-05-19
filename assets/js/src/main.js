@@ -37,6 +37,19 @@ var event_stop_one = false;
 var event_stop_two = false;
 var event_stop_three  = false;
 
+function recache_elements(){
+  html = document.documentElement;
+  body = document.body;
+  nav = document.getElementById('nav');
+  header = document.getElementById('header');
+  sun = document.getElementById('sun');
+  lede = document.querySelector('#welcome .lede');
+  introduction = document.querySelector('#welcome .introduction');
+    transitioning = false;
+  swapping = false;
+  windowHeight = $(window).height();
+  windowWidth = $(window).width();
+}
 //Kick everything off
 function launch_page(){
   $('.world_info').hide();
@@ -187,7 +200,7 @@ function refreshElements(){
   }, {
       duration: 1000,
       start: function() {
-        body.classList.remove('midnight', 'default', 'dayglo', 'mother');
+        $('body').removeClass('midnight').removeClass('default').removeClass('dayglo').removeClass('mother');
         body.classList.add(world);
       },
       complete: function () {
@@ -289,6 +302,7 @@ function page_sunrise(world){
     setTimeout(function(){
       html.classList.add('daytime');
       can_parent.css({'opacity': 1});
+      recache_elements();
       //We're done, re-enable the transition links
       transitioning = false;
     }, 5000);
