@@ -8,14 +8,14 @@
     "hill_rear" : ["/assets/img/worlds/plain/hill_rear.png", "/assets/img/worlds/plain/mobile_hill_rear.png"],
     "tree_one" : "/assets/img/worlds/plain/tree_one.png",
     "tree_two" : "/assets/img/worlds/plain/tree_two.png",
-    "sky_shadow_top" : ["/assets/svg/plain/sky_shadow_top.png", "/assets/svg/plain/sky_shadow_top.png"],
-    "sky_shadow_small" : "/assets/svg/plain/sky_shadow_small.png",
-    "sky_shadow_low" : ["/assets/svg/plain/sky_shadow_low.png", "/assets/svg/plain/sky_shadow_low.png"],
-    "cloud_one" : "/assets/svg/plain/cloud_1.png",
-    "cloud_two" : "/assets/svg/plain/cloud_2.png",
-    "cloud_three" : "/assets/svg/plain/cloud_3.png",
-    "cloud_four" : ["/assets/svg/plain/cloud_4.png", "/assets/svg/plain/cloud_4.png"],
-    "cloud_five" : "/assets/svg/plain/cloud_5.png"
+    "sky_shadow_top" : ["/assets/img/worlds/plain/sky_shadow_top.png", "/assets/img/worlds/plain/sky_shadow_top.png"],
+    "sky_shadow_small" : "/assets/img/worlds/plain/sky_shadow_small.png",
+    "sky_shadow_low" : ["/assets/img/worlds/plain/sky_shadow_low.png", "/assets/img/worlds/plain/sky_shadow_low.png"],
+    "cloud_one" : "/assets/img/worlds/plain/cloud_1.png",
+    "cloud_two" : "/assets/img/worlds/plain/cloud_2.png",
+    "cloud_three" : "/assets/img/worlds/plain/cloud_3.png",
+    "cloud_four" : ["/assets/img/worlds/plain/cloud_4.png", "/assets/img/worlds/plain/cloud_4.png"],
+    "cloud_five" : "/assets/img/worlds/plain/cloud_5.png"
   },
   "dayglo" : {
     "sun" : ["/assets/img/worlds/dayglo/sun.png", "/assets/img/worlds/dayglo/sun.png"],

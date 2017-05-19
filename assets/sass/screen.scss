@@ -463,6 +463,7 @@ footer {
   margin-top:9rem;
   font-family:$header-font;
   letter-spacing: 0.1em;
+      z-index: 101;
   .row {
     width:100%;
   }
@@ -1520,6 +1521,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   #cloud_four img {
     width:80%;
     top:50%;
+    z-index: 18;
     right:0;
     opacity: 0;
     left:initial !important;
@@ -1848,6 +1850,9 @@ body.sunrise {
 body.default {
   background-color: #000000;
   color:white;
+  main, footer {
+    background-color: #000000;
+  }
   .lede {
     color:rgb(135,199,160);
   }
@@ -1884,6 +1889,9 @@ body.dayglo {
   .lede {
     color:white
   }
+  main, footer {
+    background-color: rgba(42, 119, 161, 1);
+  }
   header {
     background-color: rgba(42, 119, 161, 1);
   }
@@ -1896,6 +1904,9 @@ body.dayglo {
 
 body.dayglo.sunrise {
   background-color: #7fc8bd;
+  main, footer {
+    background-color: #7fc8bd;
+  }
 }
 
 /*========================================================================= */
@@ -1905,6 +1916,9 @@ body.midnight {
   color:white;
   .lede {
     color:rgba(253,107,13,1);
+  }
+  main, footer {
+    background-color: darken($midnight-bg, 30%);
   }
   header {
     background-color: darken($midnight-bg, 30%);
@@ -1924,6 +1938,9 @@ body.midnight {
 }
 body.midnight.sunrise {
   background-color: rgb(136,81,160);
+  main, footer {
+    background-color: rgb(136,81,160);
+  }
   header {
     background-color: $midnight-bg;
     animation: midnight_sunrise $sunrise_timing linear forwards;

@@ -240,7 +240,7 @@ function setupParallax() {
     }
   });
   $.each(record, function (element) {
-    $(prefix + element + ' img').addClass('parallax_five');
+    $(prefix + element + ' img').addClass('parallax_five').css({ 'position': 'fixed' });
   });
   parallax_one = $('.parallax_one');
   parallax_two = $('.parallax_two');
@@ -271,7 +271,7 @@ function setup_scroll(world) {
         parallax_two.css({ 'transform': "translateY(" + offset / 4 + "px)" });
         parallax_three.css({ 'transform': "translateY(" + offset / 3 + "px)" });
         parallax_four.css({ 'transform': "translateY(" + offset / 2 + "px)" });
-        parallax_five.css({ 'transform': "translateY(" + offset + "px)" });
+        //  parallax_five.css({'transform': "translateY(" + offset + "px)"});
         ticking = false;
         //As this is the final function to run in the setup, we trigger the sunrise animation
       });
