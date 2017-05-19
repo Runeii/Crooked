@@ -87,10 +87,10 @@
     <h3 class="col-12">Where to buy</h3>
     <p class="col-12">Crooked is available to buy from the following retailers, as well as many awesome and intriguing bars and venues. If your favourite bar doesn’t stock us yet, tell them to!</p>
     <div class="logo col-12 col-md-4 offset-md-2">
-      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/sainsburys.png" />
+      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/sainsburys.png" alt="Sainsbury's logo" />
     </div>
     <div class="logo col-12 col-md-4">
-      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/asda.png" />
+      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/asda.png" alt="Asda logo" />
     </div>
   </section>
 </div>

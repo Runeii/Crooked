@@ -9,26 +9,28 @@ if(isset($_GET['world'])) {
   $world = 'default';
 }
 ?>
-<html class="no-js" lang="eng">
+<html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Crooked Beverage Co</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One%7COpen+Sans" rel="stylesheet">
     <?php wp_head(); ?>
 </head>
 <body class="<?php echo $world; ?>">
   <?php echo file_get_contents(get_stylesheet_directory_uri() .'/assets/js/loader.html'); ?>
-  <img class="crooked_logo_mobile" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/crooked_logo.svg" />
+  <img class="crooked_logo_mobile" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/crooked_logo.svg" alt="Crooked Brewing Co logo" />
   <nav id="nav">
     <i id="mobile-menu" class="fa fa-bars"></i>
     <div class="container">
       <a href="<?php echo $home_url; ?>#welcome">About</a>
       <a href="<?php echo $home_url; ?>#the_cans">Product</a>
       <a href="<?php echo $home_url; ?>#social">Social</a>
-      <a href="<?php echo $home_url; ?>" class="logo_holder"><img class="crooked_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/crooked_logo.svg" /></a>
+      <a href="<?php echo $home_url; ?>" class="logo_holder">
+        <img class="crooked_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/crooked_logo.svg" alt="Crooked Brewing Co logo" />
+      </a>
       <a href="<?php echo $home_url; ?>#contact">Contact</a>
       <a href="<?php echo $home_url; ?>#stockists">Buy</a>
       <a href="<?php echo $home_url; ?>trade">Trade</a>
@@ -53,7 +55,7 @@ if(isset($_GET['world'])) {
               media="all and (orientation: portrait)"
               srcset="'. get_stylesheet_directory_uri() . $element[1] .'">
             <img
-              srcset="'. get_stylesheet_directory_uri() . $element[1] .'" alt="'. $id .' asset for '. $world .' world">
+              srcset="'. get_stylesheet_directory_uri() . $element[1] .'" alt="'. $id .' asset for '. $world .' world" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
           </picture>';
         } else {
           echo '<picture id="'. $name .'">
@@ -64,7 +66,7 @@ if(isset($_GET['world'])) {
               media="all and (orientation: portrait)"
               srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
             <img
-              srcset="'. get_stylesheet_directory_uri() . $element .'" class="landscape_only" alt="'. $id .' asset for '. $world .' world">
+              srcset="'. get_stylesheet_directory_uri() . $element .'" class="landscape_only" alt="'. $id .' asset for '. $world .' world" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
           </picture>';
         }
       }
