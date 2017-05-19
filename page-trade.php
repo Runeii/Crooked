@@ -55,7 +55,7 @@ include(get_stylesheet_directory() . '/header.php'); ?>
     <div class="container">
       <div class="row can">
         <div class="col-8 col-sm-4 col-md-3 offset-md-1 image">
-          <img id="dayglo_2" world="dayglo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" />
+          <img id="dayglo_2" data-world="dayglo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" />
         </div>
         <div class="col-12 col-sm-8 col-md-7 offset-md-1 trade_info">
           <h4>Dayglo Skies</h4>
@@ -75,7 +75,7 @@ include(get_stylesheet_directory() . '/header.php'); ?>
       </div>
       <div class="row can">
         <div class="col-8 col-sm-4 col-md-3 image">
-          <img id="midnight_2" world="midnight" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" />
+          <img id="midnight_2" data-world="midnight" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" />
         </div>
         <div class="col-12 col-sm-7 col-md-7 offset-sm-1 trade_info">
           <h4>Midnight Stage</h4>
@@ -95,7 +95,7 @@ include(get_stylesheet_directory() . '/header.php'); ?>
       </div>
       <div class="row can">
         <div class="col-8 col-sm-4 col-md-3 offset-sm-1 image">
-          <img id="mother_2" world="mother" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" />
+          <img id="mother_2" data-world="mother" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" />
         </div>
         <div class="col-12 col-sm-7 col-md-7 offset-md-1 trade_info">
           <h4>Mother Moon</h4>

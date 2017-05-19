@@ -119,6 +119,10 @@ $(".explore-button a").click(function () {
 
 //Animate the can slide and intro text entrance
 function transitionAnimation() {
+
+  //Sometimes get a duplicate event, despite using 'once', as animate header during transition. Force unbind of header transition event
+  $(header).unbind("transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd");
+
   $('html, body').animate({
     scrollTop: image_parent.offset().top - windowHeight / 2 + image_parent.height() / 2
   }, 1000, function () {
@@ -127,6 +131,7 @@ function transitionAnimation() {
       can_parent.css({ 'width': can_parent.width(), 'left': can_parent.offset().left, 'top': '50%', 'transform': 'translateY(-50%)', 'position': 'fixed' });
       //Move can to the right, wait for that animation to complete before proceeding
       html.classList.remove('daytime');
+      console.log('REPEAT');
       html.classList.add('transition-move');
       if ($('#the_cans').length) {
         image_parent.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
@@ -172,6 +177,7 @@ function refreshElements() {
       name = world + '_' + key;
     }
     if (Array.isArray(value)) {
+      console.log(value);
       newHTML += "<picture id=\"" + name + "\">\n                    <source\n                      media=\"all and (orientation: landscape)\"\n                      srcset=\"" + wordpress.template_directory + value[0] + "\">\n                    <source\n                      media=\"all and (orientation: portrait)\"\n                      srcset=\"" + wordpress.template_directory + value[1] + "\">\n                    <img\n                      src=\"" + wordpress.template_directory + value[1] + "\">\n                  </picture>";
     } else {
       newHTML += "<picture id=\"" + name + "\">\n                    <source\n                      media=\"all and (orientation: landscape)\"\n                      srcset=\"" + wordpress.template_directory + value + "\" class=\"landscape_only\">\n                    <source\n                      media=\"all and (orientation: portrait)\"\n                      srcset=\"" + wordpress.template_directory + "/assets/img/worlds/blank.gif\">\n                    <img\n                      src=\"" + wordpress.template_directory + value + "\" class=\"landscape_only\">\n                  </picture>";
@@ -292,6 +298,7 @@ function page_sunrise(world) {
       recache_elements();
       //We're done, re-enable the transition links
       transitioning = false;
+      console.log('Transitioning toggled');
     }, 5000);
   });
 }
