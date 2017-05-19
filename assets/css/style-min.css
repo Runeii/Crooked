@@ -5266,7 +5266,7 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 85vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -23s infinite;
+  animation: cloud_opacity 13s linear -20s infinite;
   filter: blur(0px); }
 
 #mother_cloud_two img {
@@ -5276,7 +5276,7 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 60vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -38s infinite;
+  animation: cloud_opacity 13s linear -41s infinite;
   filter: blur(0px); }
 
 #mother_cloud_three img {
@@ -5286,7 +5286,7 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 50vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -24s infinite;
+  animation: cloud_opacity 13s linear -91s infinite;
   filter: blur(0px); }
 
 #mother_cloud_four img {
@@ -5296,7 +5296,7 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 15vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -32s infinite;
+  animation: cloud_opacity 13s linear -39s infinite;
   filter: blur(0px); }
 
 #mother_cloud_five img {
@@ -5306,7 +5306,7 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 5vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -39s infinite;
+  animation: cloud_opacity 13s linear -72s infinite;
   filter: blur(0px); }
 
 @keyframes cloud_opacity {

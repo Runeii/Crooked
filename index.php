@@ -1,5 +1,6 @@
 <?php include(get_stylesheet_directory() . '/header.php'); ?>
-<main class="container">
+<main class="container-fluid">
+<div class="container">
   <section id="welcome" class="row">
     <h2 class="col-12 lede"><?php echo $layouts['copy'][$world]['lede']; ?></h2>
     <div class="col-12 introduction">
@@ -90,5 +91,6 @@
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/asda.png" />
     </div>
   </section>
+</div>
 </main>
 <?php get_footer(); ?>

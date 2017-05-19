@@ -230,19 +230,21 @@ function setupParallax() {
 
 function setup_scroll(world) {
   window.addEventListener('scroll', function (e) {
-    this_scroll = window.scrollY;
-    if (!fix_header) {
-      if (this_scroll >= last_scroll * 1.1) {
-        nav.classList.add('hide');
-        last_scroll = this_scroll;
-      } else if (this_scroll <= last_scroll / 1.1) {
-        nav.classList.remove('hide');
-        last_scroll = this_scroll;
-      }
-    }
     if (!ticking) {
+      ticking = true;
+      this_scroll = window.scrollY;
+      if (!fix_header) {
+        if (this_scroll >= last_scroll * 1.1) {
+          nav.classList.add('hide');
+          last_scroll = this_scroll;
+        } else if (this_scroll <= last_scroll / 1.1) {
+          nav.classList.remove('hide');
+          last_scroll = this_scroll;
+        }
+      }
       window.requestAnimationFrame(function () {
         var offset = this_scroll * 1;
+        console.log('MADE A CHANGE');
         parallax_one.css({ 'transform': "translateY(" + offset / 5 + "px)" });
         parallax_two.css({ 'transform': "translateY(" + offset / 4 + "px)" });
         parallax_three.css({ 'transform': "translateY(" + offset / 3 + "px)" });
@@ -252,7 +254,6 @@ function setup_scroll(world) {
         //As this is the final function to run in the setup, we trigger the sunrise animation
       });
     }
-    ticking = true;
   });
 }
 
@@ -264,11 +265,11 @@ function page_sunrise(world) {
       $(this).css({ 'height': '', 'width': '' });
     });
     can_parent.css({ 'width': '', 'left': '', 'top': '', 'transform': '', 'position': '' });
-    html.classList.remove('transitioning');
-    html.classList.remove('transition-setup', 'transition-start', 'transition-move');
+    $('html').removeClass('transition-setup').removeClass('transition-start').removeClass('transition-move').removeClass('transitioning');
     $('.target_parent').each(function () {
       $(this).removeClass('target_parent');
     });
+    $('.world_info').hide();
     $('.target_world').removeClass('target_world');
     target.css({ 'opacity': '1' });
     body.classList.add('sunrise');
