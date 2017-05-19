@@ -17,6 +17,7 @@ body {
   font-weight: 400;
   line-height: 1.45;
   margin:0;
+  max-width:100%;
 }
 p {
   margin-bottom: 1.3em;
@@ -120,6 +121,7 @@ a {
    ========================================================================= */
 nav {
   width:100%;
+  max-width:100%;
   z-index:200;
   padding:0;
   margin:0;
@@ -166,6 +168,9 @@ nav {
   a {
     font-size:1.563rem;
     font-family:$header-font;
+    @media screen and (min-width: 576px) {
+      width: calc(45vw / 3);
+    }
   }
   .logo_holder {
     min-width:10vw;
@@ -215,7 +220,6 @@ header {
   height:100vh;
   width:100%;
   background-color:#656565;
-  transform: scale(1);
   transform-origin: center 50%;
   max-width:100%;
   overflow:hidden;
@@ -445,14 +449,15 @@ footer {
     display: flex;
     flex-direction: row;
     align-items: center;
-    flex-grow: 1;
-    @media screen and (min-width: 960px) {
+    flex-grow: 1;;
+    justify-content: space-between;
+    @media screen and (min-width: 992px) {
       &:first-of-type{
         text-align: center;
       }
     }
     //Special breakpoint for footer
-    @media screen and (min-width: 1500px) {
+    @media screen and (min-width: 1570px) {
       width:initial;
       justify-content:center;
       &:first-of-type{
@@ -473,20 +478,72 @@ footer {
   }
   h3 {
     margin:0.5rem 0.5rem 0.5rem 0;
-    @media screen and (min-width: 1500px) {
+    @media screen and (min-width: 1570px) {
       padding-right:0.5em;
     }
   }
   .footer-copy {
     font-size:0.64em;
+    text-align:right;
+    @media screen and (min-width: 992px) {
+      text-align: left;
+    }
+    span {
+      width:100%;
+      display: block;
+    }
+  }
+  @media screen and (min-width: 992px) and (max-width: 1569px){
+    .footer-box {
+      &:first-child{
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        h3 {
+          width:100%;
+        }
+      }
+      &:nth-child(2){
+        justify-content: flex-start;
+      }
+      &:nth-child(3){
+        justify-content: flex-start;
+        flex-direction: row-reverse;
+        h3 {
+          margin:0.5rem 0 0.5rem 0.5rem;
+        }
+        .footer-copy {
+          text-align: right;
+        }
+      }
+      &:last-child{
+        h3 {
+          display:none;
+        }
+        .footer-copy {
+          width:100%;
+        }
+        span {
+          width:50%;
+          display:inline;
+          &:last-child{
+            float:right;
+            text-align: right;
+          }
+        }
+      }
+    }
   }
   i {
     margin-left: 1rem;
-    @media screen and (min-width: 1500px) {
+    @media screen and (min-width: 1570px) {
       &:first-of-type{
         margin-left:0;
       }
     }
+  }
+  .email a {
+    content: 'test';
   }
 }
 
@@ -523,7 +580,7 @@ header {
 
 $sun_colour: #b9b9b9;
 $sunrise_timing: 5s;
-#sun {
+#sun img {
   left:35vw;
   bottom:0;
   transform:translateY(100%);
@@ -536,7 +593,7 @@ $sunrise_timing: 5s;
   transition: transform $sunrise_timing, opacity 0.5s linear 0.5s;
 }
 .sunrise {
-  #sun {
+  #sun img {
     transform:translateY(0%);
     opacity:1;
     box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 20px $sun_colour;
@@ -545,19 +602,19 @@ $sunrise_timing: 5s;
 }
 
 .daytime {
-  #sun {
+  #sun img {
     transition: opacity 0.5s linear 0.5s;
   }
 }
 
-#sky_shadow_top {
+#sky_shadow_top img {
   left:0;
   top:0;
   z-index:10;
   opacity:0;
   transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
 }
-#sky_shadow_small {
+#sky_shadow_small img {
   right:0;
   top:30%;
   z-index:11;
@@ -565,7 +622,7 @@ $sunrise_timing: 5s;
   transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
   animation:float-reverse 15s infinite;
 }
-#sky_shadow_low {
+#sky_shadow_low img {
   right:0;
   top:50%;
   z-index:12;
@@ -574,36 +631,36 @@ $sunrise_timing: 5s;
   animation:float-reverse 25s infinite;
 }
 .sunrise {
-  #sky_shadow_top {
+  #sky_shadow_top img {
     opacity:1;
   }
-  #sky_shadow_small {
+  #sky_shadow_small img {
     opacity:1;
   }
-  #sky_shadow_low {
+  #sky_shadow_low img {
     opacity:1;
   }
 }
 .daytime {
-  #sky_shadow_top, #sky_shadow_small, #sky_shadow_low {
+  #sky_shadow_top img, #sky_shadow_small img, #sky_shadow_low img {
     transition: none;
   }
 }
 
-#cloud_one {
+#cloud_one img {
   right:105%;
   top:10%;
   z-index:15;
   transition: all 30s linear 0s;
 }
-#cloud_two {
+#cloud_two img {
   right:110%;
   top:50%;
   z-index:16;
   transition: all 50s linear 5s;
 }
 //Long cloud
-#cloud_three {
+#cloud_three img {
   left:0%;
   top:20%;
   z-index:17;
@@ -613,45 +670,45 @@ $sunrise_timing: 5s;
   opacity:0;
   transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
 }
-#cloud_four {
+#cloud_four img {
   left:105%;
   top:40%;
   z-index:18;
   transition: all 60s ease 10s;
 }
-#cloud_five {
+#cloud_five img {
   left:110%;
   top:60%;
   z-index:19;
   transition: all 40s linear 3s;
 }
 .sunrise {
-  #cloud_three {
+  #cloud_three img {
     opacity:1;
   }
 }
 .daytime {
-    #cloud_one {
+    #cloud_one img {
       right:-50%;
       transition:right 40s linear 3s;
     }
-    #cloud_two {
+    #cloud_two img {
       right:-50%;
       transition:right 40s linear 3s;
     }
-    #cloud_three {
+    #cloud_three img {
       transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2), left (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
     }
-    #cloud_four {
+    #cloud_four img {
       left:-10%;
       transition:left 40s linear 3s;
     }
-    #cloud_five {
+    #cloud_five img {
       left:100%;
       transition:left 40s linear 3s;
     }
 }
-#hill_one {
+#hill_one img {
   left:0;
   bottom:0;
   width:100%;
@@ -659,7 +716,7 @@ $sunrise_timing: 5s;
   transform:scale(1) translateY(0%);
   transition:transform 0.5s ease-in 2s;
 }
-#hill_two {
+#hill_two img {
   left:0;
   bottom:0;
   width:100%;
@@ -667,7 +724,7 @@ $sunrise_timing: 5s;
   transform:scale(1) translateY(0%);
   transition:transform 0.5s ease-in 1.5s;
 }
-#hill_three {
+#hill_three img {
   left:0;
   bottom:0;
   width:100%;
@@ -675,7 +732,7 @@ $sunrise_timing: 5s;
   transform:scale(1) translateY(0%);
   transition:transform 1s ease-in 1s;
 }
-#hill_four {
+#hill_four img {
   left:0;
   bottom:0;
   width:100%;
@@ -683,7 +740,7 @@ $sunrise_timing: 5s;
   transform:scale(1) translateY(0%);
   transition:transform 1.5s ease-in 0.5s;
 }
-#hill_rear {
+#hill_rear img {
   left:0;
   bottom:0;
   width:100%;
@@ -692,22 +749,22 @@ $sunrise_timing: 5s;
   transition:transform 2s ease-in 0s;
 }
 .daytime {
-  #hill_one, #hill_two, #hill_three, #hill_four, #hill_rear {
+  #hill_one img, #hill_two img, #hill_three img, #hill_four img, #hill_rear img {
     transition:none;
   }
 }
 body:not(.sunrise) {
-  #hill_one,
-  #hill_two,
-  #hill_three,
-  #hill_four,
-  #hill_rear {
+  #hill_one img,
+  #hill_two img,
+  #hill_three img,
+  #hill_four img,
+  #hill_rear img {
     transform:scale(2) translateY(100%);
   }
 }
 
 
-#tree_one {
+#tree_one img {
   left:5%;
   bottom:3vw;
   z-index:34;
@@ -715,7 +772,7 @@ body:not(.sunrise) {
   transform:translateY(100%) scale(0.8);
   transition:all 1s cubic-bezier(0,.88,.96,0) ($sunrise-timing - 1s);
 }
-#tree_two {
+#tree_two img {
   right:0%;
   bottom:7vw;
   z-index:34;
@@ -724,34 +781,34 @@ body:not(.sunrise) {
   transition:all 1s cubic-bezier(.74,1,.6,.01) ($sunrise-timing - 1s);
 }
 .sunrise {
-  #tree_one {
+  #tree_one img {
     transform: translateY(0%) scale(0.8);
     opacity:1;
   }
-  #tree_two {
+  #tree_two img {
     transform: translateY(0%) scale(0.8);
     opacity:1;
   }
 }
 .daytime {
-  #tree_one {
+  #tree_one img {
     transition:none;
   }
-  #tree_two {
+  #tree_two img {
     transition:none;
   }
 }
 /* ==========================================================================
   Dayglo skies elements
    ========================================================================= */
-#dayglo_base {
+#dayglo_base img {
   left:0;
   bottom:0;
   width:100%;
   z-index:19;
 }
 $sun_colour_dayglo: #96c11f;
-#dayglo_sun {
+#dayglo_sun img {
   left:50%;
   bottom:0;
   transform: translateX(-50%);
@@ -762,98 +819,98 @@ $sun_colour_dayglo: #96c11f;
   background-color: $sun_colour_dayglo;
   animation: sun_shimmer_dayglo 30s infinite;
 }
-#dayglo_heads {
+#dayglo_heads img {
   right:0;
   bottom:5vh;
   max-width:50vw;
   z-index:50;
 }
-#dayglo_fruit {
+#dayglo_fruit img {
   left:0;
   bottom:5vh;
   max-width:30vw;
   z-index:51;
 }
-#dayglo_sky_shadow_one {
+#dayglo_sky_shadow_one img {
   top:15%;
   right:-5%;
   max-width:70vw;
   z-index:11;
 }
-#dayglo_sky_shadow_two {
+#dayglo_sky_shadow_two img {
   left:-5%;
   top:0;
   max-width:70vw;
   z-index:10;
 }
-#dayglo_clouds_bulk_one {
+#dayglo_clouds_bulk_one img {
   top:10%;
   left:100%;
   width:100%;
   z-index:40;
   animation: clouds_left_dayglo 120s infinite;
 }
-#dayglo_clouds_bulk_two {
+#dayglo_clouds_bulk_two img {
   top:25%;
   right:100%;
   width:100%;
   z-index:41;
   animation: clouds_right_dayglo 120s infinite -7s;
 }
-#dayglo_clouds_bulk_three {
+#dayglo_clouds_bulk_three img {
   top:30%;
   left:100%;
   width:100%;
   z-index:42;
-  animation: clouds_left_dayglo 120s infinite -15s;
+  animation: clouds_left_dayglo 120s infinite -11s;
 }
-#dayglo_clouds_bulk_four {
+#dayglo_clouds_bulk_four img {
   top:10%;
   right:100%;
   width:100%;
   z-index:43;
   animation: clouds_right_dayglo 120s infinite -23s;
 }
-#dayglo_clouds_bulk_five {
+#dayglo_clouds_bulk_five img {
   top:25%;
   left:100%;
   width:100%;
   z-index:44;
   animation: clouds_left_dayglo 120s infinite -25s;
 }
-#dayglo_clouds_bulk_six {
+#dayglo_clouds_bulk_six img {
   top:30%;
   right:100%;
   width:100%;
   z-index:45;
   animation: clouds_right_dayglo 120s infinite -37s;
 }
-#dayglo_clouds_bulk_seven {
+#dayglo_clouds_bulk_seven img {
   top:20%;
   left:100%;
   width:100%;
   z-index:46;
   animation: clouds_left_dayglo 120s infinite -30s;
 }
-#dayglo_cloud_low_one {
+#dayglo_cloud_low_one img {
   bottom:18%;
   right:20%;
   max-width:30%;
   z-index:47;
 }
-#dayglo_cloud_low_two {
+#dayglo_cloud_low_two img {
   bottom:10%;
   left:35%;
   max-width:40%;
   z-index:48;
 }
-#dayglo_cloud_low_three {
+#dayglo_cloud_low_three img {
   bottom:25%;
   left:15%;
   max-width:30%;
   z-index:49;
 }
-#dayglo_cloud_low_four {
+#dayglo_cloud_low_four img {
   bottom:5%;
   left:20%;
   max-width:30%;
@@ -964,7 +1021,7 @@ $sun_colour_dayglo: #96c11f;
 $midnight-bg: rgba(135,49,154,1);
 $horizon-base-ratio: ((100vw / 240) * 37);
 $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
-#midnight_base {
+#midnight_base img {
   left:0;
   bottom:0;
   width:100%;
@@ -972,7 +1029,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   transform:scale(1) translateY(0%);
   transition:transform 0.5s ease-in 2s;
 }
-#midnight_base_two {
+#midnight_base_two img {
   left:0;
   bottom:0;
   width:100%;
@@ -980,7 +1037,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   transform:scale(1) translateY(0%);
   transition:transform 0.5s ease-in 2s;
 }
-#midnight_sun {
+#midnight_sun img {
   right:20vw;
   bottom:$horizon-ratio;
   transform:translateY(100%);
@@ -990,41 +1047,41 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   transition: transform $sunrise_timing, opacity 0.5s linear 0.5s;
 }
 .sunrise {
-  #midnight_sun {
+  #midnight_sun img {
     transform:translateY(10%);
     opacity:1;
   }
 }
 .daytime {
-  #midnight_sun, #midnight_base, #midnight_base_two {
+  #midnight_sun img, #midnight_base img, #midnight_base_two img {
     transition:none;
   }
 }
-#midnight_hill_one {
+#midnight_hill_one img {
   left:-5vw;
   bottom:$horizon-base-ratio;
   width:30vw;
   z-index:37;
 }
-#midnight_hill_two {
+#midnight_hill_two img {
   left:5vw;
   bottom:$horizon-ratio;
   width:30vw;
   z-index:32;
 }
-#midnight_hill_three {
+#midnight_hill_three img {
   left:20vw;
   bottom:$horizon-base-ratio;
   width:20vw;
   z-index:33;
 }
-#midnight_hill_four {
+#midnight_hill_four img {
   left:80vw;
   bottom:$horizon-base-ratio;
   width:30vw;
   z-index:33;
 }
-#midnight_sky_shadow_top {
+#midnight_sky_shadow_top img {
   left:-25vw;
   width:150vw;
   bottom:100%;
@@ -1035,7 +1092,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   transform:translateY(100%);
   transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
 }
-#midnight_sky_shadow_low {
+#midnight_sky_shadow_low img {
   left:0;
   max-width:none;
   width:150%;
@@ -1046,23 +1103,23 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   animation:float 25s infinite;
 }
 .sunrise {
-  #midnight_sky_shadow_top {
+  #midnight_sky_shadow_top img {
     opacity:1;
   }
-  #midnight_sky_shadow_small {
+  #midnight_sky_shadow_small img {
     opacity:1;
   }
-  #midnight_sky_shadow_low {
+  #midnight_sky_shadow_low img {
     opacity:1;
   }
 }
 .daytime {
-  #midnight_sky_shadow_low, #midnight_sky_shadow_top {
+  #midnight_sky_shadow_low img, #midnight_sky_shadow_top img {
     transition:none;
   }
 }
 
-#midnight_cloud_one {
+#midnight_cloud_one img {
   right:-10vw;
   bottom:90%;
   max-width:none;
@@ -1071,7 +1128,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   animation: midnight_cloud_float 60s infinite -30s;
   transition: all 30s linear 0s;
 }
-#midnight_cloud_two {
+#midnight_cloud_two img {
   right:-10vw;
   width:120vw;
   bottom:85%;
@@ -1081,7 +1138,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   animation: midnight_cloud_float 60s infinite;
 }
 //Long cloud
-#midnight_cloud_three {
+#midnight_cloud_three img {
   right:-10vw;
   width:120vw;
   bottom:80%;
@@ -1092,7 +1149,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   opacity:0;
   transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
 }
-#midnight_cloud_four {
+#midnight_cloud_four img {
   right:-10vw;
   width:120vw;
   bottom:70%;
@@ -1101,7 +1158,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   animation: midnight_cloud_float 60s infinite -10s;
   transition: all 60s ease 10s;
 }
-#midnight_cloud_five {
+#midnight_cloud_five img {
   right:-10vw;
   width:120vw;
   bottom:60%;
@@ -1111,29 +1168,29 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   transition: all 40s linear 3s;
 }
 .daytime {
-  #midnight_cloud_one {
+  #midnight_cloud_one img {
     transition: right 30s linear 0s;
   }
-  #midnight_cloud_two {
+  #midnight_cloud_two img {
     transition: right 50s linear 5s;
   }
-  #midnight_cloud_three {
+  #midnight_cloud_three img {
     transition:opacity (($sunrise_timing / 10) * 3) linear (($sunrise_timing / 10) * 2);
   }
-  #midnight_cloud_four {
+  #midnight_cloud_four img {
     transition: right 60s ease 10s;
   }
-  #midnight_cloud_five {
+  #midnight_cloud_five img {
     transition: right 40s linear 3s;
   }
 }
-#midnight_creature {
+#midnight_creature img {
   right:10vw;
   z-index:41;
   width:60vw;
   bottom:calc(#{$horizon-ratio} - 2vh);
 }
-#midnight_tree_one {
+#midnight_tree_one img {
   left:25vw;
   bottom:$horizon-ratio - ($horizon-ratio / 3);
   height:50vh;
@@ -1141,7 +1198,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   opacity:1;
   transition:all 1s cubic-bezier(0,.88,.96,0) 0s;
 }
-#midnight_tree_two {
+#midnight_tree_two img {
   left:75vw;
   bottom:$horizon-ratio - ($horizon-ratio / 4);
   z-index:41;
@@ -1150,33 +1207,33 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   transition:transform 1s cubic-bezier(.74,1,.6,.01) 0.7s;
 }
 .daytime {
-  #midnight_tree_one {
+  #midnight_tree_one img {
     transition:none;
   }
-  #midnight_tree_two {
+  #midnight_tree_two img {
     transition:none;
   }
 }
-#midnight_rocks {
+#midnight_rocks img {
   left:25vw;
   bottom:$horizon-ratio;
   z-index:37;
   width:10vw;
 }
 
-#midnight_fruit {
+#midnight_fruit img {
   left:45vw;
   bottom:$horizon-ratio - ($horizon-ratio / 1.5);
   z-index:43;
   width:15vw;
 }
-#midnight_oranges {
+#midnight_oranges img {
   left:0;
   bottom:0;
   z-index:43;
   width:20vw;
 }
-#midnight_oranges_two {
+#midnight_oranges_two img {
   left:65vw;
   bottom:$horizon-ratio - ($horizon-ratio / 4);
   z-index:41;
@@ -1202,43 +1259,43 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
 /* ==========================================================================
   Mother Moon
    ========================================================================= */
-#mother_sun {
+#mother_sun img {
   right:20vw;
   bottom:45vh;
   width:20vw;
   z-index:20;
 }
-#mother_hill_one {
+#mother_hill_one img {
   left:0;
   bottom:0;
   width:66vw;
   z-index:37;
 }
-#mother_hill_two {
+#mother_hill_two img {
   left: -5vw;
   bottom: -25vw;
   width: 45vw;
   z-index:36;
 }
-#mother_hill_three {
+#mother_hill_three img {
   left:20vw;
   bottom:0vw;
   width:40vw;
   z-index:35;
 }
-#mother_hill_four {
+#mother_hill_four img {
   right:-30vw;
   bottom:-40vw;
   width:100vw;
   z-index:33;
 }
-#mother_sea {
+#mother_sea img {
   left:-10vw;
   bottom:-10vw;
   width:60vw;
   z-index:34;
 }
-#mother_mother {
+#mother_mother img {
   right:0vw;
   bottom:35vh;
   width:60vw;
@@ -1267,31 +1324,31 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   left:calc(35vw + #{$left});
   animation: person_jump 27s linear ($sunrise-timing + (1s * ($z - 42))) infinite;
 }
-#mother_person_one {
+#mother_person_one img {
   @include mother_person;
 }
-#mother_person_two {
+#mother_person_two img {
   @include mother_person(-3vw, -6vw, 43);
 }
-#mother_person_three {
+#mother_person_three img {
   @include mother_person(-4vw, -2vw, 44);
 }
-#mother_person_four {
+#mother_person_four img {
   @include mother_person(-4vw, 2vw, 45);
 }
-#mother_person_five{
+#mother_person_five img {
   @include mother_person(-5vw, -10vw, 46);
 }
-#mother_person_six{
+#mother_person_six img {
   @include mother_person(-7vw, -7vw, 47);
 }
-#mother_person_seven{
+#mother_person_seven img {
   @include mother_person(-8vw, -4vw, 49);
 }
-#mother_person_eight{
+#mother_person_eight img {
   @include mother_person(-11vw, -1vw, 50);
 }
-#mother_person_nine{
+#mother_person_nine img {
   @include mother_person(-8vw, 3vw, 48);
 }
 @keyframes person_jump {
@@ -1327,16 +1384,16 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   width:120vw;
   bottom:$bottom;
 }
-#mother_sky_shadow_top {
+#mother_sky_shadow_top img {
   @include sky_shadow(90vh);
 }
-#mother_sky_shadow_two {
+#mother_sky_shadow_two img {
   @include sky_shadow(75vh, -20vw);
 }
-#mother_sky_shadow_three {
+#mother_sky_shadow_three img {
   @include sky_shadow(50vh);
 }
-#mother_sky_shadow_four {
+#mother_sky_shadow_four img {
   @include sky_shadow(15vh);
 }
 
@@ -1350,19 +1407,19 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   animation: cloud_opacity 13s linear (-1s * random(100)) infinite;
   filter:blur(0px);
 }
-#mother_cloud_one {
+#mother_cloud_one img {
   @include mother_cloud(85vh);
 }
-#mother_cloud_two {
+#mother_cloud_two img {
   @include mother_cloud(60vh);
 }
-#mother_cloud_three {
+#mother_cloud_three img {
   @include mother_cloud(50vh);
 }
-#mother_cloud_four {
+#mother_cloud_four img {
   @include mother_cloud(15vh);
 }
-#mother_cloud_five {
+#mother_cloud_five img {
   @include mother_cloud(5vh);
 }
 @keyframes cloud_opacity {
@@ -1387,6 +1444,121 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
     filter:blur(0px);
   }
 }
+
+//Portrait special styles here
+@media screen and (orientation: portrait) {
+  .landscape_only {
+    display:none;
+  }
+  //Overwrite the intro movement
+  header {
+    height:66vh !important;
+  }
+  #sun img {
+    width:60%;
+    bottom:0;
+    left:20%;
+  }
+  #hill_one img {
+    width:100%;
+    bottom:0;
+    left:0;
+  }
+  #hill_two img {
+    width:100%;
+    bottom:0;
+    left:0;
+  }
+  #hill_three img {
+    width:100%;
+    bottom:0;
+    left:0;
+  }
+  #hill_four img {
+    width:100%;
+    bottom:0;
+    left:0;
+  }
+  #sky_shadow_top img {
+    width:200%;
+    max-width:none;
+    top:0;
+    left:0;
+  }
+  #sky_shadow_low img {
+    width:200%;
+    max-width:none;
+    top:30%;
+    right:0;
+  }
+  #cloud_four img {
+    width:80%;
+    top:50%;
+    right:0;
+    left:initial !important;
+    animation:float-reverse 4s infinite;
+  }
+  #dayglo_base img {
+    bottom:0;
+    width:100%;
+    z-index:50;
+  }
+  #dayglo_sun img {
+    bottom:0;
+    left:15%;
+    width:70%;
+  }
+  #dayglo_clouds_bulk_one img {
+    width:200%;
+    max-width:none;
+    top:0;
+  }
+  #dayglo_clouds_bulk_two img {
+    width:200%;
+    max-width:none;
+    top:20%;
+  }
+  #dayglo_clouds_bulk_three img {
+    width:200%;
+    max-width:none;
+    top:40%;
+  }
+  #dayglo_clouds_bulk_four img {
+    width:200%;
+    max-width:none;
+    top:10%;
+  }
+  #dayglo_clouds_bulk_seven img {
+    width:200%;
+    max-width:none;
+    top:30%;
+  }
+  #midnight_base img {
+    width:100%;
+    bottom:0;
+    left:0;
+  }
+  #midnight_hill_three img {
+    width:100%;
+    bottom:0;
+    left:0;
+  }
+  #midnight_hill_four img {
+    width:100%;
+    bottom:0;
+    left:0;
+  }
+  #midnight_sun img {
+    width:100%;
+    max-width:100%;
+    bottom:0;
+    right:0;
+  }
+  #midnight_cloud_two img {
+    bottom:50%;
+  }
+}
+
 /* ==========================================================================
   General animations
    ========================================================================= */
@@ -1597,7 +1769,7 @@ body.sunrise {
   }
   100% {
     position: absolute;
-    top: -0.8rem;
+    top: -0.4rem;
     width: 10vw;
     left: 50%;
     transform:rotateY(0deg) translateX(-50%);
@@ -1667,11 +1839,11 @@ body.midnight {
   }
   header {
     background-color: darken($midnight-bg, 30%);
-    *:not(#midnight_base):not(#midnight_sun) {
+    *:not(#midnight_base img):not(#midnight_sun img) {
       opacity:0;
       transition: opacity ($sunrise_timing / 4) ease-in;
     }
-    #midnight_cloud_one, #midnight_cloud_two, #midnight_cloud_three, #midnight_cloud_four, #midnight_cloud_five {
+    #midnight_cloud_one img, #midnight_cloud_two img, #midnight_cloud_three img, #midnight_cloud_four img, #midnight_cloud_five img {
       transition-delay: ($sunrise_timing / 4);
     }
   }
@@ -1686,7 +1858,7 @@ body.midnight.sunrise {
   header {
     background-color: $midnight-bg;
     animation: midnight_sunrise $sunrise_timing linear forwards;
-    *:not(#midnight_base):not(#midnight_sun) {
+    *:not(#midnight_base img):not(#midnight_sun img) {
       opacity:1;
     }
   }
@@ -1769,23 +1941,25 @@ body.mother {
       height:9.41vw;
       z-index:50;
     }
-    #mother_mother {
+    #mother_mother img {
       transition: transform $sunrise_timing;
       transform: translate(45vw, -20vw);
     }
-    #mother_hill_one {
+    #mother_hill_one img {
       transform-origin: 0vw 20vw;
     }
-    #mother_hill_two {
+    #mother_hill_two img {
       transform-origin: -10vw 40vw;
     }
-    #mother_hill_three {
+    #mother_hill_three img {
       transform-origin: -20vw 40vw;
     }
-    #mother_hill_four {
+    #mother_hill_four img {
       transform-origin: 20vw 30vw;
     }
-    #mother_person_one, #mother_person_two, #mother_person_three, #mother_person_four, #mother_person_five, #mother_person_six, #mother_person_seven, #mother_person_eight, #mother_person_nine {
+    #mother_person_one img, #mother_person_two img, #mother_person_three img, #mother_person_four img,
+    #mother_person_five img, #mother_person_six img, #mother_person_seven img, #mother_person_eight img,
+    #mother_person_nine img {
       transition: transform $sunrise_timing ease-out $sunrise_timing;
       transform: translate(-20vw, 25vw);
     }
@@ -1799,10 +1973,12 @@ body.mother {
 }
 body.mother.sunrise {
   background-color: #8b1b3f;
-  #mother_mother {
+  #mother_mother img {
     transform: translate(0,0);
   }
-  #mother_person_one, #mother_person_two, #mother_person_three, #mother_person_four, #mother_person_five, #mother_person_six, #mother_person_seven, #mother_person_eight, #mother_person_nine {
+  #mother_person_one img, #mother_person_two img, #mother_person_three img, #mother_person_four img,
+  #mother_person_five img, #mother_person_six img, #mother_person_seven img, #mother_person_eight img,
+  #mother_person_nine img {
     transform: translate(0);
   }
 }

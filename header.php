@@ -15,7 +15,7 @@ if(isset($_GET['world'])) {
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Crooked Beverage Co</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/css/style-min.css">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans" rel="stylesheet">
     <?php wp_head(); ?>
@@ -42,10 +42,30 @@ if(isset($_GET['world'])) {
         } else {
           $name = $world . '_' . $id;
         }
-        if($element == 'sprite') {
-          echo '<div class="sprite" id="'. $name .'">&nbsp;</div>';
+        //Test if we've set a mobile alternative
+        if(is_array($element)) {
+          echo '
+          <picture id="'. $name .'">
+            <source
+              media="all and (orientation: landscape)"
+              srcset="'. get_stylesheet_directory_uri() . $element[0] .'" >
+            <source
+              media="all and (orientation: portrait)"
+              srcset="'. get_stylesheet_directory_uri() . $element[1] .'">
+            <img
+              src="'. get_stylesheet_directory_uri() . $element[1] .'">
+          </picture>';
         } else {
-          echo '<img src="'. get_stylesheet_directory_uri() . $element .'" id="'. $name .'"/>';
+          echo '<picture id="'. $name .'">
+            <source
+              media="all and (orientation: landscape)"
+              srcset="'. get_stylesheet_directory_uri() . $element .'" class="landscape_only">
+            <source
+              media="all and (orientation: portrait)"
+              srcset="'. get_stylesheet_directory_uri() . '/assets/img/worlds/blank.gif">
+            <img
+              src="'. get_stylesheet_directory_uri() . $element .'" class="landscape_only">
+          </picture>';
         }
       }
   ?>

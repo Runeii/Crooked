@@ -143,11 +143,35 @@ function refreshElements(){
   var world = $(target).attr("world");
   var elements = worldData[world];
   var newHTML = '';
+  var name;
   $.each(elements, function(key, value){
-    if(value != 'sprite') {
-      newHTML += '<img src="'+ wordpress.template_directory + value +'" id="'+ world +'_'+ key +'"/>';
+    if(world === 'default') {
+      name = key;
     } else {
-      newHTML += '<div class="sprite" id="'+ world +'_'+ key +'">&nbsp;</div>';
+      name = world + '_' + key;
+    }
+    if(Array.isArray(value)) {
+      newHTML += `<picture id="`+ name +`">
+                    <source
+                      media="all and (orientation: landscape)"
+                      srcset="` + wordpress.template_directory +  value[0] +`">
+                    <source
+                      media="all and (orientation: portrait)"
+                      srcset="`+ wordpress.template_directory +  value[1] +`">
+                    <img
+                      src="`+ wordpress.template_directory +  value[1] +`">
+                  </picture>`;
+    } else {
+      newHTML += `<picture id="`+ name +`">
+                    <source
+                      media="all and (orientation: landscape)"
+                      srcset="` + wordpress.template_directory +  value +`" class="landscape_only">
+                    <source
+                      media="all and (orientation: portrait)"
+                      srcset="`+ wordpress.template_directory +`/assets/img/worlds/blank.gif">
+                    <img
+                      src="`+ wordpress.template_directory + value +`" class="landscape_only">
+                  </picture>`;
     }
   });
 
@@ -161,7 +185,7 @@ function refreshElements(){
         body.classList.add(world);
       },
       complete: function () {
-      //  switchWorld(world, newHTML);
+        switchWorld(world, newHTML);
         //"Unlock" the variables we used to stop the process duplicating
         event_stop_one = false;
         event_stop_two = false;
@@ -175,10 +199,12 @@ function switchWorld(world, html){
   header.innerHTML = html;
   lede.innerHTML = worldData.copy[world].lede;
   introduction.innerHTML = worldData.copy[world].introduction;
-
-  //Now elements added, attach all parallax classes. We pass next step as a callback.
-  setupParallax(world);
-  loading_complete(world);
+  Pace.restart();
+  Pace.once('done', function(){
+    //Now elements added, attach all parallax classes. We pass next step as a callback.
+    setupParallax(world);
+    page_sunrise(world);
+  });
 }
 
 function setupParallax(world = 'default', callback = function(){}) {
@@ -192,12 +218,12 @@ function setupParallax(world = 'default', callback = function(){}) {
   }
   $.each(layers, function(layer, entries){
     for (var i = 0, len = entries.length; i < len; i++) {
-      $(prefix + entries[i]).addClass('parallax_' + layer);
+      $(prefix + entries[i] + ' img').addClass('parallax_' + layer);
       delete record[entries[i]];
     }
   });
   $.each(record, function(element){
-    $(prefix + element).addClass('parallax_five');
+    $(prefix + element + ' img').addClass('parallax_five');
   });
   parallax_one = $('.parallax_one');
   parallax_two = $('.parallax_two');
@@ -210,42 +236,30 @@ function setupParallax(world = 'default', callback = function(){}) {
 }
 
 function setup_scroll(world){
-  if(windowWidth > 768) {
-    window.addEventListener('scroll', function(e) {
-      this_scroll = window.scrollY;
-      if(!fix_header){
-        if(this_scroll >= (last_scroll * 1.1)) {
-          nav.classList.add('hide');
-          last_scroll = this_scroll;
-        } else if(this_scroll <= (last_scroll / 1.1)) {
-          nav.classList.remove('hide');
-          last_scroll = this_scroll;
-        }
+  window.addEventListener('scroll', function(e) {
+    this_scroll = window.scrollY;
+    if(!fix_header){
+      if(this_scroll >= (last_scroll * 1.1)) {
+        nav.classList.add('hide');
+        last_scroll = this_scroll;
+      } else if(this_scroll <= (last_scroll / 1.1)) {
+        nav.classList.remove('hide');
+        last_scroll = this_scroll;
       }
-      if (!ticking) {
-        window.requestAnimationFrame(function() {
-          var offset = this_scroll * 1;
-          parallax_one.css({'transform': "translateY(" + (offset / 5)  + "px)"});
-          parallax_two.css({'transform': "translateY(" + (offset / 4) + "px)"});
-          parallax_three.css({'transform': "translateY(" + (offset / 3) + "px)"});
-          parallax_four.css({'transform': "translateY(" + (offset / 2) + "px)"});
-          parallax_five.css({'transform': "translateY(" + offset + "px)"});
-          ticking = false;
-          //As this is the final function to run in the setup, we trigger the sunrise animation
-        });
-      }
-      ticking = true;
-    });
-  }
-}
-
-
-function loading_complete(world){
-  can_parent.find('loading').addClass('button');
-  //page_sunrise(world);
-  $( ".loading.button" ).click(function() {
-    //Swap world and do transition cleanup
-    page_sunrise(world);
+    }
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        var offset = this_scroll * 1;
+        parallax_one.css({'transform': "translateY(" + (offset / 5)  + "px)"});
+        parallax_two.css({'transform': "translateY(" + (offset / 4) + "px)"});
+        parallax_three.css({'transform': "translateY(" + (offset / 3) + "px)"});
+        parallax_four.css({'transform': "translateY(" + (offset / 2) + "px)"});
+        parallax_five.css({'transform': "translateY(" + offset + "px)"});
+        ticking = false;
+        //As this is the final function to run in the setup, we trigger the sunrise animation
+      });
+    }
+    ticking = true;
   });
 }
 
@@ -254,9 +268,10 @@ function page_sunrise(world){
   $('#header img').hide();
   var top = ($(window).scrollTop(0) || $("body").scrollTop(0));
   $('#the_cans .image img').each(function(){
-    $(this).css({'height' : 'inherit', 'width' : 'inherit'});
+    $(this).css({'height' : '', 'width' : ''});
   });
-  html.classList.remove('transitioning', 'transition-setup', 'transition-start');
+  can_parent.css({'width' : '', 'left' : '', 'top' : '', 'transform' : '', 'position' : ''});
+  html.classList.remove('transitioning', 'transition-setup', 'transition-start', 'transition-move');
   $('.target_parent').each(function(){
     $(this).removeClass('target_parent');
   });
