@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-$home_url = 'http://localhost:3000/';
 $worlds_file = file_get_contents( get_stylesheet_directory_uri() . "/worlds.json");
 $layouts = json_decode($worlds_file, true);
 if(isset($_GET['world'])) {
@@ -25,15 +24,15 @@ if(isset($_GET['world'])) {
   <nav id="nav">
     <i id="mobile-menu" class="fa fa-bars"></i>
     <div class="container">
-      <a href="<?php echo $home_url; ?>#welcome">About</a>
-      <a href="<?php echo $home_url; ?>#the_cans">Product</a>
-      <a href="<?php echo $home_url; ?>#social">Social</a>
-      <a href="<?php echo $home_url; ?>" class="logo_holder">
+      <a href="<?php echo get_home_url(); ?>#welcome">About</a>
+      <a href="<?php echo get_home_url(); ?>#the_cans">Product</a>
+      <a href="<?php echo get_home_url(); ?>#social">Social</a>
+      <a href="<?php echo get_home_url(); ?>" class="logo_holder">
         <img class="crooked_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/crooked_logo.svg" alt="Crooked Brewing Co logo" />
       </a>
-      <a href="<?php echo $home_url; ?>#contact">Contact</a>
-      <a href="<?php echo $home_url; ?>#stockists">Buy</a>
-      <a href="<?php echo $home_url; ?>trade">Trade</a>
+      <a href="<?php echo get_home_url(); ?>#contact">Contact</a>
+      <a href="<?php echo get_home_url(); ?>#stockists">Buy</a>
+      <a href="<?php echo get_home_url(); ?>trade">Trade</a>
     </div>
   </nav>
   <header id="header" class="">
