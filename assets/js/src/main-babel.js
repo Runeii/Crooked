@@ -232,7 +232,7 @@ function setup_scroll(world) {
   window.addEventListener('scroll', function (e) {
     if (!ticking) {
       ticking = true;
-      this_scroll = window.scrollY;
+      this_scroll = $(window).scrollTop();
       if (!fix_header) {
         if (this_scroll >= last_scroll * 1.1) {
           nav.classList.add('hide');
@@ -244,7 +244,6 @@ function setup_scroll(world) {
       }
       window.requestAnimationFrame(function () {
         var offset = this_scroll * 1;
-        console.log('MADE A CHANGE');
         parallax_one.css({ 'transform': "translateY(" + offset / 5 + "px)" });
         parallax_two.css({ 'transform': "translateY(" + offset / 4 + "px)" });
         parallax_three.css({ 'transform': "translateY(" + offset / 3 + "px)" });

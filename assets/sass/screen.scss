@@ -245,6 +245,11 @@ header {
   max-width:100%;
   overflow:hidden;
 }
+.ie11wrap {
+    text-align: center;
+    position: relative;
+    z-index:102;
+}
 main {
     text-align: center;
     position: relative;
@@ -334,6 +339,7 @@ main {
   .logo {
     margin-top:2rem;
   }
+  margin-bottom:0;
 }
 #products {
   .row {
@@ -460,7 +466,7 @@ footer {
   display:flex;
   flex-direction: row;
   align-items: center;
-  margin-top:9rem;
+  padding-top:9rem;
   font-family:$header-font;
   letter-spacing: 0.1em;
   z-index: 101;
@@ -1375,28 +1381,28 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
 }
 @keyframes person_jump {
   0% {
-    margin-bottom:0;
+    transform:translateY(0vw);
   }
   4% {
-    margin-bottom:0;
+    transform:translateY(0vw);
   }
   5% {
-    margin-bottom:1vw;
+    transform:translateY(1vw);
   }
   6% {
-    margin-bottom:0;
+    transform:translateY(0vw);
   }
   64% {
-    margin-bottom:0;
+    transform:translateY(0vw);
   }
   65% {
-    margin-bottom:1vw;
+    transform:translateY(1vw);
   }
   66% {
-    margin-bottom:0;
+    transform:translateY(0vw);
   }
   100% {
-    margin-bottom:0;
+    transform:translateY(0vw);
   }
 }
 @mixin sky_shadow($bottom: 100vh, $left: -10vw) {
@@ -1468,7 +1474,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
 }
 
 //Portrait special styles here
-@media screen and (orientation: portrait) {
+@media all and (orientation: portrait) {
   .landscape_only {
     display:none !important;
   }
@@ -1811,13 +1817,7 @@ body.sunrise:not(.default) {
 body.sunrise {
   .crooked_logo {
     opacity:1;
-    position: absolute;
-    top: 50%;
-    width: 10vw;
-    left: 50%;
-    transform: rotateY(0deg) translateX(-50%) translateY(-50%) scale(1);
-    animation: logo_loaded 2s ease-in;
-    transform-origin: center center;
+    animation: logo_loaded 2s ease-in forwards;
   }
 }
 @keyframes logo_loaded {
@@ -1825,24 +1825,21 @@ body.sunrise {
     position: fixed;
     top: 20vh;
     width: 30vw;
-    left: 50vw;
-    margin-left:-15vw;
+    left: 35%;
     transform: rotateY(0deg) translateX(0) translateY(0);
   }
   30% {
     position: fixed;
     top: 20vh;
     width: 30vw;
-    left: 50vw;
-    margin-left:-15vw;
+    left: 35%;
     transform: rotateY(0deg) translateX(0) translateY(2vh);
   }
   100% {
     position: fixed;
     top: 20vh;
     width: 10vw;
-    left: 50vw;
-    margin-left:-5vw;
+    left: 45%;
     transform: rotateY(1439deg) translateX(0) translateY(-20vh);
   }
 }
@@ -1850,7 +1847,7 @@ body.sunrise {
 body.default {
   background-color: #000000;
   color:white;
-  main, footer {
+  main, footer, .ie11wrap {
     background-color: #000000;
   }
   .lede {
@@ -1889,7 +1886,7 @@ body.dayglo {
   .lede {
     color:white
   }
-  main, footer {
+  main, footer, .ie11wrap {
     background-color: rgba(42, 119, 161, 1);
   }
   header {
@@ -1904,7 +1901,7 @@ body.dayglo {
 
 body.dayglo.sunrise {
   background-color: #7fc8bd;
-  main, footer {
+  main, footer, .ie11wrap {
     background-color: #7fc8bd;
   }
 }
@@ -1917,7 +1914,7 @@ body.midnight {
   .lede {
     color:rgba(253,107,13,1);
   }
-  main, footer {
+  main, footer, .ie11wrap {
     background-color: darken($midnight-bg, 30%);
   }
   header {
@@ -1938,7 +1935,7 @@ body.midnight {
 }
 body.midnight.sunrise {
   background-color: rgb(136,81,160);
-  main, footer {
+  main, footer, .ie11wrap {
     background-color: rgb(136,81,160);
   }
   header {
@@ -2012,6 +2009,9 @@ body.mother {
   color:white;
   .lede {
     color:#fec4cb;
+  }
+  main, footer, .ie11wrap {
+    background-color: #8b1b3f;
   }
   header {
     background-color: #e73c50;

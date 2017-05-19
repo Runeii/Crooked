@@ -9,7 +9,7 @@ if(isset($_GET['world'])) {
   $world = 'default';
 }
 ?>
-<html class="no-js" lang="">
+<html class="no-js" lang="eng">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -53,7 +53,7 @@ if(isset($_GET['world'])) {
               media="all and (orientation: portrait)"
               srcset="'. get_stylesheet_directory_uri() . $element[1] .'">
             <img
-              src="'. get_stylesheet_directory_uri() . $element[1] .'">
+              srcset="'. get_stylesheet_directory_uri() . $element[1] .'" alt="'. $id .' asset for '. $world .' world">
           </picture>';
         } else {
           echo '<picture id="'. $name .'">
@@ -62,9 +62,9 @@ if(isset($_GET['world'])) {
               srcset="'. get_stylesheet_directory_uri() . $element .'" class="landscape_only">
             <source
               media="all and (orientation: portrait)"
-              srcset="'. get_stylesheet_directory_uri() . '/assets/img/worlds/blank.gif">
+              srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
             <img
-              src="'. get_stylesheet_directory_uri() . $element .'" class="landscape_only">
+              srcset="'. get_stylesheet_directory_uri() . $element .'" class="landscape_only" alt="'. $id .' asset for '. $world .' world">
           </picture>';
         }
       }

@@ -4100,7 +4100,8 @@ footer {
           align-items: center;
   margin-top: 9rem;
   font-family: "Fjalla One";
-  letter-spacing: 0.1em; }
+  letter-spacing: 0.1em;
+  z-index: 101; }
   footer .row {
     width: 100%; }
   footer .footer-box {
@@ -5222,8 +5223,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 85vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -54s infinite;
-          animation: cloud_opacity 13s linear -54s infinite;
+  -webkit-animation: cloud_opacity 13s linear -15s infinite;
+          animation: cloud_opacity 13s linear -15s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5234,8 +5235,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 60vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -17s infinite;
-          animation: cloud_opacity 13s linear -17s infinite;
+  -webkit-animation: cloud_opacity 13s linear -50s infinite;
+          animation: cloud_opacity 13s linear -50s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5246,8 +5247,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 50vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -21s infinite;
-          animation: cloud_opacity 13s linear -21s infinite;
+  -webkit-animation: cloud_opacity 13s linear -67s infinite;
+          animation: cloud_opacity 13s linear -67s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5258,8 +5259,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 15vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -38s infinite;
-          animation: cloud_opacity 13s linear -38s infinite;
+  -webkit-animation: cloud_opacity 13s linear -58s infinite;
+          animation: cloud_opacity 13s linear -58s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5270,8 +5271,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 5vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -92s infinite;
-          animation: cloud_opacity 13s linear -92s infinite;
+  -webkit-animation: cloud_opacity 13s linear -8s infinite;
+          animation: cloud_opacity 13s linear -8s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5363,6 +5364,7 @@ body:not(.sunrise) #hill_rear img {
   #cloud_four img {
     width: 80%;
     top: 50%;
+    z-index: 18;
     right: 0;
     opacity: 0;
     left: initial !important;
@@ -5688,6 +5690,8 @@ body.sunrise .crooked_logo {
 body.default {
   background-color: #000000;
   color: white; }
+  body.default main, body.default footer {
+    background-color: #000000; }
   body.default .lede {
     color: #87c7a0; }
 
@@ -5726,6 +5730,8 @@ body.dayglo {
   color: white; }
   body.dayglo .lede {
     color: white; }
+  body.dayglo main, body.dayglo footer {
+    background-color: #2a77a1; }
   body.dayglo header {
     background-color: #2a77a1; }
   body.dayglo #social .post {
@@ -5733,6 +5739,8 @@ body.dayglo {
 
 body.dayglo.sunrise {
   background-color: #7fc8bd; }
+  body.dayglo.sunrise main, body.dayglo.sunrise footer {
+    background-color: #7fc8bd; }
 
 /*========================================================================= */
 body.midnight {
@@ -5740,6 +5748,8 @@ body.midnight {
   color: white; }
   body.midnight .lede {
     color: #fd6b0d; }
+  body.midnight main, body.midnight footer {
+    background-color: #210c26; }
   body.midnight header {
     background-color: #210c26; }
     body.midnight header *:not(#midnight_base img):not(#midnight_sun img) {
@@ -5752,6 +5762,8 @@ body.midnight {
 
 body.midnight.sunrise {
   background-color: #8851a0; }
+  body.midnight.sunrise main, body.midnight.sunrise footer {
+    background-color: #8851a0; }
   body.midnight.sunrise header {
     background-color: #87319a;
     -webkit-animation: midnight_sunrise 5s linear forwards;
