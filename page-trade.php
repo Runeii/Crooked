@@ -3,7 +3,9 @@
 Template name: Trade Page
 */
 include(get_stylesheet_directory() . '/header.php'); ?>
-<main class="container">
+<div class="container-fluid ie11wrap">
+<main class="container-fluid">
+<div class="container">
   <section id="welcome" class="row">
     <h2 class="col-12 lede"><?php echo $layouts['copy'][$world]['lede']; ?></h2>
     <div class="col-12 introduction">
@@ -113,5 +115,7 @@ include(get_stylesheet_directory() . '/header.php'); ?>
       </div>
     </div>
   </section>
+</div>
 </main>
+</div>
 <?php include(get_stylesheet_directory() . '/footer.php'); ?>
