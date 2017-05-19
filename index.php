@@ -1,5 +1,4 @@
 <?php include(get_stylesheet_directory() . '/header.php'); ?>
-<!-- Internet Explorer is bad at calculating Z-indexes of elements -->
 <div class="container-fluid ie11wrap">
 <main class="container-fluid">
 <div class="container">
@@ -13,7 +12,7 @@
     <div class="row justify-content-around">
       <div class="can col-12 col-sm-3">
         <div class="image">
-          <img id="dayglo_1" world="dayglo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" alt="Croked Dayglo Skies can" />
+          <img id="dayglo_1" data-world="dayglo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" alt="Croked Dayglo Skies can" />
         </div>
         <div class="explore-button">
           <a href="#" target="dayglo_1">Explore <br /><span>Dayglo Skies</span></a>
@@ -27,7 +26,7 @@
       </div>
       <div class="can col-12 col-sm-3">
         <div class="image">
-          <img id="midnight_1" world="midnight" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" alt="Croked Midnight Stage can" />
+          <img id="midnight_1" data-world="midnight" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" alt="Croked Midnight Stage can" />
         </div>
         <div class="explore-button">
           <a href="#" target="midnight_1">Explore <br /><span>Midnight Stage</span></a>
@@ -41,7 +40,7 @@
       </div>
       <div class="can col-12 col-sm-3">
         <div class="image">
-          <img id="mother_1" world="mother" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" alt="Croked Mother Moon can" />
+          <img id="mother_1" data-world="mother" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" alt="Croked Mother Moon can" />
         </div>
         <div class="explore-button">
           <a href="#" target="mother_1">Explore <br /><span>Mother Moon</span></a>

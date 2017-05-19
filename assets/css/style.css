@@ -3999,6 +3999,50 @@ html {
   overflow: visible;
   clip: auto; }
 
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  z-index: 2000;
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  width: 200px;
+  background: transparent;
+  border: 1px solid #7cdfa8;
+  overflow: hidden; }
+
+.pace .pace-progress {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  max-width: 200px;
+  position: fixed;
+  z-index: 2000;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #7cdfa8; }
+
+.pace.pace-inactive {
+  display: none; }
+
 /* ==========================================================================
    Base typography, general styles
    ========================================================================== */
@@ -4211,6 +4255,11 @@ header {
   max-width: 100%;
   overflow: hidden; }
 
+.ie11wrap {
+  text-align: center;
+  position: relative;
+  z-index: 102; }
+
 main {
   text-align: center;
   position: relative;
@@ -4280,8 +4329,10 @@ main {
     object-fit: cover;
     padding-bottom: 15px; }
 
-#wholesale .logo, #stockists .logo {
-  margin-top: 2rem; }
+#wholesale, #stockists {
+  margin-bottom: 0; }
+  #wholesale .logo, #stockists .logo {
+    margin-top: 2rem; }
 
 #products .row {
   flex-direction: column;
@@ -4389,7 +4440,7 @@ footer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 9rem;
+  padding-top: 9rem;
   font-family: "Fjalla One";
   letter-spacing: 0.1em;
   z-index: 101; }
@@ -5215,21 +5266,21 @@ body:not(.sunrise) #hill_rear img {
 
 @keyframes person_jump {
   0% {
-    margin-bottom: 0; }
+    transform: translateY(0vw); }
   4% {
-    margin-bottom: 0; }
+    transform: translateY(0vw); }
   5% {
-    margin-bottom: 1vw; }
+    transform: translateY(1vw); }
   6% {
-    margin-bottom: 0; }
+    transform: translateY(0vw); }
   64% {
-    margin-bottom: 0; }
+    transform: translateY(0vw); }
   65% {
-    margin-bottom: 1vw; }
+    transform: translateY(1vw); }
   66% {
-    margin-bottom: 0; }
+    transform: translateY(0vw); }
   100% {
-    margin-bottom: 0; } }
+    transform: translateY(0vw); } }
 
 #mother_sky_shadow_top img {
   z-index: 10;
@@ -5266,7 +5317,7 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 85vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -15s infinite;
+  animation: cloud_opacity 13s linear -96s infinite;
   filter: blur(0px); }
 
 #mother_cloud_two img {
@@ -5276,7 +5327,7 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 60vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -50s infinite;
+  animation: cloud_opacity 13s linear -21s infinite;
   filter: blur(0px); }
 
 #mother_cloud_three img {
@@ -5286,7 +5337,7 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 50vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -67s infinite;
+  animation: cloud_opacity 13s linear -40s infinite;
   filter: blur(0px); }
 
 #mother_cloud_four img {
@@ -5296,7 +5347,7 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 15vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -58s infinite;
+  animation: cloud_opacity 13s linear -22s infinite;
   filter: blur(0px); }
 
 #mother_cloud_five img {
@@ -5306,7 +5357,7 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 5vh;
   opacity: 0.6;
-  animation: cloud_opacity 13s linear -8s infinite;
+  animation: cloud_opacity 13s linear -54s infinite;
   filter: blur(0px); }
 
 @keyframes cloud_opacity {
@@ -5326,7 +5377,7 @@ body:not(.sunrise) #hill_rear img {
     opacity: 0.8;
     filter: blur(0px); } }
 
-@media screen and (orientation: portrait) {
+@media all and (orientation: portrait) {
   .landscape_only {
     display: none !important; }
   header {
@@ -5581,41 +5632,32 @@ body.sunrise:not(.default) header {
 
 body.sunrise .crooked_logo {
   opacity: 1;
-  position: absolute;
-  top: 50%;
-  width: 10vw;
-  left: 50%;
-  transform: rotateY(0deg) translateX(-50%) translateY(-50%) scale(1);
-  animation: logo_loaded 2s ease-in;
-  transform-origin: center center; }
+  animation: logo_loaded 2s ease-in forwards; }
 
 @keyframes logo_loaded {
   0% {
     position: fixed;
     top: 20vh;
     width: 30vw;
-    left: 50vw;
-    margin-left: -15vw;
+    left: 35%;
     transform: rotateY(0deg) translateX(0) translateY(0); }
   30% {
     position: fixed;
     top: 20vh;
     width: 30vw;
-    left: 50vw;
-    margin-left: -15vw;
+    left: 35%;
     transform: rotateY(0deg) translateX(0) translateY(2vh); }
   100% {
     position: fixed;
     top: 20vh;
     width: 10vw;
-    left: 50vw;
-    margin-left: -5vw;
+    left: 45%;
     transform: rotateY(1439deg) translateX(0) translateY(-20vh); } }
 
 body.default {
   background-color: #000000;
   color: white; }
-  body.default main, body.default footer {
+  body.default main, body.default footer, body.default .ie11wrap {
     background-color: #000000; }
   body.default .lede {
     color: #87c7a0; }
@@ -5644,7 +5686,7 @@ body.dayglo {
   color: white; }
   body.dayglo .lede {
     color: white; }
-  body.dayglo main, body.dayglo footer {
+  body.dayglo main, body.dayglo footer, body.dayglo .ie11wrap {
     background-color: #2a77a1; }
   body.dayglo header {
     background-color: #2a77a1; }
@@ -5653,7 +5695,7 @@ body.dayglo {
 
 body.dayglo.sunrise {
   background-color: #7fc8bd; }
-  body.dayglo.sunrise main, body.dayglo.sunrise footer {
+  body.dayglo.sunrise main, body.dayglo.sunrise footer, body.dayglo.sunrise .ie11wrap {
     background-color: #7fc8bd; }
 
 /*========================================================================= */
@@ -5662,7 +5704,7 @@ body.midnight {
   color: white; }
   body.midnight .lede {
     color: #fd6b0d; }
-  body.midnight main, body.midnight footer {
+  body.midnight main, body.midnight footer, body.midnight .ie11wrap {
     background-color: #210c26; }
   body.midnight header {
     background-color: #210c26; }
@@ -5676,7 +5718,7 @@ body.midnight {
 
 body.midnight.sunrise {
   background-color: #8851a0; }
-  body.midnight.sunrise main, body.midnight.sunrise footer {
+  body.midnight.sunrise main, body.midnight.sunrise footer, body.midnight.sunrise .ie11wrap {
     background-color: #8851a0; }
   body.midnight.sunrise header {
     background-color: #87319a;
@@ -5732,6 +5774,8 @@ body.mother {
   color: white; }
   body.mother .lede {
     color: #fec4cb; }
+  body.mother main, body.mother footer, body.mother .ie11wrap {
+    background-color: #8b1b3f; }
   body.mother header {
     background-color: #e73c50;
     position: relative; }

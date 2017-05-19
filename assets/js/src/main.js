@@ -146,7 +146,7 @@ function transitionAnimation(){
 
 //Load elements from World.json and add to a string (so we aren't adding single elements multiple times to the DOM)
 function refreshElements(){
-  var world = $(target).attr("world");
+  var world = $(target).attr("data-world");
   var elements = worldData[world];
   var newHTML = '';
   var name;
