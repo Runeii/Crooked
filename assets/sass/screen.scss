@@ -7,7 +7,8 @@ $header-font: 'Fjalla One';
    Base typography, general styles
    ========================================================================== */
 html {
-  font-size:1.25em
+  font-size:1.25em;
+  max-width:100%;
 }
 body {
   background-color: rgb(46,45,44);
@@ -246,9 +247,10 @@ header {
   overflow:hidden;
 }
 .ie11wrap {
-    text-align: center;
-    position: relative;
-    z-index:102;
+  text-align: center;
+  position: relative;
+  z-index:102;
+  padding:0;
 }
 main {
     text-align: center;
@@ -470,8 +472,9 @@ footer {
   font-family:$header-font;
   letter-spacing: 0.1em;
   z-index: 101;
+  overflow-x:hi dden;
   .row {
-    width:100%;
+    width:100vw;
   }
   .footer-box {
     display: flex;
@@ -479,15 +482,22 @@ footer {
     align-items: center;
     flex-grow: 1;;
     justify-content: space-between;
-    @media screen and (min-width: 992px) {
-      &:first-of-type{
-        text-align: center;
-      }
-    }
     //Special breakpoint for footer
     @media screen and (min-width: 1570px) {
       width:initial;
       justify-content:center;
+    }
+    &:first-of-type{
+      flex-grow: 2;
+      text-align: center;
+      flex-direction: column;
+    }
+    @media screen and (min-width: 576px) {
+      &:first-of-type{
+        flex-direction: row;
+      }
+    }
+    @media screen and (min-width: 1570px) {
       &:first-of-type{
         justify-content: flex-start;
         text-align: left;
@@ -496,16 +506,16 @@ footer {
         justify-content: flex-end;
       }
     }
-    &:first-of-type{
-      flex-grow: 2;
-    }
   }
   a {
     text-decoration: none;
     color:white;
   }
   h3 {
-    margin:0.5rem 0.5rem 0.5rem 0;
+    margin:0.5rem 0 0;
+    @media screen and (min-width: 576px) {
+      margin:0.5rem 0.5rem 0.5rem 0;
+    }
     @media screen and (min-width: 1570px) {
       padding-right:0.5em;
     }
@@ -570,8 +580,12 @@ footer {
       }
     }
   }
-  .email a {
-    content: 'test';
+  .email a::after {
+    content: 'Email us';
+    position:relative;
+    @media screen and (min-width: 576px) {
+      content: 'hello@crookedbeverageco.com';
+    }
   }
 }
 

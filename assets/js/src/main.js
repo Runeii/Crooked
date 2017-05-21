@@ -54,7 +54,6 @@ function recache_elements(){
 function launch_page(){
   $('.world_info').hide();
   $.getJSON( wordpress.template_directory + "/worlds.json", function( data ) {
-    console.log('Worlds loaded');
     worldData = data;
     var get = getParameters(getNavUrl());
     setupParallax(get.world);
@@ -129,7 +128,6 @@ function transitionAnimation(){
       can_parent.css({'width' : can_parent.width(), 'left' : can_parent.offset().left, 'top' : '50%', 'transform' : 'translateY(-50%)', 'position' : 'fixed'});
       //Move can to the right, wait for that animation to complete before proceeding
       html.classList.remove('daytime');
-      console.log('REPEAT');
       html.classList.add('transition-move');
       if($('#the_cans').length){
         image_parent.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd',function(e) {
@@ -175,7 +173,6 @@ function refreshElements(){
       name = world + '_' + key;
     }
     if(Array.isArray(value)) {
-      console.log(value);
       newHTML += `<picture id="`+ name +`">
                     <source
                       media="all and (orientation: landscape)"
@@ -235,6 +232,7 @@ function switchWorld(world, html){
 function setupParallax(world = 'default', callback = function(){}) {
   var layers = worldData.layers[world];
   var record = worldData[world];
+  var haveProcessed = [];
   var prefix;
   if(world == 'default') {
     prefix = '#';
@@ -244,11 +242,14 @@ function setupParallax(world = 'default', callback = function(){}) {
   $.each(layers, function(layer, entries){
     for (var i = 0, len = entries.length; i < len; i++) {
       $(prefix + entries[i] + ' img').addClass('parallax_' + layer);
-      delete record[entries[i]];
+      haveProcessed.push(entries[i]);
     }
   });
+  console.log(haveProcessed);
   $.each(record, function(element){
-    $(prefix + element + ' img').addClass('parallax_five').css({'position' : 'fixed'});
+    if(haveProcessed.indexOf(element) == -1 || haveProcessed.indexOf(element) === false) {
+      $(prefix + element + ' img').addClass('parallax_five').css({'position' : 'fixed'});
+    }
   });
   parallax_one = $('.parallax_one');
   parallax_two = $('.parallax_two');
@@ -311,7 +312,6 @@ function page_sunrise(world){
       recache_elements();
       //We're done, re-enable the transition links
       transitioning = false;
-      console.log('Transitioning toggled');
     }, 5000);
   });
 }

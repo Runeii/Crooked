@@ -3711,7 +3711,8 @@ html {
    Base typography, general styles
    ========================================================================== */
 html {
-  font-size: 1.25em; }
+  font-size: 1.25em;
+  max-width: 100%; }
 
 body {
   background-color: #2e2d2c;
@@ -3943,7 +3944,8 @@ header {
 .ie11wrap {
   text-align: center;
   position: relative;
-  z-index: 102; }
+  z-index: 102;
+  padding: 0; }
 
 main {
   text-align: center;
@@ -4148,9 +4150,10 @@ footer {
   padding-top: 9rem;
   font-family: "Fjalla One";
   letter-spacing: 0.1em;
-  z-index: 101; }
+  z-index: 101;
+  overflow-x: hi dden; }
   footer .row {
-    width: 100%; }
+    width: 100vw; }
   footer .footer-box {
     display: -webkit-box;
     display: flex;
@@ -4163,29 +4166,39 @@ footer {
             flex-grow: 1;
     -webkit-box-pack: justify;
             justify-content: space-between; }
-    @media screen and (min-width: 992px) {
-      footer .footer-box:first-of-type {
-        text-align: center; } }
     @media screen and (min-width: 1570px) {
       footer .footer-box {
         width: initial;
         -webkit-box-pack: center;
-                justify-content: center; }
-        footer .footer-box:first-of-type {
-          -webkit-box-pack: start;
-                  justify-content: flex-start;
-          text-align: left; }
-        footer .footer-box:last-of-type {
-          -webkit-box-pack: end;
-                  justify-content: flex-end; } }
+                justify-content: center; } }
     footer .footer-box:first-of-type {
       -webkit-box-flex: 2;
-              flex-grow: 2; }
+              flex-grow: 2;
+      text-align: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+              flex-direction: column; }
+    @media screen and (min-width: 576px) {
+      footer .footer-box:first-of-type {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+                flex-direction: row; } }
+    @media screen and (min-width: 1570px) {
+      footer .footer-box:first-of-type {
+        -webkit-box-pack: start;
+                justify-content: flex-start;
+        text-align: left; }
+      footer .footer-box:last-of-type {
+        -webkit-box-pack: end;
+                justify-content: flex-end; } }
   footer a {
     text-decoration: none;
     color: white; }
   footer h3 {
-    margin: 0.5rem 0.5rem 0.5rem 0; }
+    margin: 0.5rem 0 0; }
+    @media screen and (min-width: 576px) {
+      footer h3 {
+        margin: 0.5rem 0.5rem 0.5rem 0; } }
     @media screen and (min-width: 1570px) {
       footer h3 {
         padding-right: 0.5em; } }
@@ -4234,8 +4247,12 @@ footer {
     @media screen and (min-width: 1570px) {
       footer i:first-of-type {
         margin-left: 0; } }
-  footer .email a {
-    content: 'test'; }
+  footer .email a::after {
+    content: 'Email us';
+    position: relative; }
+    @media screen and (min-width: 576px) {
+      footer .email a::after {
+        content: 'hello@crookedbeverageco.com'; } }
 
 /* ==========================================================================
   World work
@@ -5267,8 +5284,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 85vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -98s infinite;
-          animation: cloud_opacity 13s linear -98s infinite;
+  -webkit-animation: cloud_opacity 13s linear -34s infinite;
+          animation: cloud_opacity 13s linear -34s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5279,8 +5296,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 60vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -17s infinite;
-          animation: cloud_opacity 13s linear -17s infinite;
+  -webkit-animation: cloud_opacity 13s linear -20s infinite;
+          animation: cloud_opacity 13s linear -20s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5291,8 +5308,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 50vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -66s infinite;
-          animation: cloud_opacity 13s linear -66s infinite;
+  -webkit-animation: cloud_opacity 13s linear -65s infinite;
+          animation: cloud_opacity 13s linear -65s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5303,8 +5320,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 15vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -67s infinite;
-          animation: cloud_opacity 13s linear -67s infinite;
+  -webkit-animation: cloud_opacity 13s linear -9s infinite;
+          animation: cloud_opacity 13s linear -9s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5315,8 +5332,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 5vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -92s infinite;
-          animation: cloud_opacity 13s linear -92s infinite;
+  -webkit-animation: cloud_opacity 13s linear -17s infinite;
+          animation: cloud_opacity 13s linear -17s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
