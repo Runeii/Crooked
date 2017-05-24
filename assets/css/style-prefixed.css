@@ -5284,8 +5284,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 85vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -34s infinite;
-          animation: cloud_opacity 13s linear -34s infinite;
+  -webkit-animation: cloud_opacity 13s linear -100s infinite;
+          animation: cloud_opacity 13s linear -100s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5308,8 +5308,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 50vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -65s infinite;
-          animation: cloud_opacity 13s linear -65s infinite;
+  -webkit-animation: cloud_opacity 13s linear -88s infinite;
+          animation: cloud_opacity 13s linear -88s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5320,8 +5320,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 15vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -9s infinite;
-          animation: cloud_opacity 13s linear -9s infinite;
+  -webkit-animation: cloud_opacity 13s linear -32s infinite;
+          animation: cloud_opacity 13s linear -32s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 
@@ -5332,8 +5332,8 @@ body:not(.sunrise) #hill_rear img {
   width: 120vw;
   bottom: 5vh;
   opacity: 0.6;
-  -webkit-animation: cloud_opacity 13s linear -17s infinite;
-          animation: cloud_opacity 13s linear -17s infinite;
+  -webkit-animation: cloud_opacity 13s linear -21s infinite;
+          animation: cloud_opacity 13s linear -21s infinite;
   -webkit-filter: blur(0px);
           filter: blur(0px); }
 

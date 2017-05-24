@@ -135,25 +135,6 @@ module.exports = function(grunt) {
               message: "Project prepared for production"
           }
       }
-    },
-    gitcommit: {
-      staging: {
-        options: {
-          message : grunt.option('message')
-        }
-      }
-    },
-    gitpush: {
-      staging: {
-        options: {
-          remote : "staging"
-        }
-      },
-      production: {
-        options: {
-          remote : "production"
-        }
-      }
     }
   });
 
@@ -172,6 +153,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-php');
   // Register the default tasks.
   grunt.registerTask('default', ['browserSync', 'watch', 'notify']);
-  grunt.registerTask('staging', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts', 'gitpush:staging']);
+  grunt.registerTask('staging', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts']);
   grunt.registerTask('production', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts', 'notify:successProduction']);
 };
