@@ -84,16 +84,6 @@ module.exports = function(grunt) {
         },
       },
     },
-    php: {
-  		dist: {
-  			options: {
-  				hostname: 'localhost',
-  				port: 8080,
-  				keepalive: false,
-  				open: false
-  			}
-  		}
-	  },
     browserSync: {
       files: {
         src : [
@@ -105,9 +95,8 @@ module.exports = function(grunt) {
       },
       options: {
         watchTask: true,
-        proxy: 'localhost:80',
-        notify: true,
-        open: true
+        server: false,
+        proxy: 'localhost:80'
       }
     },
     notify: {
@@ -149,10 +138,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-browser-sync');
   grunt.loadNpmTasks('grunt-notify');
   grunt.loadNpmTasks('grunt-babel');
-  grunt.loadNpmTasks('grunt-git');
-  grunt.loadNpmTasks('grunt-php');
   // Register the default tasks.
-  grunt.registerTask('default', ['browserSync', 'watch', 'notify']);
+  grunt.registerTask('default', ['browserSync', 'watch']);
   grunt.registerTask('staging', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts']);
   grunt.registerTask('production', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts', 'notify:successProduction']);
 };

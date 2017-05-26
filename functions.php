@@ -42,4 +42,46 @@ function disable_wp_emojicons() {
 }
 add_action( 'init', 'disable_wp_emojicons' );
 
- ?>
+function update_instafeed(){
+  $raw = file_get_contents('https://www.instagram.com/crookedbevco/?__a=1');
+  $data = JSON_decode($raw)->user->media->nodes;
+  $feed = array();
+  for($i = 0; $i <= 8; $i++) {
+    $feed[] = array(
+      'date' => date('l jS', $data[$i]->date),
+      'caption' => clean_caption($data[$i]->caption),
+      'image' => $data[$i]->thumbnail_src
+    );
+  }
+  update_option('instagram_feed', $feed);
+  return $feed;
+}
+function get_instafeed(){
+  $current = get_option('instagram_feed', true);
+  if(is_array($current)) {
+    $current = update_instafeed();
+  }
+  return $current;
+}
+function clean_caption($caption){
+  //Strip frequently used hashtags to declutter social feed
+  $hashtags = array("crookedbevco", "crooked", "crookedalcoholicsoda", "alcoholicsoda", "vegan", "veganfriendly");
+
+  foreach ($hashtags as &$word) {
+      $word = '/\b' . preg_quote($word, '/') . '\b/';
+  }
+  $post_hashtags = preg_replace($hashtags, '', $caption);
+  $string = str_replace(' with @instatoolsapp ・・・ ', ': ', $post_hashtags);
+  $string = str_replace('# ', '', $string);
+  $string = preg_replace('/ #$/', '', $string);
+  return mb_strimwidth($string, 0, 160, "...");
+
+}
+function var_dump_pre($mixed = null) {
+  echo '<pre>';
+  var_dump($mixed);
+  echo '</pre>';
+  return null;
+}
+
+?>

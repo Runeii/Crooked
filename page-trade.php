@@ -37,7 +37,7 @@ include(get_stylesheet_directory() . '/header.php'); ?>
         </tr>
         <tr>
           <td>Sweetness</td>
-          <td>Less sugar than Traditional RTDs</td>
+          <td>Less sugar than traditional RTDs</td>
         </tr>
       </tbody>
     </table>
@@ -60,7 +60,7 @@ include(get_stylesheet_directory() . '/header.php'); ?>
         <div class="col-12 col-sm-8 col-md-7 offset-md-1 trade_info">
           <h4>Dayglo Skies</h4>
           <p>Raspberry & Lime</p>
-          <p>Refreshing, sparkling, alcoholic malted soda made with natural fruit flavours, fruit juice and a lightly hopped finish. Contains MALTED BARLEY and 2% raspberry juice from concentrate. Nothing artificial.</p>
+          <p>Refreshing, sparkling, alcoholic malted soda made with natural fruit flavours, fruit juice and a lightly hopped finish. Contains MALTED BARLEY and 2% raspberry juice from concentrate. All natural, no nasties.</p>
           <p>Alc 4.7% Vol 330ml</p>
           <div class="explore-button">
             <a href="#" target="dayglo_2">Explore <br /><span>Dayglo Stage</span></a>
@@ -80,7 +80,7 @@ include(get_stylesheet_directory() . '/header.php'); ?>
         <div class="col-12 col-sm-7 col-md-7 offset-sm-1 trade_info">
           <h4>Midnight Stage</h4>
           <p>Blood Orange & Passionfruit</p>
-          <p>Refreshing, sparkling, alcoholic malted soda made with natural fruit flavours, fruit juice and a lightly hopped finish. Contains MALTED BARLEY and 4% passionfruit juice from concentrate. Nothing artificial.</p>
+          <p>Refreshing, sparkling, alcoholic malted soda made with natural fruit flavours, fruit juice and a lightly hopped finish. Contains MALTED BARLEY and 4% passionfruit juice from concentrate. All natural, no nasties.</p>
           <p>Alc 4.7% Vol 330ml</p>
           <div class="explore-button">
             <a href="#" target="midnight_2">Explore <br /><span>Midnight Stage</span></a>
@@ -100,7 +100,7 @@ include(get_stylesheet_directory() . '/header.php'); ?>
         <div class="col-12 col-sm-7 col-md-7 offset-md-1 trade_info">
           <h4>Mother Moon</h4>
           <p>Peach & Pomegranate</p>
-          <p>Refreshing, sparkling, alcoholic malted soda made with natural fruit flavours, fruit juice and a lightly hopped finish. Contains MALTED BARLEY and 2% peach juice from concentrate. Nothing artificial.</p>
+          <p>Refreshing, sparkling, alcoholic malted soda made with natural fruit flavours, fruit juice and a lightly hopped finish. Contains MALTED BARLEY and 2% peach juice from concentrate. All natural, no nasties.</p>
           <p>Alc 4.7% Vol 330ml</p>
           <div class="explore-button">
             <a href="#" target="mother_2">Explore <br /><span>Mother Moon</span></a>

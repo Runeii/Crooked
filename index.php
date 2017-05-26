@@ -2,79 +2,51 @@
 <div class="container-fluid ie11wrap">
 <main class="container-fluid">
 <div class="container">
-  <section id="welcome" class="row">
-    <h2 class="col-12 lede"><?php echo $layouts['copy'][$world]['lede']; ?></h2>
+  <section id="welcome_main" class="row">
+    <h2 class="col-12 lede">We seek to take your expectations and turn them on their head</h2>
     <div class="col-12 introduction">
-      <?php echo $layouts['copy'][$world]['introduction']; ?>
+      <p>In the shadow of the Crooked Spire we craft natural alcoholic sodas packed full of fruity flavour and just the right amount of sweetness.</p>
+      <p>Crooked Beverage Co was borne out of a desire to create something truly new and truly different. A whole lot of time, experimentation and passion has gone into these drinks, alongside all natural ingredients!</p>
+      <p>We've partnered with the extremely talented Lisa O'Hara to create the amazing illustrations on each can. Her inimitable style perfectly brings the Crooked worlds to life.</p>
+      <p>Each of the flavours are modelled around a different dimension. Let us take you on a journey through our worlds.</p>
     </div>
   </section>
-  <section id="the_cans" class="row">
-    <div class="row justify-content-around">
-      <div class="can col-12 col-sm-3">
-        <div class="image">
-          <img id="dayglo_1" data-world="dayglo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" alt="Croked Dayglo Skies can" />
-        </div>
-        <div class="explore-button">
-          <a href="#" target="dayglo_1">Explore <br /><span>Dayglo Skies</span></a>
-        </div>
-        <div class="world_info">
-          <p>Now travelling to</p>
-          <h3>Dayglo Skies</h3>
-          <p>Raspberry & Lime</p>
-          <p class="loading">Loading...</p>
-        </div>
-      </div>
-      <div class="can col-12 col-sm-3">
-        <div class="image">
-          <img id="midnight_1" data-world="midnight" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" alt="Croked Midnight Stage can" />
-        </div>
-        <div class="explore-button">
-          <a href="#" target="midnight_1">Explore <br /><span>Midnight Stage</span></a>
-        </div>
-        <div class="world_info">
-          <p>Now travelling to</p>
-          <h3>Midnight Stage</h3>
-          <p>Blood Orange & Passionfruit</p>
-          <p class="loading">Loading...</p>
-        </div>
-      </div>
-      <div class="can col-12 col-sm-3">
-        <div class="image">
-          <img id="mother_1" data-world="mother" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" alt="Croked Mother Moon can" />
-        </div>
-        <div class="explore-button">
-          <a href="#" target="mother_1">Explore <br /><span>Mother Moon</span></a>
-        </div>
-        <div class="world_info">
-          <p>Now travelling to</p>
-          <h3>Mother Moon</h3>
-          <p>Peach & Pomegranate</p>
-          <p class="loading">Loading...</p>
-        </div>
-      </div>
+  <div id="cans_main" class="can_container">
+    <div id="dayglo_slot" class="can_tooltip">
+      <a href="#" id="dayglo_eye" class="can_eye" data-world="dayglo"></a>
+      <img id="dayglo_can" class="can_image" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" alt="Crooked Dayglo Skies can" />
     </div>
-  </section>
+    <div id="midnight_slot" class="can_tooltip">
+      <a href="#" id="midnight_eye" class="can_eye" data-world="midnight"></a>
+      <img id="midnight_can" class="can_image"  src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" alt="Crooked Midnight Stage can" />
+    </div>
+    <div id="mother_slot" class="can_tooltip">
+      <a href="#" id="mother_eye" class="can_eye" data-world="mother"></a>
+      <img id="mother_can" class="can_image" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" alt="Crooked Mother Moon can" />
+    </div>
+  </div>
   <section id="social" class="row">
     <h3 class="col-12">Join us</h3>
     <div class="col-12 social-icons">
+      <a href="http://www.instagram.com/crookedbevco" title="Crooked Beverage Co on Instagram">
+        <i class="fa fa-instagram"></i>
+      </a>
       <a href="http://www.facebook.com/crookedbevco" title="Crooked Beverage Co on Facebook">
         <i class="fa fa-facebook"></i>
       </a>
       <a href="http://www.twitter.com/crookedbevco" title="Crooked Beverage Co on Twitter">
         <i class="fa fa-twitter"></i>
       </a>
-      <a href="http://www.instagram.com/crookedbevco" title="Crooked Beverage Co on Instagram">
-        <i class="fa fa-instagram"></i>
-      </a>
     </div>
     <?php
-      if ( have_posts() ) { while ( have_posts() ) { the_post(); ?>
+    $feed = get_instafeed();
+    foreach($feed as $post) { ?>
         <div class="col-12 col-sm-6 col-lg-4 post">
-          <h4><?php the_title(); ?></h4>
-          <p class="font_small"><?php echo get_excerpt(); ?></p>
-          <?php the_post_thumbnail('image_feed'); ?>
+          <img src="<?php echo $post['image']; ?>" alt="Instagram post by @CrookedBevCo" />
+          <p class="font_small"><?php echo $post['caption']; ?></p>
         </div>
-    <?php  } }
+    <?php
+    }
     ?>
   </section>
   <section id="contact" class="row">
