@@ -35,7 +35,8 @@ module.exports = function(grunt) {
       options: {
         map: false,
         processors: [
-          require('autoprefixer')({browsers: ['last 1 version', '> 1%', 'ie 8']})
+          require('autoprefixer')({browsers: ['last 1 version', '> 1%', 'ie 8']}),
+          require('postcss-object-fit-images')
         ]
       },
       dist: {

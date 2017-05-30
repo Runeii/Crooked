@@ -22,7 +22,7 @@
     <i id="mobile-menu" class="fa fa-bars"></i>
     <div class="container">
       <a href="<?php echo get_home_url(); ?>/#welcome">About</a>
-      <a href="<?php echo get_home_url(); ?>/#the_cans">Product</a>
+      <a href="<?php echo get_home_url(); ?>/#products">Products</a>
       <a href="<?php echo get_home_url(); ?>/#social">Social</a>
       <a href="<?php echo get_home_url(); ?>/#contact">Contact</a>
       <a href="<?php echo get_home_url(); ?>/#stockists">Buy</a>

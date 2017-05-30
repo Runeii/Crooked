@@ -105,10 +105,10 @@ $("#nav a").click(function () {
 
 /*
 Transitioning between worlds
-*/
-$(".can_tooltip").on('mouseover mouseout', function () {
-  $(this).siblings().toggleClass('hover');
+$( ".can_tooltip" ).on('mouseover mouseout', function(){
+    $(this).siblings().toggleClass('hover');
 });
+*/
 
 function click_eye() {
   var eyes = document.querySelectorAll(".can_tooltip");
@@ -139,9 +139,9 @@ function switch_world(e) {
     //Weird hack to force reflow and avoid transition
     $(eye).offset();
     eye.classList.remove('notransition');
-    eye.classList.add('target');
     $(html).addClass('transition-stage-1');
-    $(eye).one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function (e) {
+    eye.classList.add('target');
+    $(eye).one('animationend webkitAnimationEnd oAnimationEnd oanimationend MSAnimationEnd', function (e) {
       $('html,body').scrollTop(0);
       $(window).scrollTop(0);
       cleanBodyClasses(target);
@@ -199,6 +199,20 @@ function setupParallax(world) {
 }
 
 //Tools
+if (!Math.sign) {
+  Math.sign = function (x) {
+    // If x is NaN, the result is NaN.
+    // If x is -0, the result is -0.
+    // If x is +0, the result is +0.
+    // If x is negative and not -0, the result is -1.
+    // If x is positive and not +0, the result is +1.
+    x = +x; // convert to a number
+    if (x === 0 || isNaN(x)) {
+      return Number(x);
+    }
+    return x > 0 ? 1 : -1;
+  };
+}
 function getNavUrl() {
   //Get Url
   return window.location.search.replace("?", "");
@@ -239,3 +253,26 @@ $('a[href*="#"]').not('[href="#"]').click(function (event) {
     }
   }
 });
+
+///////////////////////////////
+/* Browser specifix fixes */
+////////////////////////////////
+
+//Improve scrolling in IE11
+smooth_scrolling = false;
+if (navigator.userAgent.match(/Trident\/7\./)) {
+  $('body').on("mousewheel", function (event) {
+    event.preventDefault();
+    if (smooth_scrolling === false) {
+      smooth_scrolling = true;
+      var wd = event.originalEvent.wheelDelta;
+      var csp = window.pageYOffset;
+      console.log(csp - wd);
+      $('html, body').animate({
+        scrollTop: csp - wd * 2
+      }, Math.abs(wd) * 2, function () {
+        smooth_scrolling = false;
+      });
+    }
+  });
+}

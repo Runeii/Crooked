@@ -20,6 +20,7 @@ body {
   margin:0;
   max-width:100%;
 }
+
 p {
   margin-bottom: 1.3em;
 }
@@ -181,9 +182,6 @@ nav {
     @media screen and (min-width: 768px) {
       font-size:1.25rem;
       width: calc(45vw / 3);
-    }
-    @media screen and (min-width: 992px) {
-      font-size:1.563rem;
     }
   }
   .fa {
@@ -354,6 +352,7 @@ body:not(.default) {
     }
   }
 }
+
 #wholesale, #stockists {
   .logo {
     margin-top:2rem;
@@ -1011,20 +1010,24 @@ body.midnight {
 @keyframes background_grow {
   0% {
     border-radius:80px;
+    background-color:yellow;
     transform: perspective(100px) translate3d(0,0,0);
   }
   60% {
     border-radius:80px;
+    background-color:pink;
     transform: perspective(100px) translate3d(0,0,-50px);
     z-index:300;
   }
   99% {
     border-radius:80px;
+    background-color:blue;
     transform: perspective(100px) translate3d(0,0,99px);
     z-index:300;
   }
   100% {
     border-radius:0px;
+    background-color:black;
     transform: perspective(100px) translate3d(0,0,99px);
     z-index:300;
   }
@@ -1167,15 +1170,18 @@ $sun_colour_dayglo: #e84079;
   z-index: 34;
   position: absolute;
   top: 12vh;
-  left: 50%;
+  left: 0;
+  width:100%;
   text-align: center;
-  max-width: 992px;
-  margin-left: -25%;
-}
-.overlay img {
-  display: block;
-  position: relative;
-  margin: 0 auto 1em;
+  img {
+    margin: 0 auto 1em;
+    text-align: center;
+    display: block;
+    position: relative;
+  }
+  h2 {
+    margin-top:0.5em;
+  }
 }
 /* ==========================================================================
   Midnight Stage elements
@@ -2139,5 +2145,28 @@ body.mother.sunrise {
   }
   100% {
     transform:translateY(0vw);
+  }
+}
+
+///Browser specific fixes
+
+@supports not (object-fit:cover){
+  #social .post {
+    display: table;
+  }
+}
+@media all and (-ms-high-contrast:none) {
+  #social .post {
+    display: table;
+  }
+  #contact input:not([type=submit]), #contact textarea {
+    overflow:hidden;
+  }
+}
+
+@media screen and (-ms-high-contrast:none) and (min-width: 1570px){
+  footer .footer-box {
+    flex: 1 1 22%;
+    min-width:0%;
   }
 }

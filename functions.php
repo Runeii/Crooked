@@ -58,7 +58,7 @@ function update_instafeed(){
 }
 function get_instafeed(){
   $current = get_option('instagram_feed', true);
-  if(is_array($current)) {
+  if(!is_array($current)) {
     $current = update_instafeed();
   }
   return $current;
