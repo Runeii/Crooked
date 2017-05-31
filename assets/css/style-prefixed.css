@@ -3908,7 +3908,7 @@ nav {
       opacity: 1;
       -webkit-animation: none;
               animation: none;
-      z-index: 101;
+      z-index: 34;
       position: absolute;
       height: 30vh;
       top: calc(3.2rem * 1.45);
@@ -4282,7 +4282,8 @@ header {
   position: relative;
   max-width: 100%; }
   header img {
-    position: absolute;
+    position: absolute; }
+  header .parallax {
     will-change: transform; }
 
 .sprite {
@@ -4307,7 +4308,7 @@ header {
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
   width: 30vw;
-  z-index: 14;
+  z-index: 15;
   border-radius: 50%;
   box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 90px #b9b9b9;
   background-color: #b9b9b9;
@@ -4536,26 +4537,34 @@ body:not(.sunrise) .terrain img {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
           flex-direction: row;
-  justify-content: space-around;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: end;
           align-items: flex-end;
-  z-index: 35; }
+  z-index: 35;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0); }
   @media screen and (min-width: 576px) {
     .can_container {
-      width: 60%;
-      left: 20%; } }
+      width: 80vw;
+      left: 10vw; } }
   .can_container img {
-    width: 30vw;
     position: relative;
     pointer-events: none;
     cursor: default; }
-    @media screen and (min-width: 576px) {
-      .can_container img {
-        width: 10vw; } }
 
 .can_tooltip {
   opacity: 1;
-  transition: opacity 0.3s; }
+  transition: opacity 0.3s;
+  width: 30vw; }
+  @media screen and (min-width: 576px) {
+    .can_tooltip {
+      width: 20vw; } }
+  @media screen and (min-width: 992px) {
+    .can_tooltip {
+      width: 15vw; } }
+  .can_tooltip:nth-child(1) {
+    padding-left: 0; }
   .can_tooltip a {
     position: absolute;
     content: '';
@@ -4567,7 +4576,8 @@ body:not(.sunrise) .terrain img {
     display: block;
     -webkit-animation: eye_float 30s infinite ease-in-out;
             animation: eye_float 30s infinite ease-in-out;
-    transition: top 1s; }
+    transition: top 1s;
+    z-index: 36; }
     .can_tooltip a::after {
       content: '';
       position: absolute;
@@ -4677,7 +4687,10 @@ body.midnight #midnight_slot {
     transition: opacity 0.3s linear 0.6s; }
 
 .transition-stage-1 {
-  overflow: hidden; }
+  overflow-x: hidden; }
+  .transition-stage-1 body {
+    overflow-x: hidden;
+    position: relative; }
   .transition-stage-1 header img, .transition-stage-1 nav, .transition-stage-1 #welcome {
     opacity: 0;
     -webkit-animation-delay: none !important;
@@ -4822,12 +4835,7 @@ body.midnight #midnight_slot {
   left: 35%;
   bottom: 40vh;
   width: 30%;
-  z-index: 14;
-  border-radius: 50%;
-  box-shadow: 0 0 40px 6px #e84079, 0 0 150px 90px #e84079;
-  background-color: #e84079;
-  -webkit-animation: sun_shimmer_dayglo 30s infinite;
-          animation: sun_shimmer_dayglo 30s infinite; }
+  z-index: 15; }
 
 .float img {
   -webkit-animation: float_bob 3s infinite ease-in-out;
@@ -4857,6 +4865,13 @@ body.midnight #midnight_slot {
   -webkit-animation-duration: 5s;
           animation-duration: 5s; }
 
+.dayglo #moon img {
+  border-radius: 50%;
+  box-shadow: 0 0 40px 6px #e84079, 0 0 150px 90px #e84079;
+  background-color: #e84079;
+  -webkit-animation: sun_shimmer_dayglo 30s infinite;
+          animation: sun_shimmer_dayglo 30s infinite; }
+
 .dayglo #skyshadow_one img {
   top: 5vh; }
 
@@ -4866,7 +4881,7 @@ body.midnight #midnight_slot {
 
 .dayglo #cloud_three img {
   right: 0;
-  left: initial;
+  left: auto;
   top: 45%; }
 
 .dayglo #cloud_seven img {
@@ -4875,18 +4890,21 @@ body.midnight #midnight_slot {
 
 .dayglo #cloud_four img {
   right: -40px;
-  left: initial;
+  left: auto;
   -webkit-animation-delay: -1.5s;
           animation-delay: -1.5s;
   top: 10%; }
 
 .dayglo #cloud_one img, .dayglo #cloud_six img {
   left: 0;
-  right: initial; }
+  right: auto; }
 
 .dayglo #cloud_five img {
   left: -60px;
-  right: initial; }
+  right: auto; }
+
+.dayglo #overlays {
+  z-index: 14; }
 
 @-webkit-keyframes float_bob {
   from {
@@ -4984,48 +5002,51 @@ body.midnight #midnight_slot {
 
 .midnight #hill_two img {
   width: 100vw;
-  bottom: 25vw; }
+  bottom: 23vw; }
 
 .midnight #cloud_one img {
   left: 0px;
-  right: initial; }
+  right: auto; }
 
 .midnight #cloud_five img {
   left: -60px;
-  right: initial; }
+  right: auto; }
 
 .midnight #cloud_seven img {
   left: 0;
   top: 80vh;
-  right: initial; }
+  right: auto; }
 
 .midnight #cloud_two img {
-  left: initial;
+  left: auto;
   right: 0; }
 
 .midnight #cloud_three img {
-  left: initial;
+  left: auto;
   right: 0; }
 
 .midnight #cloud_four img {
-  left: initial;
+  left: auto;
   top: 75vh;
   right: 0; }
 
 .midnight #cloud_six img {
-  left: initial;
+  left: auto;
   top: 90vh;
   right: 0; }
 
 .midnight #cloud_eight img {
-  left: initial;
+  left: auto;
   top: 20vh;
   right: 0; }
+
+.midnight #overlays {
+  z-index: 14; }
 
 /* ==========================================================================
   Mother Moon
    ========================================================================= */
-.mother .shadow {
+.mother .shadow img {
   width: 100%; }
 
 .mother #hill_one img {
@@ -5045,13 +5066,27 @@ body.midnight #midnight_slot {
 
 .mother #moon img {
   left: 60vw;
-  bottom: 50vh; }
+  bottom: 40vh; }
 
 .mother #mother img {
   width: 50vw;
   left: 40vw;
   bottom: 20vw;
   z-index: 70; }
+
+.mother #skyshadow_one img {
+  left: auto;
+  right: 0; }
+
+.mother #skyshadow_four img {
+  width: 100%; }
+
+.mother #skyshadow_five img {
+  width: 100%;
+  top: 0; }
+
+.mother #overlays {
+  z-index: 31; }
 
 /* ==========================================================================
   Portrait variants
@@ -5062,7 +5097,7 @@ body.midnight #midnight_slot {
     border-top: none !important; }
   #overlays {
     left: 0;
-    top: initial !important;
+    top: auto !important;
     bottom: calc(-20vh - 0em);
     height: 20vh;
     padding: 0 2em 0;
@@ -5101,7 +5136,7 @@ body.midnight #midnight_slot {
   .mother #mother img {
     width: 80vw;
     right: 0;
-    left: initial;
+    left: auto;
     bottom: 60vw; }
   .midnight header {
     border-bottom: 20vh solid #87319a; }
@@ -5380,7 +5415,6 @@ body.mother {
     position: relative; }
     body.mother header::after {
       content: '';
-      background-image: url("../img/worlds/mother/psuedo-divider.png");
       background-size: 100% 100%;
       background-position: center center;
       position: absolute;
@@ -5469,7 +5503,9 @@ body.mother {
   #social .post {
     display: table; }
   #contact input:not([type=submit]), #contact textarea {
-    overflow: hidden; } }
+    overflow: hidden; }
+  #header > picture, #header > div {
+    border-top: inherit; } }
 
 @media screen and (-ms-high-contrast: none) and (min-width: 1570px) {
   footer .footer-box {
