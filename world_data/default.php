@@ -2,23 +2,28 @@
 $elements = array(
   'hill_one' => array(
     'speed' => 0,
-    'class' => 'terrain'
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'hill_two' => array(
     'speed' => 6,
-    'class' => 'terrain'
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'hill_three' => array(
     'speed' => 5,
-    'class' => 'terrain'
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'hill_four' => array(
     'speed' => 4,
-    'class' => 'terrain'
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'hill_five' => array(
     'speed' => 3,
-    'class' => 'terrain'
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'hill_six' => array(
     'speed' => 2,
@@ -26,7 +31,8 @@ $elements = array(
   ),
   'sun' => array(
     'speed' => 1,
-    'class' => ''
+    'class' => '',
+    'mobile' => true
   ),
   'skyshadow_one' => array(
     'speed' => -1,
@@ -75,6 +81,9 @@ $elements = array(
   'cloud_nine' => array(
     'speed' => -1,
     'class' => 'cloud'
+  ),
+  'mobile_only' => array(
+    'sky'
   )
 );
 foreach($elements as $name => $options) {

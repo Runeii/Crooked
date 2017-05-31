@@ -2,31 +2,38 @@
 $elements = array(
   'hill_one' => array(
     'speed' => 0,
-    'class' => 'terrain'
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'hill_two' => array(
     'speed' => 6,
-    'class' => 'terrain'
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'hill_three' => array(
     'speed' => 5,
-    'class' => 'terrain'
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'hill_four' => array(
     'speed' => 4,
-    'class' => 'terrain'
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'hill_five' => array(
     'speed' => 3,
-    'class' => 'terrain'
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'hill_six' => array(
     'speed' => 2,
-    'class' => 'terrain'
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'moon' => array(
     'speed' => 2,
-    'class' => ''
+    'class' => '',
+    'mobile' => true
   ),
   'heads' => array(
     'speed' => 0,
@@ -75,6 +82,9 @@ $elements = array(
   'cloud_eight' => array(
     'speed' => 2,
     'class' => 'cloud'
+  ),
+  'mobile_only' => array(
+    'sky'
   )
 );
 $overlays = array(

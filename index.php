@@ -6,21 +6,21 @@
     <h2 class="col-12 lede">We seek to take your expectations and turn them on their head</h2>
     <div class="col-12 introduction">
       <p>In the shadow of the Crooked Spire we craft natural alcoholic sodas packed full of fruity flavour and just the right amount of sweetness.</p>
-      <p>Crooked Beverage Co was borne out of a desire to create something truly new and truly different. A whole lot of time, experimentation and passion has gone into these drinks, alongside all natural ingredients!</p>
+      <p>Crooked Beverage Co was borne out of a desire to create something truly new and truly different. A whole lot of time, experimentation and passion have gone into these drinks, alongside all natural ingredients!</p>
       <p>We've partnered with the extremely talented Lisa O'Hara to create the amazing illustrations on each can. Her inimitable style perfectly brings the Crooked worlds to life.</p>
-      <p>Each of the flavours are modelled around a different dimension. Let us take you on a journey through our worlds.</p>
+      <p>Each of the flavours is modelled around a different dimension. Let us take you on a journey through our worlds.</p>
     </div>
   </section>
-  <div id="cans_main" class="can_container">
-    <div id="dayglo_slot" class="can_tooltip">
+  <div id="cans_main" class="row">
+    <div id="dayglo_slot" class="can_tooltip col-6 col-md-4 col-lg-3">
       <a href="#" id="dayglo_eye" class="can_eye" data-world="dayglo"></a>
       <img id="dayglo_can" class="can_image" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" alt="Crooked Dayglo Skies can" />
     </div>
-    <div id="midnight_slot" class="can_tooltip">
+    <div id="midnight_slot" class="can_tooltip col-6 col-md-4 col-lg-3">
       <a href="#" id="midnight_eye" class="can_eye" data-world="midnight"></a>
       <img id="midnight_can" class="can_image"  src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" alt="Crooked Midnight Stage can" />
     </div>
-    <div id="mother_slot" class="can_tooltip">
+    <div id="mother_slot" class="can_tooltip col-6 col-md-4 col-lg-3">
       <a href="#" id="mother_eye" class="can_eye" data-world="mother"></a>
       <img id="mother_can" class="can_image" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" alt="Crooked Mother Moon can" />
     </div>

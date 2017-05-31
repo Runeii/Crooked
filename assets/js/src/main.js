@@ -53,6 +53,7 @@ function launch_page(){
     var get = getParameters(getNavUrl());
     setupParallax(get.world);
     setup_stalks();
+    layout_header();
     click_eye();
     animate_stage();
   });
@@ -102,15 +103,18 @@ $( "#nav a" ).click(function() {
 
 /*
 Transitioning between worlds
+*/
 $( ".can_tooltip" ).on('mouseover mouseout', function(){
     $(this).siblings().toggleClass('hover');
 });
-*/
 
 function click_eye(){
   var eyes = document.querySelectorAll( ".can_tooltip");
   var handler = function(eye){
     eye.addEventListener("click", function(e){
+      switch_world(e);
+    });
+    eye.addEventListener("tap", function(e){
       switch_world(e);
     });
   };
@@ -145,6 +149,9 @@ function switch_world(e) {
       //Callback in this next function progresses animation
       replaceElements(target);
       eye.classList.remove('target');
+      eye.style.top = "";
+      eye.style.left = "";
+      eye.style.position = 'absolute';
     });
   }
   e.preventDefault();
@@ -156,16 +163,27 @@ function replaceElements(target){
   header.innerHTML = '';
   $("#header").load(wordpress.template_directory + '/world_data/selector.php', {world: target, directory: wordpress.template_directory}, function(){
     //We need to wait for loading to be complete
+    layout_header();
     $(html).addClass('transition-stage-2');
     $('#hill_one').one('animationend webkitAnimationEnd oAnimationEnd oanimationend MSAnimationEnd',function(e) {
-      click_eye();
       setup_stalks();
       $(html).removeClass('transition-stage-pre');
       $(html).removeClass('transition-stage-1');
       $(html).removeClass('transition-stage-2');
       $(html).removeClass('transition-stage-2');
+      transitioning = false;
     });
   });
+}
+
+function layout_header(){
+  var overlay = document.getElementById('overlays');
+  var welcome = document.getElementById('welcome');
+  if(overlay !== null) {
+    header.style.height = header.clientHeight + welcome.clientHeight + 'px';
+    header.style.borderTop = welcome.clientHeight + 'px solid transparent';
+    overlay.style.top = -1 * ((overlay.clientHeight / 2) - (1.5 * nav.clientHeight)) + 'px';
+  }
 }
 
 function cleanBodyClasses(target){
@@ -181,13 +199,20 @@ function setupParallax(world){
     if (!ticking) {
       ticking = true;
       window.requestAnimationFrame(function() {
-        this_scroll = $(window).scrollTop();
-        var layers = document.getElementsByClassName("parallax");
-        var layer, speed, yPos;
-        for (var i = 0; i < layers.length; i++) {
-          layer = layers[i];
-          speed = layer.getAttribute('data-speed');
-          layer.setAttribute('style', 'transform: translate3d(0px, ' + (this_scroll * (2 / speed)) + 'px, 0px)');
+        console.log(world);
+        if(world === 'default') {
+          this_scroll = $(window).scrollTop();
+        } else {
+          this_scroll = $(window).scrollTop() - (windowHeight / 2);
+        }
+        if(this_scroll > 0) {
+          var layers = document.getElementsByClassName("parallax");
+          var layer, speed, yPos;
+          for (var i = 0; i < layers.length; i++) {
+            layer = layers[i];
+            speed = layer.getAttribute('data-speed');
+            layer.style.transform = 'translate3d(0px, ' + (this_scroll * (2 / speed)) + 'px, 0px)';
+          }
         }
         ticking = false;
       });

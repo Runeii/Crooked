@@ -2,23 +2,18 @@
 $elements = array(
   'hill_one' => array(
     'speed' => 0,
-    'class' => 'terrain'
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'hill_two' => array(
-    'speed' => 3,
-    'class' => 'terrain'
-  ),
-  'hill_three' => array(
-    'speed' => 4,
-    'class' => 'terrain'
+    'speed' => 5,
+    'class' => 'terrain',
+    'mobile' => true
   ),
   'moon' => array(
-    'speed' => 2,
-    'class' => ''
-  ),
-  'creature' => array(
-    'speed' => 0,
-    'class' => 'creature'
+    'speed' => 7,
+    'class' => '',
+    'mobile' => true
   ),
   'skyshadow_one' => array(
     'speed' => 2,
@@ -48,10 +43,6 @@ $elements = array(
     'speed' => 2,
     'class' => 'cloud'
   ),
-  'cloud_five' => array(
-    'speed' => 2,
-    'class' => 'cloud'
-  ),
   'cloud_six' => array(
     'speed' => 2,
     'class' => 'cloud'
@@ -63,20 +54,25 @@ $elements = array(
   'cloud_eight' => array(
     'speed' => 2,
     'class' => 'cloud'
+  ),
+  'mobile_only' => array(
+    'sky'
   )
 );
 $overlays = array(
   'logo' => array(
     'speed' => 0,
-    'class' => 'overlay'
+    'class' => 'overlay',
+    'mobile' => true
   ),
   'flavour' => array(
     'speed' => 0,
-    'class' => 'overlay'
+    'class' => 'overlay',
+    'mobile' => true
   ),
   'copy' => array(
     'lede' => "On the midnight stage passions are revealed;<br />blood races and the drum beat pounds.",
-    'introduction' => "<p>Moving as one; driven by the rhythm blood flows faster and passions are ignited; hypnotic beats and ever changing shapes.</p><p>There’s nothing like the midnight stage, a transcendent experience; heightened by the sweet but tart tastes of blood orange and passionfruit.</p>"
+    'introduction' => "<p>Moving as one, driven by the rhythm, blood flows faster and passions are ignited; hypnotic beats and ever changing shapes.</p><p>There’s nothing like the midnight stage, a transcendent experience; heightened by the sweet but tart tastes of blood orange and passionfruit.</p>"
   )
 );
 

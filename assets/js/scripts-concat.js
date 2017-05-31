@@ -242,6 +242,8 @@
 		});
 	};
 })(jQuery);
+/*! tocca v2.0.0 || Gianluca Guarini */
+!function(a,b){"use strict";if("function"!=typeof a.createEvent)return!1;var c,d,e,f,g,h,i,j,k,l=function(a){var b=a.toLowerCase(),c="MS"+a;return navigator.msPointerEnabled?c:!!window.PointerEvent&&b},m={useJquery:!b.IGNORE_JQUERY&&"undefined"!=typeof jQuery,swipeThreshold:b.SWIPE_THRESHOLD||100,tapThreshold:b.TAP_THRESHOLD||150,dbltapThreshold:b.DBL_TAP_THRESHOLD||200,longtapThreshold:b.LONG_TAP_THRESHOLD||1e3,tapPrecision:b.TAP_PRECISION/2||30,justTouchEvents:b.JUST_ON_TOUCH_DEVICES},n=!1,o={touchstart:l("PointerDown")||"touchstart",touchend:l("PointerUp")||"touchend",touchmove:l("PointerMove")||"touchmove"},p=function(a){return!a.pointerId||"undefined"==typeof c||a.pointerId===c},q=function(a,b,c){for(var d=b.split(" "),e=d.length;e--;)a.addEventListener(d[e],c,!1)},r=function(a){return a.targetTouches?a.targetTouches[0]:a},s=function(){return(new Date).getTime()},t=function(b,c,f,g){var h=a.createEvent("Event");if(h.originalEvent=f,g=g||{},g.x=d,g.y=e,g.distance=g.distance,m.useJquery&&(h=jQuery.Event(c,{originalEvent:f}),jQuery(b).trigger(h,g)),h.initEvent){for(var i in g)h[i]=g[i];h.initEvent(c,!0,!0),b.dispatchEvent(h)}for(;b;)b["on"+c]&&b["on"+c](h),b=b.parentNode},u=function(a){if(p(a)&&(c=a.pointerId,"mousedown"!==a.type&&(n=!0),"mousedown"!==a.type||!n)){var b=r(a);f=d=b.pageX,g=e=b.pageY,k=setTimeout(function(){t(a.target,"longtap",a),i=a.target},m.longtapThreshold),h=s(),x++}},v=function(a){if(p(a)){if(c=void 0,"mouseup"===a.type&&n)return void(n=!1);var b=[],l=s(),o=g-e,q=f-d;if(clearTimeout(j),clearTimeout(k),q<=-m.swipeThreshold&&b.push("swiperight"),q>=m.swipeThreshold&&b.push("swipeleft"),o<=-m.swipeThreshold&&b.push("swipedown"),o>=m.swipeThreshold&&b.push("swipeup"),b.length){for(var r=0;r<b.length;r++){var u=b[r];t(a.target,u,a,{distance:{x:Math.abs(q),y:Math.abs(o)}})}x=0}else f>=d-m.tapPrecision&&f<=d+m.tapPrecision&&g>=e-m.tapPrecision&&g<=e+m.tapPrecision&&h+m.tapThreshold-l>=0&&(t(a.target,x>=2&&i===a.target?"dbltap":"tap",a),i=a.target),j=setTimeout(function(){x=0},m.dbltapThreshold)}},w=function(a){if(p(a)&&("mousemove"!==a.type||!n)){var b=r(a);d=b.pageX,e=b.pageY}},x=0;q(a,o.touchstart+(m.justTouchEvents?"":" mousedown"),u),q(a,o.touchend+(m.justTouchEvents?"":" mouseup"),v),q(a,o.touchmove+(m.justTouchEvents?"":" mousemove"),w),b.tocca=function(a){for(var b in a)m[b]=a[b];return m}}(document,window);
 ;"use strict";
 
 //Test features
@@ -299,6 +301,7 @@ function launch_page() {
     var get = getParameters(getNavUrl());
     setupParallax(get.world);
     setup_stalks();
+    layout_header();
     click_eye();
     animate_stage();
   });
@@ -349,15 +352,18 @@ $("#nav a").click(function () {
 
 /*
 Transitioning between worlds
-$( ".can_tooltip" ).on('mouseover mouseout', function(){
-    $(this).siblings().toggleClass('hover');
-});
 */
+$(".can_tooltip").on('mouseover mouseout', function () {
+  $(this).siblings().toggleClass('hover');
+});
 
 function click_eye() {
   var eyes = document.querySelectorAll(".can_tooltip");
   var handler = function handler(eye) {
     eye.addEventListener("click", function (e) {
+      switch_world(e);
+    });
+    eye.addEventListener("tap", function (e) {
       switch_world(e);
     });
   };
@@ -392,6 +398,9 @@ function switch_world(e) {
       //Callback in this next function progresses animation
       replaceElements(target);
       eye.classList.remove('target');
+      eye.style.top = "";
+      eye.style.left = "";
+      eye.style.position = 'absolute';
     });
   }
   e.preventDefault();
@@ -403,16 +412,27 @@ function replaceElements(target) {
   header.innerHTML = '';
   $("#header").load(wordpress.template_directory + '/world_data/selector.php', { world: target, directory: wordpress.template_directory }, function () {
     //We need to wait for loading to be complete
+    layout_header();
     $(html).addClass('transition-stage-2');
     $('#hill_one').one('animationend webkitAnimationEnd oAnimationEnd oanimationend MSAnimationEnd', function (e) {
-      click_eye();
       setup_stalks();
       $(html).removeClass('transition-stage-pre');
       $(html).removeClass('transition-stage-1');
       $(html).removeClass('transition-stage-2');
       $(html).removeClass('transition-stage-2');
+      transitioning = false;
     });
   });
+}
+
+function layout_header() {
+  var overlay = document.getElementById('overlays');
+  var welcome = document.getElementById('welcome');
+  if (overlay !== null) {
+    header.style.height = header.clientHeight + welcome.clientHeight + 'px';
+    header.style.borderTop = welcome.clientHeight + 'px solid transparent';
+    overlay.style.top = -1 * (overlay.clientHeight / 2 - 1.5 * nav.clientHeight) + 'px';
+  }
 }
 
 function cleanBodyClasses(target) {
@@ -428,13 +448,20 @@ function setupParallax(world) {
     if (!ticking) {
       ticking = true;
       window.requestAnimationFrame(function () {
-        this_scroll = $(window).scrollTop();
-        var layers = document.getElementsByClassName("parallax");
-        var layer, speed, yPos;
-        for (var i = 0; i < layers.length; i++) {
-          layer = layers[i];
-          speed = layer.getAttribute('data-speed');
-          layer.setAttribute('style', 'transform: translate3d(0px, ' + this_scroll * (2 / speed) + 'px, 0px)');
+        console.log(world);
+        if (world === 'default') {
+          this_scroll = $(window).scrollTop();
+        } else {
+          this_scroll = $(window).scrollTop() - windowHeight / 2;
+        }
+        if (this_scroll > 0) {
+          var layers = document.getElementsByClassName("parallax");
+          var layer, speed, yPos;
+          for (var i = 0; i < layers.length; i++) {
+            layer = layers[i];
+            speed = layer.getAttribute('data-speed');
+            layer.style.transform = 'translate3d(0px, ' + this_scroll * (2 / speed) + 'px, 0px)';
+          }
         }
         ticking = false;
       });
