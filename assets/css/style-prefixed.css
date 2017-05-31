@@ -3782,6 +3782,15 @@ small, .font_small {
 img {
   max-width: 100%;
   height: auto; }
+  img[data-original] {
+    opacity: 0;
+    -webkit-transform: translateY(10%);
+            transform: translateY(10%);
+    transition: all 1s; }
+    img[data-original].loaded {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+              transform: translateY(0); }
 
 table {
   text-align: left;

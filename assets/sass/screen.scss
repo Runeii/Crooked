@@ -92,6 +92,15 @@ small, .font_small {
 img {
   max-width:100%;
   height:auto;
+  &[data-original] {
+    opacity:0;
+    transform:translateY(10%);
+    transition:all 1s;
+    &.loaded {
+      opacity:1;
+      transform:translateY(0);
+    }
+  }
 }
 table {
   text-align: left;

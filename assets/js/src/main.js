@@ -63,6 +63,7 @@ function launch_page(){
     worldData = data;
     setup_stalks();
     refresh_layout();
+    var myLazyLoad = new LazyLoad();
   });
 }
 launch_page();

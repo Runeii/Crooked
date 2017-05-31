@@ -42,7 +42,7 @@
     $feed = get_instafeed();
     foreach($feed as $post) { ?>
         <div class="col-12 col-sm-6 col-lg-4 post">
-          <img src="<?php echo $post['image']; ?>" alt="Instagram post by @CrookedBevCo" />
+          <img data-original="<?php echo $post['image']; ?>" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Instagram post by @CrookedBevCo" />
           <p class="font_small"><?php echo $post['caption']; ?></p>
         </div>
     <?php
