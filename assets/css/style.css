@@ -4457,7 +4457,7 @@ footer {
   font-family: "Fjalla One";
   letter-spacing: 0.1em;
   z-index: 101;
-  overflow-x: hi dden; }
+  overflow-x: hidden; }
   footer .row {
     width: 100vw; }
   footer .footer-box {
@@ -4868,9 +4868,9 @@ body.midnight #midnight_slot {
     transition: opacity 0.3s linear 0.6s; }
 
 .transition-stage-1 {
-  overflow-x: hidden; }
+  overflow: hidden; }
   .transition-stage-1 body {
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative; }
   .transition-stage-1 header img, .transition-stage-1 nav, .transition-stage-1 #welcome {
     opacity: 0;
@@ -5362,33 +5362,10 @@ body.midnight {
   color: white; }
   body.midnight .lede {
     color: #fd6b0d; }
-  body.midnight main, body.midnight footer, body.midnight .ie11wrap {
-    background-color: #210c26; }
-  body.midnight header {
-    background-color: #210c26; }
-    body.midnight header *:not(#midnight_base img):not(#midnight_sun img) {
-      opacity: 0;
-      transition: opacity 1.25s ease-in; }
-    body.midnight header #midnight_cloud_one img, body.midnight header #midnight_cloud_two img, body.midnight header #midnight_cloud_three img, body.midnight header #midnight_cloud_four img, body.midnight header #midnight_cloud_five img {
-      transition-delay: 1.25s; }
+  body.midnight main, body.midnight footer, body.midnight .ie11wrap, body.midnight header {
+    background-color: #87319a; }
   body.midnight #social .post {
     border-color: #87319a; }
-
-body.midnight.sunrise {
-  background-color: #87319a; }
-  body.midnight.sunrise main, body.midnight.sunrise footer, body.midnight.sunrise .ie11wrap {
-    background-color: #87319a; }
-  body.midnight.sunrise header {
-    background-color: #87319a;
-    animation: midnight_sunrise 5s linear forwards; }
-    body.midnight.sunrise header *:not(#midnight_base img):not(#midnight_sun img) {
-      opacity: 1; }
-
-@keyframes midnight_sunrise {
-  0% {
-    background-color: #210c26; }
-  100% {
-    background-color: #87319a; } }
 
 /*========================================================================= */
 body.mother {

@@ -1,10 +1,11 @@
 <?php
 function crooked_scripts_styles() {
-    wp_enqueue_style( 'styles', get_stylesheet_directory_uri() . '/assets/css/style-min.css', null, '0.5', 'all' );
-    wp_register_script( 'main', get_template_directory_uri() . '/assets/js/scripts-min.js', null, '0.5', true);
+    wp_enqueue_style( 'styles', get_stylesheet_directory_uri() . '/assets/css/style-min.css', null, '0.9', 'all' );
+    wp_register_script( 'main', get_template_directory_uri() . '/assets/js/scripts-min.js', null, '0.9', true);
     // Localize the script with new data
     $translation_array = array(
-    	'template_directory' => str_replace(get_home_url(), '', get_template_directory_uri())
+    	'template_directory' => str_replace(get_home_url(), '', get_template_directory_uri()),
+      'home_url' => get_home_url()
     );
     wp_localize_script( 'main', 'wordpress', $translation_array );
 

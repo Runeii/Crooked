@@ -24,8 +24,8 @@
   <nav id="nav">
     <i id="mobile-menu" class="fa fa-bars"></i>
     <div class="container">
-      <a href="<?php echo get_home_url(); ?>/#">Products</a>
-      <a href="<?php echo get_home_url(); ?>/#welcome">About</a>
+      <a href="<?php echo get_home_url(); ?>/#" id="products_nav">Products</a>
+      <a href="<?php echo get_home_url(); ?>/#welcome_main" id="about_nav">About</a>
       <a href="<?php echo get_home_url(); ?>/#social">Social</a>
       <a href="<?php echo get_home_url(); ?>/#contact">Contact</a>
       <a href="<?php echo get_home_url(); ?>/#stockists">Buy</a>

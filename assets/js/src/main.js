@@ -51,6 +51,7 @@ function recache_elements(){
   transitioning = false;
   overlay = document.getElementById('overlays');
   welcome = document.getElementById('welcome');
+  layers = null;
   swapping = false;
   windowHeight = $(window).height();
   windowWidth = $(window).width();
@@ -165,6 +166,7 @@ function switch_world(e) {
     eye.classList.remove('notransition');
     $(html).addClass('transition-stage-1');
     eye.classList.add('target');
+    console.log('Visible?3');
     $(eye).one('animationend webkitAnimationEnd oAnimationEnd oanimationend MSAnimationEnd',function(e) {
       $('html,body').scrollTop(0);
       $(window).scrollTop(0);
@@ -183,13 +185,17 @@ function switch_world(e) {
 
 function replaceElements(target){
   header.innerHTML = '';
+  console.log('Visible1?');
   $("#header").load(wordpress.template_directory + '/world_data/selector.php', {world: target, directory: wordpress.template_directory}, function(){
     //We need to wait for loading to be complete
     get.world = target;
     refresh_layout();
+    updateMenu(target);
+    console.log('Visible2?');
     $(html).addClass('transition-stage-2');
     $('#hill_one').one('animationend webkitAnimationEnd oAnimationEnd oanimationend MSAnimationEnd',function(e) {
       setup_stalks();
+      console.log('Visible?5');
       $(html).removeClass('transition-stage-pre');
       $(html).removeClass('transition-stage-1');
       $(html).removeClass('transition-stage-2');
@@ -210,6 +216,17 @@ function layout_header(){
   }
 }
 
+function updateMenu(target){
+  if(target != 'default') {
+    document.getElementById('products_nav').text = 'About';
+    document.getElementById('about_nav').text = 'Other flavours';
+    $("#about_nav").attr("href", wordpress.home_url + "#welcome");
+  } else {
+    document.getElementById('products_nav').text = 'Products';
+    document.getElementById('about_nav').text = 'About';
+    $("#about_nav").attr("href", wordpress.home_url + "#welcome_main");
+  }
+}
 function cleanBodyClasses(target){
   body.classList.remove('default');
   body.classList.remove('dayglo');
@@ -234,12 +251,16 @@ var parallaxFrame = function(){
       } else {
         this_scroll = $(window).scrollTop() - parseInt(header.style.borderTopWidth);
       }
-      if(this_scroll > 0) {
+      if(this_scroll >= 0) {
         var layer, speed, yPos;
         for (var i = 0; i < layers.length; i++) {
           layer = layers[i];
           speed = layer.getAttribute('data-speed');
           layer.style.transform = 'translate3d(0px, ' + (this_scroll * (3 / speed)) + 'px, 0px)';
+        }
+      } else {
+        for (var y = 0; y < layers.length; y++) {
+          layers[y].style.transform = 'translate3d(0px, 0px, 0px)';
         }
       }
       ticking = false;
@@ -256,11 +277,6 @@ function setupParallax(world){
 //Tools
 if (!Math.sign) {
   Math.sign = function(x) {
-    // If x is NaN, the result is NaN.
-    // If x is -0, the result is -0.
-    // If x is +0, the result is +0.
-    // If x is negative and not -0, the result is -1.
-    // If x is positive and not +0, the result is +1.
     x = +x; // convert to a number
     if (x === 0 || isNaN(x)) {
       return Number(x);
