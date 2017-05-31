@@ -3718,7 +3718,7 @@ body {
   background-color: #2e2d2c;
   color: white;
   font-family: 'Open Sans';
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.45;
   margin: 0;
@@ -3996,11 +3996,21 @@ main {
   font-size: 1.25em;
   margin-top: 0; }
 
+#welcome_main p:nth-of-type(2) {
+  margin-bottom: 0; }
+
+#welcome_main p:nth-of-type(3) {
+  margin-top: 0; }
+
 @media screen and (min-width: 768px) {
   .default .introduction {
     -webkit-column-count: 2;
     column-count: 2;
     text-align: left; } }
+
+.default .introduction p {
+  -webkit-column-break-inside: avoid;
+  break-inside: avoid; }
 
 body:not(.default) #welcome_main {
   display: none; }
@@ -4226,7 +4236,6 @@ footer {
       footer h3 {
         padding-right: 0.5em; } }
   footer .footer-copy {
-    font-size: 0.64em;
     text-align: right; }
     @media screen and (min-width: 992px) {
       footer .footer-copy {
@@ -4317,7 +4326,7 @@ header {
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
   width: 30vw;
-  z-index: 15;
+  z-index: 14;
   border-radius: 50%;
   box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 90px #b9b9b9;
   background-color: #b9b9b9;
@@ -4463,31 +4472,31 @@ header {
 
 @-webkit-keyframes float_cloud-alt {
   0% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0); }
+    -webkit-transform: translate3d(0, 0, 1px);
+            transform: translate3d(0, 0, 1px); }
   40% {
-    -webkit-transform: translate3d(-35px, 0, 0);
-            transform: translate3d(-35px, 0, 0); }
+    -webkit-transform: translate3d(-35px, 0, 1px);
+            transform: translate3d(-35px, 0, 1px); }
   80% {
-    -webkit-transform: translate3d(40px, 0, 0);
-            transform: translate3d(40px, 0, 0); }
+    -webkit-transform: translate3d(40px, 0, 1px);
+            transform: translate3d(40px, 0, 1px); }
   100% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0); } }
+    -webkit-transform: translate3d(0, 0, 1px);
+            transform: translate3d(0, 0, 1px); } }
 
 @keyframes float_cloud-alt {
   0% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0); }
+    -webkit-transform: translate3d(0, 0, 1px);
+            transform: translate3d(0, 0, 1px); }
   40% {
-    -webkit-transform: translate3d(-35px, 0, 0);
-            transform: translate3d(-35px, 0, 0); }
+    -webkit-transform: translate3d(-35px, 0, 1px);
+            transform: translate3d(-35px, 0, 1px); }
   80% {
-    -webkit-transform: translate3d(40px, 0, 0);
-            transform: translate3d(40px, 0, 0); }
+    -webkit-transform: translate3d(40px, 0, 1px);
+            transform: translate3d(40px, 0, 1px); }
   100% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0); } }
+    -webkit-transform: translate3d(0, 0, 1px);
+            transform: translate3d(0, 0, 1px); } }
 
 .terrain img {
   position: absolute;
@@ -4551,8 +4560,8 @@ body:not(.sunrise) .terrain img {
   -webkit-box-align: end;
           align-items: flex-end;
   z-index: 35;
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0); }
+  -webkit-transform: translate3d(0, 0, 1px);
+          transform: translate3d(0, 0, 1px); }
   @media screen and (min-width: 576px) {
     .can_container {
       width: 80vw;
@@ -4647,51 +4656,51 @@ body.midnight #midnight_slot {
 
 @-webkit-keyframes eye_float {
   0% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0); }
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
   30% {
-    -webkit-transform: translate3d(20px, 10px, 5px);
-            transform: translate3d(20px, 10px, 5px); }
+    -webkit-transform: translate(20px, 10px);
+            transform: translate(20px, 10px); }
   40% {
-    -webkit-transform: translate3d(30px, 9px, 9px);
-            transform: translate3d(30px, 9px, 9px); }
+    -webkit-transform: translate(30px, 9px);
+            transform: translate(30px, 9px); }
   80% {
-    -webkit-transform: translate3d(-15px, 3px, 0px);
-            transform: translate3d(-15px, 3px, 0px); }
+    -webkit-transform: translate(-15px, 3px);
+            transform: translate(-15px, 3px); }
   90% {
-    -webkit-transform: translate3d(9px, 10px, -3px);
-            transform: translate3d(9px, 10px, -3px); }
+    -webkit-transform: translate(9px, 10px);
+            transform: translate(9px, 10px); }
   100% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0); } }
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); } }
 
 @keyframes eye_float {
   0% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0); }
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
   30% {
-    -webkit-transform: translate3d(20px, 10px, 5px);
-            transform: translate3d(20px, 10px, 5px); }
+    -webkit-transform: translate(20px, 10px);
+            transform: translate(20px, 10px); }
   40% {
-    -webkit-transform: translate3d(30px, 9px, 9px);
-            transform: translate3d(30px, 9px, 9px); }
+    -webkit-transform: translate(30px, 9px);
+            transform: translate(30px, 9px); }
   80% {
-    -webkit-transform: translate3d(-15px, 3px, 0px);
-            transform: translate3d(-15px, 3px, 0px); }
+    -webkit-transform: translate(-15px, 3px);
+            transform: translate(-15px, 3px); }
   90% {
-    -webkit-transform: translate3d(9px, 10px, -3px);
-            transform: translate3d(9px, 10px, -3px); }
+    -webkit-transform: translate(9px, 10px);
+            transform: translate(9px, 10px); }
   100% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0); } }
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); } }
 
 .transition-stage-pre header img, .transition-stage-pre nav {
   transition: opacity 0.1s linear 0.9s !important; }
 
 .transition-stage-pre .can_tooltip a {
   transition: all 1s ease-out;
-  -webkit-transform: perspective(100px) translate3d(0, 0, 0);
-          transform: perspective(100px) translate3d(0, 0, 0); }
+  -webkit-transform: perspective(100px) translate3d(0, 0, 1px);
+          transform: perspective(100px) translate3d(0, 0, 1px); }
   .transition-stage-pre .can_tooltip a::after {
     transition: opacity 0.3s linear 0.6s; }
 
@@ -4746,8 +4755,8 @@ body.midnight #midnight_slot {
 @-webkit-keyframes background_grow {
   0% {
     border-radius: 80px;
-    -webkit-transform: perspective(100px) translate3d(0, 0, 0);
-            transform: perspective(100px) translate3d(0, 0, 0); }
+    -webkit-transform: perspective(100px) translate3d(0, 0, 1px);
+            transform: perspective(100px) translate3d(0, 0, 1px); }
   60% {
     border-radius: 80px;
     -webkit-transform: perspective(100px) translate3d(0, 0, -50px);
@@ -4767,8 +4776,8 @@ body.midnight #midnight_slot {
 @keyframes background_grow {
   0% {
     border-radius: 80px;
-    -webkit-transform: perspective(100px) translate3d(0, 0, 0);
-            transform: perspective(100px) translate3d(0, 0, 0); }
+    -webkit-transform: perspective(100px) translate3d(0, 0, 1px);
+            transform: perspective(100px) translate3d(0, 0, 1px); }
   60% {
     border-radius: 80px;
     -webkit-transform: perspective(100px) translate3d(0, 0, -50px);
@@ -4844,7 +4853,7 @@ body.midnight #midnight_slot {
   left: 35%;
   bottom: 40vh;
   width: 30%;
-  z-index: 15; }
+  z-index: 14; }
 
 .float img {
   -webkit-animation: float_bob 3s infinite ease-in-out;
@@ -4912,9 +4921,6 @@ body.midnight #midnight_slot {
   left: -60px;
   right: auto; }
 
-.dayglo #overlays {
-  z-index: 14; }
-
 @-webkit-keyframes float_bob {
   from {
     -webkit-transform: translate(0, 0px);
@@ -4978,7 +4984,7 @@ body.midnight #midnight_slot {
   z-index: 44; }
 
 #overlays {
-  z-index: 34;
+  z-index: 15;
   position: fixed;
   top: -35vh;
   left: 0;
@@ -5048,9 +5054,6 @@ body.midnight #midnight_slot {
   left: auto;
   top: 20vh;
   right: 0; }
-
-.midnight #overlays {
-  z-index: 14; }
 
 /* ==========================================================================
   Mother Moon

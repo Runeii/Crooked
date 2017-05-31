@@ -58,8 +58,8 @@ function picture_element($name, $options, $world, $mobilename = null){
   }
 }
 function create_overlays($overlays, $world){
-  picture_element('text_one', array('speed' => 15, 'class' => 'text'), 'shared');
-  picture_element('text_two', array('speed' => 15, 'class' => 'text'), 'shared');
+  picture_element('text_one', array('speed' => 0, 'class' => 'text'), 'shared');
+  picture_element('text_two', array('speed' => 0, 'class' => 'text'), 'shared');
   echo '<div id="overlays" class="parallax" data-speed="1">';
   foreach($overlays as $name => $options) {
     if($name != 'copy') {

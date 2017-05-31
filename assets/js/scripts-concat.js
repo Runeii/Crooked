@@ -419,7 +419,6 @@ function switch_world(e) {
     eye.classList.remove('notransition');
     $(html).addClass('transition-stage-1');
     eye.classList.add('target');
-    console.log('Visible?3');
     $(eye).one('animationend webkitAnimationEnd oAnimationEnd oanimationend MSAnimationEnd', function (e) {
       $('html,body').scrollTop(0);
       $(window).scrollTop(0);
@@ -438,17 +437,14 @@ function switch_world(e) {
 
 function replaceElements(target) {
   header.innerHTML = '';
-  console.log('Visible1?');
   $("#header").load(wordpress.template_directory + '/world_data/selector.php', { world: target, directory: wordpress.template_directory }, function () {
     //We need to wait for loading to be complete
     get.world = target;
     refresh_layout();
     updateMenu(target);
-    console.log('Visible2?');
     $(html).addClass('transition-stage-2');
     $('#hill_one').one('animationend webkitAnimationEnd oAnimationEnd oanimationend MSAnimationEnd', function (e) {
       setup_stalks();
-      console.log('Visible?5');
       $(html).removeClass('transition-stage-pre');
       $(html).removeClass('transition-stage-1');
       $(html).removeClass('transition-stage-2');
@@ -504,7 +500,7 @@ var parallaxFrame = function parallaxFrame() {
       } else {
         this_scroll = $(window).scrollTop() - parseInt(header.style.borderTopWidth);
       }
-      if (this_scroll >= 0) {
+      if (this_scroll >= 0 && this_scroll < header.clientHeight + windowHeight) {
         var layer, speed, yPos;
         for (var i = 0; i < layers.length; i++) {
           layer = layers[i];

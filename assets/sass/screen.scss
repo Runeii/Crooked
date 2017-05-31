@@ -14,7 +14,7 @@ body {
   background-color: rgb(46,45,44);
   color:white;
   font-family: 'Open Sans';
-  font-size:20px;
+  font-size:18px;
   font-weight: 400;
   line-height: 1.45;
   margin:0;
@@ -310,6 +310,12 @@ main {
     font-size:1.25em;
     margin-top:0;
   }
+  p:nth-of-type(2){
+    margin-bottom:0;
+  }
+  p:nth-of-type(3){
+    margin-top:0;
+  }
 }
 .default {
   .introduction {
@@ -318,6 +324,11 @@ main {
       -webkit-column-count: 2;
       column-count: 2;
       text-align:left;
+    }
+    p {
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      break-inside: avoid;
     }
   }
 }
@@ -546,7 +557,7 @@ footer {
     }
   }
   .footer-copy {
-    font-size:0.64em;
+  //  font-size:0.64em;
     text-align:right;
     @media screen and (min-width: 992px) {
       text-align: left;
@@ -654,7 +665,7 @@ $sunrise_timing: 5s;
   bottom:0;
   transform:translateY(100%);
   width:30vw;
-  z-index:15;
+  z-index:14;
   border-radius: 50%;
   box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 90px $sun_colour;
   background-color: $sun_colour;
@@ -768,16 +779,16 @@ $sunrise_timing: 5s;
 }
 @keyframes float_cloud-alt {
   0% {
-    transform: translate3d(0,0,0);
+    transform: translate3d(0,0,1px);
   }
   40% {
-    transform: translate3d(-35px,0,0);
+    transform: translate3d(-35px,0,1px);
   }
   80% {
-    transform: translate3d(40px,0,0);
+    transform: translate3d(40px,0,1px);
   }
   100% {
-    transform: translate3d(0,0,0);
+    transform: translate3d(0,0,1px);
   }
 }
 .terrain img {
@@ -842,7 +853,7 @@ body:not(.sunrise) {
   justify-content: space-between;
   align-items: flex-end;
   z-index:35;
-  transform:translate3d(0,0,0);
+  transform:translate3d(0,0,1px);
   img {
     position: relative;
     pointer-events: none;
@@ -954,22 +965,22 @@ body.midnight {
 }
 @keyframes eye_float {
   0% {
-    transform: translate3d(0,0,0);
+    transform: translate(0,0);
   }
   30% {
-    transform: translate3d(20px,10px,5px);
+    transform: translate(20px,10px);
   }
   40% {
-    transform: translate3d(30px,9px,9px);
+    transform: translate(30px,9px);
   }
   80% {
-    transform: translate3d(-15px,3px,0px);
+    transform: translate(-15px,3px);
   }
   90% {
-    transform: translate3d(9px,10px,-3px);
+    transform: translate(9px,10px);
   }
   100% {
-    transform: translate3d(0,0,0);
+    transform: translate(0,0);
   }
 }
 
@@ -982,7 +993,7 @@ body.midnight {
     //We add a target class when the animation kicks off, so prepare here
     a {
       transition: all 1s ease-out;
-      transform: perspective(100px) translate3d(0,0,0);
+      transform: perspective(100px) translate3d(0,0,1px);
       &::after {
         transition: opacity 0.3s linear 0.6s;
       }
@@ -1041,7 +1052,7 @@ body.midnight {
 @keyframes background_grow {
   0% {
     border-radius:80px;
-    transform: perspective(100px) translate3d(0,0,0);
+    transform: perspective(100px) translate3d(0,0,1px);
   }
   60% {
     border-radius:80px;
@@ -1095,7 +1106,7 @@ $sun_colour_dayglo: #e84079;
   left:35%;
   bottom:40vh;
   width:30%;
-  z-index:15;
+  z-index:14;
 }
 .float img {
   animation: float_bob 3s infinite ease-in-out;
@@ -1158,9 +1169,6 @@ $sun_colour_dayglo: #e84079;
     left:-60px;
     right:auto;
   }
-  #overlays {
-    z-index:14;
-  }
 }
 
 
@@ -1205,7 +1213,7 @@ $sun_colour_dayglo: #e84079;
   z-index:44;
 }
 #overlays {
-  z-index: 34;
+  z-index: 15;
   position: fixed;
   top: -35vh;
   left: 0;
@@ -1285,9 +1293,6 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
     left:auto;
     top:20vh;
     right:0;
-  }
-  #overlays {
-    z-index:14;
   }
 }
 
