@@ -26,12 +26,12 @@ $elements = array(
     'mobile' => true
   ),
   'hill_six' => array(
-    'speed' => 2,
+    'speed' => 3,
     'class' => 'terrain',
     'mobile' => true
   ),
   'moon' => array(
-    'speed' => 2,
+    'speed' => 3,
     'class' => '',
     'mobile' => true
   ),
@@ -90,11 +90,13 @@ $elements = array(
 $overlays = array(
   'logo' => array(
     'speed' => 0,
-    'class' => 'overlay'
+    'class' => 'overlay',
+    'mobile' => true
   ),
   'flavour' => array(
     'speed' => 0,
-    'class' => 'overlay'
+    'class' => 'overlay',
+    'mobile' => true
   ),
   'copy' => array(
     'lede' => "Under dayglo skies lies a world of possibility;<br />the changing shapes in the clouds hint at dreams and other lives.",

@@ -35,51 +35,51 @@ $elements = array(
     'mobile' => true
   ),
   'skyshadow_one' => array(
-    'speed' => -1,
+    'speed' => 0,
     'class' => 'shadow'
   ),
   'skyshadow_two' => array(
-    'speed' => -1,
+    'speed' => 0,
     'class' => 'shadow'
   ),
   'skyshadow_three' => array(
-    'speed' => -1,
+    'speed' => 0,
     'class' => 'shadow'
   ),
   'cloud_one' => array(
-    'speed' => -1,
+    'speed' => 0,
     'class' => 'cloud'
   ),
   'cloud_two' => array(
-    'speed' => -1,
+    'speed' => 0,
     'class' => 'cloud'
   ),
   'cloud_three' => array(
-    'speed' => -1,
+    'speed' => 0,
     'class' => 'cloud'
   ),
   'cloud_four' => array(
-    'speed' => -1,
+    'speed' => 0,
     'class' => 'cloud'
   ),
   'cloud_five' => array(
-    'speed' => -1,
+    'speed' => 0,
     'class' => 'cloud'
   ),
   'cloud_six' => array(
-    'speed' => -1,
+    'speed' => 0,
     'class' => 'cloud'
   ),
   'cloud_seven' => array(
-    'speed' => -1,
+    'speed' => 0,
     'class' => 'cloud'
   ),
   'cloud_eight' => array(
-    'speed' => -1,
+    'speed' => 0,
     'class' => 'cloud'
   ),
   'cloud_nine' => array(
-    'speed' => -1,
+    'speed' => 0,
     'class' => 'cloud'
   ),
   'mobile_only' => array(

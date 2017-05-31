@@ -265,6 +265,8 @@ var html = document.documentElement,
     sun = document.getElementById('sun'),
     lede = document.querySelector('#welcome .lede'),
     introduction = document.querySelector('#welcome .introduction'),
+    overlay = document.getElementById('overlays'),
+    welcome = document.getElementById('welcome'),
     connections,
     target,
     can_parent,
@@ -280,6 +282,11 @@ var event_stop_one = false;
 var event_stop_two = false;
 var event_stop_three = false;
 var stalks_active = false;
+var get = getParameters(getNavUrl());
+
+if (get.world === null || get.world === undefined) {
+  get.world = 'default';
+}
 
 function recache_elements() {
   html = document.documentElement;
@@ -290,23 +297,38 @@ function recache_elements() {
   lede = document.querySelector('#welcome .lede');
   introduction = document.querySelector('#welcome .introduction');
   transitioning = false;
+  overlay = document.getElementById('overlays');
+  welcome = document.getElementById('welcome');
   swapping = false;
   windowHeight = $(window).height();
   windowWidth = $(window).width();
 }
+
 //Kick everything off
 function launch_page() {
   $.getJSON(wordpress.template_directory + "/worlds.json", function (data) {
     worldData = data;
-    var get = getParameters(getNavUrl());
-    setupParallax(get.world);
     setup_stalks();
-    layout_header();
-    click_eye();
-    animate_stage();
+    refresh_layout();
   });
 }
 launch_page();
+
+function refresh_layout() {
+  recache_elements();
+  if (window.innerHeight < window.innerWidth) {
+    setupParallax(get.world);
+  } else {
+    window.removeEventListener('scroll', parallaxFrame);
+  }
+  layout_header();
+  click_eye();
+  animate_stage();
+}
+
+$(window).resize(function () {
+  refresh_layout();
+});
 
 function setup_stalks() {
   $().connections({ from: '#midnight_eye', to: '#midnight_can', class: 'stalk', within: '#midnight_slot' });
@@ -381,8 +403,10 @@ function switch_world(e) {
     target = eye.getAttribute("data-world");
     eye.classList.add('notransition');
 
-    eye.style.top = eye.getBoundingClientRect().top + 'px';
-    eye.style.left = eye.getBoundingClientRect().left + 'px';
+    //IE11 Fix
+    if (navigator.userAgent.match(/Trident\/7\./) || eye.classList.contains('single_world')) {
+      IE_positionEye(eye);
+    }
     eye.style.position = 'fixed';
 
     $(html).addClass('transition-stage-pre');
@@ -408,11 +432,11 @@ function switch_world(e) {
 }
 
 function replaceElements(target) {
-  console.log(target);
   header.innerHTML = '';
   $("#header").load(wordpress.template_directory + '/world_data/selector.php', { world: target, directory: wordpress.template_directory }, function () {
     //We need to wait for loading to be complete
-    layout_header();
+    get.world = target;
+    refresh_layout();
     $(html).addClass('transition-stage-2');
     $('#hill_one').one('animationend webkitAnimationEnd oAnimationEnd oanimationend MSAnimationEnd', function (e) {
       setup_stalks();
@@ -426,12 +450,13 @@ function replaceElements(target) {
 }
 
 function layout_header() {
-  var overlay = document.getElementById('overlays');
-  var welcome = document.getElementById('welcome');
+  header.style.height = null;
+  header.style.borderTop = null;
   if (overlay !== null) {
+    overlay.style.top = null;
     header.style.height = header.clientHeight + welcome.clientHeight + 'px';
     header.style.borderTop = welcome.clientHeight + 'px solid transparent';
-    overlay.style.top = -1 * (overlay.clientHeight / 2 - 1.5 * nav.clientHeight) + 'px';
+    overlay.style.top = -1 * (welcome.clientHeight - 1.5 * nav.clientHeight) + 'px';
   }
 }
 
@@ -443,30 +468,39 @@ function cleanBodyClasses(target) {
   body.classList.add(target);
 }
 
-function setupParallax(world) {
-  window.addEventListener('scroll', function (e) {
-    if (!ticking) {
-      ticking = true;
-      window.requestAnimationFrame(function () {
-        console.log(world);
-        if (world === 'default') {
-          this_scroll = $(window).scrollTop();
-        } else {
-          this_scroll = $(window).scrollTop() - windowHeight / 2;
-        }
-        if (this_scroll > 0) {
-          var layers = document.getElementsByClassName("parallax");
-          var layer, speed, yPos;
-          for (var i = 0; i < layers.length; i++) {
-            layer = layers[i];
-            speed = layer.getAttribute('data-speed');
-            layer.style.transform = 'translate3d(0px, ' + this_scroll * (2 / speed) + 'px, 0px)';
-          }
-        }
-        ticking = false;
-      });
+var layers = null;
+var parallaxFrame = function parallaxFrame() {
+  if (!ticking) {
+    if (layers === null) {
+      if (navigator.userAgent.match(/Trident\/7\./)) {
+        layers = document.querySelectorAll('.parallax:not([data-speed="2"]):not(#overlays)');
+      } else {
+        layers = document.getElementsByClassName("parallax");
+      }
     }
-  });
+    window.requestAnimationFrame(function () {
+      if (body.classList.contains('default')) {
+        this_scroll = $(window).scrollTop();
+      } else {
+        this_scroll = $(window).scrollTop() - parseInt(header.style.borderTopWidth);
+      }
+      if (this_scroll > 0) {
+        var layer, speed, yPos;
+        for (var i = 0; i < layers.length; i++) {
+          layer = layers[i];
+          speed = layer.getAttribute('data-speed');
+          layer.style.transform = 'translate3d(0px, ' + this_scroll * (3 / speed) + 'px, 0px)';
+        }
+      }
+      ticking = false;
+    });
+    ticking = true;
+  }
+};
+
+function setupParallax(world) {
+  window.removeEventListener('scroll', parallaxFrame);
+  window.addEventListener('scroll', parallaxFrame);
 }
 
 //Tools
@@ -538,7 +572,6 @@ if (navigator.userAgent.match(/Trident\/7\./)) {
       smooth_scrolling = true;
       var wd = event.originalEvent.wheelDelta;
       var csp = window.pageYOffset;
-      console.log(csp - wd);
       $('html, body').animate({
         scrollTop: csp - wd * 2
       }, Math.abs(wd) * 2, function () {
@@ -546,4 +579,8 @@ if (navigator.userAgent.match(/Trident\/7\./)) {
       });
     }
   });
+}
+function IE_positionEye(eye) {
+  eye.style.top = eye.getBoundingClientRect().top + 'px';
+  eye.style.left = eye.getBoundingClientRect().left + 'px';
 }

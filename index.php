@@ -13,15 +13,15 @@
   </section>
   <div id="cans_main" class="row">
     <div id="dayglo_slot" class="can_tooltip col-6 col-md-4 col-lg-3">
-      <a href="#" id="dayglo_eye" class="can_eye" data-world="dayglo"></a>
+      <a href="#" id="dayglo_eye" class="can_eye single_world" data-world="dayglo"></a>
       <img id="dayglo_can" class="can_image" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" alt="Crooked Dayglo Skies can" />
     </div>
     <div id="midnight_slot" class="can_tooltip col-6 col-md-4 col-lg-3">
-      <a href="#" id="midnight_eye" class="can_eye" data-world="midnight"></a>
+      <a href="#" id="midnight_eye" class="can_eye single_world" data-world="midnight"></a>
       <img id="midnight_can" class="can_image"  src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" alt="Crooked Midnight Stage can" />
     </div>
     <div id="mother_slot" class="can_tooltip col-6 col-md-4 col-lg-3">
-      <a href="#" id="mother_eye" class="can_eye" data-world="mother"></a>
+      <a href="#" id="mother_eye" class="can_eye single_world" data-world="mother"></a>
       <img id="mother_can" class="can_image" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" alt="Crooked Mother Moon can" />
     </div>
   </div>
