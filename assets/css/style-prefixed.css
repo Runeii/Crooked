@@ -3707,6 +3707,13 @@ html {
 .pace.pace-inactive {
   display: none; }
 
+@font-face {
+  font-family: 'amaticbold';
+  src: url("../fonts/amatic-bold-webfont.eot");
+  src: url("../fonts/amatic-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/amatic-bold-webfont.woff2") format("woff2"), url("../fonts/amatic-bold-webfont.woff") format("woff"), url("../fonts/amatic-bold-webfont.ttf") format("truetype"), url("../fonts/amatic-bold-webfont.svg#amaticbold") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 /* ==========================================================================
    Base typography, general styles
    ========================================================================== */
@@ -3717,7 +3724,7 @@ html {
 body {
   background-color: #2e2d2c;
   color: white;
-  font-family: 'Open Sans';
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.45;
@@ -3731,7 +3738,7 @@ h1, h2, h3, h4, .h3, .h4 {
   margin: 1.414em 0 0.5em;
   font-weight: inherit;
   line-height: 1.2;
-  font-family: "Fjalla One";
+  font-family: "Fjalla One", "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
   text-transform: uppercase; }
 
 h1 {
@@ -3847,18 +3854,15 @@ nav {
             flex-direction: column;
     -webkit-box-pack: center;
             justify-content: center;
-    background-color: black;
     text-align: center;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    position: relative;
-    opacity: 0;
-    display: none; }
+    position: relative; }
     @media screen and (max-width: 767px) {
       nav .container {
-        height: 100vh;
+        height: 0;
         width: 100vw;
         margin: 0;
         padding: 0; } }
@@ -3875,12 +3879,16 @@ nav {
         opacity: 1; } }
   nav a {
     font-size: 1.563rem;
-    font-family: "Fjalla One"; }
+    font-family: "Fjalla One", "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+    display: none; }
+    nav a:not([href*="#"]) {
+      color: #87c7a0; }
     @media screen and (min-width: 576px) {
       nav a {
         font-size: 1rem; } }
     @media screen and (min-width: 768px) {
       nav a {
+        display: block;
         font-size: 1.25rem;
         width: calc(45vw / 3); } }
   nav .fa {
@@ -3898,22 +3906,55 @@ nav {
         display: none; } }
   nav.open .container {
     z-index: 201;
+    background-color: black;
     display: -webkit-box;
     display: flex;
     position: fixed;
     -webkit-animation: mobile-menu 0.5s ease-in 0s both;
-            animation: mobile-menu 0.5s ease-in 0s both; }
+            animation: mobile-menu 0.5s ease-in 0s both;
+    height: 100vh; }
+    nav.open .container a:not(.mobile_logo) {
+      display: block;
+      -webkit-animation: mobile-menu-links 0.5s ease-in 0s both;
+              animation: mobile-menu-links 0.5s ease-in 0s both; }
   nav.open .fa::before {
     content: "\f00d"; }
+  nav .mobile_logo {
+    display: block;
+    z-index: 202;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50vw;
+    padding: 1em; }
+    nav .mobile_logo img {
+      width: 100%; }
+    @media screen and (min-width: 768px) {
+      nav .mobile_logo {
+        position: relative;
+        padding: 0 3em;
+        width: auto; }
+        nav .mobile_logo img {
+          position: absolute;
+          width: 5em;
+          padding: 0;
+          top: -0.6em;
+          left: calc(50% - 2.5em); } }
+
+@media screen and (min-width: 768px) {
+  body.default .mobile_logo {
+    display: none; } }
 
 .crooked_logo {
   position: fixed;
   top: 1em;
   left: 1rem;
   width: 30vw;
-  z-index: 202; }
+  z-index: 202;
+  display: none; }
   @media screen and (min-width: 768px) {
     .crooked_logo {
+      display: block;
       opacity: 1;
       -webkit-animation: none;
               animation: none;
@@ -3927,11 +3968,23 @@ nav {
 
 @-webkit-keyframes mobile-menu {
   0% {
+    background-color: transparent; }
+  100% {
+    background-color: black; } }
+
+@keyframes mobile-menu {
+  0% {
+    background-color: transparent; }
+  100% {
+    background-color: black; } }
+
+@-webkit-keyframes mobile-menu-links {
+  0% {
     opacity: 0; }
   100% {
     opacity: 1; } }
 
-@keyframes mobile-menu {
+@keyframes mobile-menu-links {
   0% {
     opacity: 0; }
   100% {
@@ -4002,6 +4055,10 @@ main {
 #about p:nth-of-type(3) {
   margin-top: 0; }
 
+body:not(.default) #about p:nth-of-type(2) {
+  font-size: 1.25em;
+  margin-bottom: 0; }
+
 @media screen and (min-width: 768px) {
   .default .introduction {
     -webkit-column-count: 2;
@@ -4011,9 +4068,6 @@ main {
 .default .introduction p {
   -webkit-column-break-inside: avoid;
   break-inside: avoid; }
-
-body:not(.default) #about {
-  display: none; }
 
 #social i {
   font-size: 1.563rem;
@@ -4048,6 +4102,11 @@ body:not(.default) #about {
   #social .post p {
     position: relative;
     padding-bottom: 0.5em; }
+  #social .post:nth-child(9) {
+    display: none; }
+    @media screen and (min-width: 992px) {
+      #social .post:nth-child(9) {
+        display: block; } }
 
 #stockists {
   padding-bottom: 6rem; }
@@ -4055,7 +4114,7 @@ body:not(.default) #about {
 #wholesale .logo, #stockists .logo {
   margin-top: 2rem; }
 
-#flavours .row {
+#products .row {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
@@ -4064,18 +4123,18 @@ body:not(.default) #about {
   -webkit-box-align: center;
           align-items: center; }
   @media screen and (min-width: 576px) {
-    #flavours .row {
+    #products .row {
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
               flex-direction: row;
       text-align: left; }
-      #flavours .row:nth-of-type(odd) {
+      #products .row:nth-of-type(odd) {
         text-align: right;
         -webkit-box-orient: horizontal;
         -webkit-box-direction: reverse;
                 flex-direction: row-reverse; } }
 
-#flavours .explore-button {
+#products .explore-button {
   text-align: center; }
 
 #contact label {
@@ -4181,10 +4240,16 @@ footer {
           flex-direction: row;
   -webkit-box-align: center;
           align-items: center;
-  font-family: "Fjalla One";
-  letter-spacing: 0.1em;
   z-index: 101;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  font-family: "Open Sans";
+  letter-spacing: normal;
+  font-size: 0.8em; }
+  @media screen and (min-width: 992px) {
+    footer {
+      font-family: "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+      letter-spacing: normal;
+      font-size: 0.8em; } }
   footer .row {
     width: 100vw; }
   footer .footer-box {
@@ -4199,7 +4264,7 @@ footer {
             flex-grow: 1;
     -webkit-box-pack: justify;
             justify-content: space-between; }
-    @media screen and (min-width: 1570px) {
+    @media screen and (min-width: 992px) {
       footer .footer-box {
         width: initial;
         -webkit-box-pack: center;
@@ -4216,23 +4281,29 @@ footer {
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
                 flex-direction: row; } }
-    @media screen and (min-width: 1570px) {
+    @media screen and (min-width: 992px) {
       footer .footer-box:first-of-type {
         -webkit-box-pack: start;
                 justify-content: flex-start;
         text-align: left; }
+      footer .footer-box:not(:first-of-type) h3 {
+        display: none; }
       footer .footer-box:last-of-type {
         -webkit-box-pack: end;
                 justify-content: flex-end; } }
+    @media screen and (min-width: 1200px) {
+      footer .footer-box:not(:first-of-type) h3 {
+        display: block; } }
   footer a {
     text-decoration: none;
     color: white; }
   footer h3 {
-    margin: 0.5rem 0 0; }
+    margin: 0.5rem 0 0;
+    letter-spacing: 0.1em; }
     @media screen and (min-width: 576px) {
       footer h3 {
         margin: 0.5rem 0.5rem 0.5rem 0; } }
-    @media screen and (min-width: 1570px) {
+    @media screen and (min-width: 992px) {
       footer h3 {
         padding-right: 0.5em; } }
   footer .footer-copy {
@@ -4243,40 +4314,9 @@ footer {
     footer .footer-copy span {
       width: 100%;
       display: block; }
-  @media screen and (min-width: 992px) and (max-width: 1569px) {
-    footer .footer-box:first-child {
-      flex-wrap: wrap;
-      align-content: center;
-      -webkit-box-pack: center;
-              justify-content: center; }
-      footer .footer-box:first-child h3 {
-        width: 100%; }
-    footer .footer-box:nth-child(2) {
-      -webkit-box-pack: start;
-              justify-content: flex-start; }
-    footer .footer-box:nth-child(3) {
-      -webkit-box-pack: start;
-              justify-content: flex-start;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: reverse;
-              flex-direction: row-reverse; }
-      footer .footer-box:nth-child(3) h3 {
-        margin: 0.5rem 0 0.5rem 0.5rem; }
-      footer .footer-box:nth-child(3) .footer-copy {
-        text-align: right; }
-    footer .footer-box:last-child h3 {
-      display: none; }
-    footer .footer-box:last-child .footer-copy {
-      width: 100%; }
-    footer .footer-box:last-child span {
-      width: 50%;
-      display: inline; }
-      footer .footer-box:last-child span:last-child {
-        float: right;
-        text-align: right; } }
   footer i {
     margin-left: 1rem; }
-    @media screen and (min-width: 1570px) {
+    @media screen and (min-width: 992px) {
       footer i:first-of-type {
         margin-left: 0; } }
   footer .email a::after {
@@ -4288,11 +4328,6 @@ footer {
 
 /* ==========================================================================
   World work
-  Z index:
-  - Sky shadows: 10 to 14
-  - Sun: 15
-  - Clouds: 15 to 30
-  - Ground: 30+
    ========================================================================= */
 header {
   overflow: hidden;
@@ -4303,6 +4338,10 @@ header {
     position: absolute; }
   header .parallax {
     will-change: transform; }
+
+@media screen and (min-width: 576px) {
+  body:not(.default) main {
+    padding-top: 4em; } }
 
 .sprite {
   display: block;
@@ -4569,12 +4608,14 @@ body:not(.sunrise) .terrain img {
   .can_container img {
     position: relative;
     pointer-events: none;
-    cursor: default; }
+    cursor: pointer; }
 
 .can_tooltip {
   opacity: 1;
   transition: opacity 0.3s;
-  width: 30vw; }
+  width: 30vw;
+  padding: 0;
+  cursor: pointer; }
   @media screen and (min-width: 576px) {
     .can_tooltip {
       width: 20vw; } }
@@ -4595,7 +4636,8 @@ body:not(.sunrise) .terrain img {
     -webkit-animation: eye_float 30s infinite ease-in-out;
             animation: eye_float 30s infinite ease-in-out;
     transition: top 1s;
-    z-index: 36; }
+    z-index: 36;
+    cursor: pointer; }
     .can_tooltip a::after {
       content: '';
       position: absolute;
@@ -4636,6 +4678,9 @@ body:not(.sunrise) .terrain img {
 #flavours {
   display: none; }
 
+#flavours_nav {
+  display: none; }
+
 body:not(.default) #flavours {
   display: -webkit-box;
   display: flex;
@@ -4644,6 +4689,12 @@ body:not(.default) #flavours {
   padding-top: calc(9rem * 1.45); }
   body:not(.default) #flavours img {
     width: 100%; }
+
+body:not(.default) #flavours_nav_home {
+  display: none; }
+
+body:not(.default) #flavours_nav {
+  display: block; }
 
 body.dayglo #dayglo_slot {
   display: none; }
@@ -4979,7 +5030,7 @@ body.midnight #midnight_slot {
 
 .world_can {
   left: 15vw;
-  bottom: 10vh;
+  bottom: 5vh;
   width: 18vw;
   z-index: 44; }
 
@@ -4997,6 +5048,14 @@ body.midnight #midnight_slot {
     position: relative; }
   #overlays h2 {
     margin-top: 0.5em; }
+  #overlays .description {
+    font-family: "amaticbold", Fjalla One, Open Sans, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 2em;
+    display: none;
+    margin-top: 0; }
+    @media screen and (min-width: 768px) {
+      #overlays .description {
+        display: block; } }
 
 #text_one img {
   bottom: 70vh;
@@ -5099,145 +5158,6 @@ body.midnight #midnight_slot {
 
 .mother #overlays {
   z-index: 31; }
-
-/* ==========================================================================
-  Portrait variants
-   ========================================================================= */
-@media all and (orientation: portrait) {
-  header {
-    height: 100vh !important;
-    border-top: none !important; }
-  #overlays {
-    left: 0;
-    top: auto !important;
-    bottom: calc(-20vh - 0em);
-    height: 20vh;
-    padding: 0 2em 0;
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-            flex-direction: row;
-    -webkit-box-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-            align-items: center; }
-    #overlays #welcome {
-      display: none; }
-  #sky img {
-    height: 70vh;
-    top: 0;
-    left: 0;
-    min-width: 100vw; }
-  .dayglo header {
-    border-bottom: 20vh solid #7fc8bd; }
-  .dayglo #overlays {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-            flex-direction: column; }
-  .mother header {
-    border-bottom: 20vh solid #e73c50; }
-  .mother #hill_one img, .mother #hill_three img, .mother #hill_four img, .mother #hill_five img {
-    width: 100%; }
-  .mother #hill_two img {
-    width: 50%; }
-  .mother #moon img {
-    left: 45vw;
-    width: 40vw;
-    bottom: 50vh; }
-  .mother #mother img {
-    width: 80vw;
-    right: 0;
-    left: auto;
-    bottom: 60vw; }
-  .midnight header {
-    border-bottom: 20vh solid #87319a; }
-  .midnight #moon img {
-    width: 70%;
-    left: 15%;
-    bottom: 20vw; }
-  .world_can {
-    display: none; } }
-
-/* ==========================================================================
-  General animations
-   ========================================================================= */
-@-webkit-keyframes sun_shimmer {
-  0% {
-    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 10px #b9b9b9;
-    background-color: #b9b9b9; }
-  25% {
-    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 70px #b9b9b9;
-    background-color: #acacac; }
-  50% {
-    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 10px #b9b9b9;
-    background-color: #b9b9b9; }
-  75% {
-    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 130px 50px #b9b9b9;
-    background-color: #acacac; }
-  100% {
-    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 10px #b9b9b9;
-    background-color: #b9b9b9; } }
-@keyframes sun_shimmer {
-  0% {
-    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 10px #b9b9b9;
-    background-color: #b9b9b9; }
-  25% {
-    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 70px #b9b9b9;
-    background-color: #acacac; }
-  50% {
-    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 10px #b9b9b9;
-    background-color: #b9b9b9; }
-  75% {
-    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 130px 50px #b9b9b9;
-    background-color: #acacac; }
-  100% {
-    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 10px #b9b9b9;
-    background-color: #b9b9b9; } }
-
-@-webkit-keyframes longcloud_float {
-  0% {
-    left: 0%; }
-  100% {
-    left: -50%; } }
-
-@keyframes longcloud_float {
-  0% {
-    left: 0%; }
-  100% {
-    left: -50%; } }
-
-@-webkit-keyframes float {
-  0% {
-    margin-left: 0vw; }
-  50% {
-    margin-left: -25vw; }
-  100% {
-    margin-left: 0vw; } }
-
-@keyframes float {
-  0% {
-    margin-left: 0vw; }
-  50% {
-    margin-left: -25vw; }
-  100% {
-    margin-left: 0vw; } }
-
-@-webkit-keyframes float-reverse {
-  0% {
-    margin-right: 0vw; }
-  50% {
-    margin-right: -5vw; }
-  100% {
-    margin-right: 0vw; } }
-
-@keyframes float-reverse {
-  0% {
-    margin-right: 0vw; }
-  50% {
-    margin-right: -5vw; }
-  100% {
-    margin-right: 0vw; } }
 
 /* ==========================================================================
   Color palettes
@@ -5357,21 +5277,18 @@ body.default.sunrise {
 
 /*========================================================================= */
 body.dayglo {
-  background-color: #2a77a1;
+  background-color: #7fc8bd;
   color: white; }
   body.dayglo .lede {
     color: white; }
   body.dayglo main, body.dayglo footer, body.dayglo .ie11wrap {
-    background-color: #2a77a1; }
+    background-color: #7fc8bd; }
   body.dayglo header {
     background-color: #2a77a1; }
+    body.dayglo header::after {
+      background-color: #7fc8bd; }
   body.dayglo #social .post {
     border-color: #7fc8bd; }
-
-body.dayglo.sunrise {
-  background-color: #7fc8bd; }
-  body.dayglo.sunrise main, body.dayglo.sunrise footer, body.dayglo.sunrise .ie11wrap {
-    background-color: #7fc8bd; }
 
 /*========================================================================= */
 body.midnight {
@@ -5395,15 +5312,6 @@ body.mother {
   body.mother header {
     background-color: #e73c50;
     position: relative; }
-    body.mother header::after {
-      content: '';
-      background-size: 100% 100%;
-      background-position: center center;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 9.41vw;
-      z-index: 50; }
     body.mother header #mother_mother img {
       transition: -webkit-transform 5s;
       transition: transform 5s;
@@ -5477,6 +5385,181 @@ body.mother {
     -webkit-transform: translateY(0vw);
             transform: translateY(0vw); } }
 
+/* ==========================================================================
+  Portrait variants
+   ========================================================================= */
+@media all and (orientation: portrait) {
+  header {
+    height: 90vh !important;
+    border-top: none !important; }
+  #overlays {
+    left: 0;
+    top: auto !important;
+    bottom: calc(-20vh - 0em);
+    height: 20vh;
+    padding: 0 2em 0;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+            align-items: center;
+    background-color: inherit;
+    z-index: 80; }
+    #overlays #welcome {
+      display: none; }
+  #sky img {
+    height: 70vh;
+    top: 0;
+    left: 0;
+    min-width: 100vw; }
+  .dayglo header {
+    border-bottom: 20vh solid #7fc8bd; }
+  .dayglo #overlays {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    background-color: #7fc8bd; }
+  .mother header {
+    border-bottom: 20vh solid #e73c50; }
+  .mother #hill_one img, .mother #hill_three img, .mother #hill_four img, .mother #hill_five img {
+    width: 100%; }
+  .mother #hill_two img {
+    width: 50%; }
+  .mother #moon img {
+    left: 45vw;
+    width: 40vw;
+    bottom: 50vh; }
+  .mother #mother img {
+    width: 80vw;
+    right: 0;
+    left: auto;
+    bottom: 60vw; }
+  .midnight header {
+    border-bottom: 20vh solid #87319a; }
+  .midnight #moon img {
+    width: 70%;
+    left: 15%;
+    bottom: 20vw; }
+  .world_can {
+    display: none; }
+  .transition-stage-1 body.dayglo header {
+    background-color: #7fc8bd; } }
+
+@media all and (orientation: landscape) and (max-height: 500px) {
+  nav .mobile_logo {
+    width: 30vw; }
+  .can_container {
+    width: 50vw;
+    left: 25vw;
+    -webkit-box-pack: justify;
+            justify-content: space-between; }
+  .can_tooltip {
+    width: 30%; }
+    .can_tooltip a {
+      width: 40px;
+      height: 40px;
+      top: -80px; }
+  body:not(.default) header {
+    border-top: none !important;
+    margin-top: 80vh; }
+  body:not(.default) #overlays {
+    height: 100vh;
+    width: 100vw;
+    top: -80vh !important;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    -webkit-box-pack: center;
+            justify-content: center; }
+  body.dayglo {
+    background-color: #2a77a1; } }
+
+/* ==========================================================================
+  General animations
+   ========================================================================= */
+@-webkit-keyframes sun_shimmer {
+  0% {
+    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 10px #b9b9b9;
+    background-color: #b9b9b9; }
+  25% {
+    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 70px #b9b9b9;
+    background-color: #acacac; }
+  50% {
+    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 10px #b9b9b9;
+    background-color: #b9b9b9; }
+  75% {
+    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 130px 50px #b9b9b9;
+    background-color: #acacac; }
+  100% {
+    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 10px #b9b9b9;
+    background-color: #b9b9b9; } }
+@keyframes sun_shimmer {
+  0% {
+    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 10px #b9b9b9;
+    background-color: #b9b9b9; }
+  25% {
+    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 70px #b9b9b9;
+    background-color: #acacac; }
+  50% {
+    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 10px #b9b9b9;
+    background-color: #b9b9b9; }
+  75% {
+    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 130px 50px #b9b9b9;
+    background-color: #acacac; }
+  100% {
+    box-shadow: 0 0 40px 6px #b9b9b9, 0 0 150px 10px #b9b9b9;
+    background-color: #b9b9b9; } }
+
+@-webkit-keyframes longcloud_float {
+  0% {
+    left: 0%; }
+  100% {
+    left: -50%; } }
+
+@keyframes longcloud_float {
+  0% {
+    left: 0%; }
+  100% {
+    left: -50%; } }
+
+@-webkit-keyframes float {
+  0% {
+    margin-left: 0vw; }
+  50% {
+    margin-left: -25vw; }
+  100% {
+    margin-left: 0vw; } }
+
+@keyframes float {
+  0% {
+    margin-left: 0vw; }
+  50% {
+    margin-left: -25vw; }
+  100% {
+    margin-left: 0vw; } }
+
+@-webkit-keyframes float-reverse {
+  0% {
+    margin-right: 0vw; }
+  50% {
+    margin-right: -5vw; }
+  100% {
+    margin-right: 0vw; } }
+
+@keyframes float-reverse {
+  0% {
+    margin-right: 0vw; }
+  50% {
+    margin-right: -5vw; }
+  100% {
+    margin-right: 0vw; } }
+
 @supports not ((-o-object-fit: cover) or (object-fit: cover)) {
   #social .post {
     display: table; } }
@@ -5489,7 +5572,7 @@ body.mother {
   #header > picture, #header > div {
     border-top: inherit; } }
 
-@media screen and (-ms-high-contrast: none) and (min-width: 1570px) {
+@media screen and (-ms-high-contrast: none) and (min-width: 992px) {
   footer .footer-box {
     -webkit-box-flex: 1;
             flex: 1 1 22%;
