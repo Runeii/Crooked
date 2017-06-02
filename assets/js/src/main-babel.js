@@ -17,7 +17,6 @@ var html = document.documentElement,
     nav = document.getElementById('nav'),
     header = document.getElementById('header'),
     sun = document.getElementById('sun'),
-    lede = document.querySelector('#welcome .lede'),
     introduction = document.querySelector('#welcome .introduction'),
     overlay = document.getElementById('overlays'),
     welcome = document.getElementById('welcome'),
@@ -48,7 +47,6 @@ function recache_elements() {
   nav = document.getElementById('nav');
   header = document.getElementById('header');
   sun = document.getElementById('sun');
-  lede = document.querySelector('#welcome .lede');
   introduction = document.querySelector('#welcome .introduction');
   transitioning = false;
   overlay = document.getElementById('overlays');
@@ -72,11 +70,7 @@ launch_page();
 
 function refresh_layout() {
   recache_elements();
-  if (window.innerHeight < window.innerWidth) {
-    setupParallax(get.world);
-  } else {
-    window.removeEventListener('scroll', parallaxFrame);
-  }
+  setupParallax(get.world);
   layout_header();
   click_eye();
   animate_stage();
@@ -151,7 +145,13 @@ function click_eye() {
 }
 
 function switch_world(e) {
-  var eye = e.target;
+  var parent;
+  if (e.target.classList.contains('can_tooltip')) {
+    parent = e.target;
+  } else {
+    parent = e.target.parentElement;
+  }
+  var eye = parent.children[0];
   if (transitioning === false) {
     transitioning = true;
     stalks_active = false;
@@ -193,7 +193,7 @@ function replaceElements(target) {
     //We need to wait for loading to be complete
     get.world = target;
     refresh_layout();
-    updateMenu(target);
+    moveIntroduction();
     $(html).addClass('transition-stage-2');
     $('#hill_one').one('animationend webkitAnimationEnd oAnimationEnd oanimationend MSAnimationEnd', function (e) {
       setup_stalks();
@@ -217,16 +217,8 @@ function layout_header() {
   }
 }
 
-function updateMenu(target) {
-  if (target != 'default') {
-    document.getElementById('products_nav').text = 'About';
-    document.getElementById('about_nav').text = 'Other flavours';
-    $("#about_nav").attr("href", wordpress.home_url + "#welcome");
-  } else {
-    document.getElementById('products_nav').text = 'Products';
-    document.getElementById('about_nav').text = 'About';
-    $("#about_nav").attr("href", wordpress.home_url + "#welcome_main");
-  }
+function moveIntroduction() {
+  $('#about').html(introduction);
 }
 function cleanBodyClasses(target) {
   body.classList.remove('default');

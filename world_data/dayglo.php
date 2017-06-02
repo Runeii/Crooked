@@ -45,7 +45,7 @@ $elements = array(
   ),
   'fruit_two' => array(
     'speed' => 6,
-    'class' => 'float'
+    'class' => ''
   ),
   'skyshadow_one' => array(
     'speed' => 2,

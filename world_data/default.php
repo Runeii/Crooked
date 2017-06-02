@@ -89,7 +89,7 @@ $elements = array(
 foreach($elements as $name => $options) {
   picture_element($name, $options, $world);
 }
-echo '<div id="products" class="can_container parallax" data-speed="7">
+echo '<div class="can_container parallax" data-speed="7">
   <div id="dayglo_slot" class="can_tooltip">
     <a href="#" id="dayglo_eye" class="can_eye" data-world="dayglo"></a>
     <img id="dayglo_can" class="can_image" src="' . output_directory() . '/assets/img/product/can_dayglo.png" alt="Crooked Dayglo Skies can" />

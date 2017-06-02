@@ -1,6 +1,7 @@
 @import "reset";
 @import "core";
 
+$body-font: 'Open Sans';
 $header-font: 'Fjalla One';
 
 /* ==========================================================================
@@ -13,7 +14,7 @@ html {
 body {
   background-color: rgb(46,45,44);
   color:white;
-  font-family: 'Open Sans';
+  font-family: $body-font;
   font-size:18px;
   font-weight: 400;
   line-height: 1.45;
@@ -159,17 +160,14 @@ nav {
     margin:0 auto;
     flex-direction: column;
     justify-content: center;
-    background-color:black;
     text-align: center;
     top:0;
     bottom:0;
     left:0;
     right:0;
     position: relative;
-    opacity:0;
-    display:none;
     @media screen and (max-width: 767px) {
-      height:100vh;
+      height:0;
       width:100vw;
       margin:0;
       padding:0;
@@ -185,10 +183,15 @@ nav {
   a {
     font-size:1.563rem;
     font-family:$header-font;
+    display: none;
+    &:not([href*="#"]) {
+      color:#87c7a0;
+    }
     @media screen and (min-width: 576px) {
       font-size:1rem;
     }
     @media screen and (min-width: 768px) {
+      display: block;
       font-size:1.25rem;
       width: calc(45vw / 3);
     }
@@ -210,12 +213,49 @@ nav {
   &.open {
     .container {
       z-index:201;
+      background-color:black;
       display:flex;
       position: fixed;
       animation: mobile-menu 0.5s ease-in 0s both;
+      height:100vh;
+      a:not(.mobile_logo) {
+        display:block;
+        animation: mobile-menu-links 0.5s ease-in 0s both;
+      }
     }
     .fa::before {
       content:"\f00d";
+    }
+  }
+  .mobile_logo {
+    display:block;
+    z-index:202;
+    position:fixed;
+    top:0;
+    left:0;
+    width:50vw;
+    padding:1em;
+    img {
+      width:100%;
+    }
+    @media screen and (min-width: 768px) {
+      position: relative;
+      padding:0 3em;
+      width:auto;
+      img {
+        position: absolute;
+        width:5em;
+        padding:0;
+        top:-0.6em;
+        left:calc(50% - 2.5em);
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  body.default {
+    .mobile_logo {
+      display: none;
     }
   }
 }
@@ -225,7 +265,9 @@ nav {
   left:1rem;
   width: 30vw;
   z-index:202;
+  display: none;
   @media screen and (min-width: 768px) {
+    display: block;
     opacity: 1;
     animation: none;
     z-index:34;
@@ -237,6 +279,14 @@ nav {
   }
 }
 @keyframes mobile-menu {
+  0% {
+    background-color:rgba(0,0,0,0);
+  }
+  100% {
+    background-color:rgba(0,0,0,1);
+  }
+}
+@keyframes mobile-menu-links {
   0% {
     opacity:0;
   }
@@ -289,7 +339,7 @@ main {
     margin-top:0;
   }
 }
-#welcome_main {
+#about {
   h2{
     font-size: 1.563em;
     position: relative;
@@ -332,11 +382,6 @@ main {
     }
   }
 }
-body:not(.default) {
-  #welcome_main {
-    display:none;
-  }
-}
 
 #social {
   i {
@@ -369,6 +414,12 @@ body:not(.default) {
     p {
       position: relative;
       padding-bottom:0.5em;
+    }
+    &:nth-child(9) {
+      display: none;
+      @media screen and (min-width: 992px) {
+        display: block;
+      }
     }
   }
 }
@@ -463,7 +514,7 @@ body:not(.default) {
     }
   }
 }
-#the_cans, #products {
+#the_cans, #flavours {
   .world_info {
     display:none;
     opacity:0;
@@ -509,6 +560,11 @@ footer {
   letter-spacing: 0.1em;
   z-index: 101;
   overflow-x:hidden;
+  @media screen and (min-width: 992px) {
+    font-family:$body-font;
+    letter-spacing: normal;
+    font-size:0.8em;
+  }
   .row {
     width:100vw;
   }
@@ -518,8 +574,7 @@ footer {
     align-items: center;
     flex-grow: 1;;
     justify-content: space-between;
-    //Special breakpoint for footer
-    @media screen and (min-width: 1570px) {
+    @media screen and (min-width: 992px) {
       width:initial;
       justify-content:center;
     }
@@ -533,13 +588,25 @@ footer {
         flex-direction: row;
       }
     }
-    @media screen and (min-width: 1570px) {
+    @media screen and (min-width: 992px) {
       &:first-of-type{
         justify-content: flex-start;
         text-align: left;
       }
+      &:not(:first-of-type) {
+        h3 {
+          display:none;
+        }
+      }
       &:last-of-type{
         justify-content: flex-end;
+      }
+    }
+    @media screen and (min-width: 1200px) {
+      &:not(:first-of-type) {
+        h3 {
+          display:block;
+        }
       }
     }
   }
@@ -552,7 +619,7 @@ footer {
     @media screen and (min-width: 576px) {
       margin:0.5rem 0.5rem 0.5rem 0;
     }
-    @media screen and (min-width: 1570px) {
+    @media screen and (min-width: 992px) {
       padding-right:0.5em;
     }
   }
@@ -567,50 +634,9 @@ footer {
       display: block;
     }
   }
-  @media screen and (min-width: 992px) and (max-width: 1569px){
-    .footer-box {
-      &:first-child{
-        flex-wrap: wrap;
-        align-content: center;
-        justify-content: center;
-        h3 {
-          width:100%;
-        }
-      }
-      &:nth-child(2){
-        justify-content: flex-start;
-      }
-      &:nth-child(3){
-        justify-content: flex-start;
-        flex-direction: row-reverse;
-        h3 {
-          margin:0.5rem 0 0.5rem 0.5rem;
-        }
-        .footer-copy {
-          text-align: right;
-        }
-      }
-      &:last-child{
-        h3 {
-          display:none;
-        }
-        .footer-copy {
-          width:100%;
-        }
-        span {
-          width:50%;
-          display:inline;
-          &:last-child{
-            float:right;
-            text-align: right;
-          }
-        }
-      }
-    }
-  }
   i {
     margin-left: 1rem;
-    @media screen and (min-width: 1570px) {
+    @media screen and (min-width: 992px) {
       &:first-of-type{
         margin-left:0;
       }
@@ -627,11 +653,6 @@ footer {
 
 /* ==========================================================================
   World work
-  Z index:
-  - Sky shadows: 10 to 14
-  - Sun: 15
-  - Clouds: 15 to 30
-  - Ground: 30+
    ========================================================================= */
 header {
   overflow:hidden;
@@ -644,6 +665,29 @@ header {
   .parallax {
     will-change: transform;
   }
+}
+@media screen and (min-width: 576px) {
+  body:not(.default){
+    header {
+      margin-bottom:200px;
+      &::after {
+        width: 100vw;
+        height: 200px;
+        background-image: url('../img/worlds/shared/text_one.png');
+        z-index: 80;
+        position: absolute;
+        content: '';
+        top: 100%;
+        background-position: 20vw center;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-color: inherit;
+      }
+    }
+    main {
+      padding-top:4em;
+    }
+   }
 }
 .sprite {
   display: block;
@@ -864,6 +908,7 @@ body:not(.sunrise) {
   opacity:1;
   transition: opacity 0.3s;
   width:30vw;
+  padding:0;
   @media screen and (min-width: 576px) {
     width:20vw;
   }
@@ -934,11 +979,14 @@ body:not(.sunrise) {
     border-color:#e73c50;
   }
 }
-#cans_main {
+#flavours {
+  display: none;
+}
+#flavours_nav {
   display: none;
 }
 body:not(.default) {
-  #cans_main {
+  #flavours {
     display:flex;
     justify-content: space-around;
     position: relative;
@@ -946,6 +994,12 @@ body:not(.default) {
     img {
       width:100%;
     }
+  }
+  #flavours_nav {
+    display: none;
+  }
+  #flavours_nav {
+    display: block;
   }
 }
 body.dayglo {
@@ -1208,7 +1262,7 @@ $sun_colour_dayglo: #e84079;
 }
 .world_can {
   left:15vw;
-  bottom:10vh;
+  bottom:5vh;
   width:18vw;
   z-index:44;
 }
@@ -1344,134 +1398,6 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
     z-index:31;
   }
 }
-
-/* ==========================================================================
-  Portrait variants
-   ========================================================================= */
-@media all and (orientation: portrait) {
-  header {
-    height:100vh !important;
-    border-top:none !important;
-  }
-  #overlays {
-    left:0;
-    top: auto !important;
-    bottom: calc(-20vh - 0em);
-    height: 20vh;
-    padding: 0 2em 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    #welcome {
-      display:none;
-    }
-  }
-  #sky img {
-    height:70vh;
-    top:0;
-    left:0;
-    min-width:100vw;
-  }
-  .dayglo {
-    header {
-      border-bottom:20vh solid #7fc8bd;
-    }
-    #overlays {
-      flex-direction: column;
-    }
-  }
-  .mother {
-    header {
-      border-bottom:20vh solid #e73c50;
-    }
-    #hill_one img, #hill_three img, #hill_four img, #hill_five img {
-      width:100%;
-    }
-    #hill_two img {
-      width:50%;
-    }
-    #moon img {
-      left: 45vw;
-      width: 40vw;
-      bottom: 50vh;
-    }
-    #mother img {
-      width:80vw;
-      right:0;
-      left:auto;
-      bottom:60vw;
-    }
-  }
-  .midnight {
-    header {
-      border-bottom:20vh solid #87319a;
-    }
-    #moon img {
-      width:70%;
-      left:15%;
-      bottom:20vw;
-    }
-  }
-  .world_can {
-    display: none;
-  }
-}
-/* ==========================================================================
-  General animations
-   ========================================================================= */
-@keyframes sun_shimmer {
-  0% {
-    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 10px $sun_colour;
-    background-color:$sun_colour;
-  }
-  25% {
-    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 70px $sun_colour;
-    background-color:darken($sun_colour, 5%);
-  }
-  50% {
-    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 10px $sun_colour;
-    background-color:$sun_colour;
-  }
-  75% {
-    box-shadow: 0 0 40px 6px $sun_colour, 0 0 130px 50px $sun_colour;
-    background-color:darken($sun_colour, 5%);
-  }
-  100% {
-    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 10px $sun_colour;
-    background-color:$sun_colour;
-  }
-}
-@keyframes longcloud_float {
-  0% {
-    left:0%;
-  }
-  100% {
-    left:-50%;
-  }
-}
-@keyframes float {
-  0% {
-    margin-left: 0vw;
-  }
-  50% {
-    margin-left: -25vw;
-  }
-  100% {
-    margin-left: 0vw;
-  }
-}
-@keyframes float-reverse {
-  0% {
-    margin-right: 0vw;
-  }
-  50% {
-    margin-right: -5vw;
-  }
-  100% {
-    margin-right: 0vw;
-  }
-}
 /* ==========================================================================
   Color palettes
    ========================================================================= */
@@ -1576,28 +1502,25 @@ body.default.sunrise {
 /*========================================================================= */
 
 body.dayglo {
-  background-color: rgba(42, 119, 161, 1);
+  background-color: #7fc8bd;
   color:white;
   .lede {
     color:white
   }
   main, footer, .ie11wrap {
-    background-color: rgba(42, 119, 161, 1);
+    background-color: #7fc8bd;
   }
   header {
     background-color: rgba(42, 119, 161, 1);
+    &::after {
+      background-color: #7fc8bd;
+
+    }
   }
   #social {
     .post {
       border-color:#7fc8bd;
     }
-  }
-}
-
-body.dayglo.sunrise {
-  background-color: #7fc8bd;
-  main, footer, .ie11wrap {
-    background-color: #7fc8bd;
   }
 }
 
@@ -1632,17 +1555,6 @@ body.mother {
   header {
     background-color: #e73c50;
     position: relative;
-    &::after {
-      content: '';
-    //  background-image:url('../img/worlds/mother/psuedo-divider.png');
-      background-size:100% 100%;
-      background-position:center center;
-      position:absolute;
-      bottom:0;
-      width:100%;
-      height:9.41vw;
-      z-index:50;
-    }
     #mother_mother img {
       transition: transform $sunrise_timing;
       transform: translate(45vw, -20vw);
@@ -1694,6 +1606,174 @@ body.mother {
   }
 }
 
+/* ==========================================================================
+  Portrait variants
+   ========================================================================= */
+@media all and (orientation: portrait) {
+  header {
+    height:100vh !important;
+    border-top:none !important;
+  }
+  #overlays {
+    left:0;
+    top: auto !important;
+    bottom: calc(-20vh - 0em);
+    height: 20vh;
+    padding: 0 2em 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    #welcome {
+      display:none;
+    }
+  }
+  #sky img {
+    height:70vh;
+    top:0;
+    left:0;
+    min-width:100vw;
+  }
+  .dayglo {
+    header {
+      border-bottom:20vh solid #7fc8bd;
+    }
+    #overlays {
+      flex-direction: column;
+    }
+  }
+  .mother {
+    header {
+      border-bottom:20vh solid #e73c50;
+    }
+    #hill_one img, #hill_three img, #hill_four img, #hill_five img {
+      width:100%;
+    }
+    #hill_two img {
+      width:50%;
+    }
+    #moon img {
+      left: 45vw;
+      width: 40vw;
+      bottom: 50vh;
+    }
+    #mother img {
+      width:80vw;
+      right:0;
+      left:auto;
+      bottom:60vw;
+    }
+  }
+  .midnight {
+    header {
+      border-bottom:20vh solid #87319a;
+    }
+    #moon img {
+      width:70%;
+      left:15%;
+      bottom:20vw;
+    }
+  }
+  .world_can {
+    display: none;
+  }
+}
+
+
+// !Important derclarations in this section are to override global JS styles during transitions and layout
+@media all and (orientation: landscape) and (max-height: 500px){
+  nav {
+    .mobile_logo {
+      width:30vw;
+    }
+  }
+  .can_container {
+    width:50vw;
+    left:25vw;
+    justify-content: space-between;
+  }
+  .can_tooltip {
+    width:30%;
+    a {
+      width:40px;
+      height:40px;
+      top:-80px;
+    }
+  }
+  body:not(.default) {
+    header {
+      border-top:none !important;
+      margin-top: 80vh;
+    }
+    #overlays {
+      height: 100vh;
+      width: 100vw;
+      top: -80vh !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+  body.dayglo {
+    background-color:#2a77a1;
+  }
+}
+/* ==========================================================================
+  General animations
+   ========================================================================= */
+@keyframes sun_shimmer {
+  0% {
+    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 10px $sun_colour;
+    background-color:$sun_colour;
+  }
+  25% {
+    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 70px $sun_colour;
+    background-color:darken($sun_colour, 5%);
+  }
+  50% {
+    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 10px $sun_colour;
+    background-color:$sun_colour;
+  }
+  75% {
+    box-shadow: 0 0 40px 6px $sun_colour, 0 0 130px 50px $sun_colour;
+    background-color:darken($sun_colour, 5%);
+  }
+  100% {
+    box-shadow: 0 0 40px 6px $sun_colour, 0 0 150px 10px $sun_colour;
+    background-color:$sun_colour;
+  }
+}
+@keyframes longcloud_float {
+  0% {
+    left:0%;
+  }
+  100% {
+    left:-50%;
+  }
+}
+@keyframes float {
+  0% {
+    margin-left: 0vw;
+  }
+  50% {
+    margin-left: -25vw;
+  }
+  100% {
+    margin-left: 0vw;
+  }
+}
+@keyframes float-reverse {
+  0% {
+    margin-right: 0vw;
+  }
+  50% {
+    margin-right: -5vw;
+  }
+  100% {
+    margin-right: 0vw;
+  }
+}
+
 ///Browser specific fixes
 
 @supports not (object-fit:cover){
@@ -1713,7 +1793,7 @@ body.mother {
   }
 }
 
-@media screen and (-ms-high-contrast:none) and (min-width: 1570px){
+@media screen and (-ms-high-contrast:none) and (min-width: 992px) {
   footer .footer-box {
     flex: 1 1 22%;
     min-width:0%;

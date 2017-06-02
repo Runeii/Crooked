@@ -58,16 +58,14 @@ function picture_element($name, $options, $world, $mobilename = null){
   }
 }
 function create_overlays($overlays, $world){
-  picture_element('text_one', array('speed' => 0, 'class' => 'text'), 'shared');
-  picture_element('text_two', array('speed' => 0, 'class' => 'text'), 'shared');
-  echo '<div id="overlays" class="parallax" data-speed="1">';
+  echo '<div id="overlays" class="parallax" data-speed="0">';
   foreach($overlays as $name => $options) {
     if($name != 'copy') {
       picture_element($name, $options, $world, $name);
     } else {
       echo '<section id="welcome" class="row">
               <h2 class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-xl-6 offset-xl-3 lede">'. $overlays['copy']['lede'] .'</h2>
-              <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-xl-6 offset-xl-3 introduction">'. $overlays['copy']['introduction'] .'</div>
+              <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 introduction">'. $overlays['copy']['introduction'] .'</div>
             </section>';
       echo '</div>';
     }

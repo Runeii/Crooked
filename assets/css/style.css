@@ -4292,14 +4292,14 @@ main {
 #welcome p:first-of-type {
   margin-top: 0; }
 
-#welcome_main h2 {
+#about h2 {
   font-size: 1.563em;
   position: relative;
   margin-bottom: 4rem; }
   @media screen and (min-width: 576px) {
-    #welcome_main h2 {
+    #about h2 {
       font-size: 2.441em; } }
-  #welcome_main h2:after {
+  #about h2:after {
     position: absolute;
     bottom: -3rem;
     left: 0;
@@ -4307,14 +4307,14 @@ main {
     text-align: center;
     content: '-'; }
 
-#welcome_main p:first-of-type {
+#about p:first-of-type {
   font-size: 1.25em;
   margin-top: 0; }
 
-#welcome_main p:nth-of-type(2) {
+#about p:nth-of-type(2) {
   margin-bottom: 0; }
 
-#welcome_main p:nth-of-type(3) {
+#about p:nth-of-type(3) {
   margin-top: 0; }
 
 @media screen and (min-width: 768px) {
@@ -4329,7 +4329,7 @@ main {
   page-break-inside: avoid;
   break-inside: avoid; }
 
-body:not(.default) #welcome_main {
+body:not(.default) #about {
   display: none; }
 
 #social i {
@@ -4366,20 +4366,20 @@ body:not(.default) #welcome_main {
 #wholesale .logo, #stockists .logo {
   margin-top: 2rem; }
 
-#products .row {
+#flavours .row {
   flex-direction: column;
   text-align: center;
   margin-bottom: 3rem;
   align-items: center; }
   @media screen and (min-width: 576px) {
-    #products .row {
+    #flavours .row {
       flex-direction: row;
       text-align: left; }
-      #products .row:nth-of-type(odd) {
+      #flavours .row:nth-of-type(odd) {
         text-align: right;
         flex-direction: row-reverse; } }
 
-#products .explore-button {
+#flavours .explore-button {
   text-align: center; }
 
 #contact label {
@@ -4437,31 +4437,31 @@ body:not(.default) #welcome_main {
       flex-basis: auto;
       margin-top: 1rem; } }
 
-#the_cans .world_info, #products .world_info {
+#the_cans .world_info, #flavours .world_info {
   display: none;
   opacity: 0;
   padding: 0 15px;
   text-align: center;
   transition: opacity 1s; }
-  #the_cans .world_info p, #the_cans .world_info h3, #products .world_info p, #products .world_info h3 {
+  #the_cans .world_info p, #the_cans .world_info h3, #flavours .world_info p, #flavours .world_info h3 {
     margin: 0 auto;
     width: 50%; }
-  #the_cans .world_info :first-child, #products .world_info :first-child {
+  #the_cans .world_info :first-child, #flavours .world_info :first-child {
     top: 1.5rem;
     opacity: 0;
     position: relative;
     transition: all 1s linear 0s; }
-  #the_cans .world_info :nth-child(2), #products .world_info :nth-child(2) {
+  #the_cans .world_info :nth-child(2), #flavours .world_info :nth-child(2) {
     top: 1.5rem;
     opacity: 0;
     position: relative;
     transition: all 1s linear 0.5s; }
-  #the_cans .world_info :nth-child(3), #products .world_info :nth-child(3) {
+  #the_cans .world_info :nth-child(3), #flavours .world_info :nth-child(3) {
     top: 1.5rem;
     opacity: 0;
     position: relative;
     transition: all 1s linear 0.75s; }
-  #the_cans .world_info .loading, #products .world_info .loading {
+  #the_cans .world_info .loading, #flavours .world_info .loading {
     top: 1.5rem;
     margin-top: 2em;
     opacity: 0;
@@ -4841,15 +4841,15 @@ body:not(.sunrise) .terrain img {
   .can_tooltip:nth-child(3) .stalk {
     border-color: #e73c50; }
 
-#cans_main {
+#flavours {
   display: none; }
 
-body:not(.default) #cans_main {
+body:not(.default) #flavours {
   display: flex;
   justify-content: space-around;
   position: relative;
   padding-top: calc(9rem * 1.45); }
-  body:not(.default) #cans_main img {
+  body:not(.default) #flavours img {
     width: 100%; }
 
 body.dayglo #dayglo_slot {
