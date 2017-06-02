@@ -4143,7 +4143,7 @@ body:not(.default) #about p:nth-of-type(2) {
     #contact label {
       text-align: right; } }
 
-#contact input:not([type=submit]), #contact textarea {
+#contact input:not([type=submit]), #contact textarea, #contact select {
   width: 100%;
   background-color: transparent;
   border: 2px white solid;
@@ -4157,6 +4157,10 @@ body:not(.default) #about p:nth-of-type(2) {
   padding: 0.5em;
   color: white;
   align-self: flex-end; }
+
+#contact option {
+  background-color: black;
+  color: white; }
 
 #the_cans .can {
   display: -webkit-box;

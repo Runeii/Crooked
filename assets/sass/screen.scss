@@ -477,7 +477,7 @@ body:not(.default){
       text-align:right;
     }
   }
-  input:not([type=submit]), textarea {
+  input:not([type=submit]), textarea, select {
     width:100%;
     background-color:transparent;
     border:2px white solid;
@@ -491,6 +491,10 @@ body:not(.default){
     padding: 0.5em;
     color: white;
     align-self:flex-end;
+  }
+  option {
+    background-color: black;
+    color: white;
   }
 }
 
