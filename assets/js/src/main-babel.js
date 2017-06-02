@@ -109,9 +109,7 @@ function resetScroll() {
 }
 function animate_stage() {
   body.classList.add('sunrise');
-  setTimeout(function () {
-    html.classList.add('daytime');
-  }, 5500);
+  html.classList.add('daytime');
 }
 
 $("#mobile-menu").click(function () {

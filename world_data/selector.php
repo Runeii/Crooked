@@ -66,6 +66,7 @@ function create_overlays($overlays, $world){
       echo '<section id="welcome" class="row">
               <h2 class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-xl-6 offset-xl-3 lede">'. $overlays['copy']['lede'] .'</h2>
               <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 introduction">'. $overlays['copy']['introduction'] .'</div>
+              <div class="col-12 sm-10 offset-sm-1 col-md-8 offset-md-2 col-xl-6 offset-xl-3 description">Refreshing, sparkling, alcoholic malted soda.<br />Made with natural fruit flavours,  juices and a lightly hopped finish with nothing artificial.</div>
             </section>';
       echo '</div>';
     }
