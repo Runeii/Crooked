@@ -3881,8 +3881,6 @@ nav {
     font-size: 1.563rem;
     font-family: "Fjalla One", "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
     display: none; }
-    nav a:not([href*="#"]) {
-      color: #87c7a0; }
     @media screen and (min-width: 576px) {
       nav a {
         font-size: 1rem; } }
