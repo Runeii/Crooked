@@ -1,7 +1,7 @@
 <?php
 function crooked_scripts_styles() {
-    wp_enqueue_style( 'styles', get_stylesheet_directory_uri() . '/assets/css/style-min.css', null, '1.0.1', 'all' );
-    wp_register_script( 'main', get_template_directory_uri() . '/assets/js/scripts-min.js', null, '1.0.1', true);
+    wp_enqueue_style( 'styles', get_stylesheet_directory_uri() . '/assets/css/style-min.css', null, '1.0.2', 'all' );
+    wp_register_script( 'main', get_template_directory_uri() . '/assets/js/scripts-min.js', null, '1.0.2', true);
     // Localize the script with new data
     $translation_array = array(
     	'template_directory' => str_replace(get_home_url(), '', get_template_directory_uri()),
@@ -64,6 +64,12 @@ function get_instafeed(){
   }
   return $current;
 }
+if ( ! wp_next_scheduled( 'instafeed_cron' ) ) {
+  wp_schedule_event( time(), 'hourly', 'instafeed_cron' );
+}
+
+add_action( 'instafeed_cron', 'update_instafeed' );
+
 function clean_caption($caption){
   //Strip frequently used hashtags to declutter social feed
   $hashtags = array("crookedbevco", "crooked", "crookedalcoholicsoda", "alcoholicsoda", "vegan", "veganfriendly");

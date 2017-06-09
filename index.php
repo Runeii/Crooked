@@ -70,6 +70,9 @@
     <div class="logo col-12 col-md-4">
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/morrisons.png" alt="Morrisons logo" />
     </div>
+    <div class="logo col-12 col-md-4 offset-md-4">
+      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/headofsteam.png" alt="Head of Steam logo" />
+    </div>
   </section>
 </div>
 </main>

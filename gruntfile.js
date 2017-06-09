@@ -97,7 +97,7 @@ module.exports = function(grunt) {
       options: {
         watchTask: true,
         server: false,
-        proxy: 'localhost:80'
+        proxy: 'localhost:8080'
       }
     },
     notify: {

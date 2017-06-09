@@ -15,7 +15,7 @@
     <meta content="True" name="HandheldFriendly">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="viewport" content="width=device-width">
-    <?php echo file_get_contents(get_stylesheet_directory_uri() .'/assets/js/loader.html'); ?>
+    <?php echo file_get_contents(get_stylesheet_directory() .'/assets/js/loader.html'); ?>
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One%7COpen+Sans" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
@@ -36,11 +36,11 @@
      <nav id="nav">
        <i id="mobile-menu" class="fa fa-bars"></i>
        <div class="container">
-         <a href="<?php echo get_home_url(); ?>/#whydifferent">Key Info</a>
-         <a href="<?php echo get_home_url(); ?>/#wholesale">Wholesale</a>
+         <a href="<?php echo get_home_url(); ?>/trade/#whydifferent">Key Info</a>
+         <a href="<?php echo get_home_url(); ?>/trade/#wholesale">Wholesale</a>
          <a href="<?php echo get_home_url(); ?>" class="mobile_logo"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/crooked_logo.svg" alt="Crooked Beverage Co logo" /></a>
-         <a href="<?php echo get_home_url(); ?>/#products">Range</a>
-         <a href="<?php echo get_home_url(); ?>">Consumer</a>
+         <a href="<?php echo get_home_url(); ?>/trade/#products">Range</a>
+         <a href="<?php echo get_home_url(); ?>">Main Site</a>
        </div>
      </nav>
   <?php

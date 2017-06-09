@@ -4061,11 +4061,17 @@ body {
   background-color: #2e2d2c;
   color: white;
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
-  font-size: 18px;
   font-weight: 400;
   line-height: 1.45;
   margin: 0;
-  max-width: 100%; }
+  max-width: 100%;
+  font-size: 14px; }
+  @media screen and (min-width: 767px) {
+    body {
+      font-size: 16px; } }
+  @media screen and (min-width: 1200px) {
+    body {
+      font-size: 18px; } }
 
 p {
   margin-bottom: 1.3em; }
@@ -4106,7 +4112,7 @@ h5 {
   h5 {
     font-size: 1.25em; } }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1500px) {
   h1 {
     font-size: 3.052em;
     margin-top: 0; }
@@ -4120,7 +4126,10 @@ h5 {
     font-size: 1.25em; } }
 
 small, .font_small {
-  font-size: 0.8em; }
+  font-size: 1em; }
+  @media screen and (min-width: 767px) {
+    small, .font_small {
+      font-size: 0.8em; } }
 
 img {
   max-width: 100%;
@@ -4563,7 +4572,7 @@ footer {
         display: none; }
       footer .footer-box:last-of-type {
         justify-content: flex-end; } }
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1300px) {
       footer .footer-box:not(:first-of-type) h3 {
         display: block; } }
   footer a {
@@ -4815,6 +4824,10 @@ body:not(.sunrise) .terrain img {
   transform: translate3d(0, 0, 1px); }
   @media screen and (min-width: 576px) {
     .can_container {
+      width: 60vw;
+      left: 20vw; } }
+  @media screen and (min-width: 576px) and (min-height: 830px) {
+    .can_container {
       width: 80vw;
       left: 10vw; } }
   .can_container img {
@@ -4830,8 +4843,14 @@ body:not(.sunrise) .terrain img {
   cursor: pointer; }
   @media screen and (min-width: 576px) {
     .can_tooltip {
+      width: 12vw; } }
+  @media screen and (min-width: 576px) and (min-height: 830px) {
+    .can_tooltip {
       width: 20vw; } }
   @media screen and (min-width: 992px) {
+    .can_tooltip {
+      width: 12vw; } }
+  @media screen and (min-width: 992px) and (min-height: 830px) {
     .can_tooltip {
       width: 15vw; } }
   .can_tooltip:nth-child(1) {
@@ -5044,7 +5063,8 @@ body.midnight #midnight_slot {
   bottom: 30vh;
   z-index: 34;
   max-width: 10vw;
-  animation-duration: 5s; }
+  animation-duration: 5s;
+  animation: float_bg 3s infinite ease-in-out; }
 
 .dayglo #moon img {
   border-radius: 50%;
@@ -5089,6 +5109,14 @@ body.midnight #midnight_slot {
     transform: translate(0, 15px); }
   to {
     transform: translate(0, 0px); } }
+
+@keyframes float_bg {
+  from {
+    margin-bottom: 0px; }
+  65% {
+    margin-bottom: -15px; }
+  to {
+    margin-bottom: 0px; } }
 
 @keyframes sun_shimmer_dayglo {
   0% {
@@ -5388,8 +5416,10 @@ body.mother {
    ========================================================================= */
 @media all and (orientation: portrait) {
   header {
-    height: 90vh !important;
+    height: 100vh !important;
     border-top: none !important; }
+  .default header {
+    height: 90vh !important; }
   #overlays {
     left: 0;
     top: auto !important;
@@ -5401,7 +5431,7 @@ body.mother {
     justify-content: center;
     align-items: center;
     background-color: inherit;
-    z-index: 80; }
+    z-index: 80 !important; }
     #overlays #welcome {
       display: none; }
   #sky img {
