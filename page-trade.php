@@ -45,8 +45,14 @@ include(get_stylesheet_directory() . '/header.php'); ?>
   <section id="wholesale" class="row">
     <h3 class="col-12">Wholesale</h3>
     <p class="col-12">Crooked is available at the following wholesalers</p>
-    <div class="logo col-12 col-md-4 offset-md-4">
+    <div class="logo col-12 col-md-4">
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/Matthew Clark.png" />
+    </div>
+    <div class="logo col-12 col-md-4">
+      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/lwc.png" />
+    </div>
+    <div class="logo col-12 col-md-4">
+      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/tennents.png" />
     </div>
   </section>
   <section id="products" class="row">
