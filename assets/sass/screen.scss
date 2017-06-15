@@ -19,16 +19,6 @@ $special-font: 'amaticbold', #{$header-font};
    Base typography, general styles
    ========================================================================== */
 html {
-  font-size:1.25em;
-  max-width:100%;
-}
-body {
-  background-color: rgb(46,45,44);
-  color:white;
-  font-family: $body-font;
-  font-weight: 400;
-  line-height: 1.45;
-  margin:0;
   max-width:100%;
   font-size:14px;
   @media screen and (min-width: 767px) {
@@ -37,6 +27,16 @@ body {
   @media screen and (min-width: 1200px) {
     font-size:18px;
   }
+}
+body {
+  background-color: rgb(46,45,44);
+  color:white;
+  font-family: $body-font;
+  font-weight: 400;
+  font-size:1rem;
+  line-height: 1.45;
+  margin:0;
+  max-width:100%;
 }
 p {
   margin-bottom: 1.3em;
@@ -50,62 +50,62 @@ h1, h2, h3, h4, .h3, .h4 {
 }
 
 h1 {
-  font-size: 1.953em;
+  font-size: 1.953rem;
   margin-top: 0;
 }
 h2 {
-  font-size: 1.953em;
+  font-size: 1.953rem;
 }
 h3, .h3 {
-  font-size: 1.563em;
+  font-size: 1.563rem;
 }
 h4, .h4 {
-  font-size: 1.25em;
+  font-size: 1.25rem;
 }
 h5 {
-  font-size: 1.25em;
+  font-size: 1.25rem;
 }
 @media screen and (min-width: 576px) {
   h1 {
-    font-size: 2.441em;
+    font-size: 2.441rem;
     margin-top: 0;
   }
   h2 {
-    font-size: 1.953em;
+    font-size: 1.953rem;
   }
   h3, .h3 {
-    font-size: 1.563em;
+    font-size: 1.563rem;
   }
   h4, .h4 {
-    font-size: 1.25em;
+    font-size: 1.25rem;
   }
   h5 {
-    font-size: 1.25em;
+    font-size: 1.25rem;
   }
 }
 @media screen and (min-width: 1500px) {
   h1 {
-    font-size: 3.052em;
+    font-size: 3.052rem;
     margin-top: 0;
   }
   h2 {
-    font-size: 2.441em;
+    font-size: 2.441rem;
   }
   h3, .h3 {
-    font-size: 1.953em;
+    font-size: 1.953rem;
   }
   h4, .h4 {
-    font-size: 1.563em;
+    font-size: 1.563rem;
   }
   h5 {
-    font-size: 1.25em;
+    font-size: 1.25rem;
   }
 }
 
 small, .font_small {
-  font-size: 1em;
+  font-size: 1rem;
   @media screen and (min-width: 767px) {
-    font-size: 0.8em;
+    font-size: 0.8rem;
   }
 }
 
@@ -125,11 +125,11 @@ img {
 table {
   text-align: left;
   border-collapse: collapse;
-  font-size:0.8em;
+  font-size:0.8rem;
   margin: 0 auto;
   td, th {
     border:1px solid white;
-    padding:0.8em;
+    padding:0.8rem;
   }
   td:first-child {
     text-transform: uppercase;
@@ -373,7 +373,7 @@ main {
     }
   }
   p:first-of-type{
-    font-size:1.25em;
+    font-size:1rem;
     margin-top:0;
   }
   p:nth-of-type(2){
@@ -386,7 +386,7 @@ main {
 body:not(.default){
   #about {
     p:nth-of-type(2){
-      font-size:1.25em;
+      font-size:1rem;
       margin-bottom:0;
     }
   }
@@ -478,9 +478,16 @@ body:not(.default){
 #contact {
   label {
     text-align: left;
+    margin:0;
     @media screen and (min-width: 576px) {
       text-align:right;
     }
+  }
+  .h4 {
+    font-size:1.25rem;
+  }
+  .row {
+    margin:0.5em 0;
   }
   input:not([type=submit]), textarea, select {
     width:100%;
@@ -588,11 +595,11 @@ footer {
   overflow-x:hidden;
   font-family: "Open Sans";
   letter-spacing: normal;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   @media screen and (min-width: 992px) {
     font-family:$body-font;
     letter-spacing: normal;
-    font-size:0.8em;
+    font-size:0.8rem;
   }
   .row {
     width:100vw;
@@ -1406,7 +1413,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
     width:100%;
   }
   #hill_one img {
-    width:50vw;
+    width:100vw;
   }
   #hill_two img {
     width:30vw;

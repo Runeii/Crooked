@@ -4054,24 +4054,24 @@ html {
    Base typography, general styles
    ========================================================================== */
 html {
-  font-size: 1.25em;
-  max-width: 100%; }
+  max-width: 100%;
+  font-size: 14px; }
+  @media screen and (min-width: 767px) {
+    html {
+      font-size: 16px; } }
+  @media screen and (min-width: 1200px) {
+    html {
+      font-size: 18px; } }
 
 body {
   background-color: #2e2d2c;
   color: white;
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
   font-weight: 400;
+  font-size: 1rem;
   line-height: 1.45;
   margin: 0;
-  max-width: 100%;
-  font-size: 14px; }
-  @media screen and (min-width: 767px) {
-    body {
-      font-size: 16px; } }
-  @media screen and (min-width: 1200px) {
-    body {
-      font-size: 18px; } }
+  max-width: 100%; }
 
 p {
   margin-bottom: 1.3em; }
@@ -4084,52 +4084,52 @@ h1, h2, h3, h4, .h3, .h4 {
   text-transform: uppercase; }
 
 h1 {
-  font-size: 1.953em;
+  font-size: 1.953rem;
   margin-top: 0; }
 
 h2 {
-  font-size: 1.953em; }
+  font-size: 1.953rem; }
 
 h3, .h3 {
-  font-size: 1.563em; }
+  font-size: 1.563rem; }
 
 h4, .h4 {
-  font-size: 1.25em; }
+  font-size: 1.25rem; }
 
 h5 {
-  font-size: 1.25em; }
+  font-size: 1.25rem; }
 
 @media screen and (min-width: 576px) {
   h1 {
-    font-size: 2.441em;
+    font-size: 2.441rem;
     margin-top: 0; }
   h2 {
-    font-size: 1.953em; }
+    font-size: 1.953rem; }
   h3, .h3 {
-    font-size: 1.563em; }
+    font-size: 1.563rem; }
   h4, .h4 {
-    font-size: 1.25em; }
+    font-size: 1.25rem; }
   h5 {
-    font-size: 1.25em; } }
+    font-size: 1.25rem; } }
 
 @media screen and (min-width: 1500px) {
   h1 {
-    font-size: 3.052em;
+    font-size: 3.052rem;
     margin-top: 0; }
   h2 {
-    font-size: 2.441em; }
+    font-size: 2.441rem; }
   h3, .h3 {
-    font-size: 1.953em; }
+    font-size: 1.953rem; }
   h4, .h4 {
-    font-size: 1.563em; }
+    font-size: 1.563rem; }
   h5 {
-    font-size: 1.25em; } }
+    font-size: 1.25rem; } }
 
 small, .font_small {
-  font-size: 1em; }
+  font-size: 1rem; }
   @media screen and (min-width: 767px) {
     small, .font_small {
-      font-size: 0.8em; } }
+      font-size: 0.8rem; } }
 
 img {
   max-width: 100%;
@@ -4145,11 +4145,11 @@ img {
 table {
   text-align: left;
   border-collapse: collapse;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   margin: 0 auto; }
   table td, table th {
     border: 1px solid white;
-    padding: 0.8em; }
+    padding: 0.8rem; }
   table td:first-child {
     text-transform: uppercase;
     text-align: right; }
@@ -4361,7 +4361,7 @@ main {
     content: '-'; }
 
 #about p:first-of-type {
-  font-size: 1.25em;
+  font-size: 1rem;
   margin-top: 0; }
 
 #about p:nth-of-type(2) {
@@ -4371,7 +4371,7 @@ main {
   margin-top: 0; }
 
 body:not(.default) #about p:nth-of-type(2) {
-  font-size: 1.25em;
+  font-size: 1rem;
   margin-bottom: 0; }
 
 @media screen and (min-width: 768px) {
@@ -4442,10 +4442,17 @@ body:not(.default) #about p:nth-of-type(2) {
   text-align: center; }
 
 #contact label {
-  text-align: left; }
+  text-align: left;
+  margin: 0; }
   @media screen and (min-width: 576px) {
     #contact label {
       text-align: right; } }
+
+#contact .h4 {
+  font-size: 1.25rem; }
+
+#contact .row {
+  margin: 0.5em 0; }
 
 #contact input:not([type=submit]), #contact textarea, #contact select {
   width: 100%;
@@ -4539,12 +4546,12 @@ footer {
   overflow-x: hidden;
   font-family: "Open Sans";
   letter-spacing: normal;
-  font-size: 0.8em; }
+  font-size: 0.8rem; }
   @media screen and (min-width: 992px) {
     footer {
       font-family: "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
       letter-spacing: normal;
-      font-size: 0.8em; } }
+      font-size: 0.8rem; } }
   footer .row {
     width: 100vw; }
   footer .footer-box {
@@ -5228,7 +5235,7 @@ body.midnight #midnight_slot {
   width: 100%; }
 
 .mother #hill_one img {
-  width: 50vw; }
+  width: 100vw; }
 
 .mother #hill_two img {
   width: 30vw; }

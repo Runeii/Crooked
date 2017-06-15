@@ -86,6 +86,12 @@ $elements = array(
     'sky'
   )
 );
+$overlays = array(
+  'copy' => array(
+    'lede' => '',
+    'introduction' => "<p>In the shadow of the Crooked Spire we craft natural alcoholic sodas packed full of fruity flavour and just the right amount of sweetness.</p><p>Crooked Beverage Co was borne out of a desire to create something truly new and truly different. A whole lot of time, experimentation and passion have gone into these drinks, alongside all natural ingredients!</p><p>We've partnered with the extremely talented Lisa O'Hara to create the amazing illustrations on each can. Her inimitable style perfectly brings the Crooked worlds to life.</p><p>Each of the flavours is modelled around a different dimension. Let us take you on a journey through our worlds.</p>"
+  )
+);
 foreach($elements as $name => $options) {
   picture_element($name, $options, $world);
 }

@@ -1,7 +1,8 @@
 <?php
+$version = '1.1';
 function crooked_scripts_styles() {
-    wp_enqueue_style( 'styles', get_stylesheet_directory_uri() . '/assets/css/style-min.css', null, '1.0.2', 'all' );
-    wp_register_script( 'main', get_template_directory_uri() . '/assets/js/scripts-min.js', null, '1.0.2', true);
+    wp_enqueue_style( 'styles', get_stylesheet_directory_uri() . '/assets/css/style-min.css', null, $version, 'all' );
+    wp_register_script( 'main', get_template_directory_uri() . '/assets/js/scripts-min.js', null, $version, true);
     // Localize the script with new data
     $translation_array = array(
     	'template_directory' => str_replace(get_home_url(), '', get_template_directory_uri()),

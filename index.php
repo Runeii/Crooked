@@ -4,7 +4,7 @@
 <div class="container">
   <section id="about" class="row">
     <h2 class="col-12 lede">We seek to take your expectations and turn them on their head</h2>
-    <div class="col-12 introduction">
+    <div class="col-12 col-md-10 offset-md-1 introduction font_small">
       <p>In the shadow of the Crooked Spire we craft natural alcoholic sodas packed full of fruity flavour and just the right amount of sweetness.</p>
       <p>Crooked Beverage Co was borne out of a desire to create something truly new and truly different. A whole lot of time, experimentation and passion have gone into these drinks, alongside all natural ingredients!</p>
       <p>We've partnered with the extremely talented Lisa O'Hara to create the amazing illustrations on each can. Her inimitable style perfectly brings the Crooked worlds to life.</p>
