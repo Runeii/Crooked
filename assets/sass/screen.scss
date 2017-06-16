@@ -1259,8 +1259,6 @@ $sun_colour_dayglo: #e84079;
   }
 }
 
-
-
 @keyframes float_bob{
     from {
       transform:translate(0, 0px);
@@ -1359,10 +1357,29 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   #hill_one img {
     width:100vw;
     left:0vw;
+    bottom:-2vh;
   }
   #hill_two img {
     width:100vw;
     bottom:23vw;
+  }
+  #hill_three img {
+    width: 20vw;
+    bottom: 23vw;
+    right: 13vw;
+    left: initial;
+  }
+  #creature img {
+    height:35vh;
+    left:33vw;
+    z-index:36;
+    bottom:30vh;
+  }
+  #fruit img {
+    height: 45vh;
+    left: 35vw;
+    z-index: 37;
+    bottom: 27vh;
   }
   //Left hand clouds
   #cloud_one img {
@@ -1404,6 +1421,27 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   }
 }
 
+.squeeze img {
+  animation: squeeze 3.2s infinite;
+}
+
+@keyframes squeeze{
+    0% {
+      transform:translate(0, 0px);
+    }
+    28% {
+      transform:translate(0, 0px);
+    }
+    48% {
+      transform:translate(0, -15px);
+    }
+    68% {
+      transform:translate(0, 0px);
+    }
+    100% {
+      transform:translate(0, 0px);
+    }
+}
 
 /* ==========================================================================
   Mother Moon

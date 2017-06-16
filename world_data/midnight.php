@@ -6,14 +6,26 @@ $elements = array(
     'mobile' => true
   ),
   'hill_two' => array(
-    'speed' => 5,
+    'speed' => 4,
     'class' => 'terrain',
     'mobile' => true
+  ),
+  'hill_three' => array(
+    'speed' => 6,
+    'class' => 'terrain',
   ),
   'moon' => array(
     'speed' => 7,
     'class' => '',
     'mobile' => true
+  ),
+  'creature' => array(
+    'speed' => 0,
+    'class' => 'animation'
+  ),
+  'fruit' => array(
+    'speed' => 0,
+    'class' => 'squeeze'
   ),
   'skyshadow_one' => array(
     'speed' => 2,

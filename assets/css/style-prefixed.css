@@ -5118,11 +5118,30 @@ body.midnight #midnight_slot {
    ========================================================================= */
 .midnight #hill_one img {
   width: 100vw;
-  left: 0vw; }
+  left: 0vw;
+  bottom: -2vh; }
 
 .midnight #hill_two img {
   width: 100vw;
   bottom: 23vw; }
+
+.midnight #hill_three img {
+  width: 20vw;
+  bottom: 23vw;
+  right: 13vw;
+  left: initial; }
+
+.midnight #creature img {
+  height: 35vh;
+  left: 33vw;
+  z-index: 36;
+  bottom: 30vh; }
+
+.midnight #fruit img {
+  height: 45vh;
+  left: 35vw;
+  z-index: 37;
+  bottom: 27vh; }
 
 .midnight #cloud_one img {
   left: 0px;
@@ -5159,6 +5178,44 @@ body.midnight #midnight_slot {
   left: auto;
   top: 20vh;
   right: 0; }
+
+.squeeze img {
+  -webkit-animation: squeeze 3.2s infinite;
+          animation: squeeze 3.2s infinite; }
+
+@-webkit-keyframes squeeze {
+  0% {
+    -webkit-transform: translate(0, 0px);
+            transform: translate(0, 0px); }
+  28% {
+    -webkit-transform: translate(0, 0px);
+            transform: translate(0, 0px); }
+  48% {
+    -webkit-transform: translate(0, -15px);
+            transform: translate(0, -15px); }
+  68% {
+    -webkit-transform: translate(0, 0px);
+            transform: translate(0, 0px); }
+  100% {
+    -webkit-transform: translate(0, 0px);
+            transform: translate(0, 0px); } }
+
+@keyframes squeeze {
+  0% {
+    -webkit-transform: translate(0, 0px);
+            transform: translate(0, 0px); }
+  28% {
+    -webkit-transform: translate(0, 0px);
+            transform: translate(0, 0px); }
+  48% {
+    -webkit-transform: translate(0, -15px);
+            transform: translate(0, -15px); }
+  68% {
+    -webkit-transform: translate(0, 0px);
+            transform: translate(0, 0px); }
+  100% {
+    -webkit-transform: translate(0, 0px);
+            transform: translate(0, 0px); } }
 
 /* ==========================================================================
   Mother Moon
