@@ -14,15 +14,39 @@
   <div id="flavours" class="row">
     <div id="dayglo_slot" class="can_tooltip col-6 col-md-4 col-lg-3">
       <a href="#" id="dayglo_eye" class="can_eye single_world" data-world="dayglo"></a>
-      <img id="dayglo_can" class="can_image" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png" alt="Crooked Dayglo Skies can" />
+      <img id="dayglo_can" class="can_image" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo-75.png" srcset="
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo.png 430w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo-300.png 300w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo-250.png 250w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo-200.png 200w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo-150.png 150w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo-100.png 100w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_dayglo-75.png 75w
+      " alt="Crooked Dayglo Skies can">
     </div>
     <div id="midnight_slot" class="can_tooltip col-6 col-md-4 col-lg-3">
       <a href="#" id="midnight_eye" class="can_eye single_world" data-world="midnight"></a>
-      <img id="midnight_can" class="can_image"  src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png" alt="Crooked Midnight Stage can" />
+      <img id="midnight_can" class="can_image" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight-75.png" srcset="
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight.png 430w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight-300.png 300w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight-250.png 250w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight-200.png 200w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight-150.png 150w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight-100.png 100w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_midnight-75.png 75w
+      " alt="Crooked Midnight Stage can">
     </div>
     <div id="mother_slot" class="can_tooltip col-6 col-md-4 col-lg-3">
       <a href="#" id="mother_eye" class="can_eye single_world" data-world="mother"></a>
-      <img id="mother_can" class="can_image" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png" alt="Crooked Mother Moon can" />
+      <img id="mother_can" class="can_image" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother-75.png" srcset="
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother.png 430w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother-300.png 300w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother-250.png 250w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother-200.png 200w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother-150.png 150w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother-100.png 100w,
+        <?php echo get_stylesheet_directory_uri(); ?>/assets/img/product/can_mother-75.png 75w
+      " alt="Crooked Mother Moon can">
     </div>
   </div>
   <section id="social" class="row">
