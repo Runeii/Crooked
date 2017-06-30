@@ -31,30 +31,30 @@ function picture_element($name, $options, $world, $mobilename = null){
   } else {
     echo '<picture id="'. $name .'" class="'. $options['class'] . '">';
       if(array_key_exists('version', $options)) {
-        $version = '?v=' . $options['version'];
+        $version = '_v' . $options['version'];
       } else {
-        $version = '?v=1';
+        $version = '';
       }
       if(array_key_exists('mobile', $options) && $options['mobile'] === true) {
         echo '<source
                 media="(orientation: portrait)"
-                srcset="'. output_directory() . '/assets/img/worlds/' . $world . '/' . $mobilename .'.png'. $version .'" >';
+                srcset="'. output_directory() . '/assets/img/worlds/' . $world . '/' . $mobilename .  $version .'.png" >';
         echo '<source
                 media="(orientation: portrait)"
-                srcset="'. output_directory() . '/assets/img/worlds/' . $world . '/' . $mobilename .'_medium.png'. $version .'" >';
+                srcset="'. output_directory() . '/assets/img/worlds/' . $world . '/' . $mobilename .'_medium'.  $version .'.png" >';
       }
       echo '<source
             media="(orientation: landscape) and (min-width: 1500px)"
-            srcset="'. output_directory() . '/assets/img/worlds/' . $world . '/' . $name .'.png'. $version .'" >';
+            srcset="'. output_directory() . '/assets/img/worlds/' . $world . '/' . $name .  $version .'.png" >';
       echo '<source
             media="(orientation: landscape) and (min-width: 1000px)"
-            srcset="'. output_directory() . '/assets/img/worlds/' . $world .'/'. $name .'_large.png'. $version .'" >';
+            srcset="'. output_directory() . '/assets/img/worlds/' . $world .'/'. $name .'_large'.  $version .'.png" >';
       echo '<source
             media="(orientation: landscape) and (min-width: 500px)"
-            srcset="'. output_directory() . '/assets/img/worlds/' . $world .'/'. $name .'_medium.png'. $version .'" >';
+            srcset="'. output_directory() . '/assets/img/worlds/' . $world .'/'. $name .'_medium'.  $version .'.png" >';
       echo '<source
             media="(orientation: landscape)"
-            srcset="'. output_directory() . '/assets/img/worlds/' . $world .'/'. $name .'_small.png'. $version .'" >';
+            srcset="'. output_directory() . '/assets/img/worlds/' . $world .'/'. $name .'_small'.  $version .'.png" >';
       echo '<img alt="'. $name .' asset for '. $world .' world" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" ';
       if($options['speed'] != 0) {
         echo 'class="parallax" data-speed="'. $options['speed'] . '"';
