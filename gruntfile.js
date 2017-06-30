@@ -6,13 +6,13 @@ module.exports = function(grunt) {
     watch: {
       sass: {
         files: 'assets/sass/*.scss',
-        tasks: ['sass:dev', 'notify:successCss'],
+        tasks: ['sass:dev'],
       },
       js: {
         files: [
           'assets/js/src/*.js'
         ],
-        tasks: ['jshint','babel','concat','uglify:scripts','notify:successJs']
+        tasks: ['jshint','babel','concat','uglify:scripts']
       }
     },
     sass: {
@@ -52,12 +52,6 @@ module.exports = function(grunt) {
         },
       },
     },
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc'
-      },
-      all: ['Gruntfile.js', 'assets/js/src/main.js']
-    },
     babel: {
         options: {
             presets: ['es2015']
@@ -79,7 +73,7 @@ module.exports = function(grunt) {
       }
     },
     uglify: {
-      scripts: {
+      default : {
         files: {
           'assets/js/scripts-min.js': ['assets/js/scripts-concat.js']
         },
@@ -99,32 +93,6 @@ module.exports = function(grunt) {
         server: false,
         proxy: 'localhost:8080'
       }
-    },
-    notify: {
-      options: {
-        enabled: true,
-        max_jshint_notifications: 5,
-        success: true,
-        duration: 3
-      },
-      successCss: {
-          options:{
-              title: "Grunt successful",
-              message: "All CSS tasks complete"
-          }
-      },
-      successJs: {
-          options:{
-              title: "Grunt successful",
-              message: "All JS tasks complete"
-          }
-      },
-      successProduction: {
-          options:{
-              title: "Grunt successful",
-              message: "Project prepared for production"
-          }
-      }
     }
   });
 
@@ -137,10 +105,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-browser-sync');
-  grunt.loadNpmTasks('grunt-notify');
   grunt.loadNpmTasks('grunt-babel');
   // Register the default tasks.
   grunt.registerTask('default', ['browserSync', 'watch']);
-  grunt.registerTask('staging', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts']);
-  grunt.registerTask('production', ['sass:dist', 'postcss', 'cssmin', 'jshint','babel','concat','uglify:scripts', 'notify:successProduction']);
+  grunt.registerTask('staging', ['sass:dist', 'postcss', 'cssmin','babel','concat','uglify']);
+  grunt.registerTask('production', ['sass:dist', 'postcss', 'cssmin','babel','concat','uglify']);
+  grunt.registerTask('production-scripts', ['babel','concat','uglify']);
 };

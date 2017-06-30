@@ -1196,7 +1196,7 @@ $sun_colour_dayglo: #e84079;
   z-index:14;
 }
 .float img {
-  animation: float_bob 3s infinite ease-in-out;
+  animation: float_bob 5s infinite ease-in-out;
 }
 #heads img {
   right:0;
@@ -1264,7 +1264,7 @@ $sun_colour_dayglo: #e84079;
       transform:translate(0, 0px);
     }
     65% {
-      transform:translate(0, 15px);
+      transform:translate(0, 39px);
     }
     to {
       transform: translate(0, -0px);
@@ -1357,7 +1357,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
   #hill_one img {
     width:100vw;
     left:0vw;
-    bottom:-2vh;
+    bottom:-15vh;
   }
   #hill_two img {
     width:100vw;
@@ -1474,6 +1474,7 @@ $horizon-ratio: $horizon-base-ratio - ($horizon-base-ratio / 10);
     left: 40vw;
     bottom: 20vw;
     z-index: 70;
+    animation-duration: 5s;
   }
   #skyshadow_one img {
     left:auto;
@@ -1772,6 +1773,9 @@ body.mother {
       width:70%;
       left:15%;
       bottom:20vw;
+    }
+    #hill_one img {
+      bottom:0;
     }
   }
   .world_can {

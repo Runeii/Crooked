@@ -3,7 +3,8 @@ $elements = array(
   'hill_one' => array(
     'speed' => 0,
     'class' => 'terrain',
-    'mobile' => true
+    'mobile' => true,
+    'version' => 2
   ),
   'hill_two' => array(
     'speed' => 4,

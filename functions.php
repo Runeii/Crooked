@@ -1,5 +1,5 @@
 <?php
-$version = '1.1.1';
+$version = '1.1.4';
 function crooked_scripts_styles() {
     wp_enqueue_style( 'styles', get_stylesheet_directory_uri() . '/assets/css/style-min.css', null, $version, 'all' );
     wp_register_script( 'main', get_template_directory_uri() . '/assets/js/scripts-min.js', null, $version, true);

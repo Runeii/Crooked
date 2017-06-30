@@ -5049,7 +5049,7 @@ body.midnight #midnight_slot {
   z-index: 14; }
 
 .float img {
-  animation: float_bob 3s infinite ease-in-out; }
+  animation: float_bob 5s infinite ease-in-out; }
 
 #heads img {
   right: 0;
@@ -5113,7 +5113,7 @@ body.midnight #midnight_slot {
   from {
     transform: translate(0, 0px); }
   65% {
-    transform: translate(0, 15px); }
+    transform: translate(0, 39px); }
   to {
     transform: translate(0, 0px); } }
 
@@ -5187,7 +5187,7 @@ body.midnight #midnight_slot {
 .midnight #hill_one img {
   width: 100vw;
   left: 0vw;
-  bottom: -2vh; }
+  bottom: -15vh; }
 
 .midnight #hill_two img {
   width: 100vw;
@@ -5291,7 +5291,8 @@ body.midnight #midnight_slot {
   width: 50vw;
   left: 40vw;
   bottom: 20vw;
-  z-index: 70; }
+  z-index: 70;
+  animation-duration: 5s; }
 
 .mother #skyshadow_one img {
   left: auto;
@@ -5506,6 +5507,8 @@ body.mother {
     width: 70%;
     left: 15%;
     bottom: 20vw; }
+  .midnight #hill_one img {
+    bottom: 0; }
   .world_can {
     display: none; }
   .transition-stage-1 body.dayglo header {

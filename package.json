@@ -12,15 +12,27 @@
     "grunt-contrib-jshint": "~1.1.0",
     "grunt-contrib-uglify": "~2.2.0",
     "grunt-contrib-watch": "~1.0.0",
-    "grunt-git": "^1.0.3",
+    "grunt-git": "^1.0.4",
     "grunt-notify": "^0.4.5",
     "grunt-php": "^1.5.1",
     "grunt-postcss": "^0.8.0",
-    "grunt-sass": "^2.0.0",
+    "grunt-sass": "*",
     "postcss-object-fit-images": "^1.1.2"
   },
   "repository": {
     "type": "git"
   },
-  "author": "Andrew Hill"
+  "author": "Andrew Hill",
+  "dependencies": {
+    "babel-core": "^6.25.0",
+    "babel-template": "^6.25.0",
+    "babel-traverse": "^6.25.0",
+    "babel-types": "^6.25.0",
+    "browser-sync": "^2.18.12",
+    "globule": "^1.2.0",
+    "iconv-lite": "^0.4.18",
+    "jshint": "^2.9.5",
+    "minimatch": "^3.0.4",
+    "node-sass": "^4.5.3"
+  }
 }

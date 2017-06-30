@@ -435,7 +435,7 @@ function switch_world(e) {
 
 function replaceElements(target) {
   header.innerHTML = '';
-  $("#header").load(wordpress.template_directory + '/world_data/selector.php', { world: target, directory: wordpress.template_directory }, function () {
+  $("#header").load(wordpress.template_directory + '/world_data/selector.php?v=1.1', { world: target, directory: wordpress.template_directory }, function () {
     //We need to wait for loading to be complete
     get.world = target;
     refresh_layout();
@@ -589,3 +589,12 @@ function IE_positionEye(eye) {
   eye.style.top = eye.getBoundingClientRect().top + 'px';
   eye.style.left = eye.getBoundingClientRect().left + 'px';
 }
+
+(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments);
+  }, i[r].l = 1 * new Date();a = s.createElement(o), m = s.getElementsByTagName(o)[0];a.async = 1;a.src = g;m.parentNode.insertBefore(a, m);
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+ga('create', 'UA-8273012-35', 'auto');
+ga('send', 'pageview');

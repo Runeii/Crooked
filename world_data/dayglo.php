@@ -37,7 +37,8 @@ $elements = array(
   ),
   'heads' => array(
     'speed' => 0,
-    'class' => 'float'
+    'class' => 'float',
+    'version' => 2
   ),
   'fruit_one' => array(
     'speed' => 0,

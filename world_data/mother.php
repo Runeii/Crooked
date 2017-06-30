@@ -33,7 +33,8 @@ $elements = array(
   'mother' => array(
     'speed' => 0,
     'class' => 'float',
-    'mobile' => true
+    'mobile' => true,
+    'version' => 2
   ),
   'skyshadow_one' => array(
     'speed' => 2,
