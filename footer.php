@@ -25,7 +25,7 @@
       <div class="footer-box col-12 col-lg-6">
         <h3>Contact</h3>
         <p class="footer-copy">
-          <span itemprop="telephone"><a href="tel:+441246245999">+44 (0) 1246 245999</a></span>
+          <span itemprop="telephone"><a href="tel:+441246216000">+44 (0) 1246 216000</a></span>
           <span class="email" itemprop="email"><a href="mailto:hello@crookedbeverageco.com">&nbsp;</a></span>
         </p>
       </div>
