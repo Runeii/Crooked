@@ -1903,6 +1903,11 @@ body.mother {
    }
  }
 .landing-page {
+  #about {
+    p:nth-of-type(3) {
+      margin-top:1em;
+    }
+  }
   .introduction {
     @media screen and (min-width: 768px) {
       -moz-column-count: 1;
