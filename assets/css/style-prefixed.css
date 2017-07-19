@@ -5683,6 +5683,9 @@ body.mother {
 /* ==========================================================================
   Landing page styles
    ========================================================================= */
+.default-secret #header {
+  height: 66vh; }
+
 @media screen and (min-width: 768px) {
   .landing-page .introduction {
     -webkit-column-count: 1;

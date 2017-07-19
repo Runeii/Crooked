@@ -1897,6 +1897,11 @@ body.mother {
 /* ==========================================================================
   Landing page styles
    ========================================================================= */
+ .default-secret {
+   #header {
+     height:66vh;
+   }
+ }
 .landing-page {
   .introduction {
     @media screen and (min-width: 768px) {
