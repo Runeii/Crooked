@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         files: [
           'assets/js/src/*.js'
         ],
-        tasks: ['jshint','babel','concat','uglify:scripts']
+        tasks: ['babel','concat','uglify']
       }
     },
     sass: {

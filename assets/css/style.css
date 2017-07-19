@@ -4275,7 +4275,7 @@ nav {
   body.default .mobile_logo {
     display: none; } }
 
-.crooked_logo {
+.crooked_logo, .all_seeing_eye {
   position: fixed;
   top: 1em;
   left: 1rem;
@@ -4283,7 +4283,7 @@ nav {
   z-index: 202;
   display: none; }
   @media screen and (min-width: 768px) {
-    .crooked_logo {
+    .crooked_logo, .all_seeing_eye {
       display: block;
       opacity: 1;
       animation: none;
@@ -4467,7 +4467,18 @@ body:not(.default) #about p:nth-of-type(2) {
   border: 2px white solid;
   padding: 0.5em;
   color: white;
-  align-self: flex-end; }
+  align-self: flex-end;
+  font-weight: inherit;
+  line-height: 1.2;
+  font-family: "Fjalla One", "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.25rem; }
+  @media screen and (min-width: 576px) {
+    #contact input[type=submit] {
+      font-size: 1.25rem; } }
+  @media screen and (min-width: 1500px) {
+    #contact input[type=submit] {
+      font-size: 1.563rem; } }
 
 #contact option {
   background-color: black;
@@ -5581,6 +5592,38 @@ body.mother {
     margin-right: -5vw; }
   100% {
     margin-right: 0vw; } }
+
+/* ==========================================================================
+  Landing page styles
+   ========================================================================= */
+@media screen and (min-width: 768px) {
+  .landing-page .introduction {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+    text-align: center; } }
+
+.landing-page .introduction h2 {
+  color: #87c7a0;
+  text-transform: uppercase; }
+
+.landing-page #contact {
+  padding-top: 4.5rem; }
+  .landing-page #contact input[type=submit] + div {
+    display: none; }
+    @media screen and (min-width: 576px) {
+      .landing-page #contact input[type=submit] + div {
+        display: block; } }
+
+.landing-page .disclaimer {
+  font-size: 0.667em !important; }
+
+.landing-page .counter {
+  line-height: 2.5; }
+  .landing-page .counter .counter-digit {
+    border: 2px solid white;
+    padding: 1rem;
+    margin: 0.5rem; }
 
 @supports not (object-fit: cover) {
   #social .post {

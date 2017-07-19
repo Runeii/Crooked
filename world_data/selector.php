@@ -1,9 +1,8 @@
 <?php
-if(!isset($world)) {
-  $world = $_POST['world'];
+if(!isset($world_layout)) {
+  $world_layout = $world;
 }
-
-include $world . '.php';
+include $world_layout . '.php';
 
 //We're outside of Wordpress
 function output_directory(){

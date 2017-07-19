@@ -275,7 +275,7 @@ nav {
     }
   }
 }
-.crooked_logo {
+.crooked_logo, .all_seeing_eye {
   position: fixed;
   top: 1em;
   left:1rem;
@@ -503,6 +503,17 @@ body:not(.default){
     padding: 0.5em;
     color: white;
     align-self:flex-end;
+    font-weight: inherit;
+    line-height: 1.2;
+    font-family:$header-font;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    @media screen and (min-width: 576px) {
+      font-size: 1.25rem;
+    }
+    @media screen and (min-width: 1500px) {
+      font-size: 1.563rem;
+    }
   }
   option {
     background-color: black;
@@ -1882,6 +1893,45 @@ body.mother {
     margin-right: 0vw;
   }
 }
+
+/* ==========================================================================
+  Landing page styles
+   ========================================================================= */
+.landing-page {
+  .introduction {
+    @media screen and (min-width: 768px) {
+      -moz-column-count: 1;
+      -webkit-column-count: 1;
+      column-count: 1;
+      text-align:center;
+    }
+    h2 {
+      color:rgb(135,199,160);
+      text-transform:uppercase;
+    }
+  }
+  #contact {
+    padding-top:4.5rem;
+    input[type=submit] + div {
+      display:none;
+      @media screen and (min-width: 576px) {
+        display:block;
+      }
+    }
+  }
+  .disclaimer {
+    font-size:0.667em !important;
+  }
+  .counter {
+    line-height: 2.5;
+    .counter-digit {
+      border: 2px solid white;
+      padding:1rem;
+      margin:0.5rem;
+    }
+  }
+}
+
 
 ///Browser specific fixes
 

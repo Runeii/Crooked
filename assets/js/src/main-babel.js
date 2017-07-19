@@ -39,6 +39,7 @@ var get = getParameters(getNavUrl());
 
 if (get.world === null || get.world === undefined) {
   get.world = 'default';
+  console.log(get.world);
 }
 
 function recache_elements() {

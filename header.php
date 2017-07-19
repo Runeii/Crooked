@@ -2,6 +2,13 @@
 <?php
   if(isset($_GET['world'])) {
     $world = $_GET['world'];
+  } else if(get_post_meta($post->ID, 'world_layout', true) != '') {
+    $world_layout = get_post_meta($post->ID, 'world_layout', true);
+    if(get_post_meta($post->ID, 'world', true) != '') {
+      $world = get_post_meta($post->ID, 'world', true);
+    } else {
+      $world = 'default';
+    }
   } else {
     $world = 'default';
   }
@@ -27,7 +34,7 @@
     <meta name="theme-color" content="#ffffff">
     <?php wp_head(); ?>
 </head>
-<body class="<?php echo $world; ?> sunrise daytime">
+<body class="<?php echo $world . ' ' . $world_layout; ?> sunrise daytime">
   <div id="loading">
     <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo/crooked_logo.svg" alt="Crooked Beverage Co logo" />
   </div>
