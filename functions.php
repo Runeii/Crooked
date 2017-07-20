@@ -92,7 +92,8 @@ function var_dump_pre($mixed = null) {
 // Sample countdown function for MCW promo landing page (19th July 2017)
 define( 'MCW_COUNTER', 'mcw-counter' );
 define( 'MCW_emails', 'mcw-emails' );
-$total_mcw_samples = 1000;
+update_option( MCW_COUNTER, 150);
+$total_mcw_samples = 150;
 function mcw_remaining_samples(){
   global $total_mcw_samples;
   $val = $total_mcw_samples - get_option( MCW_COUNTER, 0);

@@ -10,7 +10,7 @@ $world = 'default';
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <title>Crooked Beverage Co</title>
+    <title>Sample Box Giveaway</title>
     <meta name="description" content="">
     <meta content="True" name="HandheldFriendly">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -46,7 +46,7 @@ $world = 'default';
       <?php if(mcw_remaining_samples() > 0) {
         echo do_shortcode('[contact-form-7 id="'. get_post_meta( $post->ID, 'data_capture_form_id', true ) . '"]');
       } else {
-        echo '<p>Sorry all </p>';
+        echo '<p>Sorry, all our samples have been snapped up, for now.</p>';
       }
       ?>
     </section>
