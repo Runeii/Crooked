@@ -436,6 +436,7 @@ function switch_world(e) {
 
 function replaceElements(target) {
   header.innerHTML = '';
+  console.log(target);
   $("#header").load(wordpress.template_directory + '/world_data/selector.php?v=1.1', { world: target, directory: wordpress.template_directory }, function () {
     //We need to wait for loading to be complete
     get.world = target;
