@@ -4940,7 +4940,7 @@ body:not(.default) #flavours_nav_home {
 body:not(.default) #flavours_nav {
   display: block; }
 
-body.dayglo #dayglo_slot {
+body.dayglo #dayglo_slot, body[class^="dayglo-"] #dayglo_slot {
   display: none; }
 
 body.mother #mother_slot {
@@ -5084,39 +5084,39 @@ body.midnight #midnight_slot {
   animation-duration: 5s;
   animation: float_bg 3s infinite ease-in-out; }
 
-.dayglo #moon img {
+.dayglo #moon img, body[class^="dayglo-"] #moon img {
   border-radius: 50%;
   box-shadow: 0 0 40px 6px #e84079, 0 0 150px 90px #e84079;
   background-color: #e84079;
   animation: sun_shimmer_dayglo 30s infinite; }
 
-.dayglo #skyshadow_one img {
+.dayglo #skyshadow_one img, body[class^="dayglo-"] #skyshadow_one img {
   top: 5vh; }
 
-.dayglo #cloud_two img {
+.dayglo #cloud_two img, body[class^="dayglo-"] #cloud_two img {
   left: 0%;
   top: 45%; }
 
-.dayglo #cloud_three img {
+.dayglo #cloud_three img, body[class^="dayglo-"] #cloud_three img {
   right: 0;
   left: auto;
   top: 45%; }
 
-.dayglo #cloud_seven img {
+.dayglo #cloud_seven img, body[class^="dayglo-"] #cloud_seven img {
   top: 35%;
   left: 10%; }
 
-.dayglo #cloud_four img {
+.dayglo #cloud_four img, body[class^="dayglo-"] #cloud_four img {
   right: -40px;
   left: auto;
   animation-delay: -1.5s;
   top: 10%; }
 
-.dayglo #cloud_one img, .dayglo #cloud_six img {
+.dayglo #cloud_one img, .dayglo #cloud_six img, body[class^="dayglo-"] #cloud_one img, body[class^="dayglo-"] #cloud_six img {
   left: 0;
   right: auto; }
 
-.dayglo #cloud_five img {
+.dayglo #cloud_five img, body[class^="dayglo-"] #cloud_five img {
   left: -60px;
   right: auto; }
 
@@ -5396,18 +5396,18 @@ body.default.sunrise {
     background-color: #757575; } }
 
 /*========================================================================= */
-body.dayglo {
+body.dayglo, body[class^="dayglo-"] {
   background-color: #7fc8bd;
   color: white; }
-  body.dayglo .lede {
+  body.dayglo .lede, body[class^="dayglo-"] .lede {
     color: white; }
-  body.dayglo main, body.dayglo footer, body.dayglo .ie11wrap {
+  body.dayglo main, body.dayglo footer, body.dayglo .ie11wrap, body[class^="dayglo-"] main, body[class^="dayglo-"] footer, body[class^="dayglo-"] .ie11wrap {
     background-color: #7fc8bd; }
-  body.dayglo header {
+  body.dayglo header, body[class^="dayglo-"] header {
     background-color: #2a77a1; }
-    body.dayglo header::after {
+    body.dayglo header::after, body[class^="dayglo-"] header::after {
       background-color: #7fc8bd; }
-  body.dayglo #social .post {
+  body.dayglo #social .post, body[class^="dayglo-"] #social .post {
     border-color: #7fc8bd; }
 
 /*========================================================================= */
@@ -5492,9 +5492,9 @@ body.mother {
     top: 0;
     left: 0;
     min-width: 100vw; }
-  .dayglo header {
+  .dayglo header, body[class^="dayglo-"] header {
     border-bottom: 20vh solid #7fc8bd; }
-  .dayglo #overlays {
+  .dayglo #overlays, body[class^="dayglo-"] #overlays {
     flex-direction: column;
     background-color: #7fc8bd; }
   .mother header {
@@ -5522,7 +5522,7 @@ body.mother {
     bottom: 0; }
   .world_can {
     display: none; }
-  .transition-stage-1 body.dayglo header {
+  .transition-stage-1 body.dayglo header, .transition-stage-1 body[class^="dayglo-"] header {
     background-color: #7fc8bd; } }
 
 @media all and (orientation: landscape) and (max-height: 500px) {
@@ -5548,7 +5548,7 @@ body.mother {
     display: flex;
     flex-direction: column;
     justify-content: center; }
-  body.dayglo {
+  body.dayglo, body[class^="dayglo-"] {
     background-color: #2a77a1; } }
 
 /* ==========================================================================

@@ -1,4 +1,16 @@
 // Stylesheets for promo pages
+#wpcf7-f71-p68-o1 {
+  .wpcf7-form {
+    .container {
+      max-height:999px;
+      overflow: hidden;
+      transition: max-height 1s;
+    }
+    &.sent .container {
+      max-height: 0px;
+    }
+  }
+}
 .toplevel_page_revolution_admin  {
   .update-nag {
     display: none;
