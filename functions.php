@@ -1,5 +1,7 @@
 <?php
 $version = '1.1.6';
+require_once( __DIR__ . '/functions-promos.php');
+
 function crooked_scripts_styles() {
     wp_enqueue_style( 'styles', get_stylesheet_directory_uri() . '/assets/css/style-min.css', null, $version, 'all' );
     wp_register_script( 'main', get_template_directory_uri() . '/assets/js/scripts-min.js', null, $version, true);
@@ -89,43 +91,4 @@ function var_dump_pre($mixed = null) {
   return null;
 }
 
-// Sample countdown function for MCW promo landing page (19th July 2017)
-define( 'MCW_COUNTER', 'mcw-counter' );
-define( 'MCW_emails', 'mcw-emails' );
-update_option( MCW_COUNTER, 150);
-$total_mcw_samples = 150;
-function mcw_remaining_samples(){
-  global $total_mcw_samples;
-  $val = $total_mcw_samples - get_option( MCW_COUNTER, 0);
-  return $val;
-}
-add_action('wpcf7_before_send_mail', 'MCW_counter_check');
-function MCW_counter_check($wpcf7_data) {
-  global $total_mcw_samples;
-  $emails = get_option( MCW_emails);
-  $emails = array(
-    '67a', 'test@test.com', 'nah@findme.com'
-  );
-  if(mcw_remaining_samples() == 0) {
-    $wpcf7_data->skip_mail = true;
-    return false;
-  } else if(in_array($wpcf7_data->your_address, $emails)) {
-    $wpcf7_data->skip_mail = true;
-    $wpcf7_data->message['mail_sent_ng'] = 'A sample is already on its way to this address!';
-    return false;
-  } else {
-    $count = get_option( MCW_COUNTER, 0) + 1;
-    update_option( MCW_COUNTER, $count);
-    return true;
-  }
-}
-function mcw_counter() {
-  $digits = str_split(mcw_remaining_samples());
-  $output = '<h3 class="counter">';
-  foreach($digits as $digit){
-    $output .= '<span class="counter-digit">' . $digit . '</span>';
-  }
-  $output .= '<br />samples remaining</h3>';
-  return $output;
-}
 ?>

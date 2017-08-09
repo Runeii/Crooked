@@ -7,9 +7,11 @@
     <div class="col-12 introduction">
       <?php the_content(); ?>
     </div>
+    <!--
+    Note: Any data capture form would go in this slot
     <section id="contact" class="row">
-      <?php echo do_shortcode('[contact-form-7 id="'. get_post_meta( $post->ID, 'data_capture_form_id', true ) . '"]'); ?>
-    </section>
+      <?php //echo do_shortcode('[contact-form-7 id="'. get_post_meta( $post->ID, 'data_capture_form_id', true ) . '"]'); ?>
+    </section> -->
     <?php endwhile; endif; ?>
   </section>
 </div>

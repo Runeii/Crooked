@@ -22,7 +22,8 @@ module.exports = function(grunt) {
         dev: {
             files: {
               //We fake the minified version here, which is produced properly by prod chain
-              'assets/css/style-min.css': 'assets/sass/screen.scss'
+              'assets/css/style-min.css': 'assets/sass/screen.scss',
+              'assets/css/promos-min.css': 'assets/sass/promos.scss'
             }
         },
         dist: {
@@ -84,8 +85,7 @@ module.exports = function(grunt) {
         src : [
           'assets/css/*.css',
           'assets/img/*',
-          'assets/js/*.js',
-          '**/*.html'
+          'assets/js/*.js'
         ],
       },
       options: {

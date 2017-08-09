@@ -1046,7 +1046,7 @@ body:not(.default) {
     display: block;
   }
 }
-body.dayglo {
+body.dayglo, body[class^="dayglo-"] {
   #dayglo_slot {
     display: none;
   }
@@ -1231,7 +1231,7 @@ $sun_colour_dayglo: #e84079;
   animation-duration: 5s;
   animation: float_bg 3s infinite ease-in-out;
 }
-.dayglo {
+.dayglo, body[class^="dayglo-"] {
   #moon img {
     border-radius: 50%;
     box-shadow: 0 0 40px 6px $sun_colour_dayglo, 0 0 150px 90px $sun_colour_dayglo;
@@ -1605,7 +1605,7 @@ body.default.sunrise {
 
 /*========================================================================= */
 
-body.dayglo {
+body.dayglo, body[class^="dayglo-"] {
   background-color: #7fc8bd;
   color:white;
   .lede {
@@ -1745,7 +1745,7 @@ body.mother {
     left:0;
     min-width:100vw;
   }
-  .dayglo {
+  .dayglo, body[class^="dayglo-"] {
     header {
       border-bottom:20vh solid #7fc8bd;
     }
@@ -1793,7 +1793,7 @@ body.mother {
     display: none;
   }
   .transition-stage-1 {
-    body.dayglo header {
+    body.dayglo header, body[class^="dayglo-"] header {
         background-color:#7fc8bd;
       }
     }
@@ -1834,7 +1834,7 @@ body.mother {
       justify-content: center;
     }
   }
-  body.dayglo {
+  body.dayglo, body[class^="dayglo-"] {
     background-color:#2a77a1;
   }
 }
