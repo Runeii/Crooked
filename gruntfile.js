@@ -91,7 +91,7 @@ module.exports = function(grunt) {
       options: {
         watchTask: true,
         server: false,
-        proxy: 'localhost:8080'
+        proxy: 'http://crooked:8888/'
       }
     }
   });
