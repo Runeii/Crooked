@@ -1,0 +1,90 @@
+@font-face {
+    font-family: 'amaticbold';
+    src: url('/assets/fonts/amatic-bold-webfont.eot');
+    src: url('/assets/fonts/amatic-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/amatic-bold-webfont.woff2') format('woff2'),
+         url('/assets/fonts/amatic-bold-webfont.woff') format('woff'),
+         url('/assets/fonts/amatic-bold-webfont.ttf') format('truetype'),
+         url('/assets/fonts/amatic-bold-webfont.svg#amaticbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$body-font: 'Open Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+$header-font: 'Fjalla One', 'Open Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+$special-font: 'amaticbold', #{$header-font};
+
+$pageMaxWidth: 1170px;
+
+@mixin copy {
+  margin-bottom: 1.3em;
+}
+
+@mixin heading {
+  margin: 1.414em auto 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
+  font-family:$header-font;
+  text-transform: uppercase;
+}
+
+@mixin h1 {
+  @include heading;
+  font-size: 1.953rem;
+  margin-top: 0;
+  @media screen and (min-width: 576px) {
+    font-size: 2.441rem;
+    margin-top: 0;
+  }
+  @media screen and (min-width: 1500px) {
+    font-size: 3.052rem;
+    margin-top: 0;
+  }
+}
+@mixin h2 {
+  @include heading;
+  font-size: 1.953rem;
+  @media screen and (min-width: 576px) {
+    font-size: 1.953rem;
+  }
+  @media screen and (min-width: 1500px) {
+    font-size: 2.441rem;
+  }
+}
+@mixin h3 {
+  @include heading;
+  font-size: 1.563rem;
+  @media screen and (min-width: 576px) {
+    font-size: 1.563rem;
+  }
+  @media screen and (min-width: 1500px) {
+    font-size: 1.953rem;
+  }
+}
+@mixin h4 {
+  @include heading;
+  font-size: 1.25rem;
+  @media screen and (min-width: 576px) {
+    font-size: 1.25rem;
+  }
+  @media screen and (min-width: 1500px) {
+    font-size: 1.563rem;
+  }
+}
+@mixin h5 {
+  @include heading;
+  font-size: 1.25rem;
+  @media screen and (min-width: 576px) {
+    font-size: 1.25rem;
+  }
+  @media screen and (min-width: 1500px) {
+    font-size: 1.25rem;
+  }
+}
+
+@mixin small {
+  font-size: 1rem;
+  @media screen and (min-width: 767px) {
+    font-size: 0.8rem;
+  }
+}

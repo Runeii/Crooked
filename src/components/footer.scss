@@ -1,0 +1,102 @@
+@import 'globals.scss';
+
+.footer {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  z-index: 101;
+  overflow-x:hidden;
+  font-family: "Open Sans";
+  letter-spacing: normal;
+  font-size: 0.8rem;
+  @media screen and (min-width: 992px) {
+    font-family:$body-font;
+    letter-spacing: normal;
+    font-size:0.8rem;
+  }
+  .row {
+    width:100vw;
+  }
+  .footer-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;;
+    justify-content: space-between;
+    @media screen and (min-width: 992px) {
+      width:initial;
+      justify-content:center;
+    }
+    &:first-of-type{
+      flex-grow: 2;
+      text-align: center;
+      flex-direction: column;
+    }
+    @media screen and (min-width: 576px) {
+      &:first-of-type{
+        flex-direction: row;
+      }
+    }
+    @media screen and (min-width: 992px) {
+      &:first-of-type{
+        justify-content: flex-start;
+        text-align: left;
+      }
+      &:not(:first-of-type) {
+        h3 {
+          display:none;
+        }
+      }
+      &:last-of-type{
+        justify-content: flex-end;
+      }
+    }
+    @media screen and (min-width: 1300px) {
+      &:not(:first-of-type) {
+        h3 {
+          display:block;
+        }
+      }
+    }
+  }
+  a {
+    text-decoration: none;
+    color:white;
+  }
+  h3 {
+    margin:0.5rem 0 0;
+    letter-spacing: 0.1em;
+    @media screen and (min-width: 576px) {
+      margin:0.5rem 0.5rem 0.5rem 0;
+    }
+    @media screen and (min-width: 992px) {
+      padding-right:0.5em;
+    }
+  }
+  .footer-copy {
+  //  font-size:0.64em;
+    text-align:right;
+    @media screen and (min-width: 992px) {
+      text-align: left;
+    }
+    span {
+      width:100%;
+      display: block;
+    }
+  }
+  i {
+    margin-left: 1rem;
+    @media screen and (min-width: 992px) {
+      &:first-of-type{
+        margin-left:0;
+      }
+    }
+  }
+  .email a::after {
+    content: 'Email us';
+    position:relative;
+    @media screen and (min-width: 576px) {
+      content: 'hello@crookedbeverageco.com';
+    }
+  }
+}

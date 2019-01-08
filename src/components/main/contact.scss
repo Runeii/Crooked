@@ -1,0 +1,53 @@
+@import 'globals.scss';
+
+.contact {
+  &__heading {
+    @include h3;
+  }
+  &__text {
+    @include copy;
+  }
+  // Old WP Contact form override styles. What a mess.
+  label {
+    text-align: left;
+    margin:0;
+    @media screen and (min-width: 576px) {
+      text-align:right;
+    }
+  }
+  .h4 {
+    font-size:1.25rem;
+  }
+  .row {
+    margin:0.5em 0;
+  }
+  input:not([type=submit]), textarea, select {
+    width:100%;
+    background-color:transparent;
+    border:2px white solid;
+    padding: 0.5em;
+    color: white;
+    margin:0;
+  }
+  input[type=submit] {
+    background-color:transparent;
+    border:2px white solid;
+    padding: 0.5em;
+    color: white;
+    align-self:flex-end;
+    font-weight: inherit;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    @media screen and (min-width: 576px) {
+      font-size: 1.25rem;
+    }
+    @media screen and (min-width: 1500px) {
+      font-size: 1.563rem;
+    }
+  }
+  option {
+    background-color: black;
+    color: white;
+  }
+}

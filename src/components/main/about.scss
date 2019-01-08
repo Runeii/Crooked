@@ -1,0 +1,43 @@
+@import 'globals.scss';
+
+.about {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  &__lede {
+    @include h2;
+    font-size: 1.563em;
+    position: relative;
+    margin-bottom:4rem;
+    @media screen and (min-width: 576px) {
+      font-size: 2.441em;
+    }
+    &:after {
+      position:absolute;
+      bottom:-3rem;
+      left:0;
+      width:100%;
+      text-align: center;
+      content: '-';
+    }
+  }
+  &__intro {
+    width: 66%;
+    p:first-of-type{
+      font-size:1rem;
+      margin-top:0;
+    }
+    p:nth-of-type(2){
+      margin-bottom:0;
+    }
+    p:nth-of-type(3){
+      margin-top:0;
+    }
+  }
+}
+.about--flavour {
+  p:nth-of-type(2){
+    font-size:1rem;
+    margin-bottom:0;
+  }
+}

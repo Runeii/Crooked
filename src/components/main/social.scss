@@ -1,0 +1,45 @@
+@import 'globals.scss';
+
+.social {
+  &__heading {
+    @include h3;
+  }
+  &__icons-icon {
+    font-size:1.563rem;
+    padding:0.5rem;
+  }
+  &__post {
+    background-color:white;
+    color:black;
+    text-align: left;
+    border:0.5rem solid black;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 33%;
+    &-image {
+      width:100%;
+      object-fit: cover;
+      padding-top:0.5em;
+      &::after{
+        content: '';
+        background-color:black;
+        position: absolute;
+        left:0;
+        bottom:0;
+        height:0.125em;
+        width:1em;
+      }
+    }
+    &-caption {
+      position: relative;
+      padding-bottom:0.5em;
+    }
+    &:nth-child(9) {
+      display: none;
+      @media screen and (min-width: 992px) {
+        display: block;
+      }
+    }
+  }
+}

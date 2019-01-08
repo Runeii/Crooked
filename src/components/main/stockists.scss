@@ -1,0 +1,19 @@
+@import 'globals.scss';
+
+.stockists {
+  padding-bottom:6rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  &__heading {
+    @include h3;
+  }
+  &__text {
+    @include copy;
+  }
+  &__logo {
+    margin: 2rem auto 0;
+  }
+}

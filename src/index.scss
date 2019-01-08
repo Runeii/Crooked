@@ -1,0 +1,134 @@
+@import 'globals';
+
+/* ==========================================================================
+   Base typography, general styles
+   ========================================================================== */
+html {
+  max-width:100%;
+  font-size:14px;
+  @media screen and (min-width: 767px) {
+    font-size:16px;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size:18px;
+  }
+}
+body {
+  background-color: rgb(46,45,44);
+  color:white;
+  font-family: $body-font;
+  font-weight: 400;
+  font-size:1rem;
+  line-height: 1.45;
+  margin:0;
+  max-width:100%;
+}
+
+img {
+  max-width:100%;
+  height:auto;
+  &[data-original] {
+    opacity:0;
+    transform:translateY(10%);
+    transition:all 1s;
+    &.loaded {
+      opacity:1;
+      transform:translateY(0);
+    }
+  }
+}
+table {
+  text-align: left;
+  border-collapse: collapse;
+  font-size:0.8rem;
+  margin: 0 auto;
+  td, th {
+    border:1px solid white;
+    padding:0.8rem;
+  }
+  td:first-child {
+    text-transform: uppercase;
+    text-align: right;
+  }
+  h4 {
+    margin:0;
+  }
+}
+a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color:white;
+  &:hover {
+    color:#87c7a0;
+  }
+}
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+/* ==========================================================================
+  Layout and design
+   ========================================================================= */
+header {
+  height:100vh;
+  width:100%;
+  background-color:#656565;
+  transform-origin: center 50%;
+  max-width:100%;
+  overflow:hidden;
+}
+.ie11wrap {
+  text-align: center;
+  position: relative;
+  z-index:102;
+  padding:0;
+}
+main {
+    text-align: center;
+    position: relative;
+    z-index:101;
+    section {
+      padding-bottom:2rem;
+    }
+}
+.explore-button {
+  border:1px solid white;
+  text-transform: uppercase;
+  display: inline-block;
+  padding:1rem;
+  a {
+    color:white;
+    text-decoration: none;
+  }
+  span {
+    font-weight:bold;
+  }
+}
+
+///Browser specific fixes
+
+@supports not (object-fit:cover){
+  #social .post {
+    display: table;
+  }
+}
+@media all and (-ms-high-contrast:none) {
+  #social .post {
+    display: table;
+  }
+  #contact input:not([type=submit]), #contact textarea {
+    overflow:hidden;
+  }
+  #header > picture, #header > div {
+    border-top:inherit;
+  }
+}
+
+@media screen and (-ms-high-contrast:none) and (min-width: 992px) {
+  footer .footer-box {
+    flex: 1 1 22%;
+    min-width:0%;
+  }
+}
